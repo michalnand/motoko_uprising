@@ -1,0 +1,52 @@
+set   autoscale                        # scale axes automatically
+unset log                              # remove any log-scaling
+unset label                            # remove any previous labels
+set xtic auto                         	# set xtics automatically
+set ytic auto                         # set ytics automatically
+set ztic auto
+
+
+set grid ytics lt 0.1 lw 0.1 lc rgb "#bbbbbb"
+set grid xtics lt 0.1 lw 0.1 lc rgb "#bbbbbb"
+
+#set terminal png size 2048,1356 enhanced font "Helvetica,20"
+set terminal png size 1024,768 enhanced font "Helvetica,20"
+
+set key right top
+
+
+set xlabel "time [ms]"
+set ylabel "value"
+
+set output 'motor_response.png'
+plot 'motor_response.log' using 1:2 title 'input PWM value' with lines lw 2.0, \
+    'motor_response.log' using 1:5 title 'left speed [mm/s]' with lines lw 2.0, \
+    'motor_response.log' using 1:6 title 'right speed [mm/s]' with lines lw 2.0, \
+
+
+set key right bottom
+
+set output 'motor_controll.png'
+plot 'motor_controll.log' using 1:2 title 'required value' with lines lw 3.0, \
+    'motor_controll.log' using 1:4 title 'left speed' with lines lw 2.0, \
+    'motor_controll.log' using 1:5 title 'right speed' with lines lw 2.0, \
+    'motor_controll.log' using 1:6 title 'left u' with lines lw 2.0, \
+    'motor_controll.log' using 1:7 title 'right u' with lines lw 2.0, \
+
+
+
+set output 'front_ir_response.png'
+plot 'front_ir_response.log' using 1:3 title 'sensor output' with lines lw 2.0
+
+set key left top
+
+set output 'line_sensor_response.png'
+plot 'line_sensor_response.log' using 2:($3*500) title 'input' with lines lw 3.0 lc 'red', \
+     'line_sensor_response.log' using 2:4 title 'sensor 0' with lines lw 1.0, \
+     'line_sensor_response.log' using 2:5 title 'sensor 1' with lines lw 1.0, \
+     'line_sensor_response.log' using 2:6 title 'sensor 2' with lines lw 1.0, \
+     'line_sensor_response.log' using 2:7 title 'sensor 3' with lines lw 1.0, \
+     'line_sensor_response.log' using 2:8 title 'sensor 4' with lines lw 1.0, \
+     'line_sensor_response.log' using 2:9 title 'sensor 5' with lines lw 1.0, \
+     'line_sensor_response.log' using 2:10  title 'sensor 6' with lines lw 1.0, \
+     'line_sensor_response.log' using 2:11  title 'sensor 7' with lines lw 1.0, \

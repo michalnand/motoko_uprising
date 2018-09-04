@@ -1,0 +1,2 @@
+sudo ~/bin/stm32ld/stm32ld /dev/ttyUSB0 115200 main.bin
+# gtkterm
