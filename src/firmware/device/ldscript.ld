@@ -34,11 +34,6 @@ _stack_size = 0;   /* required amount of stack */
  */
 _estack = ORIGIN(ram) + LENGTH(ram);
 
-__ram_size__ = LENGTH(ram);
-
-__log_flash_size__ = 16K;
-__log_flash_address__ = ORIGIN(flash) + LENGTH(flash) - __log_flash_size__;
-
 SECTIONS
 {
     /* Reset and ISR vectors */
@@ -49,15 +44,6 @@ SECTIONS
         ASSERT(. != __isr_vector_start__, "The .isr_vector section is empty");
     } >flash
 
-    /* C++ ocnstructor section */
-    . = ALIGN(4);
-    .init_array :
-    {
-    __init_array_start = .;
-    KEEP (*(.init_array*))
-    __init_array_end = .;
-    } >flash
-
 
     /* Text section (code and read-only data) */
     .text :
@@ -65,20 +51,20 @@ SECTIONS
         . = ALIGN(4);
         _stext = .;
         *(.text*)   /* code */
-
-        /*
-        . = ALIGN(4);
-        __init_array_start = .;
-        KEEP (*(.init_array*))
-        __init_array_end = .;
-        */
-
         *(.rodata*) /* read only data */
 
+        /*
+         * NOTE: .glue_7 and .glue_7t sections are not needed because Cortex-M
+         * only supports Thumb instructions, no ARM/Thumb interworking.
+         */
+
+        /* Static constructors and destructors */
+        KEEP(*(.init))
+        KEEP(*(.fini))
+
+        . = ALIGN(4);
         _etext = .;
-    } > flash
-
-
+    } >flash
 
 
     /*
@@ -91,11 +77,11 @@ SECTIONS
      * (ARM uses .ARM.extab and .ARM.exidx instead of the .eh_frame section
      * used on x86.)
      */
-    .ARM.extab :
+    .ARM.extab : /* exception unwinding information */
     {
         *(.ARM.extab*)
     } >flash
-    .ARM.exidx :
+    .ARM.exidx : /* index entries for section unwinding */
     {
         *(.ARM.exidx*)
     } >flash
@@ -103,10 +89,9 @@ SECTIONS
 
     /*
      * Newlib and Eglibc (at least) need these for C++ support.
+     *
      * (Copied from Sourcery CodeBench Lite: arm-none-eabi-gcc -V)
      */
-
-/*
     .preinit_array :
     {
         PROVIDE_HIDDEN(__preinit_array_start = .);
@@ -127,14 +112,12 @@ SECTIONS
         KEEP(*(.fini_array*))
         PROVIDE_HIDDEN(__fini_array_end = .);
     } >flash
-*/
+
 
     /*
      * Initialized data section. This section is programmed into FLASH (LMA
      * address) and copied to RAM (VMA address) in startup code.
      */
-
-
     _sidata = .;
     .data : AT(_sidata) /* LMA address is _sidata (in FLASH) */
     {
@@ -164,7 +147,7 @@ SECTIONS
      */
     ._heap :
     {
-        _sheap = .;
+        __heap_start__ = .;
         . = ALIGN(4);
         . = . + _heap_size;
         . = ALIGN(4);
@@ -180,11 +163,5 @@ SECTIONS
 /* Nice to have */
 __isr_vector_size__ = SIZEOF(.isr_vector);
 __text_size__ = SIZEOF(.text);
-
-__data_start__ = _sdata;
 __data_size__ = SIZEOF(.data);
-
-__bss_start__ = _sbss;
 __bss_size__ = SIZEOF(.bss);
-
-__heap_start__ = _sheap;

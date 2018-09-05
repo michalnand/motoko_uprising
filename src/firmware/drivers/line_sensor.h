@@ -71,7 +71,4 @@ class LineSensor
 
 };
 
-extern LineSensor line_sensor;
-
-
 #endif

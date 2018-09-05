@@ -5,8 +5,8 @@ class Thread
 {
   public:
     Thread() { }
-    virtual ~Thread() { }
-    virtual void main() { }
+    virtual ~Thread() {}
+    virtual void main() {}
 };
 
 #endif

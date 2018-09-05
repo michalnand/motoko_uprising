@@ -6,7 +6,6 @@
 Fram::Fram()
 {
 
-
 }
 
 Fram::~Fram()

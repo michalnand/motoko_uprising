@@ -84,9 +84,10 @@ IMU::IMU()
 
 void IMU::init(I2C_Interface *i2c_)
 {
-
     i2c = i2c_;
-
+    i2c->write_reg(LSM6DS0_ADDRESS, LSM6DS0_CTRL_REG1_G, LSM6DS0_G_ODR_476HZ | LSM6DS0_G_FS_500 );
+ 
+    return;
 
     angular_rate.x = 0;
     angular_rate.y = 0;
@@ -141,7 +142,7 @@ void IMU::init(I2C_Interface *i2c_)
     acceleration.y = 0;
     acceleration.z = 0;
 
-    timer.add_task(this, 100, false);
+    timer.add_task(this, 10, false);
 }
 
 IMU::~IMU()

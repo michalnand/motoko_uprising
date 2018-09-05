@@ -3,11 +3,7 @@
 
 #include <tgpio.h>
 
-#define PULSES_PER_ROTATION     ((int32_t)90)
-
-//#define WHEEL_CIRCUMFERENCE     ((int32_t)100)
-#define WHEEL_CIRCUMFERENCE     ((int32_t)88)
-
+#include <config.h>
 
 class Encoder
 {
@@ -25,9 +21,6 @@ class Encoder
     int get_left();
     int get_right();
     int get_distance();
-
-    struct sPosition get_position();
-
 };
 
 

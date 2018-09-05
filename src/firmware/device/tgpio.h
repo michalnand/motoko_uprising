@@ -28,6 +28,11 @@ template <const unsigned char gpio, unsigned char pin, unsigned char mode = GPIO
   public:
     TGpio()
     {
+      init(); 
+    }
+
+    void init()
+    {
       RCC->AHBENR|= RCC_AHBENR_GPIOAEN|
               RCC_AHBENR_GPIOBEN|
               RCC_AHBENR_GPIOCEN|

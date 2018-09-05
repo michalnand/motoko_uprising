@@ -2,7 +2,7 @@
 #include "tgpio.h"
 #include "stm32_common.h"
 
-#define TERMINAL_BAUDRATE ((unsigned int)115200)
+#include <config.h>
 
 #define UBRR_VALUE (((F_CPU / (TERMINAL_BAUDRATE * 16UL))) - 1)
 
@@ -11,7 +11,7 @@
 
 Usart::Usart()
 {
-
+ 
 }
 
 void Usart::init()

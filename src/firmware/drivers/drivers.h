@@ -18,6 +18,7 @@
 
 void drivers_init();
 
+
 extern Terminal                  terminal;
 extern Timer                     timer;
 extern TI2C<TGPIOB, 7, 6, 10>    i2c;

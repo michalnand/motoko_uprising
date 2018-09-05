@@ -1,6 +1,8 @@
 #ifndef _DEVICE_H_
 #define _DEVICE_H_
 
+#include <config.h>
+
 #include <adc.h>
 #include <core_cmFunc.h>
 #include <encoder.h>

@@ -8,10 +8,7 @@ INC+= -I ./device
 INC+= -I ./drivers
 
 
-
-# TARGET = -mcpu=cortex-m4 -mthumb  -mfpu=fpv4-sp-d16 -mfloat-abi=hard -fsingle-precision-constant
-TARGET = -mcpu=cortex-m4 -mthumb  -mfloat-abi=softfp -fsingle-precision-constant
-
+TARGET = -mcpu=cortex-m4 -mthumb -mfloat-abi=softfp -fsingle-precision-constant
 
 
 GCCPREFIX=arm-none-eabi-
@@ -28,21 +25,14 @@ OBJDUMP = $(GCCPREFIX)objdump
 SIZE = $(GCCPREFIX)size
 
 
-CCFLAGS = -c -O3 -Os -s -Wall -Wextra -pedantic -std=c99 -Wl,--gc-sections --specs=nano.specs
-CCFLAGS+= -Wshadow -Wpointer-arith -Wcast-qual -Wcast-align
-CCFLAGS+= $(TARGET) -fdata-sections -ffunction-sections
 
 
-CXXFLAGS = -c -O2 -Os -s -Wall -Wextra -pedantic -std=c++14  -fno-rtti -fno-exceptions $(INC) -Wl,--gc-sections --specs=nano.specs
-CXXFLAGS+= -Wshadow -Wpointer-arith -Wcast-qual -Wcast-align
-CXXFLAGS+= $(TARGET) -fdata-sections -ffunction-sections
-
-LDFLAGS = -T$(LDSCRIPT) $(TARGET) -mthumb -Wl,--gc-sections --specs=nano.specs
-
+CCFLAGS = $(TARGET) -c -O3 -Os -s -Wall -Wextra -pedantic -std=c99 -nostdlib   -fdata-sections -ffunction-sections   -Wl,--gc-sections
+CXXFLAGS= $(TARGET) $(INC) -c -O3 -Os -s -Wall -Wextra -pedantic -std=c++14 -fno-rtti  -fno-exceptions -fdata-sections -ffunction-sections  -Wl,--gc-sections
+LDFLAGS = -T$(LDSCRIPT) $(TARGET) -nostdlib -Wl,--gc-sections
 
 C_OBJS = $(C_SRCS:.c=.o)
 CXX_OBJS = $(CXX_SRCS:.cpp=.o)
-
 
 all: $(ELF)
 	$(OBJDUMP) --disassemble -D -z $< > bin/main.asm

@@ -1,8 +1,5 @@
 #include "motor.h"
-
 #include <device.h>
-
-#define F_CPU           ((unsigned int)75000000)
 
 #define PWM_FREQUENCY   15000
 #define PWM_PERIOD      ((F_CPU/PWM_FREQUENCY) - 1)

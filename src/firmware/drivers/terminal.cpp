@@ -6,7 +6,6 @@ Terminal::Terminal()
           :Usart()
 {
 
-
 }
 
 Terminal::~Terminal()

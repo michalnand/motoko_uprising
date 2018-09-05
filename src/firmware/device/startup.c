@@ -15,6 +15,7 @@ extern uint32_t _etext[];                // End of code/flash
 //  Default interrupt handler
 void __attribute__((interrupt("IRQ"))) Default_Handler()
 {
+
   while (1)
   {
     __asm("nop");
@@ -228,40 +229,8 @@ extern int main(void);
 extern void (*__init_array_start)();
 extern void (*__init_array_end)();
 
+ extern void __libc_init_array();
 
-inline void static_init()
-{
-  void (**p)() = &__init_array_start;
-
-  for (unsigned int i = 0; i < (&__init_array_end - &__init_array_start); i++)
-  {
-    p[i]();
-  }
-}
-
-
-/*
-extern void (**__init_array_start)();
-extern void (**__init_array_end)();
-
-inline void static_init()
-{
-    for (void (**p)() = __init_array_start; p < __init_array_end; ++p)
-        (*p)();
-}
-*/
-
-/*
-void __dso_handle()
-{
-
-}
-
-void __aeabi_atexit()
-{
-
-}
-*/
 
 void Reset_Handler(void)
 {
@@ -270,7 +239,7 @@ void Reset_Handler(void)
     uint32_t *to = _sdata;
     unsigned int len = _edata - _sdata;
     while(len--)
-        *to++ = *fr++;
+      *to++ = *fr++;
 
     // enable FPU
     SCB->CPACR|= (1<<20)|(1<<21)|(1<<22)|(1<<23);   //full access
@@ -278,7 +247,17 @@ void Reset_Handler(void)
     //FPU->FPCCR&=~((1<<31)|(1<<30));                 //disable context saving, single thread FPU!!
     FPU->FPCCR|= ((1<<31)|(1<<30));                 //enable context saving
 
-    // static_init();
+
+    void (**p)() = &__init_array_start;
+
+    for (unsigned int i = 0; i < (&__init_array_end - &__init_array_start); i++)
+    {
+        p[i]();
+    }
+
+
+    // __libc_init_array();
+
 
     main();
 }

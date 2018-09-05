@@ -4,7 +4,7 @@
 
 volatile long int g_left_encoder, g_right_encoder;
 
-
+ 
 Encoder::Encoder()
 {
   g_left_encoder = 0;

@@ -142,7 +142,7 @@ void Timer::main()
 //@brief set period of timer_id
 //flag will be set to nonzero value 1000/period_ms times per second
 void Timer::set_period(unsigned char timer_id, unsigned int period_ms)
-{ 
+{
 //  disable_interrupt();
   g_timers[timer_id].cnt = period_ms;
   g_timers[timer_id].period = period_ms;

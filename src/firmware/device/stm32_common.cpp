@@ -1,6 +1,5 @@
 #include "stm32_common.h"
-
-#define F_CPU     ((unsigned int)75000000)
+#include <config.h>
 
 void nvic_init(uint32_t IRQChannel, uint32_t ChannelPreemptionPriority, uint32_t ChannelSubPriority)
 {
