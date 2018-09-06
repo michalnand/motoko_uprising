@@ -2,6 +2,7 @@
 #define _LINE_SENSOR_H_
 
 #include <tgpio.h>
+#include <thread.h>
 
 #define LINE_SENSOR_COUNT   ((unsigned int)8)
 #define LINE_TYPE_SINGLE    ((unsigned int)1)
@@ -14,7 +15,7 @@ struct sLineSensor
 };
 
 
-class LineSensor
+class LineSensor: public Thread
 {
   protected:
     TGpio<TGPIOA, 8, GPIO_MODE_OUT> sensor_led;        //sensor white led
@@ -22,7 +23,7 @@ class LineSensor
 
     int threshold;
 
-    bool new_data_flag;
+    bool m_ready;
 
   public:
     int weights[LINE_SENSOR_COUNT];
@@ -56,7 +57,7 @@ class LineSensor
     void on();
     void off();
 
-    bool new_data();
+    bool ready();
 
     int get_max();
     int get_min();

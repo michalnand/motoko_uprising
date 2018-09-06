@@ -4,8 +4,19 @@
 
 volatile long int g_left_encoder, g_right_encoder;
 
- 
+
 Encoder::Encoder()
+{
+
+}
+
+Encoder::~Encoder()
+{
+
+}
+
+
+void Encoder::init()
 {
   g_left_encoder = 0;
   g_right_encoder = 0;
@@ -39,12 +50,6 @@ Encoder::Encoder()
   exti_clear_pending_bit(6);
   exti_clear_pending_bit(12);
 }
-
-Encoder::~Encoder()
-{
-
-}
-
 
 int Encoder::get_left()
 {

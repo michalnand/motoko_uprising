@@ -2,6 +2,7 @@
 
 #include <adc.h>
 
+#include <drivers.h>
 
 LineSensor::LineSensor()
 {
@@ -16,7 +17,6 @@ LineSensor::~LineSensor()
 
 int LineSensor::init()
 {
-  /*
   int init_res = 0;
 
   sensor_led = 0;
@@ -38,30 +38,32 @@ int LineSensor::init()
   for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
     adc_result[i] = 0;
 
+  int step = 64;
+  weights[0] = -4*step;
+  weights[1] = -3*step;
+  weights[2] = -2*step;
+  weights[3] = -1*step;
+  weights[4] =  1*step;
+  weights[5] =  2*step;
+  weights[6] =  3*step;
+  weights[7] =  4*step;
 
+  threshold = 400;
 
-  for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
-    weights[i] = config.line_sensor_config.weights[i];
+  m_ready = false;
 
-  threshold = config.line_sensor_config.threshold;
-
-  new_data_flag = false;
-
-  timer.add_task(this, config.line_sensor_config.dt, false);
+  timer.add_task(this, 4, false);
   return init_res;
-  */
-
- return 0;
 }
 
-bool LineSensor::new_data()
+bool LineSensor::ready()
 {
-  bool res = false;
-  if (new_data_flag)
-  {
-    res = true;
-    new_data_flag = false;
-  }
+  bool res = m_ready;
+
+  disable_interrupt();
+  if (res)
+    m_ready = false;
+  enable_interrupt();
 
   return res;
 }
@@ -132,7 +134,7 @@ void LineSensor::main()
 
   result = result_tmp;
 
-  new_data_flag = true;
+  m_ready = true;
 }
 
 

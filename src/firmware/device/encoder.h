@@ -18,6 +18,8 @@ class Encoder
     Encoder();
     ~Encoder();
 
+    void init();
+
     int get_left();
     int get_right();
     int get_distance();

@@ -1,8 +1,9 @@
 #ifndef _DISTANCE_SENSOR_H_
 #define _DISTANCE_SENSOR_H_
 
-#include <drivers.h>
 #include <tgpio.h>
+#include <thread.h>
+#include <timer.h>
 
 #define DISTANCE_SENSOR_COUNT   ((unsigned int)3)
 
@@ -18,10 +19,13 @@ struct sDistanceSensor
   bool front_obstacle_warning, front_obstacle;
 };
 
-class DistanceSensor
+class DistanceSensor: public Thread
 {
   public:
     sDistanceSensor result;
+
+  private:
+    bool m_ready;
 
   protected:
     TGpio<TGPIOC, 13, GPIO_MODE_OUT> front_ir_led;        //front IR led
@@ -40,7 +44,9 @@ class DistanceSensor
     ~DistanceSensor();
 
     int init();
-    void read();
+    void main();
+
+    bool ready();
 
   private:
     void filter(int *res_prev, unsigned int sensor_id);

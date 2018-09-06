@@ -1,6 +1,7 @@
 #include "distance_sensor.h"
 
 #include <adc.h>
+#include <drivers.h>
 
 
 DistanceSensor::DistanceSensor()
@@ -10,7 +11,7 @@ DistanceSensor::DistanceSensor()
 
 DistanceSensor::~DistanceSensor()
 {
- 
+
 }
 
 int DistanceSensor::init()
@@ -31,11 +32,14 @@ int DistanceSensor::init()
   result.front_obstacle_warning = false;
   result.front_obstacle = false;
 
+  timer.add_task(this, 50, false);
+
+  m_ready = false;
 
   return 0;
 }
 
-void DistanceSensor::read()
+void DistanceSensor::main()
 {
   switch (state)
   {
@@ -75,6 +79,7 @@ void DistanceSensor::read()
         result.front_obstacle = false;
 
       state = 0;
+      m_ready = true;
     }
     break;
   }
@@ -88,4 +93,17 @@ void DistanceSensor::filter(int *res_prev, unsigned int sensor_id)
 
   int k = 3;
   *res_prev = (k* (*res_prev) + (DISTANCE_MAX*(4096 - dif))/4096)/(1+k);
+}
+
+
+bool DistanceSensor::ready()
+{
+  bool res = m_ready;
+
+  disable_interrupt();
+  if (res)
+    m_ready = false;
+  enable_interrupt();
+
+  return res;
 }
