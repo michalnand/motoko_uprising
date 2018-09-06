@@ -15,9 +15,19 @@
 
 #include <timer.h>
 
+class Drivers
+{
+  private:
+      TGpio<LED_GPIO, LED_PIN, GPIO_MODE_OUT> led;
 
-void drivers_init();
+  public:
+    Drivers();
+    virtual ~Drivers();
 
+    int init();
+
+    void test_imu();
+};
 
 extern Terminal                  terminal;
 extern Timer                     timer;

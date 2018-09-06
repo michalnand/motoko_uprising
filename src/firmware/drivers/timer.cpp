@@ -1,9 +1,7 @@
 #include "timer.h"
 
 #include <stm32_common.h>
-
-#define TIMERS_COUNT  ((unsigned int)32)
-
+#include <config.h>
 
 struct sTimer
 {

@@ -86,8 +86,6 @@ void IMU::init(I2C_Interface *i2c_)
 {
     i2c = i2c_;
     i2c->write_reg(LSM6DS0_ADDRESS, LSM6DS0_CTRL_REG1_G, LSM6DS0_G_ODR_476HZ | LSM6DS0_G_FS_500 );
- 
-    return;
 
     angular_rate.x = 0;
     angular_rate.y = 0;
@@ -103,10 +101,10 @@ void IMU::init(I2C_Interface *i2c_)
 
     delay_loops(10000);
 
-    present = 0;
+    m_present = false;
 
     if (i2c->read_reg(LSM6DS0_ADDRESS, LSM6DS0_WHO_AM_I) == LSM6DS0_WHO_AM_I_VALUE)
-      present = 1;
+      m_present = true;
 
 
     i2c->write_reg(LSM6DS0_ADDRESS, LSM6DS0_CTRL_REG1_G, LSM6DS0_G_ODR_476HZ | LSM6DS0_G_FS_500 );
@@ -122,7 +120,7 @@ void IMU::init(I2C_Interface *i2c_)
     read();
 
     samples = 0;
-    int32_t calibration_iterations = 20;
+    int32_t calibration_iterations = 1000;
     for (int32_t  i = 0; i < calibration_iterations; i++)
     {
       read(true);
@@ -143,6 +141,8 @@ void IMU::init(I2C_Interface *i2c_)
     acceleration.z = 0;
 
     timer.add_task(this, 10, false);
+
+    m_ready = false;
 }
 
 IMU::~IMU()
@@ -152,11 +152,6 @@ IMU::~IMU()
 
 void IMU::read(bool calibration)
 {
-  if (i2c->read_reg(LSM6DS0_ADDRESS, LSM6DS0_WHO_AM_I) == LSM6DS0_WHO_AM_I_VALUE)
-    present = 1;
-  else
-    present = 0;
-
   int16_t x = 0, y = 0, z = 0;
 
   i2c->start();
@@ -213,6 +208,8 @@ void IMU::read(bool calibration)
   acceleration.x = x;
   acceleration.y = y;
   acceleration.z = z;
+
+  m_ready = true;
 }
 
 void IMU::main()
@@ -220,6 +217,22 @@ void IMU::main()
   read();
 }
 
+bool IMU::present()
+{
+  return m_present;
+}
+
+bool IMU::ready()
+{
+  bool res = m_ready;
+
+  disable_interrupt();
+  if (res)
+    m_ready = false;
+  enable_interrupt();
+
+  return res;
+}
 
 
 void IMU::delay_loops(uint32_t loops)

@@ -65,6 +65,16 @@ class Terminal: public Usart
       putf(op, 3);
       return *this;
     }
+
+
+    Terminal& operator<< (bool op)
+    {
+      if (op == true)
+        puts("true");
+      else
+        puts("false");
+      return *this;
+    }
 };
 
 #endif

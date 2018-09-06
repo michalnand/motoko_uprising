@@ -11,6 +11,7 @@
 #define PULSES_PER_ROTATION     ((int32_t)90)
 #define WHEEL_CIRCUMFERENCE     ((int32_t)88)
 
+#define TIMERS_COUNT  ((unsigned int)16)
 
 
 
