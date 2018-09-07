@@ -20,7 +20,7 @@ class Fram
     void write(unsigned int address, char *buffer, unsigned int size);
     void read(unsigned int address, char *buffer, unsigned int size);
 
-    void set_current_address(unsigned int address);
+    void set_current_address(unsigned int address = 0);
 
     Fram& operator << (int &rhs);
     Fram& operator << (unsigned int &rhs);

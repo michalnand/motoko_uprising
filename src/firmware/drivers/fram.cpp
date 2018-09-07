@@ -131,7 +131,7 @@ Fram& Fram::operator >> (char &rhs)
 
   return *this;
 }
-
+ 
 Fram& Fram::operator >> (unsigned char &rhs)
 {
   read(current_address, (char*)(&rhs), sizeof(rhs));

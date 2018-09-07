@@ -8,6 +8,7 @@ IMU                       imu_sensor;
 DistanceSensor            distance_sensor;
 LineSensor                line_sensor;
 Encoder                   encoder_sensor;
+MotorControll             motor_controll;
 
 Drivers::Drivers()
 {
@@ -52,6 +53,9 @@ int Drivers::init()
 
   encoder_sensor.init();
   terminal << "encoder sensor init done\n";
+
+  motor_controll.init();
+  terminal << "motor controll init done\n";
 
 
   terminal << "\n\n";

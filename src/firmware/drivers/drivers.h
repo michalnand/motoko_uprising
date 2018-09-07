@@ -13,6 +13,7 @@
 #include <line_sensor.h>
 #include <imu.h>
 #include <encoder.h>
+#include <motor_controll.h>
 
 
 
@@ -40,6 +41,7 @@ extern IMU                       imu_sensor;
 extern DistanceSensor            distance_sensor;
 extern LineSensor                line_sensor;
 extern Encoder                   encoder_sensor;
+extern MotorControll             motor_controll;
 
 
 #endif
