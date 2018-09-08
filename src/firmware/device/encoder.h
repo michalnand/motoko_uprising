@@ -23,6 +23,9 @@ class Encoder
     int get_left();
     int get_right();
     int get_distance();
+
+    int get_left_no_atomic();
+    int get_right_no_atomic();
 };
 
 

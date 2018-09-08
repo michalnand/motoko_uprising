@@ -3,6 +3,7 @@
 #include <adc.h>
 
 #include <drivers.h>
+#include <robot_config.h>
 
 LineSensor::LineSensor()
 {
@@ -38,7 +39,8 @@ int LineSensor::init()
   for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
     adc_result[i] = 0;
 
-  int step = 64;
+  int step   = LINE_SENSOR_STEP;
+
   weights[0] = -4*step;
   weights[1] = -3*step;
   weights[2] = -2*step;
@@ -48,11 +50,11 @@ int LineSensor::init()
   weights[6] =  3*step;
   weights[7] =  4*step;
 
-  threshold = 400;
+  threshold = LINE_SENSOR_THRESHOLD;
 
   m_ready = false;
 
-  timer.add_task(this, 4, false);
+  timer.add_task(this, LINE_SENSOR_DT, false);
   return init_res;
 }
 
@@ -70,7 +72,7 @@ bool LineSensor::ready()
 
 int LineSensor::get_max()
 {
-  return 256;
+  return 4*LINE_SENSOR_STEP;
 }
 
 int LineSensor::get_min()

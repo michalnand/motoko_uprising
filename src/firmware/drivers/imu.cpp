@@ -1,6 +1,7 @@
 #include "imu.h"
 
 #include <drivers.h>
+#include <robot_config.h>
 
 //#define LSM6DS0_ADDRESS              ((unsigned char)0xD6)
 #define LSM6DS0_ADDRESS              ((unsigned char)0xD4)
@@ -140,7 +141,7 @@ void IMU::init(I2C_Interface *i2c_)
     acceleration.y = 0;
     acceleration.z = 0;
 
-    timer.add_task(this, 10, false);
+    timer.add_task(this, IMU_DT, false);
 
     m_ready = false;
 }

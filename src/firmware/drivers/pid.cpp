@@ -11,29 +11,37 @@ PID::~PID()
 
 }
 
-void PID::init(int kp, int ki, int kd, int limit)
+void PID::init(pid_t kp, pid_t ki, pid_t kd, pid_t limit)
 {
   e0 = 0;
   e1 = 0;
-  e2 = 0;
 
-  k0 = kp + ki + kd;
-  k1 = -kp -2*kd;
-  k2 = kd;
+  x0 = 0;
+  x1 = 0;
+  x2 = 0;
+
+  k0 = kp + ki;
+  k1 = -kp;
+
+
+  this->kd = kd;
 
   u = 0;
 
   this->limit = limit;
 }
 
-int PID::process(int error)
+
+pid_t PID::process(pid_t error, pid_t plant_output)
 {
-  e2 = e1;
   e1 = e0;
   e0 = error;
 
+  x2 = x1;
+  x1 = x0;
+  x0 = plant_output;
 
-  u+= (k0*e0 + k1*e1 + k2*e2)/256;
+  u+= (k0*e0 + k1*e1 - kd*(x0 - 2*x1 + x2));
 
   if (u > limit)
     u = limit;
@@ -42,4 +50,10 @@ int PID::process(int error)
     u = -limit;
 
   return u;
+}
+
+
+pid_t PID::process(pid_t error)
+{
+  return process(error, -error);
 }

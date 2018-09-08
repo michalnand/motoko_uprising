@@ -4,12 +4,25 @@
 
 #include <thread.h>
 #include <motor.h>
-
+#include <pid.h>
 
 class MotorControll: public Thread
 {
   protected:
+
+    int ml_encoder_prev;
+    int mr_encoder_prev;
+    int ml_encoder_now;
+    int mr_encoder_now;
+
+    float ml_speed, mr_speed;
+
+    int left_speed, right_speed;
+
+  protected:
     Motor motor;
+
+    PID pid_left, pid_right;
 
   public:
     MotorControll();
@@ -18,6 +31,9 @@ class MotorControll: public Thread
     int init();
 
     void main();
+
+    void set_left_speed(int left_speed);
+    void set_right_speed(int right_speed);
 };
 
 #endif

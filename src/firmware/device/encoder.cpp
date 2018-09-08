@@ -76,6 +76,20 @@ int Encoder::get_distance()
   return (get_left() + get_right())/2;
 }
 
+int Encoder::get_left_no_atomic()
+{
+  int tmp = g_left_encoder;
+  int res = (tmp*WHEEL_CIRCUMFERENCE)/PULSES_PER_ROTATION;
+  return res;
+}
+
+int Encoder::get_right_no_atomic()
+{
+  int tmp = g_right_encoder;
+  int res = (tmp*WHEEL_CIRCUMFERENCE)/PULSES_PER_ROTATION;
+  return res;
+}
+
 
 
 #ifdef __cplusplus

@@ -4,6 +4,7 @@
 #include <i2c.h>
 #include <thread.h>
 
+
 struct sIMU_3VECT
 {
     int32_t x, y, z;
