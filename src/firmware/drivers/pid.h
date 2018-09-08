@@ -14,7 +14,7 @@ class PID
     pid_t u;
 
   public:
-    PID();
+    PID(float kp = 0.0, float ki = 0.0, float kd = 0.0, float limit = 0.0);
     virtual ~PID();
 
     void init(pid_t kp, pid_t ki, pid_t kd, pid_t limit);

@@ -17,7 +17,7 @@ class MotorControll: public Thread
 
     float ml_speed, mr_speed;
 
-    int left_speed, right_speed;
+    float left_speed, right_speed;
 
   protected:
     Motor motor;
@@ -32,8 +32,14 @@ class MotorControll: public Thread
 
     void main();
 
-    void set_left_speed(int left_speed);
-    void set_right_speed(int right_speed);
+    void set_left_speed(float left_speed);
+    void set_right_speed(float right_speed);
+
+
+    float get_speed_left();
+    float get_speed_right();
+
+    unsigned int get_dt();
 };
 
 #endif

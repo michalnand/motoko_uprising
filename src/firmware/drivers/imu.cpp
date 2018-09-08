@@ -122,7 +122,7 @@ void IMU::init(I2C_Interface *i2c_)
 
     samples = 0;
     int32_t calibration_iterations = 1000;
-    for (int32_t  i = 0; i < calibration_iterations; i++)
+    for (int32_t i = 0; i < calibration_iterations; i++)
     {
       read(true);
       delay_loops(100);
@@ -204,7 +204,7 @@ void IMU::read(bool calibration)
   z = ((int16_t)i2c->read(1)) << 8;
   z|= ((int16_t)i2c->read(0)) << 0;
 
-  i2c->stop();
+  i2c->stop(); 
 
   acceleration.x = x;
   acceleration.y = y;

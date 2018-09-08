@@ -175,7 +175,7 @@ void Drivers::test_line_sensor(int count)
 
 void Drivers::test_encoder_sensor(int count)
 {
-  terminal << "\test_encoder_sensor\n";
+  terminal << "\ntest_encoder_sensor\n";
 
   bool run = true;
   while (run)
@@ -196,5 +196,72 @@ void Drivers::test_encoder_sensor(int count)
         led = 0;
 
         timer.delay_ms(200);
+  }
+}
+
+
+
+void Drivers::test_motor_speed_feedback()
+{
+  terminal << "\ntest_motor_speed_feedback\n";
+
+  unsigned int cnt = 0;
+  float required_left = 0;
+  float required_right = 0;
+
+  while (1)
+  {
+    led = 1;
+
+    motor_controll.set_left_speed(required_left);
+    motor_controll.set_right_speed(required_right);
+
+    terminal << required_left << " " << motor_controll.get_speed_left() << " ";
+    terminal << required_right << " " << motor_controll.get_speed_right() << "\n";
+
+    led = 0;
+
+    timer.delay_ms(200);
+
+    cnt++;
+
+    switch ((cnt/20)%4)
+    {
+      case 0: required_left = 0.2; required_right = 0.2; break;
+      case 1: required_left = 0.3; required_right = 0.3; break;
+      case 2: required_left = 0.5; required_right = 0.5; break;
+      case 3: required_left = 0.8; required_right = 0.8; break;
+    }
+  }
+}
+
+
+
+
+
+void Drivers::test_motor_gyro_feedback()
+{
+  terminal << "\ntest_motor_gyro_feedback\n";
+
+  PID pid(0.00004, 0.0, 0.0002, 1.0);
+
+  while (1)
+  {
+    if (imu_sensor.ready())
+    {
+      led = 1;
+
+      float angle = imu_sensor.angle.z;
+      float error = 0.0 - angle;
+
+      float turn = pid.process(error, angle);
+
+      motor_controll.set_left_speed(-turn);
+      motor_controll.set_right_speed(turn);
+
+      // terminal << "angle " << angle << "\n";
+
+      led = 0;
+    }
   }
 }

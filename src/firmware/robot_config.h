@@ -15,7 +15,7 @@
 
 #define MOTOR_CONTROLL_DT       LINE_SENSOR_DT
 
-#define MOTOR_CONTROLL_SPEED_MAX         ((int)255)
+#define MOTOR_CONTROLL_SPEED_MAX         ((float)2000.0)
 
 #define MOTOR_CONTROLL_PID_LEFT_KP    ((float)0.8)
 #define MOTOR_CONTROLL_PID_LEFT_KI    ((float)0.09)

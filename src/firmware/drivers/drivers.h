@@ -32,6 +32,10 @@ class Drivers
     void test_distance_sensor(int count = -1);
     void test_line_sensor(int count = -1);
     void test_encoder_sensor(int count = -1);
+
+    void test_motor_speed_feedback();
+    void test_motor_gyro_feedback();
+
 };
 
 extern Terminal                  terminal;

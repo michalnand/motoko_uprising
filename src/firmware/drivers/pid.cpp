@@ -1,9 +1,9 @@
 #include "pid.h"
 
 
-PID::PID()
+PID::PID(float kp , float ki , float kd , float limit )
 {
-
+  init(kp, ki, kd, limit);
 }
 
 PID::~PID()
