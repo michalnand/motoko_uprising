@@ -7,7 +7,6 @@ extern unsigned int __heap_start__;
 
 unsigned char *mem_ptr = (unsigned char*)(&__heap_start__);
 
-
 void *malloc(unsigned int size)
 {
   unsigned char *mem_res = mem_ptr;

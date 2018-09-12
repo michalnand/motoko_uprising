@@ -243,7 +243,7 @@ void Drivers::test_motor_gyro_feedback()
 {
   terminal << "\ntest_motor_gyro_feedback\n";
 
-  PID pid(0.00004, 0.0, 0.0002, 1.0);
+  PID pid(0.00004, 0.0, 0.0001, 1.0);
 
   while (1)
   {

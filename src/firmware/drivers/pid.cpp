@@ -1,7 +1,7 @@
 #include "pid.h"
 
 
-PID::PID(float kp , float ki , float kd , float limit )
+PID::PID(pid_t kp , pid_t ki , pid_t kd , pid_t limit )
 {
   init(kp, ki, kd, limit);
 }

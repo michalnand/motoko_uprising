@@ -79,7 +79,6 @@ void MotorControll::main()
   ml_speed = (1.0 - kf)*ml_speed + kf*(ml_encoder_now - ml_encoder_prev)/(MOTOR_CONTROLL_DT*MOTOR_CONTROLL_SPEED_MAX/1000.0);
   mr_speed = (1.0 - kf)*mr_speed + kf*(mr_encoder_now - mr_encoder_prev)/(MOTOR_CONTROLL_DT*MOTOR_CONTROLL_SPEED_MAX/1000.0);
 
-
   int ml_u = MOTOR_SPEED_MAX*pid_left.process (left_speed  - ml_speed, ml_speed);
   int mr_u = MOTOR_SPEED_MAX*pid_right.process(right_speed - mr_speed, mr_speed);
 

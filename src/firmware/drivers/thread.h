@@ -4,9 +4,9 @@
 class Thread
 {
   public:
-    Thread() { }
-    virtual ~Thread() {}
-    virtual void main() {}
+    Thread() { };
+    virtual ~Thread() { };
+    virtual void main() = 0;
 };
 
 #endif
