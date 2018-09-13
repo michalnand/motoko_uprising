@@ -105,11 +105,22 @@ void LineSensor::main()
 
   int left_line  = find_left_line_pos();
   int right_line = find_right_line_pos();
+  int center_line = find_center_line_pos();
 
+  if (center_line != -1)
+  {
+    result_tmp.line_type = LINE_TYPE_SINGLE;
+    result_tmp.left_line_position   = integrate(center_line);
+    result_tmp.right_line_position  = result_tmp.left_line_position;
+    result_tmp.on_line = true;
+  }
+
+  /*
   //check if robot on line
   if ((left_line != -1) && (right_line != -1))
   {
     result_tmp.line_type = LINE_TYPE_SINGLE;
+
 
     int dist = left_line - right_line;
     if (dist < 0)
@@ -133,6 +144,7 @@ void LineSensor::main()
 
     result_tmp.on_line = true;
   }
+  */
 
   result = result_tmp;
 
@@ -188,6 +200,21 @@ int LineSensor::find_right_line_pos()
   for (int i = 0; i < (int)LINE_SENSOR_COUNT; i++)
     if (adc_result[i] > threshold)
       return i;
+
+  return -1;
+}
+
+int LineSensor::find_center_line_pos()
+{
+  int adc_max = threshold - 1;
+
+  for (int i = 0; i < LINE_SENSOR_COUNT; i++)
+    if (adc_result[i] > threshold)
+    if (adc_result[i] > adc_max)
+    {
+      adc_max = adc_result[i];
+      return i;
+    }
 
   return -1;
 }

@@ -69,6 +69,7 @@ class LineSensor: public Thread
 
     int find_left_line_pos();
     int find_right_line_pos();
+    int find_center_line_pos();
 
 };
 

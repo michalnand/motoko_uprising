@@ -27,6 +27,8 @@ class Key: public Thread
     Key();
     ~Key();
 
+    void init();
+
     int read();
 
     void main();

@@ -8,6 +8,17 @@
 
 Key::Key()
 {
+
+}
+
+
+Key::~Key()
+{
+
+}
+
+void Key::init()
+{
   result = -1;
   led_state = 0;
 
@@ -24,7 +35,7 @@ int Key::read()
 
   result = 1;
 
-  //button pressed -> blink fast
+  //button pressed -> blink midle
   timer.set_period(timer_id, BLINK_MIDLE_PERIOD);
 
   unsigned int time_start = timer.get_time();
@@ -42,11 +53,6 @@ int Key::read()
   }
 
   return result;
-}
-
-Key::~Key()
-{
-
 }
 
 int Key::get_result()

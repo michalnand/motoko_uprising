@@ -13,21 +13,13 @@ PID::~PID()
 
 void PID::init(pid_t kp, pid_t ki, pid_t kd, pid_t limit)
 {
-  e0 = 0;
-  e1 = 0;
-
-  x0 = 0;
-  x1 = 0;
-  x2 = 0;
+  reset();
 
   k0 = kp + ki;
   k1 = -kp;
 
 
   this->kd = kd;
-
-  u = 0;
-
   this->limit = limit;
 }
 
@@ -50,6 +42,18 @@ pid_t PID::process(pid_t error, pid_t plant_output)
     u = -limit;
 
   return u;
+}
+
+void PID::reset()
+{
+  e0 = 0;
+  e1 = 0;
+
+  x0 = 0;
+  x1 = 0;
+  x2 = 0;
+
+  u = 0;
 }
 
 

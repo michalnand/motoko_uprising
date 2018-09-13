@@ -35,6 +35,7 @@ class Drivers
 
     void test_motor_speed_feedback();
     void test_motor_gyro_feedback();
+    void test_line_follower();
 
 };
 
@@ -46,6 +47,7 @@ extern DistanceSensor            distance_sensor;
 extern LineSensor                line_sensor;
 extern Encoder                   encoder_sensor;
 extern MotorControll             motor_controll;
+extern Key                       key;
 
 
 #endif

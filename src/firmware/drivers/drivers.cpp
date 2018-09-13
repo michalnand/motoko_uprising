@@ -9,6 +9,7 @@ DistanceSensor            distance_sensor;
 LineSensor                line_sensor;
 Encoder                   encoder_sensor;
 MotorControll             motor_controll;
+Key                       key;
 
 Drivers::Drivers()
 {
@@ -57,11 +58,14 @@ int Drivers::init()
   motor_controll.init();
   terminal << "motor controll init done\n";
 
+  led = 0;
+
+  key.init();
+  terminal << "key init done\n";
 
   terminal << "\n\n";
   terminal << "system init done\n";
 
-  led = 0;
 
   return 0;
 }
@@ -262,6 +266,53 @@ void Drivers::test_motor_gyro_feedback()
       // terminal << "angle " << angle << "\n";
 
       led = 0;
+    }
+  }
+}
+
+
+
+
+void Drivers::test_line_follower()
+{
+  terminal << "\ntest_line_follower\n";
+
+  PID pid(0.4, 0.0, 1.8, 10.0);
+
+  key.read();
+
+  float speed      = 0.0;
+  float speed_max  = 0.4;
+  float speed_rise = 0.002;
+
+  while (1)
+  {
+    if (line_sensor.ready())
+    {
+      if (line_sensor.result.on_line)
+      {
+        float line_position = line_sensor.result.right_line_position*1.0/line_sensor.get_max();
+        float error = 0.0 - line_position;
+
+        float turn = pid.process(error, line_position);
+
+
+        float speed_left  = turn  + speed;
+        float speed_right = -turn + speed;
+
+        if (speed < speed_max)
+          speed+= speed_rise;
+
+        motor_controll.set_left_speed(speed_left);
+        motor_controll.set_right_speed(speed_right);
+      }
+      else
+      {
+        motor_controll.set_left_speed(0);
+        motor_controll.set_right_speed(0);
+        speed = 0.0;
+        pid.reset();
+      }
     }
   }
 }

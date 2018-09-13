@@ -21,6 +21,8 @@ class PID
 
     pid_t process(pid_t error, pid_t plant_output);
     pid_t process(pid_t error);
+
+    void reset();
 };
 
 #endif
