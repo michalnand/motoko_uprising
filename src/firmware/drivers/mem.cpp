@@ -5,7 +5,19 @@ extern unsigned int __data_start__;
 extern unsigned int __ram_size__;
 extern unsigned int __heap_start__;
 
-unsigned char *mem_ptr = (unsigned char*)(&__heap_start__);
+unsigned char *mem_ptr;
+
+
+unsigned int mem_init()
+{
+  mem_ptr = (unsigned char*)(&__heap_start__);
+  return (unsigned int)mem_ptr;
+}
+
+unsigned int mem_get_ptr()
+{
+  return (unsigned int)mem_ptr;
+}
 
 void *malloc(unsigned int size)
 {

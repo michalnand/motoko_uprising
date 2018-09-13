@@ -28,8 +28,11 @@ int Drivers::init()
   led = 1;
 
   terminal.init();
-  terminal << "#####\n\n\n";
+  terminal << "\n\n\n#####\n\n\n";
   terminal << "terminal init done\n";
+
+  unsigned int mem_res = mem_init();
+  terminal << "mem init done, heap start at " << mem_res << "\n";
 
   timer.init();
   terminal << "timer init done\n";

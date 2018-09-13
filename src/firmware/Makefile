@@ -6,6 +6,8 @@ C_SRCS = $(shell find  -name '*.c')
 INC = -I .
 INC+= -I ./device
 INC+= -I ./drivers
+INC+= -I ./libs_network
+INC+= -I ./line_following
 
 
 TARGET = -mcpu=cortex-m4 -mthumb -mfloat-abi=softfp -fsingle-precision-constant
