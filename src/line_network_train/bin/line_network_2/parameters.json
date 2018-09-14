@@ -1,0 +1,61 @@
+{
+    "epoch_count"               : 10,
+    "sub_epoch_size"            : 5,
+    "compare_top_5"             : false,
+
+    "epoch_learning_rate_decay" : 8,
+    "learning_rate_decay"       : 0.25,
+
+    "network_architecture" :
+    {
+        "network_log_file_name" : "line_network_2/network.log",
+
+        "input_geometry"     : [8, 8, 1],
+        "output_geometry"    : [1, 1, 8],
+
+        "hyperparameters" :
+        {
+          "init_weight_range" : 0.0,
+          "learning_rate"     : 0.001,
+          "lambda1"           : 0.00005,
+          "lambda2"           : 0.1,
+          "dropout"           : 0.2,
+
+          "minibatch_size"    : 32
+        },
+
+        "layers"         :
+        [
+
+          {
+            "type"      : "convolution",
+            "geometry"  : [3, 3, 4]
+          },
+          {
+            "type"      : "relu"
+          },
+
+          {
+            "type"      : "max pooling",
+            "geometry"  : [2, 2, 1]
+          },
+
+          {
+            "type"      : "fc",
+            "geometry"  : [1, 1, 32]
+          },
+          {
+            "type"      : "relu"
+          },
+
+          {
+            "type"      : "dropout"
+          },
+
+          {
+            "type"      : "output"
+          }
+
+        ]
+    }
+}

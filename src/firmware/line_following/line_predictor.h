@@ -13,7 +13,7 @@ class LinePredictor
 
     NeuralNetwork *nn;
 
-    unsigned int result, computing_time;
+    unsigned int result;
 
   public:
     LinePredictor(NeuralNetwork &nn);
@@ -21,6 +21,11 @@ class LinePredictor
 
     unsigned int process(int *adc_result);
     void print();
+
+    unsigned int get_result()
+    {
+      return result;
+    }
 
 };
 

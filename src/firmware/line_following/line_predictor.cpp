@@ -8,7 +8,6 @@ LinePredictor::LinePredictor(NeuralNetwork &nn)
     network_input[i] = 0;
 
   result = 0;
-  computing_time = 0;
 
   this->nn = &nn;
 }
@@ -20,8 +19,6 @@ LinePredictor::~LinePredictor()
 
 unsigned int LinePredictor::process(int *adc_result)
 {
-  timer.reset();
-
   //shift old value
   for (unsigned int j = (LINE_SENSOR_COUNT-1); j != 0; j--)
     for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
@@ -56,15 +53,13 @@ unsigned int LinePredictor::process(int *adc_result)
 
   result = nn->class_result();
 
-  computing_time = timer.elapsed_time();
-
   return 0;
 }
 
 void LinePredictor::print()
 {
   terminal << "\n\n";
-  terminal << computing_time << " " << result << "\n\n";
+  terminal << " class result " << result << "\n\n";
 
   unsigned int ptr = 0;
   for (unsigned int j = 0; j < LINE_SENSOR_COUNT; j++)

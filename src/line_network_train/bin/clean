@@ -1,0 +1,91 @@
+cd line_network_0
+./clean
+cd ..
+
+cd line_network_1
+./clean
+cd ..
+
+cd line_network_2
+./clean
+cd ..
+
+cd line_network_3
+./clean
+cd ..
+
+cd line_network_4
+./clean
+cd ..
+
+cd line_network_5
+./clean
+cd ..
+
+cd line_network_6
+./clean
+cd ..
+
+cd line_network_7
+./clean
+cd ..
+
+cd line_network_8
+./clean
+cd ..
+
+cd line_network_9
+./clean
+cd ..
+
+
+
+cd LineNetwork_0
+rm *.h
+rm *.cpp
+cd ..
+
+cd LineNetwork_1
+rm *.h
+rm *.cpp
+cd ..
+
+cd LineNetwork_2
+rm *.h
+rm *.cpp
+cd ..
+
+cd LineNetwork_3
+rm *.h
+rm *.cpp
+cd ..
+
+cd LineNetwork_4
+rm *.h
+rm *.cpp
+cd ..
+
+cd LineNetwork_5
+rm *.h
+rm *.cpp
+cd ..
+
+cd LineNetwork_6
+rm *.h
+rm *.cpp
+cd ..
+
+cd LineNetwork_7
+rm *.h 
+rm *.cpp 
+cd ..
+
+cd LineNetwork_8
+rm *.h 
+rm *.cpp 
+cd ..
+
+cd LineNetwork_9
+rm *.h 
+rm *.cpp 
+cd ..
