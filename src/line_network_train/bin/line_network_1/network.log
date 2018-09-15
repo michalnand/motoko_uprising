@@ -14,11 +14,11 @@ minibatch size 32
          CONVOLUTION  [    4     4     8] [    3     3     8] [    4     4     8] [       576          8][      9344]
                 RELU  [    4     4     8] [    1     1     1] [    4     4     8] [         0          0][       256]
              DROPOUT  [    4     4     8] [    1     1     1] [    4     4     8] [         0          0][       256]
-                  FC  [    4     4     8] [    1     1     8] [    1     1     8] [      1024          8][      2064]
+                  FC  [    4     4     8] [    1     1     7] [    1     1     7] [       896          7][      1806]
 
 input_geometry  [8 8 1]
-output_geometry [1 1 8]
-network flops operations 19088 FLOPS, 0.000019 GFLOPS
+output_geometry [1 1 7]
+network flops operations 18830 FLOPS, 0.000019 GFLOPS
 init DONE
 
 network destructor done

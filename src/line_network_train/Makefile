@@ -1,4 +1,4 @@
-ELF = bin/classification.elf
+ELF = bin/network_train.elf
 
 LIBS_PATH=$(HOME)/rysy
 

@@ -11,7 +11,7 @@
         "network_log_file_name" : "line_network_5/network.log",
 
         "input_geometry"     : [8, 8, 1],
-        "output_geometry"    : [1, 1, 8],
+        "output_geometry"    : [1, 1, 7],
 
         "hyperparameters" :
         {

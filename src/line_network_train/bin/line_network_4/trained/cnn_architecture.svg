@@ -13,5 +13,5 @@
 <rect x="500" y="1" width="50" height="500" fill="rgb(100,100,100)" stroke-width="2" stroke="rgb(50,50,50)" />
 <text x="525" y="169" style="font-size: 30px; writing-mode: tb; ">dropout    </text>
 <rect x="600" y="1" width="50" height="500" fill="rgb(100,100,100)" stroke-width="2" stroke="rgb(50,50,50)" />
-<text x="625" y="154" style="font-size: 30px; writing-mode: tb; ">output 1 1 8 </text>
+<text x="625" y="154" style="font-size: 30px; writing-mode: tb; ">output 1 1 7 </text>
 </svg>
