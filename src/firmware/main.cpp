@@ -27,14 +27,8 @@ void cnn_line_follower(LinePredictor &line_predictor)
 
         switch (line_predictor.get_result())
         {
-          case 0: speed_max = 0.4; break;
-          case 1: speed_max = 0.4; break;
-          case 2: speed_max = 0.7; break;
-          case 3: speed_max = 0.7; break;
-          case 4: speed_max = 0.4; break;
-          case 5: speed_max = 0.4; break;
-          case 6: speed_max = 0.4; break;
-          case 7: speed_max = 0.4; break;
+          case 2: speed_max = 0.8; break;
+          default : speed_max = 0.4; break;
         }
 
         float line_position = line_sensor.result.right_line_position*1.0/line_sensor.get_max();
@@ -88,7 +82,7 @@ int main()
 
   cnn_line_follower(line_predictor);
 
-  /*
+/*
   timer.reset();
 
   for (unsigned int i = 0; i < 100; i++)
