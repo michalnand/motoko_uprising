@@ -67,8 +67,6 @@ sDatasetItem DatasetLine::create_item()
     case 1: result = make_shifted_item(); break;
   }
 
-  result = make_shifted_item();
-
 
   add_white_noise(result.input, white_noise_level);
   add_brightness_noise(result.input, brightness_noise_level);

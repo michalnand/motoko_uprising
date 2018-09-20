@@ -12,21 +12,21 @@ const sLayerGeometry layer_0_output_geometry = {8, 8, 4};
 const sLayerGeometry layer_0_kernel_geometry = {3, 3, 4};
 
 #define layer_0_weights_size ((unsigned int)36) //array size
-#define layer_0_weights_range ((nn_t)2965) //multiply neuron result with range/1024
+#define layer_0_weights_range ((nn_t)511) //multiply neuron result with range/1024
 
 const nn_weight_t layer_0_weights[]={
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-6, 36, 4, 121, -1, 14, 123, -13, -3, 127, -11, -6, -26, 13, 0, -18, 
-15, -2, -35, 17, };
+-106, -89, -34, 103, 79, 0, 91, 127, -81, 76, -12, 23, 25, -26, 109, -25, 
+-43, 97, 21, -26, };
 
 
 
 
 #define layer_0_bias_size ((unsigned int)4) //array size
-#define layer_0_bias_range ((nn_t)740) //multiply neuron result with range/1024
+#define layer_0_bias_range ((nn_t)370) //multiply neuron result with range/1024
 
 const nn_weight_t layer_0_bias[]={
-0, -90, -127, -16, };
+23, 85, -127, -77, };
 
 
 #endif
