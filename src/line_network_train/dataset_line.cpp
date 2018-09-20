@@ -67,6 +67,8 @@ sDatasetItem DatasetLine::create_item()
     case 1: result = make_shifted_item(); break;
   }
 
+//  result = make_shifted_item();
+
 
   add_white_noise(result.input, white_noise_level);
   add_brightness_noise(result.input, brightness_noise_level);
@@ -273,11 +275,12 @@ sDatasetItem DatasetLine::make_shifted_item()
   }
 
   int position_steps    = 10000;
-  int position          = (center_normalised + 0*0.5/width)*position_steps;
+  int position          = (center_normalised + 0.0/width)*position_steps;
   int class_id = position/(position_steps/classes_count);
 
   if (class_id < 0)
     class_id = 0;
+
   if (class_id >= (int)classes_count)
     class_id = classes_count-1;
 

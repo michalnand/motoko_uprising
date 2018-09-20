@@ -12,6 +12,7 @@ int main()
 
   JsonConfig parameters("experiments.json");
 
+
   for (unsigned int i = 0; i < parameters.result["experiments"].size(); i++)
   {
     std::cout << "processing experiment " << i << "\n";
