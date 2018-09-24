@@ -14,7 +14,7 @@ int main()
 
     gui.set_variable("testing label B", "asdasdasdasd");
   }
-
+ 
   JsonConfig json("gui.json");
   GLVisualisation visualisation;
 

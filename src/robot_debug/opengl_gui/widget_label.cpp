@@ -19,7 +19,7 @@ WidgetLabel::WidgetLabel(GLVisualisation &visualisation_, Variables &variables_,
 WidgetLabel::WidgetLabel(WidgetLabel& other)
             :Widget(other)
 {
-
+ 
 }
 
 WidgetLabel::WidgetLabel(const WidgetLabel& other)

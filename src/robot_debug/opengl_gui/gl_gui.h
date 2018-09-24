@@ -8,6 +8,7 @@
 #include "glvisualisation.h"
 #include "load_textures.h"
 #include "widget.h"
+#include "obj_model.h"
 
 class GLGUI
 {
@@ -23,8 +24,11 @@ class GLGUI
 
     Log result_log;
 
+    float time;
+
   protected:
     Widget widgets;
+    ObjModel model;
 
 
   public:

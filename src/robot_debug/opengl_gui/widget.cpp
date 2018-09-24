@@ -1,7 +1,11 @@
-#include "widget.h"
 #include <iostream>
 
+#include "widget.h"
+
 #include "widget_label.h"
+#include "widget_frame.h"
+#include "widget_text_frame.h"
+#include "widget_model_frame.h"
 
 Widget::Widget()
 {
@@ -33,7 +37,7 @@ void Widget::init(GLVisualisation &visualisation_, Variables &variables_, Json::
   auto variable_value = params["variable"]["value"];
   variables->add(variable_name, variable_value);
 
-  visible_on();
+  visible_on(); 
 
   std::cout << "creating widget " << params["type"].asString() << "\n";
 
@@ -43,6 +47,15 @@ void Widget::init(GLVisualisation &visualisation_, Variables &variables_, Json::
 
     if (type == "label")
       widgets.push_back(new WidgetLabel(visualisation_, variables_, params_["widgets"][i]));
+    else
+    if (type == "frame")
+      widgets.push_back(new WidgetFrame(visualisation_, variables_, params_["widgets"][i]));
+    else
+    if (type == "text frame")
+      widgets.push_back(new WidgetTextFrame(visualisation_, variables_, params_["widgets"][i]));
+    else
+    if (type == "model frame")
+      widgets.push_back(new WidgetModelFrame(visualisation_, variables_, params_["widgets"][i]));
     else
       widgets.push_back(new Widget(visualisation_, variables_, params_["widgets"][i]));
   }

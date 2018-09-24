@@ -4,10 +4,6 @@
     {
       "id"        : 0,
       "file_name" : "background.png"
-    },
-    {
-      "id"        : 1,
-      "file_name" : "game.png"
     }
   ],
 
@@ -34,7 +30,7 @@
                     "type"      : "label",
                     "position"  : [0.9, 0.0, 0.0],
                     "color"     : [0.0, 1.0, 0.0],
-                    "font_size" : "big",
+                    "font size" : "big",
 
                     "variable"  : {
                                     "name"  : "testing label B",
@@ -44,14 +40,67 @@
 
 
                   {
-                    "type"      : "label",
-                    "position"  : [-0.9, 0.0, 0.0],
-                    "color"     : [0.0, 0.0, 1.0],
-                    "font_size" : "big",
+                    "type"           : "frame",
+                    "position"       : [-1.2, 0.8, 0.0],
+                    "color"          : [0.5, 1.0, 0.0],
+                    "font color"     : [1.0, 1.0, 1.0],
+
+                    "font size" : "big",
+
+                    "width"     : 1.9,
+                    "height"    : 0.6,
+
+                    "filled"    : false,
+                    "frame width" : 0.01,
+                    "label"     : "LINE SENSORS"
+                  },
+
+
+                  {
+                    "type"              : "model frame",
+                    "position"          : [1.4, 0.5, 0.0],
+                    "color"             : [0.8, 0.8, 0.8],
+                    "font color"        : [1.0, 1.0, 1.0],
+                    "console color"     : [1.0, 0.0, 0.0],
+
+                    "font size" : "big",
+
+                    "width"     : 1.2,
+                    "height"    : 1.2,
+
+                    "filled"    : true,
+                    "frame width" : 0.01,
+                    "label"     : "IMU",
+
+                    "obj_file_name" : "./robot_model/model.obj",
+                    "mtl_file_name" : "./robot_model/model.mtl",
+
+                    "scale"  :         0.006,
+                    "rotate" :         [-40.0, 0.0, 0.0],
+                    "shift"  :         [-0.2, 0.0, 0.2]
+
+                  },
+
+
+                  {
+                    "type"              : "text frame",
+                    "position"          : [0.0, -0.8, 0.0],
+                    "color"             : [0.2, 0.2, 0.2],
+                    "font color"        : [1.0, 1.0, 1.0],
+                    "console color"     : [1.0, 0.0, 0.0],
+
+                    "font size" : "big",
+
+                    "width"     : 4.3,
+                    "height"    : 0.8,
+
+                    "filled"    : true,
+                    "frame width" : 0.01,
+                    "label"     : "CONSOLE",
 
                     "variable"  : {
-                                    "name"  : "testing label C",
-                                    "value" : "some default value"
+                                    "name"  : "console output",
+                                    "value" : "some default text value ... \n wfwefwefw3r32tr43 \n ty45hy45y45645y65y65"
                                   }
                   }
                 ]

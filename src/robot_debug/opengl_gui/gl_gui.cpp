@@ -30,11 +30,15 @@ void GLGUI::init(Json::Value &json)
 
   widgets.init(visualisation, variables, json["widgets"]);
 
+  time = 0.0;
+
   result_log << "gl gui init done\n";
 }
 
 void GLGUI::main()
 {
+  time+= 0.001;
+
   visualisation.start();
   visualisation.translate(0.0, 0.0, -3.0);
 
@@ -46,6 +50,13 @@ void GLGUI::main()
 
   visualisation.push();
   widgets.render();
+  visualisation.pop();
+
+  visualisation.push();
+    visualisation.translate(0.0, 0.0, 1.0);
+    visualisation.rotate(-60.0, 0.0, time*100);
+
+    model.render();
   visualisation.pop();
 
   visualisation.finish();
