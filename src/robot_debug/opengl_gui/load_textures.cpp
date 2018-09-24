@@ -1,35 +1,46 @@
-#include "load_texture.h"
+#include "load_textures.h"
 
 #include <vector>
 #include <CImg.h>
 
+#include <iostream>
 
-LoadTexture::LoadTexture()
+LoadTextures::LoadTextures()
 {
   textures_count = 0;
 }
 
-LoadTexture::LoadTexture(std::vector<std::string> &textures_file_names)
+LoadTextures::LoadTextures(Json::Value json)
 {
-  load(textures_file_names);
+  load(json);
 }
 
-LoadTexture::~LoadTexture()
+LoadTextures::~LoadTextures()
 {
 
 }
 
-std::vector<GLuint> LoadTexture::load(std::vector<std::string> &textures_file_names)
+void LoadTextures::load(Json::Value json)
 {
-  textures_count = textures_file_names.size();
+  textures_count = json["textures"].size();
 
   textures.resize(textures_count);
+  map.clear();
 
   glGenTextures(textures_count, &textures[0]);
 
   for (unsigned int i = 0; i < textures_count; i++)
   {
-    cimg_library::CImg<unsigned char> image(textures_file_names[i].c_str());
+    std::string texture_file_name = json["textures"][i]["file_name"].asString();
+    unsigned int texture_id = json["textures"][i]["id"].asInt();
+
+    result_log << "loading texture ";
+    result_log << texture_id << " ";
+    result_log << texture_file_name << "\n";
+
+    map[texture_id] = i;
+
+    cimg_library::CImg<unsigned char> image(texture_file_name.c_str());
 
     unsigned int width  = image.width();
     unsigned int height = image.height();
@@ -51,13 +62,22 @@ std::vector<GLuint> LoadTexture::load(std::vector<std::string> &textures_file_na
         GL_RGB, GL_UNSIGNED_BYTE, (GLvoid*)(&image_data[0]));
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
   }
-
-  return textures;
 }
 
 
 
-unsigned int LoadTexture::get_textures_count()
+unsigned int LoadTextures::get_textures_count()
 {
   return textures_count;
+}
+
+GLuint LoadTextures::get(unsigned int id)
+{
+  unsigned int idx = map[id];
+  return textures[idx];
+}
+
+GLuint LoadTextures::get_idx(unsigned int idx)
+{
+  return textures[idx];
 }
