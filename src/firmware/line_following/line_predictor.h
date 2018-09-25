@@ -27,6 +27,11 @@ class LinePredictor
       return result;
     }
 
+    int8_t get_input(unsigned int idx)
+    {
+      return network_input[idx];
+    }
+
 };
 
 #endif

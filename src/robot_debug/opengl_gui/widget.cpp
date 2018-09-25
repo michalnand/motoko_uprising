@@ -7,22 +7,25 @@
 #include "widget_text_frame.h"
 #include "widget_model_frame.h"
 #include "widget_bar_frame.h"
+#include "widget_cnn_frame.h"
 
 Widget::Widget()
 {
-
+ 
 }
 
-Widget::Widget(GLVisualisation &visualisation_, Variables &variables_, Json::Value &params_)
+Widget::Widget(GLVisualisation &visualisation_, Variables &variables_, LoadTextures &textures_, Json::Value &params_)
 {
-  init(visualisation_, variables_, params_);
+  init(visualisation_, variables_, textures_, params_);
 }
 
-void Widget::init(GLVisualisation &visualisation_, Variables &variables_, Json::Value &params_)
+void Widget::init(GLVisualisation &visualisation_, Variables &variables_, LoadTextures &textures_, Json::Value &params_)
 {
   visualisation = &visualisation_;
   variables     = &variables_;
+  textures      = &textures_;
   params        = params_;
+
 
   m_type = params["type"].asString();
 
@@ -41,27 +44,30 @@ void Widget::init(GLVisualisation &visualisation_, Variables &variables_, Json::
   visible_on();
 
   std::cout << "creating widget " << params["type"].asString() << "\n";
- 
+
   for (unsigned int i = 0; i < params["widgets"].size(); i++)
   {
     std::string type = params["widgets"][i]["type"].asString();
 
     if (type == "label")
-      widgets.push_back(new WidgetLabel(visualisation_, variables_, params_["widgets"][i]));
+      widgets.push_back(new WidgetLabel(visualisation_, variables_, textures_, params_["widgets"][i]));
     else
     if (type == "frame")
-      widgets.push_back(new WidgetFrame(visualisation_, variables_, params_["widgets"][i]));
+      widgets.push_back(new WidgetFrame(visualisation_, variables_, textures_, params_["widgets"][i]));
     else
     if (type == "text frame")
-      widgets.push_back(new WidgetTextFrame(visualisation_, variables_, params_["widgets"][i]));
+      widgets.push_back(new WidgetTextFrame(visualisation_, variables_, textures_, params_["widgets"][i]));
     else
     if (type == "model frame")
-      widgets.push_back(new WidgetModelFrame(visualisation_, variables_, params_["widgets"][i]));
+      widgets.push_back(new WidgetModelFrame(visualisation_, variables_, textures_, params_["widgets"][i]));
     else
     if (type == "bar frame")
-      widgets.push_back(new WidgetBarFrame(visualisation_, variables_, params_["widgets"][i]));
+      widgets.push_back(new WidgetBarFrame(visualisation_, variables_, textures_, params_["widgets"][i]));
     else
-      widgets.push_back(new Widget(visualisation_, variables_, params_["widgets"][i]));
+    if (type == "cnn frame")
+      widgets.push_back(new WidgetCNNFrame(visualisation_, variables_, textures_, params_["widgets"][i]));
+    else
+      widgets.push_back(new Widget(visualisation_, variables_, textures_, params_["widgets"][i]));
   }
 }
 

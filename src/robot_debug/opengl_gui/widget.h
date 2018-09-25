@@ -4,6 +4,7 @@
 #include <json_config.h>
 #include "variables.h"
 #include "glvisualisation.h"
+#include "load_textures.h"
 
 class Widget
 {
@@ -11,6 +12,7 @@ class Widget
 
     GLVisualisation *visualisation;
     Variables       *variables;
+    LoadTextures    *textures;
     Json::Value     params;
 
     bool            m_visible;
@@ -25,9 +27,9 @@ class Widget
 
   public:
     Widget();
-    Widget(GLVisualisation &visualisation_, Variables &variables_, Json::Value &params_);
+    Widget(GLVisualisation &visualisation_, Variables &variables_, LoadTextures &textures_, Json::Value &params_);
 
-    virtual void init(GLVisualisation &visualisation_, Variables &variables_, Json::Value &params_);
+    virtual void init(GLVisualisation &visualisation_, Variables &variables_, LoadTextures &textures_, Json::Value &params_);
 
     Widget(Widget& other);
     Widget(const Widget& other);

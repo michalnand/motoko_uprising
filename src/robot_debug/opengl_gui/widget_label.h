@@ -8,7 +8,7 @@ class WidgetLabel: public Widget
   public:
     WidgetLabel();
 
-    WidgetLabel(GLVisualisation &visualisation_, Variables &variables_, Json::Value &params_);
+    WidgetLabel(GLVisualisation &visualisation_, Variables &variables_,  LoadTextures &textures_, Json::Value &params_);
 
 
     WidgetLabel(WidgetLabel& other);

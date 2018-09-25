@@ -9,8 +9,8 @@ WidgetTextFrame::WidgetTextFrame()
 }
 
 
-WidgetTextFrame::WidgetTextFrame(GLVisualisation &visualisation_, Variables &variables_, Json::Value &params_)
-            :WidgetFrame(visualisation_, variables_, params_)
+WidgetTextFrame::WidgetTextFrame(GLVisualisation &visualisation_, Variables &variables_,  LoadTextures &textures_, Json::Value &params_)
+            :WidgetFrame(visualisation_, variables_, textures_, params_)
 {
   this->cr = params["console color"][0].asFloat();
   this->cg = params["console color"][1].asFloat();

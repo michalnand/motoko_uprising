@@ -19,7 +19,7 @@ class WidgetBarFrame: public WidgetFrame
   public:
     WidgetBarFrame();
 
-    WidgetBarFrame(GLVisualisation &visualisation_, Variables &variables_, Json::Value &params_);
+    WidgetBarFrame(GLVisualisation &visualisation_, Variables &variables_,  LoadTextures &textures_, Json::Value &params_);
 
 
     WidgetBarFrame(WidgetBarFrame& other);
@@ -32,6 +32,8 @@ class WidgetBarFrame: public WidgetFrame
 
   protected:
     float convert(float value);
+    std::string get_rounded(float value, unsigned int precision);
+
 };
 
 #endif

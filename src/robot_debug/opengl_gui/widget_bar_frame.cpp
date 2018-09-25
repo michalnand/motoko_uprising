@@ -10,8 +10,8 @@ WidgetBarFrame::WidgetBarFrame()
 }
 
 
-WidgetBarFrame::WidgetBarFrame(GLVisualisation &visualisation_, Variables &variables_, Json::Value &params_)
-            :WidgetFrame(visualisation_, variables_, params_)
+WidgetBarFrame::WidgetBarFrame(GLVisualisation &visualisation_, Variables &variables_,  LoadTextures &textures_, Json::Value &params_)
+            :WidgetFrame(visualisation_, variables_, textures_, params_)
 {
   this->br = params["bar color"][0].asFloat();
   this->bg = params["bar color"][1].asFloat();
@@ -66,14 +66,7 @@ WidgetBarFrame::~WidgetBarFrame()
 
 }
 
-std::string get_rounded(float value, unsigned int precision)
-{
-  std::stringstream stream;
-  stream << std::fixed << std::setprecision(precision) << value;
-  std::string str = stream.str();
 
-  return str;
-}
 
 
 void WidgetBarFrame::render()
@@ -138,4 +131,13 @@ float WidgetBarFrame::convert(float value)
     value = min;
 
   return k*value + q;
+}
+
+std::string WidgetBarFrame::get_rounded(float value, unsigned int precision)
+{
+  std::stringstream stream;
+  stream << std::fixed << std::setprecision(precision) << value;
+  std::string str = stream.str();
+
+  return str;
 }

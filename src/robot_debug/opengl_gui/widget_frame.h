@@ -19,7 +19,7 @@ class WidgetFrame: public Widget
   public:
     WidgetFrame();
 
-    WidgetFrame(GLVisualisation &visualisation_, Variables &variables_, Json::Value &params_);
+    WidgetFrame(GLVisualisation &visualisation_, Variables &variables_,  LoadTextures &textures_, Json::Value &params_);
 
 
     WidgetFrame(WidgetFrame& other);

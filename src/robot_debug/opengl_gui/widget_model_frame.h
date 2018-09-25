@@ -15,7 +15,7 @@ class WidgetModelFrame: public WidgetFrame
   public:
     WidgetModelFrame();
 
-    WidgetModelFrame(GLVisualisation &visualisation_, Variables &variables_, Json::Value &params_);
+    WidgetModelFrame(GLVisualisation &visualisation_, Variables &variables_,  LoadTextures &textures_, Json::Value &params_);
 
 
     WidgetModelFrame(WidgetModelFrame& other);

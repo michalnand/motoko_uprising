@@ -28,7 +28,7 @@ void GLGUI::init(Json::Value &json)
   visualisation.init(json["window_label"].asString(), width, height);
   textures.load(json);
 
-  widgets.init(visualisation, variables, json["widgets"]);
+  widgets.init(visualisation, variables, textures, json["widgets"]);
 
   time = 0.0;
 

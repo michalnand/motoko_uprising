@@ -274,39 +274,6 @@ void Drivers::test_motor_gyro_feedback()
 }
 
 
-void Drivers::test_diagnostic()
-{
-  while (1)
-  {
-    if (line_sensor.result.on_line)
-      terminal << "1 ";
-    else
-      terminal << "0 ";
-
-    terminal << line_sensor.result.left_line_position << " ";
-
-    for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
-    terminal << line_sensor.adc_result[i] << " ";
-
-    terminal << imu_sensor.angle.x << " ";
-    terminal << imu_sensor.angle.y << " ";
-    terminal << imu_sensor.angle.z << " ";
-
-
-    terminal << encoder_sensor.get_left() << " ";
-    terminal << encoder_sensor.get_right() << " ";
-
-
-    terminal << motor_controll.get_speed_left() << " ";
-    terminal << motor_controll.get_speed_right() << " ";
-
-    terminal << "\n";
-
-    timer.delay_ms(50);
-  }
-}
-
-
 void Drivers::test_line_follower()
 {
   terminal << "\ntest_line_follower\n";

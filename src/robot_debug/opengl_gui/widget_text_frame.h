@@ -10,7 +10,7 @@ class WidgetTextFrame: public WidgetFrame
   public:
     WidgetTextFrame();
 
-    WidgetTextFrame(GLVisualisation &visualisation_, Variables &variables_, Json::Value &params_);
+    WidgetTextFrame(GLVisualisation &visualisation_, Variables &variables_,  LoadTextures &textures_, Json::Value &params_);
 
 
     WidgetTextFrame(WidgetTextFrame& other);

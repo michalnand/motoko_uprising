@@ -9,8 +9,8 @@ WidgetModelFrame::WidgetModelFrame()
 }
 
 
-WidgetModelFrame::WidgetModelFrame(GLVisualisation &visualisation_, Variables &variables_, Json::Value &params_)
-            :WidgetFrame(visualisation_, variables_, params_)
+WidgetModelFrame::WidgetModelFrame(GLVisualisation &visualisation_, Variables &variables_,  LoadTextures &textures_, Json::Value &params_)
+            :WidgetFrame(visualisation_, variables_, textures_, params_)
 {
   std::string obj_file_name = params["obj_file_name"].asString();
   std::string mtl_file_name = params["mtl_file_name"].asString();

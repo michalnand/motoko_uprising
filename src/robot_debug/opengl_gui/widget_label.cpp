@@ -9,8 +9,8 @@ WidgetLabel::WidgetLabel()
 }
 
 
-WidgetLabel::WidgetLabel(GLVisualisation &visualisation_, Variables &variables_, Json::Value &params_)
-            :Widget(visualisation_, variables_, params_)
+WidgetLabel::WidgetLabel(GLVisualisation &visualisation_, Variables &variables_,  LoadTextures &textures_, Json::Value &params_)
+            :Widget(visualisation_, variables_, textures_, params_)
 {
 
 }
@@ -19,7 +19,7 @@ WidgetLabel::WidgetLabel(GLVisualisation &visualisation_, Variables &variables_,
 WidgetLabel::WidgetLabel(WidgetLabel& other)
             :Widget(other)
 {
- 
+
 }
 
 WidgetLabel::WidgetLabel(const WidgetLabel& other)
