@@ -45,11 +45,9 @@ WidgetModelFrame::~WidgetModelFrame()
 
 }
 
-float angle = 0.0;
 
 void WidgetModelFrame::render()
 {
-  angle+= 0.1;
   if (m_visible)
   {
     visualisation->push();
@@ -57,9 +55,14 @@ void WidgetModelFrame::render()
 
     render_frame();
 
+    float drx =  variables->v[params["variable"]["name"].asString()][0].asFloat();
+    float dry =  variables->v[params["variable"]["name"].asString()][1].asFloat();
+    float drz =  variables->v[params["variable"]["name"].asString()][2].asFloat();
+
+
     visualisation->push();
       visualisation->translate(sx, sy, sz);
-      visualisation->rotate(rx, ry, rz + angle);
+      visualisation->rotate(rx + drx, ry + dry, rz + drz);
 
       model.render();
 

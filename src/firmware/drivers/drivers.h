@@ -35,6 +35,9 @@ class Drivers
 
     void test_motor_speed_feedback();
     void test_motor_gyro_feedback();
+
+    void test_diagnostic();
+
     void test_line_follower();
 
 };

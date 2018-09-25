@@ -1,65 +1,64 @@
 #include <iostream>
 
 #include <opengl_gui/gl_gui.h>
+#include <libs/serial_port.h>
+#include <libs/numbers_parser.h>
+
+void update(GLGUI &gui, std::vector<float> &values)
+{
+  if (values.size() != 17)
+    return;
+
+  for (unsigned int i = 0; i < values.size(); i++)
+    printf("%6.3f ", values[i]);
+  printf("\n" );
+
+
+  Json::Value line_sensors;
+  for (unsigned int i = 0; i < 8; i++)
+    line_sensors[i] = values[2 + 7-i];
+  gui.set_variable("line sensors", line_sensors);
+
+  Json::Value angles;
+  angles[0] = values[11]*90.0/35000.0;
+  angles[1] = -values[10]*90.0/35000.0;
+  angles[2] = values[12]*90.0/35000.0;
+
+  gui.set_variable("imu angles", angles);
+
+
+  std::string motors;
+
+  motors+= "left distance  = " + std::to_string(values[13]) + "[mm]\n";
+  motors+= "left speed     = " + std::to_string(values[15]) + "\n";
+  motors+= "right distance = " + std::to_string(values[14]) + "[mm]\n";
+  motors+= "left speed     = " + std::to_string(values[16]) + "\n";
+  Json::Value j_motors = motors;
+
+  gui.set_variable("motors output", j_motors);
+  gui.main();
+}
 
 int main()
 {
   GLGUI gui("gui.json");
 
-  gui.main();
+  SerialPort sp("/dev/ttyUSB0");
+  NumbersParser parser;
 
   while (1)
   {
-    gui.main();
+    if (sp.is_char())
+    {
+      parser.add(sp.get_char());
 
-    gui.set_variable("testing label B", "asdasdasdasd");
-  }
- 
-  JsonConfig json("gui.json");
-  GLVisualisation visualisation;
+      if (parser.updated())
+      {
+        auto result = parser.get();
 
-  visualisation.init("robot debug", 16*80, 9*80);
-
-
-  float width = 1.0;
-  float height = 1.0;
-
-
-  LoadTextures textures(json.result);
-
-  float theta = 0.0;
-
-  while (1)
-  {
-    visualisation.start();
-
-    visualisation.translate(0.0, 0.0, -3.0);
-
-
-        visualisation.push();
-          float k = 0.28;
-          visualisation.translate(0.0, 0.0, 0.0);
-          visualisation.paint_textured_rectangle(16.0*k, 9.0*k, textures.get(100));
-        visualisation.pop();
-
-
-        visualisation.push();
-          visualisation.translate(-0.4, -0.4, 0.0);
-          visualisation.paint_textured_rectangle(width, height, textures.get(753));
-        visualisation.pop();
-
-        visualisation.push();
-          visualisation.translate(0.3, 0.3, 0.4);
-          visualisation.rotate(theta, theta, 0.0);
-          visualisation.set_color(1.0, 0.0, 0.0);
-          visualisation.paint_cube(0.2);
-        visualisation.pop();
-
-        visualisation.print(0, 0, 0, "AAAAAA");
-
-    visualisation.finish();
-
-      theta+= 0.01;
+        update(gui, result);
+      }
+    }
   }
 
   std::cout << "program done\n";

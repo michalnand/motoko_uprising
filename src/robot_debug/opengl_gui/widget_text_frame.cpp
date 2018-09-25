@@ -16,7 +16,7 @@ WidgetTextFrame::WidgetTextFrame(GLVisualisation &visualisation_, Variables &var
   this->cg = params["console color"][1].asFloat();
   this->cb = params["console color"][2].asFloat();
 }
- 
+
 
 WidgetTextFrame::WidgetTextFrame(WidgetTextFrame& other)
             :WidgetFrame(other)
@@ -54,7 +54,18 @@ void WidgetTextFrame::render()
     visualisation->set_color(cr, cg, cb);
 
     std::string value = variables->v[params["variable"]["name"].asString()].asString();
-    visualisation->print(-width/2.0 + 0.03, +height/2.0 - 0.08, 0, value);
+    std::string splitter = "\n";
+    std::vector<std::string> lines;
+
+    split(lines, value, splitter);
+
+    for (unsigned int line = 0; line < lines.size(); line++)
+    {
+      float y_pos = height/2.0 - 0.08 - line*0.1;
+      if (y_pos < -height/2.0)
+        break;
+      visualisation->print(-width/2.0 + 0.03, y_pos, 0, lines[line]);
+    }
 
     visualisation->pop();
 
@@ -64,4 +75,26 @@ void WidgetTextFrame::render()
     visualisation->pop();
 
   }
+}
+
+
+
+void WidgetTextFrame::split(std::vector<std::string>& tokens, std::string &str, std::string &splitBy)
+{
+    tokens.push_back(str);
+
+    size_t splitAt;
+    size_t splitLen = splitBy.size();
+    std::string frag;
+    while(true)
+    {
+        frag = tokens.back();
+        splitAt = frag.find(splitBy);
+        if(splitAt == std::string::npos)
+        {
+            break;
+        }
+        tokens.back() = frag.substr(0, splitAt);
+        tokens.push_back(frag.substr(splitAt+splitLen, frag.size()-(splitAt+splitLen)));
+    }
 }

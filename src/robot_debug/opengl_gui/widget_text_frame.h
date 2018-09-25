@@ -20,6 +20,9 @@ class WidgetTextFrame: public WidgetFrame
 
   public:
     virtual void render();
+
+  protected:
+    void split(std::vector<std::string>& tokens, std::string &str, std::string &splitBy);
 };
 
 #endif

@@ -68,7 +68,9 @@ int main()
   //drivers.test_encoder_sensor();
   //drivers.test_motor_controll_servo();
   //drivers.test_motor_gyro_feedback();
-  //
+
+  drivers.test_diagnostic();
+
   //drivers.test_line_follower();
 
   //LinePredictor line_predictor;
