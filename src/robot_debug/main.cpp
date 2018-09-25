@@ -4,6 +4,15 @@
 #include <libs/serial_port.h>
 #include <libs/numbers_parser.h>
 
+std::string get_rounded(float value, unsigned int precision)
+{
+  std::stringstream stream;
+  stream << std::fixed << std::setprecision(precision) << value;
+  std::string str = stream.str();
+
+  return str;
+}
+
 void update(GLGUI &gui, std::vector<float> &values)
 {
   if (values.size() != 17)
