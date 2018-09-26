@@ -48,6 +48,7 @@ class GLVisualisation
                     );
 
     void paint_cube(float size);
+    void paint_cuboid(float width, float height, float depth);
 
     void paint_circle(float size, unsigned int steps = 12);
     void paint_sphere(float size, unsigned int steps = 12);

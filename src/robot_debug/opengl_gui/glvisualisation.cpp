@@ -247,6 +247,60 @@ void GLVisualisation::paint_cube(float size)
      glEnd();
 }
 
+
+
+void GLVisualisation::paint_cuboid(float width, float height, float depth)
+{
+
+  float w = width/2.0;
+  float h = height/2.0;
+  float d = depth/2.0;
+
+  glBegin(GL_QUADS);                // Begin drawing the color cube with 6 quads
+        // Top face (y = 1.0f)
+        // Define vertices in counter-clockwise (CCW) order with normal pointing out
+        // 
+        glVertex3f( w, h, -d);
+        glVertex3f(-w, h, -d);
+        glVertex3f(-w, h,  d);
+        glVertex3f( w, h,  d);
+
+        // Bottom face (y = -a)
+        glVertex3f( w, -h,  d);
+        glVertex3f(-w, -h,  d);
+        glVertex3f(-w, -h, -d);
+        glVertex3f( w, -h, -d);
+
+
+        // Front face  (z = a)
+        glVertex3f( w,  h, d);
+        glVertex3f(-w,  h, d);
+        glVertex3f(-w, -h, d);
+        glVertex3f( w, -h, d);
+
+        // Back face (z = -a)
+        glVertex3f( w, -h, -d);
+        glVertex3f(-w, -h, -d);
+        glVertex3f(-w,  h, -d);
+        glVertex3f( w,  h, -d);
+
+
+        // Left face (x = -a)
+        glVertex3f(-w,  h,  d);
+        glVertex3f(-w,  h, -d);
+        glVertex3f(-w, -h, -d);
+        glVertex3f(-w, -h,  d);
+
+        // Right face (x = a)
+
+        glVertex3f(w,  h, -d);
+        glVertex3f(w,  h,  d);
+        glVertex3f(w, -h,  d);
+        glVertex3f(w, -h, -d);
+
+     glEnd();
+}
+
 void GLVisualisation::paint_circle(float size, unsigned int steps)
 {
   float pi = 3.141592654;
