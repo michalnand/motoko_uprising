@@ -11,7 +11,7 @@
 
 int main()
 {
-  /*
+
   GLVisualisation visualisation;
   RigidBody body;
 
@@ -20,7 +20,7 @@ int main()
     body.process_rotation();
     body.render(visualisation);
   }
-  */
+
 
   GLGUI gui("gui.json");
 

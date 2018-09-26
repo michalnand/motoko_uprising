@@ -72,7 +72,6 @@ void RigidBody::init()
   params.y    = 0.0;
   params.z    = 0.0;
 
-
   params.Ix   = (1.0/12.0)*params.mass*(sqr(params.h) + sqr(params.d));
   params.Iy   = (1.0/12.0)*params.mass*(sqr(params.w) + sqr(params.d));
   params.Iz   = (1.0/12.0)*params.mass*(sqr(params.w) + sqr(params.h));
@@ -99,26 +98,27 @@ void RigidBody::process_rotation()
   float my = 0;
   float mz = 0;
 
-  iteration++;
 
   if (iteration < 1000)
   {
-    mx = 0.0017;
-    my = 0.001;
+    mx = 1000.0;
+    my = 0.0;
     mz = 0.0;
   }
 
-  params.dox = (mx - (params.Ix - params.Iy)*params.oy*params.oz)/params.Ix;
-  params.doy = (my - (params.Ix - params.Iz)*params.oz*params.ox)/params.Iy;
-  params.doz = (mz - (params.Iy - params.Ix)*params.ox*params.oy)/params.Iz;
+  iteration++;
+
+  params.dox = ((mx - 0*(params.Iz - params.Iy)*params.oy*params.oz)/params.Ix)*params.dt;
+  params.doy = ((my - 0*(params.Ix - params.Iz)*params.oz*params.ox)/params.Iy)*params.dt;
+  params.doz = ((mz - 0*(params.Iy - params.Ix)*params.ox*params.oy)/params.Iz)*params.dt;
 
   params.ox+= params.dox;
   params.oy+= params.doy;
   params.oz+= params.doz;
 
-  params.angle_x+= params.ox;
-  params.angle_y+= params.oy;
-  params.angle_z+= params.oz;
+  params.angle_x+= params.ox*params.dt;
+  params.angle_y+= params.oy*params.dt;
+  params.angle_z+= params.oz*params.dt;
 }
 
 
