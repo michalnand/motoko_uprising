@@ -41,7 +41,7 @@
           },
 
           {
-            "type"      : "convolution",
+            "type"      : "dense convolution",
             "geometry"  : [3, 3, 4]
           },
           {
