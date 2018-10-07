@@ -6,22 +6,8 @@
 #include <libs/numbers_parser.h>
 #include <robot_debug.h>
 
-
-#include <rigid_body/rigid_body.h>
-
 int main()
 {
-
-  GLVisualisation visualisation;
-  RigidBody body;
-
-  while (1)
-  {
-    body.process_rotation();
-    body.render(visualisation);
-  }
-
-
   GLGUI gui("gui.json");
 
   SerialPort sp("/dev/ttyUSB0");

@@ -3,15 +3,19 @@
   [
     {
       "id"        : 0,
-      "file_name" : "background_red.png"
+      "file_name" : "textures/background_red.png"
     },
     {
       "id"        : 1,
-      "file_name" : "background_green.jpg"
+      "file_name" : "textures/background_green.jpg"
     },
     {
       "id"        : 2,
-      "file_name" : "cnn.png"
+      "file_name" : "textures/background_green_2.jpg"
+    },
+    {
+      "id"        : 100,
+      "file_name" : "textures/cnn.png"
     }
   ],
 
@@ -19,7 +23,7 @@
   "height"  : 720,
   "window_label" : "Robot debug",
 
-  "background_texture" : 1,
+  "background_texture" : 2,
 
   "widgets" :
   {
@@ -98,7 +102,7 @@
                     "width"     : 4.3,
                     "height"    : 0.8,
 
-                    "filled"    : true,
+                    "filled"    : false,
                     "frame width" : 0.01,
                     "label"     : "CONSOLE",
 
@@ -115,7 +119,7 @@
                     "position"          : [0.4, 0.8, 0.0],
                     "color"             : [0.5, 1.0, 0.0],
                     "font color"        : [1.0, 1.0, 1.0],
-                    "console color"     : [0.7, 0.7, 0.7],
+                    "console color"     : [1.0, 1.0, 1.0],
 
                     "font size" : "big",
 
@@ -136,20 +140,21 @@
                   {
                     "type"              : "cnn frame",
                     "position"          : [-0.65, 0.05, 0.0],
-                    "color"             : [0.0, 0.5, 1.0],
+                    "color"             : [0.2, 0.2, 0.2],
                     "font color"        : [1.0, 1.0, 1.0],
                     "console color"     : [1.0, 1.0, 1.0],
+
 
                     "font size" : "big",
 
                     "width"     : 3.0,
                     "height"    : 0.6,
 
-                    "filled"    : false,
+                    "filled"    : true,
                     "frame width" : 0.01,
                     "label"     : "NEURAL NETWORK",
 
-                    "texture id" : 2,
+                    "texture id" : 100,
 
                     "variable"  : {
                                     "name"  : "network io",
