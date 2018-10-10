@@ -41,8 +41,16 @@
           },
 
           {
-            "type"      : "fc",
-            "geometry"  : [1, 1, 32]
+            "type"      : "dense convolution",
+            "geometry"  : [3, 3, 4]
+          },
+          {
+            "type"      : "relu"
+          },
+
+          {
+            "type"      : "dense convolution",
+            "geometry"  : [3, 3, 4]
           },
           {
             "type"      : "relu"

@@ -29,7 +29,7 @@
 
           {
             "type"      : "convolution",
-            "geometry"  : [3, 3, 8]
+            "geometry"  : [3, 3, 6]
           },
           {
             "type"      : "relu"
@@ -41,8 +41,16 @@
           },
 
           {
-            "type"      : "fc",
-            "geometry"  : [1, 1, 32]
+            "type"      : "dense convolution",
+            "geometry"  : [3, 3, 6]
+          },
+          {
+            "type"      : "relu"
+          },
+
+          {
+            "type"      : "dense convolution",
+            "geometry"  : [3, 3, 6]
           },
           {
             "type"      : "relu"

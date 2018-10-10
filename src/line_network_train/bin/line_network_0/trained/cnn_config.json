@@ -1,0 +1,73 @@
+{
+	"hyperparameters" : 
+	{
+		"dropout" : 0.20000000298023224,
+		"init_weight_range" : 0,
+		"lambda1" : 4.9999998736893758e-05,
+		"lambda2" : 0.10000000149011612,
+		"learning_rate" : 0.0010000000474974513,
+		"minibatch_size" : 32
+	},
+	"input_geometry" : 
+	[
+		8,
+		8,
+		1
+	],
+	"layers" : 
+	[
+		{
+			"geometry" : 
+			[
+				3,
+				3,
+				4
+			],
+			"type" : "convolution",
+			"weights_file_name" : "line_network_0/trained/layer_0"
+		},
+		{
+			"type" : "relu",
+			"weights_file_name" : "line_network_0/trained/layer_1"
+		},
+		{
+			"geometry" : 
+			[
+				2,
+				2,
+				1
+			],
+			"type" : "max pooling",
+			"weights_file_name" : "line_network_0/trained/layer_2"
+		},
+		{
+			"geometry" : 
+			[
+				3,
+				3,
+				4
+			],
+			"type" : "dense convolution",
+			"weights_file_name" : "line_network_0/trained/layer_3"
+		},
+		{
+			"type" : "relu",
+			"weights_file_name" : "line_network_0/trained/layer_4"
+		},
+		{
+			"type" : "dropout",
+			"weights_file_name" : "line_network_0/trained/layer_5"
+		},
+		{
+			"type" : "output",
+			"weights_file_name" : "line_network_0/trained/layer_6"
+		}
+	],
+	"network_log_file_name" : "line_network_0/network.log",
+	"output_geometry" : 
+	[
+		1,
+		1,
+		7
+	]
+}
