@@ -5,35 +5,45 @@
 
 #include <json_config.h>
 
+#include <vector>
+#include <string>
+
 class DatasetLine: public DatasetInterface
 {
   private:
     unsigned int classes_count;
 
-    float white_noise_level;
-    float brightness_noise_level;
-    float salt_and_pepper_noise_level;
+    unsigned int scale;
+    unsigned int area_width, area_length, line_width;
+
+  private:
+
+      float luma_noise_level  ;
+      float white_noise_level ;
+      float straight_rotation_noise_level;
+
+  private:
+    std::vector<std::vector<float>> area;
+    std::vector<std::vector<float>> area_downsampled;
 
   public:
     DatasetLine();
     ~DatasetLine();
 
   private:
-    void create(unsigned int count, bool testing);
     sDatasetItem create_item();
 
-    float rnd(float min = -1.0, float max = 1.0);
-    void set_input(std::vector<float> &input, int x, int y, float value);
-    float interpolate(float x, float y, float x0, float y0);
-    void normalise_input(std::vector<float> &input);
+    unsigned int area_shifted_line(unsigned int line_position, float rotation);
+    unsigned int convert_raw_line_position(unsigned int line_position);
 
-    void add_white_noise(std::vector<float> &input, float value);
-    void add_brightness_noise(std::vector<float> &input, float value);
-    void add_salt_and_pepper_noise(std::vector<float> &vector, float value);
+    void downsample(std::vector<std::vector<float>> &area_output, std::vector<std::vector<float>> &area_input);
 
-  private:
-    sDatasetItem make_curved_item();
-    sDatasetItem make_shifted_item();
+    void add_noise(std::vector<std::vector<float>> &area);
+
+    void save_image(std::string file_name);
+    void save_image_downsampled(std::string file_name);
+
+    float rnd(float min, float max);
 
 };
 

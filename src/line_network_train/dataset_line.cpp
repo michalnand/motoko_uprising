@@ -1,39 +1,93 @@
 #include "dataset_line.h"
 
 #include <math.h>
+#include <image_save.h>
 
 DatasetLine::DatasetLine()
 {
-  classes_count  = 7;
-
-
   width          = 8;
   height         = width;
   channels       = 1;
 
-  white_noise_level           = 0.1;
-  brightness_noise_level      = 1.0;
-  salt_and_pepper_noise_level = 0.02;
+  classes_count  = 5;
+  scale = 4;
+
+  area_width   = 74*scale;
+  area_length  = 60*scale;
+  line_width   = 15*scale;
+
+  luma_noise_level  = 1.0;
+  white_noise_level = 0.2;
+
+  straight_rotation_noise_level = 0.1;
 
 
-  unsigned int testing_count  = classes_count*1000;
-  unsigned int training_count = testing_count*20;
 
+  area.resize(area_length);
+  for (unsigned int j = 0; j < area.size(); j++)
+    area[j].resize(area_width);
+
+  for (unsigned int j = 0; j < area_length; j++)
+    for (unsigned int i = 0; i < area_width; i++)
+      area[j][i] = 0.0;
+
+  area_downsampled.resize(height);
+  for (unsigned int j = 0; j < area_downsampled.size(); j++)
+    area_downsampled[j].resize(width);
+
+  for (unsigned int j = 0; j < height; j++)
+    for (unsigned int i = 0; i < width; i++)
+      area_downsampled[j][i] = 0.0;
+
+
+
+
+  unsigned int training_count = classes_count*4000;
+  unsigned int testing_count  = classes_count*500;
 
   training.resize(classes_count);
 
-  create(training_count, false);
-  create(testing_count, true);
+  for (unsigned int i = 0; i < training_count; i++)
+  {
+    auto item = create_item();
+    add_training(item);
+  }
+
+  for (unsigned int i = 0; i < testing_count; i++)
+  {
+    auto item = create_item();
+    add_testing(item);
+  }
+
+
+
+  for (unsigned int i = 0; i < 50; i++)
+  {
+
+    unsigned int line_position = rand()%area_width;
+
+    unsigned int line_pos = convert_raw_line_position(line_position);
+    float rotation = rnd(-straight_rotation_noise_level, straight_rotation_noise_level);
+
+    area_shifted_line(line_position, rotation);
+
+    downsample(area_downsampled, area);
+
+    add_noise(area_downsampled);
+
+    {
+      std::string file_name;
+      file_name = "dataset_examples/"  + std::to_string(line_pos) + "_" + std::to_string(i) + ".png";
+      save_image(file_name);
+    }
+    {
+      std::string file_name;
+      file_name = "dataset_examples/"  + std::to_string(line_pos) + "_" + std::to_string(i) +"_D" + ".png";
+      save_image_downsampled(file_name);
+    }
+  }
 
   print();
-
-
-  for (unsigned int i = 0; i < 20; i++)
-    print_testing_item(i);
-/*
-  save_to_txt_testing("testing_line.txt");
-  save_to_txt_training("training_line.txt");
-*/
 }
 
 DatasetLine::~DatasetLine()
@@ -41,250 +95,151 @@ DatasetLine::~DatasetLine()
 
 }
 
-void DatasetLine::create(unsigned int count, bool testing)
-{
-  sDatasetItem item;
-
-  for (unsigned int i = 0; i < count; i++)
-  {
-    auto item = create_item();
-
-    if (testing)
-      add_testing(item);
-    else
-      add_training(item);
-  }
-}
-
 
 sDatasetItem DatasetLine::create_item()
 {
   sDatasetItem result;
 
-  switch (rand()%2)
-  {
-    case 0: result = make_curved_item(); break;
-    case 1: result = make_shifted_item(); break;
-  }
+  unsigned int line_position = rand()%area_width;
 
-//  result = make_shifted_item();
+  unsigned int line_pos = convert_raw_line_position(line_position);
+  float rotation = rnd(-straight_rotation_noise_level, straight_rotation_noise_level);
+
+  area_shifted_line(line_position, rotation);
+
+  downsample(area_downsampled, area);
+
+  add_noise(area_downsampled);
+
+  result.input.resize(width*height*channels);
+  result.output.resize(classes_count);
 
 
-  add_white_noise(result.input, white_noise_level);
-  add_brightness_noise(result.input, brightness_noise_level);
-  add_salt_and_pepper_noise(result.input, salt_and_pepper_noise_level);
+  unsigned int ptr = 0;
+  for (unsigned int j = 0; j < height; j++)
+    for (unsigned int i = 0; i < width; i++)
+    {
+      result.input[ptr] = area_downsampled[j][i];
+      ptr++;
+    }
 
-
-  normalise_input(result.input);
-
+  for (unsigned int j = 0; j < classes_count; j++)
+    result.output[j] = 0.0;
+  result.output[line_pos] = 1.0;
 
 
   return result;
+}
+
+
+unsigned int DatasetLine::area_shifted_line(unsigned int line_position, float rotation)
+{
+  unsigned int lw_half = line_width/2;
+
+  if (line_position < lw_half)
+    line_position = lw_half;
+
+  if ((line_position+lw_half) >= area_width)
+    line_position = area_width-lw_half;
+
+  for (unsigned int y = 0; y < area_length; y++)
+    for (unsigned int x = 0; x < area_width; x++)
+      area[y][x] = 0.0;
+
+  float a = 1.0;
+  float b = 0.0;
+
+  b = rotation;
+
+  float c_left  = line_position - lw_half;
+  float c_right = line_position + lw_half;
+
+    for (unsigned int y = 0; y < area_length; y++)
+      for (unsigned int x = 0; x < area_width; x++)
+      {
+        if ( ((a*x + b*y - c_left) > 0.0) && ((a*x + b*y - c_right) < 0.0) )
+          area[y][x] = 1.0;
+      }
+
+/*
+  for (unsigned int j = 0; j < area_length; j++)
+    for (unsigned int i = (line_position-lw_half); i < (line_position+lw_half); i++)
+      area[j][i] = 1.0;
+*/
+  return line_position;
+}
+
+unsigned int DatasetLine::convert_raw_line_position(unsigned int line_position)
+{
+  return (classes_count*line_position)/area_width;
+}
+
+void DatasetLine::downsample(std::vector<std::vector<float>> &area_output, std::vector<std::vector<float>> &area_input)
+{
+  unsigned int kw = area_input[0].size()/area_output[0].size();
+  unsigned int kh = area_input.size()/area_output.size();
+
+
+  for (unsigned int y = 0; y < area_output.size(); y++)
+  for (unsigned int x = 0; x < area_output[y].size(); x++)
+  {
+    float sum = 0.0;
+    for (unsigned int j = 0; j < kh; j++)
+    for (unsigned int i = 0; i < kw; i++)
+      sum+= area_input[y*kh + j][x*kw + i];
+
+    area_output[y][x] = sum/(kw*kh);
+  }
+}
+
+void DatasetLine::add_noise(std::vector<std::vector<float>> &area)
+{
+  float luma_noise = luma_noise_level*rnd(0.0, 1.0);
+
+
+  for (unsigned int y = 0; y < area.size(); y++)
+  for (unsigned int x = 0; x < area[y].size(); x++)
+  {
+    area[y][x] = luma_noise + (1.0 - white_noise_level)*area[y][x] + white_noise_level*(rand()%10000)/10000.0;
+  }
+}
+
+void DatasetLine::save_image(std::string file_name)
+{
+  std::vector<float> v(area_length*area_width);
+
+  unsigned int ptr = 0;
+  for (unsigned int j = 0; j < area_length; j++)
+    for (unsigned int i = 0; i < area_width; i++)
+    {
+      v[ptr] = area[j][i];
+      ptr++;
+    }
+
+  ImageSave image(area_width, area_length, true);
+  image.save(file_name, v);
+}
+
+void DatasetLine::save_image_downsampled(std::string file_name)
+{
+  std::vector<float> v(height*width);
+
+  unsigned int ptr = 0;
+  for (unsigned int j = 0; j < height; j++)
+    for (unsigned int i = 0; i < width; i++)
+    {
+      v[ptr] = area_downsampled[j][i];
+      ptr++;
+    }
+
+  ImageSave image(height, width, true);
+  image.save(file_name, v);
 }
 
 
 float DatasetLine::rnd(float min, float max)
 {
-  float v = (rand()%10000000)/10000000.0;
+  float v = (rand()%100000)/100000.0;
 
-  float result = v*(max - min) + min;
-  return result;
-}
-
-void DatasetLine::set_input(std::vector<float> &input, int x, int y, float value)
-{
-  if ((x >= 0)&&(y >= 0)&&(x < (int)width)&&(y < (int)height))
-  {
-    unsigned int idx = y*width + x;
-    input[idx] = value;
-  }
-}
-
-
-float DatasetLine::interpolate(float x, float y, float x0, float y0)
-{
-  float result = 0.0;
-
-  result+= pow(x - x0, 2.0);
-  result+= pow(y - y0, 2.0);
-
-  result = exp(-result);
-
-  return result;
-}
-
-
-void DatasetLine::normalise_input(std::vector<float> &input)
-{
-  for (unsigned int y = 0; y < height; y++)
-  {
-    float max = -1000000.0;
-    float min = -max;
-
-    for (unsigned int x = 0; x < width; x++)
-    {
-      float v = input[y*width + x];
-      if (v > max)
-        max = v;
-      if (v < min)
-        min = v;
-    }
-
-    float k = 0.0;
-    float q = 0.0;
-
-    if (max > min)
-    {
-      k = 1.0/(max - min);
-      q = 1.0 - k*max;
-
-      for (unsigned int x = 0; x < width; x++)
-        input[y*width + x] = k*input[y*width + x] + q;
-    }
-  }
-}
-
-
-void DatasetLine::add_white_noise(std::vector<float> &vector, float value)
-{
-  for (unsigned int i = 0; i < vector.size(); i++)
-    vector[i]+= rnd(-value, value);
-}
-
-void DatasetLine::add_brightness_noise(std::vector<float> &vector, float value)
-{
-  float noise = rnd(-value, value);
-  for (unsigned int i = 0; i < vector.size(); i++)
-    vector[i]+= noise;
-}
-
-void DatasetLine::add_salt_and_pepper_noise(std::vector<float> &vector, float value)
-{
-  for (unsigned int i = 0; i < vector.size(); i++)
-  {
-    if (rnd(0, 1) < value)
-    {
-      if (rnd(0, 1) < 0.5)
-        vector[i] = 1.0;
-      else
-        vector[i] = 0.0;
-    }
-  }
-}
-
-
-
-
-sDatasetItem DatasetLine::make_curved_item()
-{
-  sDatasetItem result;
-  result.input.resize(width*height*channels);
-  result.output.resize(classes_count);
-
-
-  for (unsigned int i = 0; i < classes_count; i++)
-    result.input[i] = 0.0;
-
-  for (unsigned int i = 0; i < classes_count; i++)
-    result.output[i] = 0.0;
-
-  float PI      = 3.141592654;
-  float theta   = rnd(-PI/2, PI/2);
-
-  float x0  = width/2.0 + (width*0.125)*rnd();
-  float y0  = 0.0;
-
-  float x1  = x0 + width*2.0*sin(theta);
-  float y1  = y0 + width*2.0*cos(theta);
-
-  unsigned int steps = width*10;
-
-  for (unsigned int t = 0; t < steps; t++)
-  {
-    float t_ = t*1.0/steps;
-
-    float x = (x1 - x0)*t_ + x0;
-    float y = (y1 - y0)*t_ + y0;
-
-    int xa = floor(x);
-    int ya = floor(y);
-    int xb = ceil(x);
-    int yb = ceil(y);
-    int xc = trunc(x);
-    int yc = trunc(y);
-
-    set_input(result.input, xa, height - 1 - ya, interpolate(xa, ya, x, y));
-    set_input(result.input, xb, height - 1 - yb, interpolate(xb, yb, x, y));
-    set_input(result.input, xc, height - 1 - yc, interpolate(xc, yc, x, y));
-  }
-
-  int angle_steps = 10000;
-  int angle = ((theta*angle_steps)/(PI/2.0) + angle_steps)/2;
-
-  unsigned int class_id = angle/(angle_steps/classes_count);
-
-  result.output[class_id] = 1.0;
-  return result;
-}
-
-
-
-
-
-
-sDatasetItem DatasetLine::make_shifted_item()
-{
-  sDatasetItem result;
-  result.input.resize(width*height*channels);
-  result.output.resize(classes_count);
-
-
-  for (unsigned int i = 0; i < classes_count; i++)
-    result.input[i] = 0.0;
-
-  for (unsigned int i = 0; i < classes_count; i++)
-    result.output[i] = 0.0;
-
-  float center_normalised = (rnd() + 1.0)/2.0;
-
-  float x0  = width*center_normalised;
-  float y0  = 0.0;
-
-  float x1  = x0 + rnd()*2.0/width;
-  float y1  = width;
-
-  unsigned int steps = width*10;
-
-  for (unsigned int t = 0; t < steps; t++)
-  {
-    float t_ = t*1.0/steps;
-
-    float x = (x1 - x0)*t_ + x0;
-    float y = (y1 - y0)*t_ + y0;
-
-    int xa = floor(x);
-    int ya = floor(y);
-    int xb = ceil(x);
-    int yb = ceil(y);
-    int xc = trunc(x);
-    int yc = trunc(y);
-
-    set_input(result.input, xa, height - 1 - ya, interpolate(xa, ya, x, y));
-    set_input(result.input, xb, height - 1 - yb, interpolate(xb, yb, x, y));
-    set_input(result.input, xc, height - 1 - yc, interpolate(xc, yc, x, y));
-  }
-
-  int position_steps    = 10000;
-  int position          = (center_normalised + 0.0/width)*position_steps;
-  int class_id = position/(position_steps/classes_count);
-
-  if (class_id < 0)
-    class_id = 0;
-
-  if (class_id >= (int)classes_count)
-    class_id = classes_count-1;
-
-  result.output[class_id] = 1.0;
-
-  return result;
+  return (max - min)*v + min;
 }

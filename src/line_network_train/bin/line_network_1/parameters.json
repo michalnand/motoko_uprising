@@ -11,15 +11,15 @@
         "network_log_file_name" : "line_network_1/network.log",
 
         "input_geometry"     : [8, 8, 1],
-        "output_geometry"    : [1, 1, 7],
+        "output_geometry"    : [1, 1, 5],
 
         "hyperparameters" :
         {
           "init_weight_range" : 0.0,
           "learning_rate"     : 0.001,
-          "lambda1"           : 0.00005,
-          "lambda2"           : 0.1,
-          "dropout"           : 0.2,
+          "lambda1"           : 0.00001,
+          "lambda2"           : 0.00001,
+          "dropout"           : 0.05,
 
           "minibatch_size"    : 32
         },

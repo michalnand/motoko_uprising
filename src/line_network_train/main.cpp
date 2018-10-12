@@ -6,12 +6,14 @@
 
 #include <dataset_line.h>
 
-int main()
+int main() 
 {
   DatasetLine dataset;
 
+  dataset.save_to_binary("dataset/training.bin", "dataset/testing.bin", "dataset/unlabeled.bin");
+
   JsonConfig parameters("experiments.json");
- 
+
 
   for (unsigned int i = 0; i < parameters.result["experiments"].size(); i++)
   {

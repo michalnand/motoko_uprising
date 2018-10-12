@@ -13,26 +13,3 @@ cd ..
 cd line_network_3
 ./clean
 cd ..
-
-
-
-
-cd LineNetwork_0
-rm *.h
-rm *.cpp
-cd ..
-
-cd LineNetwork_1
-rm *.h
-rm *.cpp
-cd ..
-
-cd LineNetwork_2
-rm *.h
-rm *.cpp
-cd ..
-
-cd LineNetwork_3
-rm *.h
-rm *.cpp
-cd ..
