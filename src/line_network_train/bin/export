@@ -1,5 +1,1 @@
-~/rysy/deployment/net_export/bin/net_export.elf ./line_network_0/trained/cnn_config.json LineNetwork_0/ LineNetwork
-~/rysy/deployment/net_export/bin/net_export.elf ./line_network_1/trained/cnn_config.json LineNetwork_1/ LineNetwork
-~/rysy/deployment/net_export/bin/net_export.elf ./line_network_2/trained/cnn_config.json LineNetwork_2/ LineNetwork
-~/rysy/deployment/net_export/bin/net_export.elf ./line_network_3/trained/cnn_config.json LineNetwork_3/ LineNetwork
- 
+~/rysy/deployment/net_export/bin/net_export.elf ./line_network_2/trained/cnn_config.json LineNetwork/ LineNetwork

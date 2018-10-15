@@ -19,7 +19,7 @@ LineNetwork::LineNetwork()
 
 		output_geometry.w = 1;
 		output_geometry.h = 1;
-		output_geometry.d = 7;
+		output_geometry.d = 5;
 
 		layers[0] = new NetConvolutionLayer(layer_0_kernel_geometry,layer_0_input_geometry,layer_0_output_geometry,layer_0_weights,layer_0_bias,layer_0_weights_range,layer_0_bias_range);
 		layers[1] = new NetReluLayer(layer_1_kernel_geometry,layer_1_input_geometry,layer_1_output_geometry);

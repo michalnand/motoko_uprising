@@ -118,11 +118,22 @@ void WidgetCNNFrame::render()
         visualisation->paint_textured_rectangle(width*0.9/3.0, height*0.9, textures->get(texture_id));
       visualisation->pop();
 
+      std::string net_result = "output   " + std::to_string(output);
+
+
+      visualisation->push();
+
+        visualisation->translate(width/2.0 - 0.35, 0.025, 0);
+        visualisation->set_color(1.0 - cr, 1.0 - cg, 1.0 - cb);
+        visualisation->paint_rectangle(net_result.size()*0.04, 0.15);
+
+      visualisation->pop();
+
+
       visualisation->push();
 
       visualisation->set_color(cr, cg, cb);
-      std::string str = "output   " + std::to_string(output);
-      visualisation->print(width/2.0 - 0.5, 0, 0, str);
+      visualisation->print(width/2.0 - 0.5, 0, 0, net_result);
 
       visualisation->pop();
 

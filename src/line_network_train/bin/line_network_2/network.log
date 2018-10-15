@@ -3,8 +3,8 @@ network init start
 hyperparameters
 init_weight_range 0.000000 ,xavier
 learning_rate 0.001000
-lambda1 0.000010
-lambda2 0.000010
+lambda1 0.000005
+lambda2 0.000005
 dropout 0.050000
 minibatch size 32
 
