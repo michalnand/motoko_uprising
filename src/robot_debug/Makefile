@@ -1,6 +1,6 @@
 ELF = bin/robot_debug.elf
 
-LIBS_PATH=$(HOME)/rysy
+LIBS_PATH=$(HOME)/libs/rysy
 
 INC+= -I.
 INC+= -I$(LIBS_PATH)/libs_common
@@ -43,6 +43,6 @@ $(ELF): $(LIBS) $(OBJS) $(OBJS_CUDA)
 	$(CU) -c $(CUDAFLAGS) $< -o $@
 
 clean:
-	rm $(OBJS) -rf
-	rm $(OBJS_CUDA) -rf
-	rm $(ELF) -rf
+	rm $(OBJS) -f
+	rm $(OBJS_CUDA) -f
+	rm $(ELF) -f
