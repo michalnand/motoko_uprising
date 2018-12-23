@@ -1,7 +1,8 @@
-#include "timer.h"
+#include <timer.h>
 
-#include <stm32_common.h>
 #include <config.h>
+#include <stm32f30x_func.h>
+
 
 struct sTimer
 {
@@ -20,8 +21,12 @@ Timer::Timer()
 
 }
 
+
+
 void Timer::init()
 {
+
+
   unsigned char i;
 
   for (i = 0; i < TIMERS_COUNT; i++)
@@ -39,14 +44,13 @@ void Timer::init()
 
   stop_watch_init_value = 0;
 
-
   RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;  //timer 2 clock enable
 
-  timer_init(TIM2, 0, 0, 100-1, 720);
+
+  timer_init(TIM2, 0, 0, 720-1, 100);
   nvic_init(TIM2_IRQn, 0, 1);
 
-
-  enable_interrupt();
+  __enable_irq();
 }
 
 Timer::~Timer()
@@ -64,7 +68,7 @@ int Timer::add_task(void (*callback_function)(), unsigned int period_ms, bool ma
 {
   int timer_idx = -1;
 
-  disable_interrupt();
+  __disable_irq();
 
   for (unsigned char i = 0; i < TIMERS_COUNT; i++)
     if ( (g_timers[i].callback_function == nullptr) && (g_timers[i].callback_class == nullptr) )
@@ -80,7 +84,7 @@ int Timer::add_task(void (*callback_function)(), unsigned int period_ms, bool ma
     g_timers[(unsigned char)timer_idx].main_loop_callback_enabled = main_loop_callback_enabled;
   }
 
-  enable_interrupt();
+  __enable_irq();
 
   return timer_idx;
 }
@@ -90,7 +94,7 @@ int Timer::add_task(class Thread *callback_class, unsigned int period_ms, bool m
 {
   int timer_idx = -1;
 
-  disable_interrupt();
+  __disable_irq();
 
   for (unsigned char i = 0; i < TIMERS_COUNT; i++)
     if ( (g_timers[i].callback_function == nullptr) && (g_timers[i].callback_class == nullptr) )
@@ -106,7 +110,7 @@ int Timer::add_task(class Thread *callback_class, unsigned int period_ms, bool m
     g_timers[(unsigned char)timer_idx].main_loop_callback_enabled = main_loop_callback_enabled;
   }
 
-  enable_interrupt();
+  __enable_irq();
 
   return timer_idx;
 }
@@ -141,11 +145,11 @@ void Timer::main()
 //flag will be set to nonzero value 1000/period_ms times per second
 void Timer::set_period(unsigned char timer_id, unsigned int period_ms)
 {
-//  disable_interrupt();
+//  __disable_irq();
   g_timers[timer_id].cnt = period_ms;
   g_timers[timer_id].period = period_ms;
   g_timers[timer_id].flag = 0;
-//  enable_interrupt();
+//  __enable_irq();
 }
 
 //@brief return nonzero value if timer_id elapsed it's period
@@ -155,7 +159,7 @@ void Timer::set_period(unsigned char timer_id, unsigned int period_ms)
 unsigned int Timer::test_and_clear(unsigned char timer_id)
 {
   unsigned char res = 0;
-  disable_interrupt();
+  __disable_irq();
 
 
   if (g_timers[timer_id].flag)
@@ -164,7 +168,7 @@ unsigned int Timer::test_and_clear(unsigned char timer_id)
     g_timers[timer_id].flag = 0;
   }
 
-  enable_interrupt();
+  __enable_irq();
   return res;
 }
 
@@ -172,9 +176,9 @@ unsigned long int Timer::get_time()
 {
   volatile unsigned long int tmp;
 
-  disable_interrupt();
+  __disable_irq();
   tmp = g_time;
-  enable_interrupt();
+  __enable_irq();
 
   return tmp;
 }

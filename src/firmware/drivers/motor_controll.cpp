@@ -1,7 +1,5 @@
-#include "motor_controll.h"
-
+#include <motor_controll.h>
 #include <drivers.h>
-#include <robot_config.h>
 
 
 MotorControll::MotorControll()

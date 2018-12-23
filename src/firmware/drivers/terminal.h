@@ -8,7 +8,7 @@ class Terminal: public Usart
 {
   public:
     Terminal();
-    ~Terminal();
+    virtual ~Terminal();
 
     void puts(const char *s);
     void puts(char *s);

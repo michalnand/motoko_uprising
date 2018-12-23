@@ -12,9 +12,9 @@ class Fram
 
   public:
     Fram();
-    ~Fram();
+    virtual ~Fram();
 
-    void init(I2C_Interface *i2c_);
+    void init(I2C_Interface &i2c_);
     unsigned int size();
 
     void write(unsigned int address, char *buffer, unsigned int size);

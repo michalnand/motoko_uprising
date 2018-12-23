@@ -2,9 +2,8 @@
 #define _MOTOR_CONTROLL_H_
 
 
-#include <thread.h>
 #include <motor.h>
-#include <pid.h>
+#include <math/pid.h>
 
 class MotorControll: public Thread
 {
@@ -26,7 +25,7 @@ class MotorControll: public Thread
 
   public:
     MotorControll();
-    ~MotorControll();
+    virtual ~MotorControll();
 
     int init();
 

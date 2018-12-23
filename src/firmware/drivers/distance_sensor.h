@@ -1,7 +1,7 @@
 #ifndef _DISTANCE_SENSOR_H_
 #define _DISTANCE_SENSOR_H_
 
-#include <tgpio.h>
+#include <gpio.h>
 #include <thread.h>
 #include <timer.h>
 
@@ -27,13 +27,13 @@ class DistanceSensor: public Thread
   private:
     bool m_ready;
 
-  protected:
-    TGpio<TGPIOC, 13, GPIO_MODE_OUT> front_ir_led;        //front IR led
-  //  TGpio<TGPIOC, 2, GPIO_MODE_OUT> front_ir_led;        //front IR led
+  protected: 
+    Gpio<TGPIOC, 13, GPIO_MODE_OUT> front_ir_led;        //front IR led
+  //  Gpio<TGPIOC, 2, GPIO_MODE_OUT> front_ir_led;        //front IR led
 
-    TGpio<TGPIOB, 0, GPIO_MODE_AN> sensor_in_0; //front as ADC input
-    TGpio<TGPIOB, 1, GPIO_MODE_AN> sensor_in_1; //left as ADC input
-    TGpio<TGPIOC, 0, GPIO_MODE_AN> sensor_in_2; //right as ADC input
+    Gpio<TGPIOB, 0, GPIO_MODE_AN> sensor_in_0; //front as ADC input
+    Gpio<TGPIOB, 1, GPIO_MODE_AN> sensor_in_1; //left as ADC input
+    Gpio<TGPIOC, 0, GPIO_MODE_AN> sensor_in_2; //right as ADC input
 
     unsigned int state;
     int adc_res_on[DISTANCE_SENSOR_COUNT];

@@ -1,6 +1,5 @@
-#include "distance_sensor.h"
+#include <distance_sensor.h>
 
-#include <adc.h>
 #include <drivers.h>
 
 
@@ -46,9 +45,9 @@ void DistanceSensor::main()
     case 0:
     {
 
-      adc_res_off[DISTANCE_FRONT] = adc_read(ADC_FRONT);
-      adc_res_off[DISTANCE_LEFT]  = adc_read(ADC_LEFT);
-      adc_res_off[DISTANCE_RIGHT] = adc_read(ADC_RIGHT);
+      adc_res_off[DISTANCE_FRONT] = adc.read(ADC_FRONT);
+      adc_res_off[DISTANCE_LEFT]  = adc.read(ADC_LEFT);
+      adc_res_off[DISTANCE_RIGHT] = adc.read(ADC_RIGHT);
 
       front_ir_led = 1;
 
@@ -58,9 +57,9 @@ void DistanceSensor::main()
 
     case 1:
     {
-      adc_res_on[DISTANCE_FRONT]  = adc_read(ADC_FRONT);
-      adc_res_on[DISTANCE_LEFT]   = adc_read(ADC_LEFT);
-      adc_res_on[DISTANCE_RIGHT]  = adc_read(ADC_RIGHT);
+      adc_res_on[DISTANCE_FRONT]  = adc.read(ADC_FRONT);
+      adc_res_on[DISTANCE_LEFT]   = adc.read(ADC_LEFT);
+      adc_res_on[DISTANCE_RIGHT]  = adc.read(ADC_RIGHT);
 
       front_ir_led = 0;
 
@@ -100,10 +99,10 @@ bool DistanceSensor::ready()
 {
   bool res = m_ready;
 
-  disable_interrupt();
+  __disable_irq();
   if (res)
     m_ready = false;
-  enable_interrupt();
+  __enable_irq();
 
   return res;
 }

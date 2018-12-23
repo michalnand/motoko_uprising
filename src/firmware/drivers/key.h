@@ -1,7 +1,7 @@
 #ifndef _KEY_H_
 #define _KEY_H_
 
-#include <tgpio.h>
+#include <gpio.h>
 #include <thread.h>
 
 //output for LED
@@ -15,8 +15,8 @@
 class Key: public Thread
 {
   private:
-    TGpio<KEY_GPIO, KEY_PIN, GPIO_MODE_IN_PULLUP> key;  //user button
-    TGpio<LED_GPIO, LED_PIN, GPIO_MODE_OUT> led;        //user led
+    Gpio<KEY_GPIO, KEY_PIN, GPIO_MODE_IN_PULLUP> key;  //user button
+    Gpio<LED_GPIO, LED_PIN, GPIO_MODE_OUT> led;        //user led
 
     unsigned char led_state;
     int timer_id;

@@ -1,11 +1,11 @@
 /**************************************************************************//**
  * @file     core_cm4.h
  * @brief    CMSIS Cortex-M4 Core Peripheral Access Layer Header File
- * @version  V2.10
- * @date     19. July 2011
+ * @version  V3.00
+ * @date     03. February 2012
  *
  * @note
- * Copyright (C) 2009-2011 ARM Limited. All rights reserved.
+ * Copyright (C) 2009-2012 ARM Limited. All rights reserved.
  *
  * @par
  * ARM Limited (ARM) is supplying this software for use with Cortex-M
@@ -21,129 +21,131 @@
  *
  ******************************************************************************/
 #if defined ( __ICCARM__ )
- #pragma system_include  /* treat file as system include file for MISRA check */
+#pragma system_include  /* treat file as system include file for MISRA check */
 #endif
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 #ifndef __CORE_CM4_H_GENERIC
 #define __CORE_CM4_H_GENERIC
 
+    /** \page CMSIS_MISRA_Exceptions  MISRA-C:2004 Compliance Exceptions
+      CMSIS violates the following MISRA-C:2004 rules:
 
-/** \mainpage CMSIS Cortex-M4
+       \li Required Rule 8.5, object/function definition in header file.<br>
+         Function definitions in header files are used to allow 'inlining'.
 
-  This documentation describes the CMSIS Cortex-M Core Peripheral Access Layer.
-  It consists of:
+       \li Required Rule 18.4, declaration of union type or object of union type: '{...}'.<br>
+         Unions are used for effective representation of core registers.
 
-     - Cortex-M Core Register Definitions
-     - Cortex-M functions
-     - Cortex-M instructions
-     - Cortex-M SIMD instructions
-
-  The CMSIS Cortex-M4 Core Peripheral Access Layer contains C and assembly functions that ease
-  access to the Cortex-M Core
- */
-
-/** \defgroup CMSIS_MISRA_Exceptions  CMSIS MISRA-C:2004 Compliance Exceptions
-  CMSIS violates following MISRA-C2004 Rules:
-  
-   - Violates MISRA 2004 Required Rule 8.5, object/function definition in header file.<br>
-     Function definitions in header files are used to allow 'inlining'. 
-
-   - Violates MISRA 2004 Required Rule 18.4, declaration of union type or object of union type: '{...}'.<br>
-     Unions are used for effective representation of core registers.
-   
-   - Violates MISRA 2004 Advisory Rule 19.7, Function-like macro defined.<br>
-     Function-like macros are used to allow more efficient code. 
-
- */
+       \li Advisory Rule 19.7, Function-like macro defined.<br>
+         Function-like macros are used to allow more efficient code.
+     */
 
 
-/*******************************************************************************
- *                 CMSIS definitions
- ******************************************************************************/
-/** \defgroup CMSIS_core_definitions CMSIS Core Definitions
-  This file defines all structures and symbols for CMSIS core:
-   - CMSIS version number
-   - Cortex-M core
-   - Cortex-M core Revision Number
-  @{
- */
+    /*******************************************************************************
+     *                 CMSIS definitions
+     ******************************************************************************/
+    /** \ingroup Cortex_M4
+      @{
+     */
 
-/*  CMSIS CM4 definitions */
-#define __CM4_CMSIS_VERSION_MAIN  (0x02)                                                       /*!< [31:16] CMSIS HAL main version */
-#define __CM4_CMSIS_VERSION_SUB   (0x10)                                                       /*!< [15:0]  CMSIS HAL sub version  */
-#define __CM4_CMSIS_VERSION       ((__CM4_CMSIS_VERSION_MAIN << 16) | __CM4_CMSIS_VERSION_SUB) /*!< CMSIS HAL version number       */
+    /*  CMSIS CM4 definitions */
+#define __CM4_CMSIS_VERSION_MAIN  (0x03)                                   /*!< [31:16] CMSIS HAL main version   */
+#define __CM4_CMSIS_VERSION_SUB   (0x00)                                   /*!< [15:0]  CMSIS HAL sub version    */
+#define __CM4_CMSIS_VERSION       ((__CM4_CMSIS_VERSION_MAIN << 16) | \
+                                    __CM4_CMSIS_VERSION_SUB          )     /*!< CMSIS HAL version number         */
 
-#define __CORTEX_M                (0x04)                                                       /*!< Cortex core                    */
+#define __CORTEX_M                (0x04)                                   /*!< Cortex-M Core                    */
 
 
 #if   defined ( __CC_ARM )
-  #define __ASM            __asm                                      /*!< asm keyword for ARM Compiler          */
-  #define __INLINE         __inline                                   /*!< inline keyword for ARM Compiler       */
+#define __ASM            __asm                                      /*!< asm keyword for ARM Compiler          */
+#define __INLINE         __inline                                   /*!< inline keyword for ARM Compiler       */
+#define __STATIC_INLINE  static __inline
 
 #elif defined ( __ICCARM__ )
-  #define __ASM           __asm                                       /*!< asm keyword for IAR Compiler          */
-  #define __INLINE        inline                                      /*!< inline keyword for IAR Compiler. Only available in High optimization mode! */
+#define __ASM            __asm                                      /*!< asm keyword for IAR Compiler          */
+#define __INLINE         inline                                     /*!< inline keyword for IAR Compiler. Only available in High optimization mode! */
+#define __STATIC_INLINE  static inline
+
+#elif defined ( __TMS470__ )
+#define __ASM            __asm                                      /*!< asm keyword for TI CCS Compiler       */
+#define __STATIC_INLINE  static inline
 
 #elif defined ( __GNUC__ )
-  #define __ASM            __asm                                      /*!< asm keyword for GNU Compiler          */
-  #define __INLINE         inline                                     /*!< inline keyword for GNU Compiler       */
+#define __ASM            __asm                                      /*!< asm keyword for GNU Compiler          */
+#define __INLINE         inline                                     /*!< inline keyword for GNU Compiler       */
+#define __STATIC_INLINE  static inline
 
 #elif defined ( __TASKING__ )
-  #define __ASM            __asm                                      /*!< asm keyword for TASKING Compiler      */
-  #define __INLINE         inline                                     /*!< inline keyword for TASKING Compiler   */
+#define __ASM            __asm                                      /*!< asm keyword for TASKING Compiler      */
+#define __INLINE         inline                                     /*!< inline keyword for TASKING Compiler   */
+#define __STATIC_INLINE  static inline
 
 #endif
 
-/*!< __FPU_USED to be checked prior to making use of FPU specific registers and functions */
+    /** __FPU_USED indicates whether an FPU is used or not. For this, __FPU_PRESENT has to be checked prior to making use of FPU specific registers and functions.
+    */
 #if defined ( __CC_ARM )
-  #if defined __TARGET_FPU_VFP
-    #if (__FPU_PRESENT == 1)
-      #define __FPU_USED       1
-    #else
-      #warning "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
-      #define __FPU_USED       0
-    #endif
-  #else
-    #define __FPU_USED         0
-  #endif
+#if defined __TARGET_FPU_VFP
+#if (__FPU_PRESENT == 1)
+#define __FPU_USED       1
+#else
+#warning "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+#define __FPU_USED       0
+#endif
+#else
+#define __FPU_USED         0
+#endif
 
 #elif defined ( __ICCARM__ )
-  #if defined __ARMVFP__
-    #if (__FPU_PRESENT == 1)
-      #define __FPU_USED       1
-    #else
-      #warning "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
-      #define __FPU_USED       0
-    #endif
-  #else
-    #define __FPU_USED         0
-  #endif
+#if defined __ARMVFP__
+#if (__FPU_PRESENT == 1)
+#define __FPU_USED       1
+#else
+#warning "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+#define __FPU_USED       0
+#endif
+#else
+#define __FPU_USED         0
+#endif
+
+#elif defined ( __TMS470__ )
+#if defined __TI_VFP_SUPPORT__
+#if (__FPU_PRESENT == 1)
+#define __FPU_USED       1
+#else
+#warning "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+#define __FPU_USED       0
+#endif
+#else
+#define __FPU_USED         0
+#endif
 
 #elif defined ( __GNUC__ )
-  #if defined (__VFP_FP__) && !defined(__SOFTFP__)
-    #if (__FPU_PRESENT == 1)
-      #define __FPU_USED       1
-    #else
-      #warning "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
-      #define __FPU_USED       0
-    #endif
-  #else
-    #define __FPU_USED         0
-  #endif
+#if defined (__VFP_FP__) && !defined(__SOFTFP__)
+#if (__FPU_PRESENT == 1)
+#define __FPU_USED       1
+#else
+#warning "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+#define __FPU_USED       0
+#endif
+#else
+#define __FPU_USED         0
+#endif
 
 #elif defined ( __TASKING__ )
     /* add preprocessor checks to define __FPU_USED */
-    #define __FPU_USED         0
+#define __FPU_USED         0
 #endif
 
-#include <stdint.h>                      /*!< standard types definitions                      */
-#include "core_cmInstr.h"                /*!< Core Instruction Access                         */
-//#include "core_cmFunc.h"                 /*!< Core Function Access                            */
-//#include "core_cm4_simd.h"               /*!< Compiler specific SIMD Intrinsics               */
+#include <stdint.h>                      /* standard types definitions                      */
+#include <core_cmInstr.h>                /* Core Instruction Access                         */
+#include <core_cmFunc.h>                 /* Core Function Access                            */
+#include <core_cm4_simd.h>               /* Compiler specific SIMD Intrinsics               */
 
 #endif /* __CORE_CM4_H_GENERIC */
 
@@ -152,216 +154,220 @@
 #ifndef __CORE_CM4_H_DEPENDANT
 #define __CORE_CM4_H_DEPENDANT
 
-/* check device defines and use defaults */
+    /* check device defines and use defaults */
 #if defined __CHECK_DEVICE_DEFINES
-  #ifndef __CM4_REV
-    #define __CM4_REV               0x0000
-    #warning "__CM4_REV not defined in device header file; using default!"
-  #endif
-
-  #ifndef __FPU_PRESENT
-    #define __FPU_PRESENT             0
-    #warning "__FPU_PRESENT not defined in device header file; using default!"
-  #endif
-
-  #ifndef __MPU_PRESENT
-    #define __MPU_PRESENT             0
-    #warning "__MPU_PRESENT not defined in device header file; using default!"
-  #endif
-
-  #ifndef __NVIC_PRIO_BITS
-    #define __NVIC_PRIO_BITS          4
-    #warning "__NVIC_PRIO_BITS not defined in device header file; using default!"
-  #endif
-
-  #ifndef __Vendor_SysTickConfig
-    #define __Vendor_SysTickConfig    0
-    #warning "__Vendor_SysTickConfig not defined in device header file; using default!"
-  #endif
+#ifndef __CM4_REV
+#define __CM4_REV               0x0000
+#warning "__CM4_REV not defined in device header file; using default!"
 #endif
 
-/* IO definitions (access restrictions to peripheral registers) */
+#ifndef __FPU_PRESENT
+#define __FPU_PRESENT             0
+#warning "__FPU_PRESENT not defined in device header file; using default!"
+#endif
+
+#ifndef __MPU_PRESENT
+#define __MPU_PRESENT             0
+#warning "__MPU_PRESENT not defined in device header file; using default!"
+#endif
+
+#ifndef __NVIC_PRIO_BITS
+#define __NVIC_PRIO_BITS          4
+#warning "__NVIC_PRIO_BITS not defined in device header file; using default!"
+#endif
+
+#ifndef __Vendor_SysTickConfig
+#define __Vendor_SysTickConfig    0
+#warning "__Vendor_SysTickConfig not defined in device header file; using default!"
+#endif
+#endif
+
+    /* IO definitions (access restrictions to peripheral registers) */
+    /**
+        \defgroup CMSIS_glob_defs CMSIS Global Defines
+
+        <strong>IO Type Qualifiers</strong> are used
+        \li to specify the access to peripheral variables.
+        \li for automatic generation of peripheral register debug information.
+    */
 #ifdef __cplusplus
-  #define   __I     volatile             /*!< defines 'read only' permissions                 */
+#define   __I     volatile             /*!< Defines 'read only' permissions                 */
 #else
-  #define   __I     volatile const       /*!< defines 'read only' permissions                 */
+#define   __I     volatile const       /*!< Defines 'read only' permissions                 */
 #endif
-#define     __O     volatile             /*!< defines 'write only' permissions                */
-#define     __IO    volatile             /*!< defines 'read / write' permissions              */
+#define     __O     volatile             /*!< Defines 'write only' permissions                */
+#define     __IO    volatile             /*!< Defines 'read / write' permissions              */
 
-/*@} end of group CMSIS_core_definitions */
+    /*@} end of group Cortex_M4 */
 
 
 
-/*******************************************************************************
- *                 Register Abstraction
- ******************************************************************************/
-/** \defgroup CMSIS_core_register CMSIS Core Register
-  Core Register contain:
-  - Core Register
-  - Core NVIC Register
-  - Core SCB Register
-  - Core SysTick Register
-  - Core Debug Register
-  - Core MPU Register
-  - Core FPU Register
-*/
+    /*******************************************************************************
+     *                 Register Abstraction
+      Core Register contain:
+      - Core Register
+      - Core NVIC Register
+      - Core SCB Register
+      - Core SysTick Register
+      - Core Debug Register
+      - Core MPU Register
+      - Core FPU Register
+     ******************************************************************************/
+    /** \defgroup CMSIS_core_register Defines and Type Definitions
+        \brief Type definitions and defines for Cortex-M processor based devices.
+    */
 
-/** \ingroup  CMSIS_core_register
-    \defgroup CMSIS_CORE CMSIS Core
-  Type definitions for the Cortex-M Core Registers
-  @{
- */
+    /** \ingroup    CMSIS_core_register
+        \defgroup   CMSIS_CORE  Status and Control Registers
+        \brief  Core Register type definitions.
+      @{
+     */
 
-/** \brief  Union type to access the Application Program Status Register (APSR).
- */
-
-#ifdef BITFIELDS
-
-typedef union
-{
-  struct
-  {
+    /** \brief  Union type to access the Application Program Status Register (APSR).
+     */
+    typedef union
+    {
+        struct
+        {
 #if (__CORTEX_M != 0x04)
-    uint32_t _reserved0:27;              /*!< bit:  0..26  Reserved                           */
+            uint32_t _reserved0:27;              /*!< bit:  0..26  Reserved                           */
 #else
-    uint32_t _reserved0:16;              /*!< bit:  0..15  Reserved                           */
-    uint32_t GE:4;                       /*!< bit: 16..19  Greater than or Equal flags        */
-    uint32_t _reserved1:7;               /*!< bit: 20..26  Reserved                           */
+            uint32_t _reserved0:16;              /*!< bit:  0..15  Reserved                           */
+            uint32_t GE:4;                       /*!< bit: 16..19  Greater than or Equal flags        */
+            uint32_t _reserved1:7;               /*!< bit: 20..26  Reserved                           */
 #endif
-    uint32_t Q:1;                        /*!< bit:     27  Saturation condition flag          */
-    uint32_t V:1;                        /*!< bit:     28  Overflow condition code flag       */
-    uint32_t C:1;                        /*!< bit:     29  Carry condition code flag          */
-    uint32_t Z:1;                        /*!< bit:     30  Zero condition code flag           */
-    uint32_t N:1;                        /*!< bit:     31  Negative condition code flag       */
-  } b;                                   /*!< Structure used for bit  access                  */
-  uint32_t w;                            /*!< Type      used for word access                  */
-} APSR_Type;
-
-/** \brief  Union type to access the Interrupt Program Status Register (IPSR).
- */
-typedef union
-{
-  struct
-  {
-    uint32_t ISR:9;                      /*!< bit:  0.. 8  Exception number                   */
-    uint32_t _reserved0:23;              /*!< bit:  9..31  Reserved                           */
-  } b;                                   /*!< Structure used for bit  access                  */
-  uint32_t w;                            /*!< Type      used for word access                  */
-} IPSR_Type;
+            uint32_t Q:1;                        /*!< bit:     27  Saturation condition flag          */
+            uint32_t V:1;                        /*!< bit:     28  Overflow condition code flag       */
+            uint32_t C:1;                        /*!< bit:     29  Carry condition code flag          */
+            uint32_t Z:1;                        /*!< bit:     30  Zero condition code flag           */
+            uint32_t N:1;                        /*!< bit:     31  Negative condition code flag       */
+        } b;                                   /*!< Structure used for bit  access                  */
+        uint32_t w;                            /*!< Type      used for word access                  */
+    } APSR_Type;
 
 
-/** \brief  Union type to access the Special-Purpose Program Status Registers (xPSR).
- */
-typedef union
-{
-  struct
-  {
-    uint32_t ISR:9;                      /*!< bit:  0.. 8  Exception number                   */
+    /** \brief  Union type to access the Interrupt Program Status Register (IPSR).
+     */
+    typedef union
+    {
+        struct
+        {
+            uint32_t ISR:9;                      /*!< bit:  0.. 8  Exception number                   */
+            uint32_t _reserved0:23;              /*!< bit:  9..31  Reserved                           */
+        } b;                                   /*!< Structure used for bit  access                  */
+        uint32_t w;                            /*!< Type      used for word access                  */
+    } IPSR_Type;
+
+
+    /** \brief  Union type to access the Special-Purpose Program Status Registers (xPSR).
+     */
+    typedef union
+    {
+        struct
+        {
+            uint32_t ISR:9;                      /*!< bit:  0.. 8  Exception number                   */
 #if (__CORTEX_M != 0x04)
-    uint32_t _reserved0:15;              /*!< bit:  9..23  Reserved                           */
+            uint32_t _reserved0:15;              /*!< bit:  9..23  Reserved                           */
 #else
-    uint32_t _reserved0:7;               /*!< bit:  9..15  Reserved                           */
-    uint32_t GE:4;                       /*!< bit: 16..19  Greater than or Equal flags        */
-    uint32_t _reserved1:4;               /*!< bit: 20..23  Reserved                           */
+            uint32_t _reserved0:7;               /*!< bit:  9..15  Reserved                           */
+            uint32_t GE:4;                       /*!< bit: 16..19  Greater than or Equal flags        */
+            uint32_t _reserved1:4;               /*!< bit: 20..23  Reserved                           */
 #endif
-    uint32_t T:1;                        /*!< bit:     24  Thumb bit        (read 0)          */
-    uint32_t IT:2;                       /*!< bit: 25..26  saved IT state   (read 0)          */
-    uint32_t Q:1;                        /*!< bit:     27  Saturation condition flag          */
-    uint32_t V:1;                        /*!< bit:     28  Overflow condition code flag       */
-    uint32_t C:1;                        /*!< bit:     29  Carry condition code flag          */
-    uint32_t Z:1;                        /*!< bit:     30  Zero condition code flag           */
-    uint32_t N:1;                        /*!< bit:     31  Negative condition code flag       */
-  } b;                                   /*!< Structure used for bit  access                  */
-  uint32_t w;                            /*!< Type      used for word access                  */
-} xPSR_Type;
+            uint32_t T:1;                        /*!< bit:     24  Thumb bit        (read 0)          */
+            uint32_t IT:2;                       /*!< bit: 25..26  saved IT state   (read 0)          */
+            uint32_t Q:1;                        /*!< bit:     27  Saturation condition flag          */
+            uint32_t V:1;                        /*!< bit:     28  Overflow condition code flag       */
+            uint32_t C:1;                        /*!< bit:     29  Carry condition code flag          */
+            uint32_t Z:1;                        /*!< bit:     30  Zero condition code flag           */
+            uint32_t N:1;                        /*!< bit:     31  Negative condition code flag       */
+        } b;                                   /*!< Structure used for bit  access                  */
+        uint32_t w;                            /*!< Type      used for word access                  */
+    } xPSR_Type;
 
 
-/** \brief  Union type to access the Control Registers (CONTROL).
- */
-typedef union
-{
-  struct
-  {
-    uint32_t nPRIV:1;                    /*!< bit:      0  Execution privilege in Thread mode */
-    uint32_t SPSEL:1;                    /*!< bit:      1  Stack to be used                   */
-    uint32_t FPCA:1;                     /*!< bit:      2  FP extension active flag           */
-    uint32_t _reserved0:29;              /*!< bit:  3..31  Reserved                           */
-  } b;                                   /*!< Structure used for bit  access                  */
-  uint32_t w;                            /*!< Type      used for word access                  */
-} CONTROL_Type;
+    /** \brief  Union type to access the Control Registers (CONTROL).
+     */
+    typedef union
+    {
+        struct
+        {
+            uint32_t nPRIV:1;                    /*!< bit:      0  Execution privilege in Thread mode */
+            uint32_t SPSEL:1;                    /*!< bit:      1  Stack to be used                   */
+            uint32_t FPCA:1;                     /*!< bit:      2  FP extension active flag           */
+            uint32_t _reserved0:29;              /*!< bit:  3..31  Reserved                           */
+        } b;                                   /*!< Structure used for bit  access                  */
+        uint32_t w;                            /*!< Type      used for word access                  */
+    } CONTROL_Type;
 
-/*@} end of group CMSIS_CORE */
-
-#endif
+    /*@} end of group CMSIS_CORE */
 
 
-/** \ingroup  CMSIS_core_register
-    \defgroup CMSIS_NVIC CMSIS NVIC
-  Type definitions for the Cortex-M NVIC Registers
-  @{
- */
+    /** \ingroup    CMSIS_core_register
+        \defgroup   CMSIS_NVIC  Nested Vectored Interrupt Controller (NVIC)
+        \brief      Type definitions for the NVIC Registers
+      @{
+     */
 
-/** \brief  Structure type to access the Nested Vectored Interrupt Controller (NVIC).
- */
-typedef struct
-{
-  __IO uint32_t ISER[8];                 /*!< Offset: 0x000 (R/W)  Interrupt Set Enable Register           */
-       uint32_t RESERVED0[24];
-  __IO uint32_t ICER[8];                 /*!< Offset: 0x080 (R/W)  Interrupt Clear Enable Register         */
-       uint32_t RSERVED1[24];
-  __IO uint32_t ISPR[8];                 /*!< Offset: 0x100 (R/W)  Interrupt Set Pending Register          */
-       uint32_t RESERVED2[24];
-  __IO uint32_t ICPR[8];                 /*!< Offset: 0x180 (R/W)  Interrupt Clear Pending Register        */
-       uint32_t RESERVED3[24];
-  __IO uint32_t IABR[8];                 /*!< Offset: 0x200 (R/W)  Interrupt Active bit Register           */
-       uint32_t RESERVED4[56];
-  __IO uint8_t  IP[240];                 /*!< Offset: 0x300 (R/W)  Interrupt Priority Register (8Bit wide) */
-       uint32_t RESERVED5[644];
-  __O  uint32_t STIR;                    /*!< Offset: 0xE00 ( /W)  Software Trigger Interrupt Register     */
-}  NVIC_Type;
+    /** \brief  Structure type to access the Nested Vectored Interrupt Controller (NVIC).
+     */
+    typedef struct
+    {
+        __IO uint32_t ISER[8];                 /*!< Offset: 0x000 (R/W)  Interrupt Set Enable Register           */
+        uint32_t RESERVED0[24];
+        __IO uint32_t ICER[8];                 /*!< Offset: 0x080 (R/W)  Interrupt Clear Enable Register         */
+        uint32_t RSERVED1[24];
+        __IO uint32_t ISPR[8];                 /*!< Offset: 0x100 (R/W)  Interrupt Set Pending Register          */
+        uint32_t RESERVED2[24];
+        __IO uint32_t ICPR[8];                 /*!< Offset: 0x180 (R/W)  Interrupt Clear Pending Register        */
+        uint32_t RESERVED3[24];
+        __IO uint32_t IABR[8];                 /*!< Offset: 0x200 (R/W)  Interrupt Active bit Register           */
+        uint32_t RESERVED4[56];
+        __IO uint8_t  IP[240];                 /*!< Offset: 0x300 (R/W)  Interrupt Priority Register (8Bit wide) */
+        uint32_t RESERVED5[644];
+        __O  uint32_t STIR;                    /*!< Offset: 0xE00 ( /W)  Software Trigger Interrupt Register     */
+    }  NVIC_Type;
 
-/* Software Triggered Interrupt Register Definitions */
+    /* Software Triggered Interrupt Register Definitions */
 #define NVIC_STIR_INTID_Pos                 0                                          /*!< STIR: INTLINESNUM Position */
 #define NVIC_STIR_INTID_Msk                (0x1FFUL << NVIC_STIR_INTID_Pos)            /*!< STIR: INTLINESNUM Mask */
 
-/*@} end of group CMSIS_NVIC */
+    /*@} end of group CMSIS_NVIC */
 
 
-/** \ingroup  CMSIS_core_register
-    \defgroup CMSIS_SCB CMSIS SCB
-  Type definitions for the Cortex-M System Control Block Registers
-  @{
- */
+    /** \ingroup  CMSIS_core_register
+        \defgroup CMSIS_SCB     System Control Block (SCB)
+        \brief      Type definitions for the System Control Block Registers
+      @{
+     */
 
-/** \brief  Structure type to access the System Control Block (SCB).
- */
-typedef struct
-{
-  __I  uint32_t CPUID;                   /*!< Offset: 0x000 (R/ )  CPUID Base Register                                   */
-  __IO uint32_t ICSR;                    /*!< Offset: 0x004 (R/W)  Interrupt Control and State Register                  */
-  __IO uint32_t VTOR;                    /*!< Offset: 0x008 (R/W)  Vector Table Offset Register                          */
-  __IO uint32_t AIRCR;                   /*!< Offset: 0x00C (R/W)  Application Interrupt and Reset Control Register      */
-  __IO uint32_t SCR;                     /*!< Offset: 0x010 (R/W)  System Control Register                               */
-  __IO uint32_t CCR;                     /*!< Offset: 0x014 (R/W)  Configuration Control Register                        */
-  __IO uint8_t  SHP[12];                 /*!< Offset: 0x018 (R/W)  System Handlers Priority Registers (4-7, 8-11, 12-15) */
-  __IO uint32_t SHCSR;                   /*!< Offset: 0x024 (R/W)  System Handler Control and State Register             */
-  __IO uint32_t CFSR;                    /*!< Offset: 0x028 (R/W)  Configurable Fault Status Register                    */
-  __IO uint32_t HFSR;                    /*!< Offset: 0x02C (R/W)  HardFault Status Register                             */
-  __IO uint32_t DFSR;                    /*!< Offset: 0x030 (R/W)  Debug Fault Status Register                           */
-  __IO uint32_t MMFAR;                   /*!< Offset: 0x034 (R/W)  MemManage Fault Address Register                      */
-  __IO uint32_t BFAR;                    /*!< Offset: 0x038 (R/W)  BusFault Address Register                             */
-  __IO uint32_t AFSR;                    /*!< Offset: 0x03C (R/W)  Auxiliary Fault Status Register                       */
-  __I  uint32_t PFR[2];                  /*!< Offset: 0x040 (R/ )  Processor Feature Register                            */
-  __I  uint32_t DFR;                     /*!< Offset: 0x048 (R/ )  Debug Feature Register                                */
-  __I  uint32_t ADR;                     /*!< Offset: 0x04C (R/ )  Auxiliary Feature Register                            */
-  __I  uint32_t MMFR[4];                 /*!< Offset: 0x050 (R/ )  Memory Model Feature Register                         */
-  __I  uint32_t ISAR[5];                 /*!< Offset: 0x060 (R/ )  Instruction Set Attributes Register                   */
-       uint32_t RESERVED0[5];
-  __IO uint32_t CPACR;                   /*!< Offset: 0x088 (R/W)  Coprocessor Access Control Register                   */
-} SCB_Type;
+    /** \brief  Structure type to access the System Control Block (SCB).
+     */
+    typedef struct
+    {
+        __I  uint32_t CPUID;                   /*!< Offset: 0x000 (R/ )  CPUID Base Register                                   */
+        __IO uint32_t ICSR;                    /*!< Offset: 0x004 (R/W)  Interrupt Control and State Register                  */
+        __IO uint32_t VTOR;                    /*!< Offset: 0x008 (R/W)  Vector Table Offset Register                          */
+        __IO uint32_t AIRCR;                   /*!< Offset: 0x00C (R/W)  Application Interrupt and Reset Control Register      */
+        __IO uint32_t SCR;                     /*!< Offset: 0x010 (R/W)  System Control Register                               */
+        __IO uint32_t CCR;                     /*!< Offset: 0x014 (R/W)  Configuration Control Register                        */
+        __IO uint8_t  SHP[12];                 /*!< Offset: 0x018 (R/W)  System Handlers Priority Registers (4-7, 8-11, 12-15) */
+        __IO uint32_t SHCSR;                   /*!< Offset: 0x024 (R/W)  System Handler Control and State Register             */
+        __IO uint32_t CFSR;                    /*!< Offset: 0x028 (R/W)  Configurable Fault Status Register                    */
+        __IO uint32_t HFSR;                    /*!< Offset: 0x02C (R/W)  HardFault Status Register                             */
+        __IO uint32_t DFSR;                    /*!< Offset: 0x030 (R/W)  Debug Fault Status Register                           */
+        __IO uint32_t MMFAR;                   /*!< Offset: 0x034 (R/W)  MemManage Fault Address Register                      */
+        __IO uint32_t BFAR;                    /*!< Offset: 0x038 (R/W)  BusFault Address Register                             */
+        __IO uint32_t AFSR;                    /*!< Offset: 0x03C (R/W)  Auxiliary Fault Status Register                       */
+        __I  uint32_t PFR[2];                  /*!< Offset: 0x040 (R/ )  Processor Feature Register                            */
+        __I  uint32_t DFR;                     /*!< Offset: 0x048 (R/ )  Debug Feature Register                                */
+        __I  uint32_t ADR;                     /*!< Offset: 0x04C (R/ )  Auxiliary Feature Register                            */
+        __I  uint32_t MMFR[4];                 /*!< Offset: 0x050 (R/ )  Memory Model Feature Register                         */
+        __I  uint32_t ISAR[5];                 /*!< Offset: 0x060 (R/ )  Instruction Set Attributes Register                   */
+        uint32_t RESERVED0[5];
+        __IO uint32_t CPACR;                   /*!< Offset: 0x088 (R/W)  Coprocessor Access Control Register                   */
+    } SCB_Type;
 
-/* SCB CPUID Register Definitions */
+    /* SCB CPUID Register Definitions */
 #define SCB_CPUID_IMPLEMENTER_Pos          24                                             /*!< SCB CPUID: IMPLEMENTER Position */
 #define SCB_CPUID_IMPLEMENTER_Msk          (0xFFUL << SCB_CPUID_IMPLEMENTER_Pos)          /*!< SCB CPUID: IMPLEMENTER Mask */
 
@@ -377,7 +383,7 @@ typedef struct
 #define SCB_CPUID_REVISION_Pos              0                                             /*!< SCB CPUID: REVISION Position */
 #define SCB_CPUID_REVISION_Msk             (0xFUL << SCB_CPUID_REVISION_Pos)              /*!< SCB CPUID: REVISION Mask */
 
-/* SCB Interrupt Control State Register Definitions */
+    /* SCB Interrupt Control State Register Definitions */
 #define SCB_ICSR_NMIPENDSET_Pos            31                                             /*!< SCB ICSR: NMIPENDSET Position */
 #define SCB_ICSR_NMIPENDSET_Msk            (1UL << SCB_ICSR_NMIPENDSET_Pos)               /*!< SCB ICSR: NMIPENDSET Mask */
 
@@ -408,11 +414,11 @@ typedef struct
 #define SCB_ICSR_VECTACTIVE_Pos             0                                             /*!< SCB ICSR: VECTACTIVE Position */
 #define SCB_ICSR_VECTACTIVE_Msk            (0x1FFUL << SCB_ICSR_VECTACTIVE_Pos)           /*!< SCB ICSR: VECTACTIVE Mask */
 
-/* SCB Vector Table Offset Register Definitions */
+    /* SCB Vector Table Offset Register Definitions */
 #define SCB_VTOR_TBLOFF_Pos                 7                                             /*!< SCB VTOR: TBLOFF Position */
 #define SCB_VTOR_TBLOFF_Msk                (0x1FFFFFFUL << SCB_VTOR_TBLOFF_Pos)           /*!< SCB VTOR: TBLOFF Mask */
 
-/* SCB Application Interrupt and Reset Control Register Definitions */
+    /* SCB Application Interrupt and Reset Control Register Definitions */
 #define SCB_AIRCR_VECTKEY_Pos              16                                             /*!< SCB AIRCR: VECTKEY Position */
 #define SCB_AIRCR_VECTKEY_Msk              (0xFFFFUL << SCB_AIRCR_VECTKEY_Pos)            /*!< SCB AIRCR: VECTKEY Mask */
 
@@ -434,7 +440,7 @@ typedef struct
 #define SCB_AIRCR_VECTRESET_Pos             0                                             /*!< SCB AIRCR: VECTRESET Position */
 #define SCB_AIRCR_VECTRESET_Msk            (1UL << SCB_AIRCR_VECTRESET_Pos)               /*!< SCB AIRCR: VECTRESET Mask */
 
-/* SCB System Control Register Definitions */
+    /* SCB System Control Register Definitions */
 #define SCB_SCR_SEVONPEND_Pos               4                                             /*!< SCB SCR: SEVONPEND Position */
 #define SCB_SCR_SEVONPEND_Msk              (1UL << SCB_SCR_SEVONPEND_Pos)                 /*!< SCB SCR: SEVONPEND Mask */
 
@@ -444,7 +450,7 @@ typedef struct
 #define SCB_SCR_SLEEPONEXIT_Pos             1                                             /*!< SCB SCR: SLEEPONEXIT Position */
 #define SCB_SCR_SLEEPONEXIT_Msk            (1UL << SCB_SCR_SLEEPONEXIT_Pos)               /*!< SCB SCR: SLEEPONEXIT Mask */
 
-/* SCB Configuration Control Register Definitions */
+    /* SCB Configuration Control Register Definitions */
 #define SCB_CCR_STKALIGN_Pos                9                                             /*!< SCB CCR: STKALIGN Position */
 #define SCB_CCR_STKALIGN_Msk               (1UL << SCB_CCR_STKALIGN_Pos)                  /*!< SCB CCR: STKALIGN Mask */
 
@@ -463,7 +469,7 @@ typedef struct
 #define SCB_CCR_NONBASETHRDENA_Pos          0                                             /*!< SCB CCR: NONBASETHRDENA Position */
 #define SCB_CCR_NONBASETHRDENA_Msk         (1UL << SCB_CCR_NONBASETHRDENA_Pos)            /*!< SCB CCR: NONBASETHRDENA Mask */
 
-/* SCB System Handler Control and State Register Definitions */
+    /* SCB System Handler Control and State Register Definitions */
 #define SCB_SHCSR_USGFAULTENA_Pos          18                                             /*!< SCB SHCSR: USGFAULTENA Position */
 #define SCB_SHCSR_USGFAULTENA_Msk          (1UL << SCB_SHCSR_USGFAULTENA_Pos)             /*!< SCB SHCSR: USGFAULTENA Mask */
 
@@ -506,7 +512,7 @@ typedef struct
 #define SCB_SHCSR_MEMFAULTACT_Pos           0                                             /*!< SCB SHCSR: MEMFAULTACT Position */
 #define SCB_SHCSR_MEMFAULTACT_Msk          (1UL << SCB_SHCSR_MEMFAULTACT_Pos)             /*!< SCB SHCSR: MEMFAULTACT Mask */
 
-/* SCB Configurable Fault Status Registers Definitions */
+    /* SCB Configurable Fault Status Registers Definitions */
 #define SCB_CFSR_USGFAULTSR_Pos            16                                             /*!< SCB CFSR: Usage Fault Status Register Position */
 #define SCB_CFSR_USGFAULTSR_Msk            (0xFFFFUL << SCB_CFSR_USGFAULTSR_Pos)          /*!< SCB CFSR: Usage Fault Status Register Mask */
 
@@ -516,7 +522,7 @@ typedef struct
 #define SCB_CFSR_MEMFAULTSR_Pos             0                                             /*!< SCB CFSR: Memory Manage Fault Status Register Position */
 #define SCB_CFSR_MEMFAULTSR_Msk            (0xFFUL << SCB_CFSR_MEMFAULTSR_Pos)            /*!< SCB CFSR: Memory Manage Fault Status Register Mask */
 
-/* SCB Hard Fault Status Registers Definitions */
+    /* SCB Hard Fault Status Registers Definitions */
 #define SCB_HFSR_DEBUGEVT_Pos              31                                             /*!< SCB HFSR: DEBUGEVT Position */
 #define SCB_HFSR_DEBUGEVT_Msk              (1UL << SCB_HFSR_DEBUGEVT_Pos)                 /*!< SCB HFSR: DEBUGEVT Mask */
 
@@ -526,7 +532,7 @@ typedef struct
 #define SCB_HFSR_VECTTBL_Pos                1                                             /*!< SCB HFSR: VECTTBL Position */
 #define SCB_HFSR_VECTTBL_Msk               (1UL << SCB_HFSR_VECTTBL_Pos)                  /*!< SCB HFSR: VECTTBL Mask */
 
-/* SCB Debug Fault Status Register Definitions */
+    /* SCB Debug Fault Status Register Definitions */
 #define SCB_DFSR_EXTERNAL_Pos               4                                             /*!< SCB DFSR: EXTERNAL Position */
 #define SCB_DFSR_EXTERNAL_Msk              (1UL << SCB_DFSR_EXTERNAL_Pos)                 /*!< SCB DFSR: EXTERNAL Mask */
 
@@ -542,29 +548,29 @@ typedef struct
 #define SCB_DFSR_HALTED_Pos                 0                                             /*!< SCB DFSR: HALTED Position */
 #define SCB_DFSR_HALTED_Msk                (1UL << SCB_DFSR_HALTED_Pos)                   /*!< SCB DFSR: HALTED Mask */
 
-/*@} end of group CMSIS_SCB */
+    /*@} end of group CMSIS_SCB */
 
 
-/** \ingroup  CMSIS_core_register
-    \defgroup CMSIS_SCnSCB CMSIS System Control and ID Register not in the SCB
-  Type definitions for the Cortex-M System Control and ID Register not in the SCB
-  @{
- */
+    /** \ingroup  CMSIS_core_register
+        \defgroup CMSIS_SCnSCB System Controls not in SCB (SCnSCB)
+        \brief      Type definitions for the System Control and ID Register not in the SCB
+      @{
+     */
 
-/** \brief  Structure type to access the System Control and ID Register not in the SCB.
- */
-typedef struct
-{
-       uint32_t RESERVED0[1];
-  __I  uint32_t ICTR;                    /*!< Offset: 0x004 (R/ )  Interrupt Controller Type Register      */
-  __IO uint32_t ACTLR;                   /*!< Offset: 0x008 (R/W)  Auxiliary Control Register              */
-} SCnSCB_Type;
+    /** \brief  Structure type to access the System Control and ID Register not in the SCB.
+     */
+    typedef struct
+    {
+        uint32_t RESERVED0[1];
+        __I  uint32_t ICTR;                    /*!< Offset: 0x004 (R/ )  Interrupt Controller Type Register      */
+        __IO uint32_t ACTLR;                   /*!< Offset: 0x008 (R/W)  Auxiliary Control Register              */
+    } SCnSCB_Type;
 
-/* Interrupt Controller Type Register Definitions */
+    /* Interrupt Controller Type Register Definitions */
 #define SCnSCB_ICTR_INTLINESNUM_Pos         0                                          /*!< ICTR: INTLINESNUM Position */
 #define SCnSCB_ICTR_INTLINESNUM_Msk        (0xFUL << SCnSCB_ICTR_INTLINESNUM_Pos)      /*!< ICTR: INTLINESNUM Mask */
 
-/* Auxiliary Control Register Definitions */
+    /* Auxiliary Control Register Definitions */
 #define SCnSCB_ACTLR_DISOOFP_Pos            9                                          /*!< ACTLR: DISOOFP Position */
 #define SCnSCB_ACTLR_DISOOFP_Msk           (1UL << SCnSCB_ACTLR_DISOOFP_Pos)           /*!< ACTLR: DISOOFP Mask */
 
@@ -580,26 +586,26 @@ typedef struct
 #define SCnSCB_ACTLR_DISMCYCINT_Pos         0                                          /*!< ACTLR: DISMCYCINT Position */
 #define SCnSCB_ACTLR_DISMCYCINT_Msk        (1UL << SCnSCB_ACTLR_DISMCYCINT_Pos)        /*!< ACTLR: DISMCYCINT Mask */
 
-/*@} end of group CMSIS_SCnotSCB */
+    /*@} end of group CMSIS_SCnotSCB */
 
 
-/** \ingroup  CMSIS_core_register
-    \defgroup CMSIS_SysTick CMSIS SysTick
-  Type definitions for the Cortex-M System Timer Registers
-  @{
- */
+    /** \ingroup  CMSIS_core_register
+        \defgroup CMSIS_SysTick     System Tick Timer (SysTick)
+        \brief      Type definitions for the System Timer Registers.
+      @{
+     */
 
-/** \brief  Structure type to access the System Timer (SysTick).
- */
-typedef struct
-{
-  __IO uint32_t CTRL;                    /*!< Offset: 0x000 (R/W)  SysTick Control and Status Register */
-  __IO uint32_t LOAD;                    /*!< Offset: 0x004 (R/W)  SysTick Reload Value Register       */
-  __IO uint32_t VAL;                     /*!< Offset: 0x008 (R/W)  SysTick Current Value Register      */
-  __I  uint32_t CALIB;                   /*!< Offset: 0x00C (R/ )  SysTick Calibration Register        */
-} SysTick_Type;
+    /** \brief  Structure type to access the System Timer (SysTick).
+     */
+    typedef struct
+    {
+        __IO uint32_t CTRL;                    /*!< Offset: 0x000 (R/W)  SysTick Control and Status Register */
+        __IO uint32_t LOAD;                    /*!< Offset: 0x004 (R/W)  SysTick Reload Value Register       */
+        __IO uint32_t VAL;                     /*!< Offset: 0x008 (R/W)  SysTick Current Value Register      */
+        __I  uint32_t CALIB;                   /*!< Offset: 0x00C (R/ )  SysTick Calibration Register        */
+    } SysTick_Type;
 
-/* SysTick Control / Status Register Definitions */
+    /* SysTick Control / Status Register Definitions */
 #define SysTick_CTRL_COUNTFLAG_Pos         16                                             /*!< SysTick CTRL: COUNTFLAG Position */
 #define SysTick_CTRL_COUNTFLAG_Msk         (1UL << SysTick_CTRL_COUNTFLAG_Pos)            /*!< SysTick CTRL: COUNTFLAG Mask */
 
@@ -612,15 +618,15 @@ typedef struct
 #define SysTick_CTRL_ENABLE_Pos             0                                             /*!< SysTick CTRL: ENABLE Position */
 #define SysTick_CTRL_ENABLE_Msk            (1UL << SysTick_CTRL_ENABLE_Pos)               /*!< SysTick CTRL: ENABLE Mask */
 
-/* SysTick Reload Register Definitions */
+    /* SysTick Reload Register Definitions */
 #define SysTick_LOAD_RELOAD_Pos             0                                             /*!< SysTick LOAD: RELOAD Position */
 #define SysTick_LOAD_RELOAD_Msk            (0xFFFFFFUL << SysTick_LOAD_RELOAD_Pos)        /*!< SysTick LOAD: RELOAD Mask */
 
-/* SysTick Current Register Definitions */
+    /* SysTick Current Register Definitions */
 #define SysTick_VAL_CURRENT_Pos             0                                             /*!< SysTick VAL: CURRENT Position */
 #define SysTick_VAL_CURRENT_Msk            (0xFFFFFFUL << SysTick_VAL_CURRENT_Pos)        /*!< SysTick VAL: CURRENT Mask */
 
-/* SysTick Calibration Register Definitions */
+    /* SysTick Calibration Register Definitions */
 #define SysTick_CALIB_NOREF_Pos            31                                             /*!< SysTick CALIB: NOREF Position */
 #define SysTick_CALIB_NOREF_Msk            (1UL << SysTick_CALIB_NOREF_Pos)               /*!< SysTick CALIB: NOREF Mask */
 
@@ -630,38 +636,38 @@ typedef struct
 #define SysTick_CALIB_TENMS_Pos             0                                             /*!< SysTick CALIB: TENMS Position */
 #define SysTick_CALIB_TENMS_Msk            (0xFFFFFFUL << SysTick_VAL_CURRENT_Pos)        /*!< SysTick CALIB: TENMS Mask */
 
-/*@} end of group CMSIS_SysTick */
+    /*@} end of group CMSIS_SysTick */
 
 
-/** \ingroup  CMSIS_core_register
-    \defgroup CMSIS_ITM CMSIS ITM
-  Type definitions for the Cortex-M Instrumentation Trace Macrocell (ITM)
-  @{
- */
+    /** \ingroup  CMSIS_core_register
+        \defgroup CMSIS_ITM     Instrumentation Trace Macrocell (ITM)
+        \brief      Type definitions for the Instrumentation Trace Macrocell (ITM)
+      @{
+     */
 
-/** \brief  Structure type to access the Instrumentation Trace Macrocell Register (ITM).
- */
-typedef struct
-{
-  __O  union
-  {
-    __O  uint8_t    u8;                  /*!< Offset: 0x000 ( /W)  ITM Stimulus Port 8-bit                   */
-    __O  uint16_t   u16;                 /*!< Offset: 0x000 ( /W)  ITM Stimulus Port 16-bit                  */
-    __O  uint32_t   u32;                 /*!< Offset: 0x000 ( /W)  ITM Stimulus Port 32-bit                  */
-  }  PORT [32];                          /*!< Offset: 0x000 ( /W)  ITM Stimulus Port Registers               */
-       uint32_t RESERVED0[864];
-  __IO uint32_t TER;                     /*!< Offset: 0xE00 (R/W)  ITM Trace Enable Register                 */
-       uint32_t RESERVED1[15];
-  __IO uint32_t TPR;                     /*!< Offset: 0xE40 (R/W)  ITM Trace Privilege Register              */
-       uint32_t RESERVED2[15];
-  __IO uint32_t TCR;                     /*!< Offset: 0xE80 (R/W)  ITM Trace Control Register                */
-} ITM_Type;
+    /** \brief  Structure type to access the Instrumentation Trace Macrocell Register (ITM).
+     */
+    typedef struct
+    {
+        __O  union
+        {
+            __O  uint8_t    u8;                  /*!< Offset: 0x000 ( /W)  ITM Stimulus Port 8-bit                   */
+            __O  uint16_t   u16;                 /*!< Offset: 0x000 ( /W)  ITM Stimulus Port 16-bit                  */
+            __O  uint32_t   u32;                 /*!< Offset: 0x000 ( /W)  ITM Stimulus Port 32-bit                  */
+        }  PORT [32];                          /*!< Offset: 0x000 ( /W)  ITM Stimulus Port Registers               */
+        uint32_t RESERVED0[864];
+        __IO uint32_t TER;                     /*!< Offset: 0xE00 (R/W)  ITM Trace Enable Register                 */
+        uint32_t RESERVED1[15];
+        __IO uint32_t TPR;                     /*!< Offset: 0xE40 (R/W)  ITM Trace Privilege Register              */
+        uint32_t RESERVED2[15];
+        __IO uint32_t TCR;                     /*!< Offset: 0xE80 (R/W)  ITM Trace Control Register                */
+    } ITM_Type;
 
-/* ITM Trace Privilege Register Definitions */
+    /* ITM Trace Privilege Register Definitions */
 #define ITM_TPR_PRIVMASK_Pos                0                                          /*!< ITM TPR: PRIVMASK Position */
 #define ITM_TPR_PRIVMASK_Msk               (0xFUL << ITM_TPR_PRIVMASK_Pos)             /*!< ITM TPR: PRIVMASK Mask */
 
-/* ITM Trace Control Register Definitions */
+    /* ITM Trace Control Register Definitions */
 #define ITM_TCR_BUSY_Pos                   23                                          /*!< ITM TCR: BUSY Position */
 #define ITM_TCR_BUSY_Msk                   (1UL << ITM_TCR_BUSY_Pos)                   /*!< ITM TCR: BUSY Mask */
 
@@ -689,34 +695,332 @@ typedef struct
 #define ITM_TCR_ITMENA_Pos                  0                                          /*!< ITM TCR: ITM Enable bit Position */
 #define ITM_TCR_ITMENA_Msk                 (1UL << ITM_TCR_ITMENA_Pos)                 /*!< ITM TCR: ITM Enable bit Mask */
 
-/*@}*/ /* end of group CMSIS_ITM */
+    /*@}*/ /* end of group CMSIS_ITM */
+
+
+    /** \ingroup  CMSIS_core_register
+        \defgroup CMSIS_DWT     Data Watchpoint and Trace (DWT)
+        \brief      Type definitions for the Data Watchpoint and Trace (DWT)
+      @{
+     */
+
+    /** \brief  Structure type to access the Data Watchpoint and Trace Register (DWT).
+     */
+    typedef struct
+    {
+        __IO uint32_t CTRL;                    /*!< Offset: 0x000 (R/W)  Control Register                          */
+        __IO uint32_t CYCCNT;                  /*!< Offset: 0x004 (R/W)  Cycle Count Register                      */
+        __IO uint32_t CPICNT;                  /*!< Offset: 0x008 (R/W)  CPI Count Register                        */
+        __IO uint32_t EXCCNT;                  /*!< Offset: 0x00C (R/W)  Exception Overhead Count Register         */
+        __IO uint32_t SLEEPCNT;                /*!< Offset: 0x010 (R/W)  Sleep Count Register                      */
+        __IO uint32_t LSUCNT;                  /*!< Offset: 0x014 (R/W)  LSU Count Register                        */
+        __IO uint32_t FOLDCNT;                 /*!< Offset: 0x018 (R/W)  Folded-instruction Count Register         */
+        __I  uint32_t PCSR;                    /*!< Offset: 0x01C (R/ )  Program Counter Sample Register           */
+        __IO uint32_t COMP0;                   /*!< Offset: 0x020 (R/W)  Comparator Register 0                     */
+        __IO uint32_t MASK0;                   /*!< Offset: 0x024 (R/W)  Mask Register 0                           */
+        __IO uint32_t FUNCTION0;               /*!< Offset: 0x028 (R/W)  Function Register 0                       */
+        uint32_t RESERVED0[1];
+        __IO uint32_t COMP1;                   /*!< Offset: 0x030 (R/W)  Comparator Register 1                     */
+        __IO uint32_t MASK1;                   /*!< Offset: 0x034 (R/W)  Mask Register 1                           */
+        __IO uint32_t FUNCTION1;               /*!< Offset: 0x038 (R/W)  Function Register 1                       */
+        uint32_t RESERVED1[1];
+        __IO uint32_t COMP2;                   /*!< Offset: 0x040 (R/W)  Comparator Register 2                     */
+        __IO uint32_t MASK2;                   /*!< Offset: 0x044 (R/W)  Mask Register 2                           */
+        __IO uint32_t FUNCTION2;               /*!< Offset: 0x048 (R/W)  Function Register 2                       */
+        uint32_t RESERVED2[1];
+        __IO uint32_t COMP3;                   /*!< Offset: 0x050 (R/W)  Comparator Register 3                     */
+        __IO uint32_t MASK3;                   /*!< Offset: 0x054 (R/W)  Mask Register 3                           */
+        __IO uint32_t FUNCTION3;               /*!< Offset: 0x058 (R/W)  Function Register 3                       */
+    } DWT_Type;
+
+    /* DWT Control Register Definitions */
+#define DWT_CTRL_NUMCOMP_Pos               28                                          /*!< DWT CTRL: NUMCOMP Position */
+#define DWT_CTRL_NUMCOMP_Msk               (0xFUL << DWT_CTRL_NUMCOMP_Pos)             /*!< DWT CTRL: NUMCOMP Mask */
+
+#define DWT_CTRL_NOTRCPKT_Pos              27                                          /*!< DWT CTRL: NOTRCPKT Position */
+#define DWT_CTRL_NOTRCPKT_Msk              (0x1UL << DWT_CTRL_NOTRCPKT_Pos)            /*!< DWT CTRL: NOTRCPKT Mask */
+
+#define DWT_CTRL_NOEXTTRIG_Pos             26                                          /*!< DWT CTRL: NOEXTTRIG Position */
+#define DWT_CTRL_NOEXTTRIG_Msk             (0x1UL << DWT_CTRL_NOEXTTRIG_Pos)           /*!< DWT CTRL: NOEXTTRIG Mask */
+
+#define DWT_CTRL_NOCYCCNT_Pos              25                                          /*!< DWT CTRL: NOCYCCNT Position */
+#define DWT_CTRL_NOCYCCNT_Msk              (0x1UL << DWT_CTRL_NOCYCCNT_Pos)            /*!< DWT CTRL: NOCYCCNT Mask */
+
+#define DWT_CTRL_NOPRFCNT_Pos              24                                          /*!< DWT CTRL: NOPRFCNT Position */
+#define DWT_CTRL_NOPRFCNT_Msk              (0x1UL << DWT_CTRL_NOPRFCNT_Pos)            /*!< DWT CTRL: NOPRFCNT Mask */
+
+#define DWT_CTRL_CYCEVTENA_Pos             22                                          /*!< DWT CTRL: CYCEVTENA Position */
+#define DWT_CTRL_CYCEVTENA_Msk             (0x1UL << DWT_CTRL_CYCEVTENA_Pos)           /*!< DWT CTRL: CYCEVTENA Mask */
+
+#define DWT_CTRL_FOLDEVTENA_Pos            21                                          /*!< DWT CTRL: FOLDEVTENA Position */
+#define DWT_CTRL_FOLDEVTENA_Msk            (0x1UL << DWT_CTRL_FOLDEVTENA_Pos)          /*!< DWT CTRL: FOLDEVTENA Mask */
+
+#define DWT_CTRL_LSUEVTENA_Pos             20                                          /*!< DWT CTRL: LSUEVTENA Position */
+#define DWT_CTRL_LSUEVTENA_Msk             (0x1UL << DWT_CTRL_LSUEVTENA_Pos)           /*!< DWT CTRL: LSUEVTENA Mask */
+
+#define DWT_CTRL_SLEEPEVTENA_Pos           19                                          /*!< DWT CTRL: SLEEPEVTENA Position */
+#define DWT_CTRL_SLEEPEVTENA_Msk           (0x1UL << DWT_CTRL_SLEEPEVTENA_Pos)         /*!< DWT CTRL: SLEEPEVTENA Mask */
+
+#define DWT_CTRL_EXCEVTENA_Pos             18                                          /*!< DWT CTRL: EXCEVTENA Position */
+#define DWT_CTRL_EXCEVTENA_Msk             (0x1UL << DWT_CTRL_EXCEVTENA_Pos)           /*!< DWT CTRL: EXCEVTENA Mask */
+
+#define DWT_CTRL_CPIEVTENA_Pos             17                                          /*!< DWT CTRL: CPIEVTENA Position */
+#define DWT_CTRL_CPIEVTENA_Msk             (0x1UL << DWT_CTRL_CPIEVTENA_Pos)           /*!< DWT CTRL: CPIEVTENA Mask */
+
+#define DWT_CTRL_EXCTRCENA_Pos             16                                          /*!< DWT CTRL: EXCTRCENA Position */
+#define DWT_CTRL_EXCTRCENA_Msk             (0x1UL << DWT_CTRL_EXCTRCENA_Pos)           /*!< DWT CTRL: EXCTRCENA Mask */
+
+#define DWT_CTRL_PCSAMPLENA_Pos            12                                          /*!< DWT CTRL: PCSAMPLENA Position */
+#define DWT_CTRL_PCSAMPLENA_Msk            (0x1UL << DWT_CTRL_PCSAMPLENA_Pos)          /*!< DWT CTRL: PCSAMPLENA Mask */
+
+#define DWT_CTRL_SYNCTAP_Pos               10                                          /*!< DWT CTRL: SYNCTAP Position */
+#define DWT_CTRL_SYNCTAP_Msk               (0x3UL << DWT_CTRL_SYNCTAP_Pos)             /*!< DWT CTRL: SYNCTAP Mask */
+
+#define DWT_CTRL_CYCTAP_Pos                 9                                          /*!< DWT CTRL: CYCTAP Position */
+#define DWT_CTRL_CYCTAP_Msk                (0x1UL << DWT_CTRL_CYCTAP_Pos)              /*!< DWT CTRL: CYCTAP Mask */
+
+#define DWT_CTRL_POSTINIT_Pos               5                                          /*!< DWT CTRL: POSTINIT Position */
+#define DWT_CTRL_POSTINIT_Msk              (0xFUL << DWT_CTRL_POSTINIT_Pos)            /*!< DWT CTRL: POSTINIT Mask */
+
+#define DWT_CTRL_POSTPRESET_Pos             1                                          /*!< DWT CTRL: POSTPRESET Position */
+#define DWT_CTRL_POSTPRESET_Msk            (0xFUL << DWT_CTRL_POSTPRESET_Pos)          /*!< DWT CTRL: POSTPRESET Mask */
+
+#define DWT_CTRL_CYCCNTENA_Pos              0                                          /*!< DWT CTRL: CYCCNTENA Position */
+#define DWT_CTRL_CYCCNTENA_Msk             (0x1UL << DWT_CTRL_CYCCNTENA_Pos)           /*!< DWT CTRL: CYCCNTENA Mask */
+
+    /* DWT CPI Count Register Definitions */
+#define DWT_CPICNT_CPICNT_Pos               0                                          /*!< DWT CPICNT: CPICNT Position */
+#define DWT_CPICNT_CPICNT_Msk              (0xFFUL << DWT_CPICNT_CPICNT_Pos)           /*!< DWT CPICNT: CPICNT Mask */
+
+    /* DWT Exception Overhead Count Register Definitions */
+#define DWT_EXCCNT_EXCCNT_Pos               0                                          /*!< DWT EXCCNT: EXCCNT Position */
+#define DWT_EXCCNT_EXCCNT_Msk              (0xFFUL << DWT_EXCCNT_EXCCNT_Pos)           /*!< DWT EXCCNT: EXCCNT Mask */
+
+    /* DWT Sleep Count Register Definitions */
+#define DWT_SLEEPCNT_SLEEPCNT_Pos           0                                          /*!< DWT SLEEPCNT: SLEEPCNT Position */
+#define DWT_SLEEPCNT_SLEEPCNT_Msk          (0xFFUL << DWT_SLEEPCNT_SLEEPCNT_Pos)       /*!< DWT SLEEPCNT: SLEEPCNT Mask */
+
+    /* DWT LSU Count Register Definitions */
+#define DWT_LSUCNT_LSUCNT_Pos               0                                          /*!< DWT LSUCNT: LSUCNT Position */
+#define DWT_LSUCNT_LSUCNT_Msk              (0xFFUL << DWT_LSUCNT_LSUCNT_Pos)           /*!< DWT LSUCNT: LSUCNT Mask */
+
+    /* DWT Folded-instruction Count Register Definitions */
+#define DWT_FOLDCNT_FOLDCNT_Pos             0                                          /*!< DWT FOLDCNT: FOLDCNT Position */
+#define DWT_FOLDCNT_FOLDCNT_Msk            (0xFFUL << DWT_FOLDCNT_FOLDCNT_Pos)         /*!< DWT FOLDCNT: FOLDCNT Mask */
+
+    /* DWT Comparator Mask Register Definitions */
+#define DWT_MASK_MASK_Pos                   0                                          /*!< DWT MASK: MASK Position */
+#define DWT_MASK_MASK_Msk                  (0x1FUL << DWT_MASK_MASK_Pos)               /*!< DWT MASK: MASK Mask */
+
+    /* DWT Comparator Function Register Definitions */
+#define DWT_FUNCTION_MATCHED_Pos           24                                          /*!< DWT FUNCTION: MATCHED Position */
+#define DWT_FUNCTION_MATCHED_Msk           (0x1UL << DWT_FUNCTION_MATCHED_Pos)         /*!< DWT FUNCTION: MATCHED Mask */
+
+#define DWT_FUNCTION_DATAVADDR1_Pos        16                                          /*!< DWT FUNCTION: DATAVADDR1 Position */
+#define DWT_FUNCTION_DATAVADDR1_Msk        (0xFUL << DWT_FUNCTION_DATAVADDR1_Pos)      /*!< DWT FUNCTION: DATAVADDR1 Mask */
+
+#define DWT_FUNCTION_DATAVADDR0_Pos        12                                          /*!< DWT FUNCTION: DATAVADDR0 Position */
+#define DWT_FUNCTION_DATAVADDR0_Msk        (0xFUL << DWT_FUNCTION_DATAVADDR0_Pos)      /*!< DWT FUNCTION: DATAVADDR0 Mask */
+
+#define DWT_FUNCTION_DATAVSIZE_Pos         10                                          /*!< DWT FUNCTION: DATAVSIZE Position */
+#define DWT_FUNCTION_DATAVSIZE_Msk         (0x3UL << DWT_FUNCTION_DATAVSIZE_Pos)       /*!< DWT FUNCTION: DATAVSIZE Mask */
+
+#define DWT_FUNCTION_LNK1ENA_Pos            9                                          /*!< DWT FUNCTION: LNK1ENA Position */
+#define DWT_FUNCTION_LNK1ENA_Msk           (0x1UL << DWT_FUNCTION_LNK1ENA_Pos)         /*!< DWT FUNCTION: LNK1ENA Mask */
+
+#define DWT_FUNCTION_DATAVMATCH_Pos         8                                          /*!< DWT FUNCTION: DATAVMATCH Position */
+#define DWT_FUNCTION_DATAVMATCH_Msk        (0x1UL << DWT_FUNCTION_DATAVMATCH_Pos)      /*!< DWT FUNCTION: DATAVMATCH Mask */
+
+#define DWT_FUNCTION_CYCMATCH_Pos           7                                          /*!< DWT FUNCTION: CYCMATCH Position */
+#define DWT_FUNCTION_CYCMATCH_Msk          (0x1UL << DWT_FUNCTION_CYCMATCH_Pos)        /*!< DWT FUNCTION: CYCMATCH Mask */
+
+#define DWT_FUNCTION_EMITRANGE_Pos          5                                          /*!< DWT FUNCTION: EMITRANGE Position */
+#define DWT_FUNCTION_EMITRANGE_Msk         (0x1UL << DWT_FUNCTION_EMITRANGE_Pos)       /*!< DWT FUNCTION: EMITRANGE Mask */
+
+#define DWT_FUNCTION_FUNCTION_Pos           0                                          /*!< DWT FUNCTION: FUNCTION Position */
+#define DWT_FUNCTION_FUNCTION_Msk          (0xFUL << DWT_FUNCTION_FUNCTION_Pos)        /*!< DWT FUNCTION: FUNCTION Mask */
+
+    /*@}*/ /* end of group CMSIS_DWT */
+
+
+    /** \ingroup  CMSIS_core_register
+        \defgroup CMSIS_TPI     Trace Port Interface (TPI)
+        \brief      Type definitions for the Trace Port Interface (TPI)
+      @{
+     */
+
+    /** \brief  Structure type to access the Trace Port Interface Register (TPI).
+     */
+    typedef struct
+    {
+        __IO uint32_t SSPSR;                   /*!< Offset: 0x000 (R/ )  Supported Parallel Port Size Register     */
+        __IO uint32_t CSPSR;                   /*!< Offset: 0x004 (R/W)  Current Parallel Port Size Register */
+        uint32_t RESERVED0[2];
+        __IO uint32_t ACPR;                    /*!< Offset: 0x010 (R/W)  Asynchronous Clock Prescaler Register */
+        uint32_t RESERVED1[55];
+        __IO uint32_t SPPR;                    /*!< Offset: 0x0F0 (R/W)  Selected Pin Protocol Register */
+        uint32_t RESERVED2[131];
+        __I  uint32_t FFSR;                    /*!< Offset: 0x300 (R/ )  Formatter and Flush Status Register */
+        __IO uint32_t FFCR;                    /*!< Offset: 0x304 (R/W)  Formatter and Flush Control Register */
+        __I  uint32_t FSCR;                    /*!< Offset: 0x308 (R/ )  Formatter Synchronization Counter Register */
+        uint32_t RESERVED3[759];
+        __I  uint32_t TRIGGER;                 /*!< Offset: 0xEE8 (R/ )  TRIGGER */
+        __I  uint32_t FIFO0;                   /*!< Offset: 0xEEC (R/ )  Integration ETM Data */
+        __I  uint32_t ITATBCTR2;               /*!< Offset: 0xEF0 (R/ )  ITATBCTR2 */
+        uint32_t RESERVED4[1];
+        __I  uint32_t ITATBCTR0;               /*!< Offset: 0xEF8 (R/ )  ITATBCTR0 */
+        __I  uint32_t FIFO1;                   /*!< Offset: 0xEFC (R/ )  Integration ITM Data */
+        __IO uint32_t ITCTRL;                  /*!< Offset: 0xF00 (R/W)  Integration Mode Control */
+        uint32_t RESERVED5[39];
+        __IO uint32_t CLAIMSET;                /*!< Offset: 0xFA0 (R/W)  Claim tag set */
+        __IO uint32_t CLAIMCLR;                /*!< Offset: 0xFA4 (R/W)  Claim tag clear */
+        uint32_t RESERVED7[8];
+        __I  uint32_t DEVID;                   /*!< Offset: 0xFC8 (R/ )  TPIU_DEVID */
+        __I  uint32_t DEVTYPE;                 /*!< Offset: 0xFCC (R/ )  TPIU_DEVTYPE */
+    } TPI_Type;
+
+    /* TPI Asynchronous Clock Prescaler Register Definitions */
+#define TPI_ACPR_PRESCALER_Pos              0                                          /*!< TPI ACPR: PRESCALER Position */
+#define TPI_ACPR_PRESCALER_Msk             (0x1FFFUL << TPI_ACPR_PRESCALER_Pos)        /*!< TPI ACPR: PRESCALER Mask */
+
+    /* TPI Selected Pin Protocol Register Definitions */
+#define TPI_SPPR_TXMODE_Pos                 0                                          /*!< TPI SPPR: TXMODE Position */
+#define TPI_SPPR_TXMODE_Msk                (0x3UL << TPI_SPPR_TXMODE_Pos)              /*!< TPI SPPR: TXMODE Mask */
+
+    /* TPI Formatter and Flush Status Register Definitions */
+#define TPI_FFSR_FtNonStop_Pos              3                                          /*!< TPI FFSR: FtNonStop Position */
+#define TPI_FFSR_FtNonStop_Msk             (0x1UL << TPI_FFSR_FtNonStop_Pos)           /*!< TPI FFSR: FtNonStop Mask */
+
+#define TPI_FFSR_TCPresent_Pos              2                                          /*!< TPI FFSR: TCPresent Position */
+#define TPI_FFSR_TCPresent_Msk             (0x1UL << TPI_FFSR_TCPresent_Pos)           /*!< TPI FFSR: TCPresent Mask */
+
+#define TPI_FFSR_FtStopped_Pos              1                                          /*!< TPI FFSR: FtStopped Position */
+#define TPI_FFSR_FtStopped_Msk             (0x1UL << TPI_FFSR_FtStopped_Pos)           /*!< TPI FFSR: FtStopped Mask */
+
+#define TPI_FFSR_FlInProg_Pos               0                                          /*!< TPI FFSR: FlInProg Position */
+#define TPI_FFSR_FlInProg_Msk              (0x1UL << TPI_FFSR_FlInProg_Pos)            /*!< TPI FFSR: FlInProg Mask */
+
+    /* TPI Formatter and Flush Control Register Definitions */
+#define TPI_FFCR_TrigIn_Pos                 8                                          /*!< TPI FFCR: TrigIn Position */
+#define TPI_FFCR_TrigIn_Msk                (0x1UL << TPI_FFCR_TrigIn_Pos)              /*!< TPI FFCR: TrigIn Mask */
+
+#define TPI_FFCR_EnFCont_Pos                1                                          /*!< TPI FFCR: EnFCont Position */
+#define TPI_FFCR_EnFCont_Msk               (0x1UL << TPI_FFCR_EnFCont_Pos)             /*!< TPI FFCR: EnFCont Mask */
+
+    /* TPI TRIGGER Register Definitions */
+#define TPI_TRIGGER_TRIGGER_Pos             0                                          /*!< TPI TRIGGER: TRIGGER Position */
+#define TPI_TRIGGER_TRIGGER_Msk            (0x1UL << TPI_TRIGGER_TRIGGER_Pos)          /*!< TPI TRIGGER: TRIGGER Mask */
+
+    /* TPI Integration ETM Data Register Definitions (FIFO0) */
+#define TPI_FIFO0_ITM_ATVALID_Pos          29                                          /*!< TPI FIFO0: ITM_ATVALID Position */
+#define TPI_FIFO0_ITM_ATVALID_Msk          (0x3UL << TPI_FIFO0_ITM_ATVALID_Pos)        /*!< TPI FIFO0: ITM_ATVALID Mask */
+
+#define TPI_FIFO0_ITM_bytecount_Pos        27                                          /*!< TPI FIFO0: ITM_bytecount Position */
+#define TPI_FIFO0_ITM_bytecount_Msk        (0x3UL << TPI_FIFO0_ITM_bytecount_Pos)      /*!< TPI FIFO0: ITM_bytecount Mask */
+
+#define TPI_FIFO0_ETM_ATVALID_Pos          26                                          /*!< TPI FIFO0: ETM_ATVALID Position */
+#define TPI_FIFO0_ETM_ATVALID_Msk          (0x3UL << TPI_FIFO0_ETM_ATVALID_Pos)        /*!< TPI FIFO0: ETM_ATVALID Mask */
+
+#define TPI_FIFO0_ETM_bytecount_Pos        24                                          /*!< TPI FIFO0: ETM_bytecount Position */
+#define TPI_FIFO0_ETM_bytecount_Msk        (0x3UL << TPI_FIFO0_ETM_bytecount_Pos)      /*!< TPI FIFO0: ETM_bytecount Mask */
+
+#define TPI_FIFO0_ETM2_Pos                 16                                          /*!< TPI FIFO0: ETM2 Position */
+#define TPI_FIFO0_ETM2_Msk                 (0xFFUL << TPI_FIFO0_ETM2_Pos)              /*!< TPI FIFO0: ETM2 Mask */
+
+#define TPI_FIFO0_ETM1_Pos                  8                                          /*!< TPI FIFO0: ETM1 Position */
+#define TPI_FIFO0_ETM1_Msk                 (0xFFUL << TPI_FIFO0_ETM1_Pos)              /*!< TPI FIFO0: ETM1 Mask */
+
+#define TPI_FIFO0_ETM0_Pos                  0                                          /*!< TPI FIFO0: ETM0 Position */
+#define TPI_FIFO0_ETM0_Msk                 (0xFFUL << TPI_FIFO0_ETM0_Pos)              /*!< TPI FIFO0: ETM0 Mask */
+
+    /* TPI ITATBCTR2 Register Definitions */
+#define TPI_ITATBCTR2_ATREADY_Pos           0                                          /*!< TPI ITATBCTR2: ATREADY Position */
+#define TPI_ITATBCTR2_ATREADY_Msk          (0x1UL << TPI_ITATBCTR2_ATREADY_Pos)        /*!< TPI ITATBCTR2: ATREADY Mask */
+
+    /* TPI Integration ITM Data Register Definitions (FIFO1) */
+#define TPI_FIFO1_ITM_ATVALID_Pos          29                                          /*!< TPI FIFO1: ITM_ATVALID Position */
+#define TPI_FIFO1_ITM_ATVALID_Msk          (0x3UL << TPI_FIFO1_ITM_ATVALID_Pos)        /*!< TPI FIFO1: ITM_ATVALID Mask */
+
+#define TPI_FIFO1_ITM_bytecount_Pos        27                                          /*!< TPI FIFO1: ITM_bytecount Position */
+#define TPI_FIFO1_ITM_bytecount_Msk        (0x3UL << TPI_FIFO1_ITM_bytecount_Pos)      /*!< TPI FIFO1: ITM_bytecount Mask */
+
+#define TPI_FIFO1_ETM_ATVALID_Pos          26                                          /*!< TPI FIFO1: ETM_ATVALID Position */
+#define TPI_FIFO1_ETM_ATVALID_Msk          (0x3UL << TPI_FIFO1_ETM_ATVALID_Pos)        /*!< TPI FIFO1: ETM_ATVALID Mask */
+
+#define TPI_FIFO1_ETM_bytecount_Pos        24                                          /*!< TPI FIFO1: ETM_bytecount Position */
+#define TPI_FIFO1_ETM_bytecount_Msk        (0x3UL << TPI_FIFO1_ETM_bytecount_Pos)      /*!< TPI FIFO1: ETM_bytecount Mask */
+
+#define TPI_FIFO1_ITM2_Pos                 16                                          /*!< TPI FIFO1: ITM2 Position */
+#define TPI_FIFO1_ITM2_Msk                 (0xFFUL << TPI_FIFO1_ITM2_Pos)              /*!< TPI FIFO1: ITM2 Mask */
+
+#define TPI_FIFO1_ITM1_Pos                  8                                          /*!< TPI FIFO1: ITM1 Position */
+#define TPI_FIFO1_ITM1_Msk                 (0xFFUL << TPI_FIFO1_ITM1_Pos)              /*!< TPI FIFO1: ITM1 Mask */
+
+#define TPI_FIFO1_ITM0_Pos                  0                                          /*!< TPI FIFO1: ITM0 Position */
+#define TPI_FIFO1_ITM0_Msk                 (0xFFUL << TPI_FIFO1_ITM0_Pos)              /*!< TPI FIFO1: ITM0 Mask */
+
+    /* TPI ITATBCTR0 Register Definitions */
+#define TPI_ITATBCTR0_ATREADY_Pos           0                                          /*!< TPI ITATBCTR0: ATREADY Position */
+#define TPI_ITATBCTR0_ATREADY_Msk          (0x1UL << TPI_ITATBCTR0_ATREADY_Pos)        /*!< TPI ITATBCTR0: ATREADY Mask */
+
+    /* TPI Integration Mode Control Register Definitions */
+#define TPI_ITCTRL_Mode_Pos                 0                                          /*!< TPI ITCTRL: Mode Position */
+#define TPI_ITCTRL_Mode_Msk                (0x1UL << TPI_ITCTRL_Mode_Pos)              /*!< TPI ITCTRL: Mode Mask */
+
+    /* TPI DEVID Register Definitions */
+#define TPI_DEVID_NRZVALID_Pos             11                                          /*!< TPI DEVID: NRZVALID Position */
+#define TPI_DEVID_NRZVALID_Msk             (0x1UL << TPI_DEVID_NRZVALID_Pos)           /*!< TPI DEVID: NRZVALID Mask */
+
+#define TPI_DEVID_MANCVALID_Pos            10                                          /*!< TPI DEVID: MANCVALID Position */
+#define TPI_DEVID_MANCVALID_Msk            (0x1UL << TPI_DEVID_MANCVALID_Pos)          /*!< TPI DEVID: MANCVALID Mask */
+
+#define TPI_DEVID_PTINVALID_Pos             9                                          /*!< TPI DEVID: PTINVALID Position */
+#define TPI_DEVID_PTINVALID_Msk            (0x1UL << TPI_DEVID_PTINVALID_Pos)          /*!< TPI DEVID: PTINVALID Mask */
+
+#define TPI_DEVID_MinBufSz_Pos              6                                          /*!< TPI DEVID: MinBufSz Position */
+#define TPI_DEVID_MinBufSz_Msk             (0x7UL << TPI_DEVID_MinBufSz_Pos)           /*!< TPI DEVID: MinBufSz Mask */
+
+#define TPI_DEVID_AsynClkIn_Pos             5                                          /*!< TPI DEVID: AsynClkIn Position */
+#define TPI_DEVID_AsynClkIn_Msk            (0x1UL << TPI_DEVID_AsynClkIn_Pos)          /*!< TPI DEVID: AsynClkIn Mask */
+
+#define TPI_DEVID_NrTraceInput_Pos          0                                          /*!< TPI DEVID: NrTraceInput Position */
+#define TPI_DEVID_NrTraceInput_Msk         (0x1FUL << TPI_DEVID_NrTraceInput_Pos)      /*!< TPI DEVID: NrTraceInput Mask */
+
+    /* TPI DEVTYPE Register Definitions */
+#define TPI_DEVTYPE_SubType_Pos             0                                          /*!< TPI DEVTYPE: SubType Position */
+#define TPI_DEVTYPE_SubType_Msk            (0xFUL << TPI_DEVTYPE_SubType_Pos)          /*!< TPI DEVTYPE: SubType Mask */
+
+#define TPI_DEVTYPE_MajorType_Pos           4                                          /*!< TPI DEVTYPE: MajorType Position */
+#define TPI_DEVTYPE_MajorType_Msk          (0xFUL << TPI_DEVTYPE_MajorType_Pos)        /*!< TPI DEVTYPE: MajorType Mask */
+
+    /*@}*/ /* end of group CMSIS_TPI */
 
 
 #if (__MPU_PRESENT == 1)
-/** \ingroup  CMSIS_core_register
-    \defgroup CMSIS_MPU CMSIS MPU
-  Type definitions for the Cortex-M Memory Protection Unit (MPU)
-  @{
- */
+    /** \ingroup  CMSIS_core_register
+        \defgroup CMSIS_MPU     Memory Protection Unit (MPU)
+        \brief      Type definitions for the Memory Protection Unit (MPU)
+      @{
+     */
 
-/** \brief  Structure type to access the Memory Protection Unit (MPU).
- */
-typedef struct
-{
-  __I  uint32_t TYPE;                    /*!< Offset: 0x000 (R/ )  MPU Type Register                              */
-  __IO uint32_t CTRL;                    /*!< Offset: 0x004 (R/W)  MPU Control Register                           */
-  __IO uint32_t RNR;                     /*!< Offset: 0x008 (R/W)  MPU Region RNRber Register                     */
-  __IO uint32_t RBAR;                    /*!< Offset: 0x00C (R/W)  MPU Region Base Address Register               */
-  __IO uint32_t RASR;                    /*!< Offset: 0x010 (R/W)  MPU Region Attribute and Size Register         */
-  __IO uint32_t RBAR_A1;                 /*!< Offset: 0x014 (R/W)  MPU Alias 1 Region Base Address Register       */
-  __IO uint32_t RASR_A1;                 /*!< Offset: 0x018 (R/W)  MPU Alias 1 Region Attribute and Size Register */
-  __IO uint32_t RBAR_A2;                 /*!< Offset: 0x01C (R/W)  MPU Alias 2 Region Base Address Register       */
-  __IO uint32_t RASR_A2;                 /*!< Offset: 0x020 (R/W)  MPU Alias 2 Region Attribute and Size Register */
-  __IO uint32_t RBAR_A3;                 /*!< Offset: 0x024 (R/W)  MPU Alias 3 Region Base Address Register       */
-  __IO uint32_t RASR_A3;                 /*!< Offset: 0x028 (R/W)  MPU Alias 3 Region Attribute and Size Register */
-} MPU_Type;
+    /** \brief  Structure type to access the Memory Protection Unit (MPU).
+     */
+    typedef struct
+    {
+        __I  uint32_t TYPE;                    /*!< Offset: 0x000 (R/ )  MPU Type Register                              */
+        __IO uint32_t CTRL;                    /*!< Offset: 0x004 (R/W)  MPU Control Register                           */
+        __IO uint32_t RNR;                     /*!< Offset: 0x008 (R/W)  MPU Region RNRber Register                     */
+        __IO uint32_t RBAR;                    /*!< Offset: 0x00C (R/W)  MPU Region Base Address Register               */
+        __IO uint32_t RASR;                    /*!< Offset: 0x010 (R/W)  MPU Region Attribute and Size Register         */
+        __IO uint32_t RBAR_A1;                 /*!< Offset: 0x014 (R/W)  MPU Alias 1 Region Base Address Register       */
+        __IO uint32_t RASR_A1;                 /*!< Offset: 0x018 (R/W)  MPU Alias 1 Region Attribute and Size Register */
+        __IO uint32_t RBAR_A2;                 /*!< Offset: 0x01C (R/W)  MPU Alias 2 Region Base Address Register       */
+        __IO uint32_t RASR_A2;                 /*!< Offset: 0x020 (R/W)  MPU Alias 2 Region Attribute and Size Register */
+        __IO uint32_t RBAR_A3;                 /*!< Offset: 0x024 (R/W)  MPU Alias 3 Region Base Address Register       */
+        __IO uint32_t RASR_A3;                 /*!< Offset: 0x028 (R/W)  MPU Alias 3 Region Attribute and Size Register */
+    } MPU_Type;
 
-/* MPU Type Register */
+    /* MPU Type Register */
 #define MPU_TYPE_IREGION_Pos               16                                             /*!< MPU TYPE: IREGION Position */
 #define MPU_TYPE_IREGION_Msk               (0xFFUL << MPU_TYPE_IREGION_Pos)               /*!< MPU TYPE: IREGION Mask */
 
@@ -726,7 +1030,7 @@ typedef struct
 #define MPU_TYPE_SEPARATE_Pos               0                                             /*!< MPU TYPE: SEPARATE Position */
 #define MPU_TYPE_SEPARATE_Msk              (1UL << MPU_TYPE_SEPARATE_Pos)                 /*!< MPU TYPE: SEPARATE Mask */
 
-/* MPU Control Register */
+    /* MPU Control Register */
 #define MPU_CTRL_PRIVDEFENA_Pos             2                                             /*!< MPU CTRL: PRIVDEFENA Position */
 #define MPU_CTRL_PRIVDEFENA_Msk            (1UL << MPU_CTRL_PRIVDEFENA_Pos)               /*!< MPU CTRL: PRIVDEFENA Mask */
 
@@ -736,11 +1040,11 @@ typedef struct
 #define MPU_CTRL_ENABLE_Pos                 0                                             /*!< MPU CTRL: ENABLE Position */
 #define MPU_CTRL_ENABLE_Msk                (1UL << MPU_CTRL_ENABLE_Pos)                   /*!< MPU CTRL: ENABLE Mask */
 
-/* MPU Region Number Register */
+    /* MPU Region Number Register */
 #define MPU_RNR_REGION_Pos                  0                                             /*!< MPU RNR: REGION Position */
 #define MPU_RNR_REGION_Msk                 (0xFFUL << MPU_RNR_REGION_Pos)                 /*!< MPU RNR: REGION Mask */
 
-/* MPU Region Base Address Register */
+    /* MPU Region Base Address Register */
 #define MPU_RBAR_ADDR_Pos                   5                                             /*!< MPU RBAR: ADDR Position */
 #define MPU_RBAR_ADDR_Msk                  (0x7FFFFFFUL << MPU_RBAR_ADDR_Pos)             /*!< MPU RBAR: ADDR Mask */
 
@@ -750,7 +1054,7 @@ typedef struct
 #define MPU_RBAR_REGION_Pos                 0                                             /*!< MPU RBAR: REGION Position */
 #define MPU_RBAR_REGION_Msk                (0xFUL << MPU_RBAR_REGION_Pos)                 /*!< MPU RBAR: REGION Mask */
 
-/* MPU Region Attribute and Size Register */
+    /* MPU Region Attribute and Size Register */
 #define MPU_RASR_ATTRS_Pos                 16                                             /*!< MPU RASR: MPU Region Attribute field Position */
 #define MPU_RASR_ATTRS_Msk                 (0xFFFFUL << MPU_RASR_ATTRS_Pos)               /*!< MPU RASR: MPU Region Attribute field Mask */
 
@@ -763,30 +1067,30 @@ typedef struct
 #define MPU_RASR_ENABLE_Pos                 0                                             /*!< MPU RASR: Region enable bit Position */
 #define MPU_RASR_ENABLE_Msk                (1UL << MPU_RASR_ENABLE_Pos)                   /*!< MPU RASR: Region enable bit Disable Mask */
 
-/*@} end of group CMSIS_MPU */
+    /*@} end of group CMSIS_MPU */
 #endif
 
 
 #if (__FPU_PRESENT == 1)
-/** \ingroup  CMSIS_core_register
-    \defgroup CMSIS_FPU CMSIS FPU
-  Type definitions for the Cortex-M Floating Point Unit (FPU)
-  @{
- */
+    /** \ingroup  CMSIS_core_register
+        \defgroup CMSIS_FPU     Floating Point Unit (FPU)
+        \brief      Type definitions for the Floating Point Unit (FPU)
+      @{
+     */
 
-/** \brief  Structure type to access the Floating Point Unit (FPU).
- */
-typedef struct
-{
-       uint32_t RESERVED0[1];
-  __IO uint32_t FPCCR;                   /*!< Offset: 0x004 (R/W)  Floating-Point Context Control Register               */
-  __IO uint32_t FPCAR;                   /*!< Offset: 0x008 (R/W)  Floating-Point Context Address Register               */
-  __IO uint32_t FPDSCR;                  /*!< Offset: 0x00C (R/W)  Floating-Point Default Status Control Register        */
-  __I  uint32_t MVFR0;                   /*!< Offset: 0x010 (R/ )  Media and FP Feature Register 0                       */
-  __I  uint32_t MVFR1;                   /*!< Offset: 0x014 (R/ )  Media and FP Feature Register 1                       */
-} FPU_Type;
+    /** \brief  Structure type to access the Floating Point Unit (FPU).
+     */
+    typedef struct
+    {
+        uint32_t RESERVED0[1];
+        __IO uint32_t FPCCR;                   /*!< Offset: 0x004 (R/W)  Floating-Point Context Control Register               */
+        __IO uint32_t FPCAR;                   /*!< Offset: 0x008 (R/W)  Floating-Point Context Address Register               */
+        __IO uint32_t FPDSCR;                  /*!< Offset: 0x00C (R/W)  Floating-Point Default Status Control Register        */
+        __I  uint32_t MVFR0;                   /*!< Offset: 0x010 (R/ )  Media and FP Feature Register 0                       */
+        __I  uint32_t MVFR1;                   /*!< Offset: 0x014 (R/ )  Media and FP Feature Register 1                       */
+    } FPU_Type;
 
-/* Floating-Point Context Control Register */
+    /* Floating-Point Context Control Register */
 #define FPU_FPCCR_ASPEN_Pos                31                                             /*!< FPCCR: ASPEN bit Position */
 #define FPU_FPCCR_ASPEN_Msk                (1UL << FPU_FPCCR_ASPEN_Pos)                   /*!< FPCCR: ASPEN bit Mask */
 
@@ -814,11 +1118,11 @@ typedef struct
 #define FPU_FPCCR_LSPACT_Pos                0                                             /*!< FPCCR: Lazy state preservation active bit Position */
 #define FPU_FPCCR_LSPACT_Msk               (1UL << FPU_FPCCR_LSPACT_Pos)                  /*!< FPCCR: Lazy state preservation active bit Mask */
 
-/* Floating-Point Context Address Register */
+    /* Floating-Point Context Address Register */
 #define FPU_FPCAR_ADDRESS_Pos               3                                             /*!< FPCAR: ADDRESS bit Position */
 #define FPU_FPCAR_ADDRESS_Msk              (0x1FFFFFFFUL << FPU_FPCAR_ADDRESS_Pos)        /*!< FPCAR: ADDRESS bit Mask */
 
-/* Floating-Point Default Status Control Register */
+    /* Floating-Point Default Status Control Register */
 #define FPU_FPDSCR_AHP_Pos                 26                                             /*!< FPDSCR: AHP bit Position */
 #define FPU_FPDSCR_AHP_Msk                 (1UL << FPU_FPDSCR_AHP_Pos)                    /*!< FPDSCR: AHP bit Mask */
 
@@ -831,7 +1135,7 @@ typedef struct
 #define FPU_FPDSCR_RMode_Pos               22                                             /*!< FPDSCR: RMode bit Position */
 #define FPU_FPDSCR_RMode_Msk               (3UL << FPU_FPDSCR_RMode_Pos)                  /*!< FPDSCR: RMode bit Mask */
 
-/* Media and FP Feature Register 0 */
+    /* Media and FP Feature Register 0 */
 #define FPU_MVFR0_FP_rounding_modes_Pos    28                                             /*!< MVFR0: FP rounding modes bits Position */
 #define FPU_MVFR0_FP_rounding_modes_Msk    (0xFUL << FPU_MVFR0_FP_rounding_modes_Pos)     /*!< MVFR0: FP rounding modes bits Mask */
 
@@ -856,7 +1160,7 @@ typedef struct
 #define FPU_MVFR0_A_SIMD_registers_Pos      0                                             /*!< MVFR0: A_SIMD registers bits Position */
 #define FPU_MVFR0_A_SIMD_registers_Msk     (0xFUL << FPU_MVFR0_A_SIMD_registers_Pos)      /*!< MVFR0: A_SIMD registers bits Mask */
 
-/* Media and FP Feature Register 1 */
+    /* Media and FP Feature Register 1 */
 #define FPU_MVFR1_FP_fused_MAC_Pos         28                                             /*!< MVFR1: FP fused MAC bits Position */
 #define FPU_MVFR1_FP_fused_MAC_Msk         (0xFUL << FPU_MVFR1_FP_fused_MAC_Pos)          /*!< MVFR1: FP fused MAC bits Mask */
 
@@ -869,27 +1173,27 @@ typedef struct
 #define FPU_MVFR1_FtZ_mode_Pos              0                                             /*!< MVFR1: FtZ mode bits Position */
 #define FPU_MVFR1_FtZ_mode_Msk             (0xFUL << FPU_MVFR1_FtZ_mode_Pos)              /*!< MVFR1: FtZ mode bits Mask */
 
-/*@} end of group CMSIS_FPU */
+    /*@} end of group CMSIS_FPU */
 #endif
 
 
-/** \ingroup  CMSIS_core_register
-    \defgroup CMSIS_CoreDebug CMSIS Core Debug
-  Type definitions for the Cortex-M Core Debug Registers
-  @{
- */
+    /** \ingroup  CMSIS_core_register
+        \defgroup CMSIS_CoreDebug       Core Debug Registers (CoreDebug)
+        \brief      Type definitions for the Core Debug Registers
+      @{
+     */
 
-/** \brief  Structure type to access the Core Debug Register (CoreDebug).
- */
-typedef struct
-{
-  __IO uint32_t DHCSR;                   /*!< Offset: 0x000 (R/W)  Debug Halting Control and Status Register    */
-  __O  uint32_t DCRSR;                   /*!< Offset: 0x004 ( /W)  Debug Core Register Selector Register        */
-  __IO uint32_t DCRDR;                   /*!< Offset: 0x008 (R/W)  Debug Core Register Data Register            */
-  __IO uint32_t DEMCR;                   /*!< Offset: 0x00C (R/W)  Debug Exception and Monitor Control Register */
-} CoreDebug_Type;
+    /** \brief  Structure type to access the Core Debug Register (CoreDebug).
+     */
+    typedef struct
+    {
+        __IO uint32_t DHCSR;                   /*!< Offset: 0x000 (R/W)  Debug Halting Control and Status Register    */
+        __O  uint32_t DCRSR;                   /*!< Offset: 0x004 ( /W)  Debug Core Register Selector Register        */
+        __IO uint32_t DCRDR;                   /*!< Offset: 0x008 (R/W)  Debug Core Register Data Register            */
+        __IO uint32_t DEMCR;                   /*!< Offset: 0x00C (R/W)  Debug Exception and Monitor Control Register */
+    } CoreDebug_Type;
 
-/* Debug Halting Control and Status Register */
+    /* Debug Halting Control and Status Register */
 #define CoreDebug_DHCSR_DBGKEY_Pos         16                                             /*!< CoreDebug DHCSR: DBGKEY Position */
 #define CoreDebug_DHCSR_DBGKEY_Msk         (0xFFFFUL << CoreDebug_DHCSR_DBGKEY_Pos)       /*!< CoreDebug DHCSR: DBGKEY Mask */
 
@@ -926,14 +1230,14 @@ typedef struct
 #define CoreDebug_DHCSR_C_DEBUGEN_Pos       0                                             /*!< CoreDebug DHCSR: C_DEBUGEN Position */
 #define CoreDebug_DHCSR_C_DEBUGEN_Msk      (1UL << CoreDebug_DHCSR_C_DEBUGEN_Pos)         /*!< CoreDebug DHCSR: C_DEBUGEN Mask */
 
-/* Debug Core Register Selector Register */
+    /* Debug Core Register Selector Register */
 #define CoreDebug_DCRSR_REGWnR_Pos         16                                             /*!< CoreDebug DCRSR: REGWnR Position */
 #define CoreDebug_DCRSR_REGWnR_Msk         (1UL << CoreDebug_DCRSR_REGWnR_Pos)            /*!< CoreDebug DCRSR: REGWnR Mask */
 
 #define CoreDebug_DCRSR_REGSEL_Pos          0                                             /*!< CoreDebug DCRSR: REGSEL Position */
 #define CoreDebug_DCRSR_REGSEL_Msk         (0x1FUL << CoreDebug_DCRSR_REGSEL_Pos)         /*!< CoreDebug DCRSR: REGSEL Mask */
 
-/* Debug Exception and Monitor Control Register */
+    /* Debug Exception and Monitor Control Register */
 #define CoreDebug_DEMCR_TRCENA_Pos         24                                             /*!< CoreDebug DEMCR: TRCENA Position */
 #define CoreDebug_DEMCR_TRCENA_Msk         (1UL << CoreDebug_DEMCR_TRCENA_Pos)            /*!< CoreDebug DEMCR: TRCENA Mask */
 
@@ -973,16 +1277,20 @@ typedef struct
 #define CoreDebug_DEMCR_VC_CORERESET_Pos    0                                             /*!< CoreDebug DEMCR: VC_CORERESET Position */
 #define CoreDebug_DEMCR_VC_CORERESET_Msk   (1UL << CoreDebug_DEMCR_VC_CORERESET_Pos)      /*!< CoreDebug DEMCR: VC_CORERESET Mask */
 
-/*@} end of group CMSIS_CoreDebug */
+    /*@} end of group CMSIS_CoreDebug */
 
 
-/** \ingroup  CMSIS_core_register
-  @{
- */
+    /** \ingroup    CMSIS_core_register
+        \defgroup   CMSIS_core_base     Core Definitions
+        \brief      Definitions for base addresses, unions, and structures.
+      @{
+     */
 
-/* Memory mapping of Cortex-M4 Hardware */
+    /* Memory mapping of Cortex-M4 Hardware */
 #define SCS_BASE            (0xE000E000UL)                            /*!< System Control Space Base Address  */
 #define ITM_BASE            (0xE0000000UL)                            /*!< ITM Base Address                   */
+#define DWT_BASE            (0xE0001000UL)                            /*!< DWT Base Address                   */
+#define TPI_BASE            (0xE0040000UL)                            /*!< TPI Base Address                   */
 #define CoreDebug_BASE      (0xE000EDF0UL)                            /*!< Core Debug Base Address            */
 #define SysTick_BASE        (SCS_BASE +  0x0010UL)                    /*!< SysTick Base Address               */
 #define NVIC_BASE           (SCS_BASE +  0x0100UL)                    /*!< NVIC Base Address                  */
@@ -993,385 +1301,388 @@ typedef struct
 #define SysTick             ((SysTick_Type   *)     SysTick_BASE  )   /*!< SysTick configuration struct       */
 #define NVIC                ((NVIC_Type      *)     NVIC_BASE     )   /*!< NVIC configuration struct          */
 #define ITM                 ((ITM_Type       *)     ITM_BASE      )   /*!< ITM configuration struct           */
+#define DWT                 ((DWT_Type       *)     DWT_BASE      )   /*!< DWT configuration struct           */
+#define TPI                 ((TPI_Type       *)     TPI_BASE      )   /*!< TPI configuration struct           */
 #define CoreDebug           ((CoreDebug_Type *)     CoreDebug_BASE)   /*!< Core Debug configuration struct    */
 
 #if (__MPU_PRESENT == 1)
-  #define MPU_BASE          (SCS_BASE +  0x0D90UL)                    /*!< Memory Protection Unit             */
-  #define MPU               ((MPU_Type       *)     MPU_BASE      )   /*!< Memory Protection Unit             */
+#define MPU_BASE          (SCS_BASE +  0x0D90UL)                    /*!< Memory Protection Unit             */
+#define MPU               ((MPU_Type       *)     MPU_BASE      )   /*!< Memory Protection Unit             */
 #endif
 
 #if (__FPU_PRESENT == 1)
-  #define FPU_BASE          (SCS_BASE +  0x0F30UL)                    /*!< Floating Point Unit                */
-  #define FPU               ((FPU_Type       *)     FPU_BASE      )   /*!< Floating Point Unit                */
+#define FPU_BASE          (SCS_BASE +  0x0F30UL)                    /*!< Floating Point Unit                */
+#define FPU               ((FPU_Type       *)     FPU_BASE      )   /*!< Floating Point Unit                */
 #endif
 
-/*@} */
+    /*@} */
 
 
 
-/*******************************************************************************
- *                Hardware Abstraction Layer
- ******************************************************************************/
-/** \defgroup CMSIS_Core_FunctionInterface CMSIS Core Function Interface
-  Core Function Interface contains:
-  - Core NVIC Functions
-  - Core SysTick Functions
-  - Core Debug Functions
-  - Core Register Access Functions
-*/
+    /*******************************************************************************
+     *                Hardware Abstraction Layer
+      Core Function Interface contains:
+      - Core NVIC Functions
+      - Core SysTick Functions
+      - Core Debug Functions
+      - Core Register Access Functions
+     ******************************************************************************/
+    /** \defgroup CMSIS_Core_FunctionInterface Functions and Instructions Reference
+    */
 
 
 
-/* ##########################   NVIC functions  #################################### */
-/** \ingroup  CMSIS_Core_FunctionInterface
-    \defgroup CMSIS_Core_NVICFunctions CMSIS Core NVIC Functions
-  @{
- */
+    /* ##########################   NVIC functions  #################################### */
+    /** \ingroup  CMSIS_Core_FunctionInterface
+        \defgroup CMSIS_Core_NVICFunctions NVIC Functions
+        \brief      Functions that manage interrupts and exceptions via the NVIC.
+        @{
+     */
 
-/** \brief  Set Priority Grouping
+    /** \brief  Set Priority Grouping
 
-  This function sets the priority grouping field using the required unlock sequence.
-  The parameter PriorityGroup is assigned to the field SCB->AIRCR [10:8] PRIGROUP field.
-  Only values from 0..7 are used.
-  In case of a conflict between priority grouping and available
-  priority bits (__NVIC_PRIO_BITS) the smallest possible priority group is set.
+      The function sets the priority grouping field using the required unlock sequence.
+      The parameter PriorityGroup is assigned to the field SCB->AIRCR [10:8] PRIGROUP field.
+      Only values from 0..7 are used.
+      In case of a conflict between priority grouping and available
+      priority bits (__NVIC_PRIO_BITS), the smallest possible priority group is set.
 
-    \param [in]      PriorityGroup  Priority grouping field
- */
-static __INLINE void NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
-{
-  uint32_t reg_value;
-  uint32_t PriorityGroupTmp = (PriorityGroup & (uint32_t)0x07);               /* only values 0..7 are used          */
+        \param [in]      PriorityGroup  Priority grouping field.
+     */
+    __STATIC_INLINE void NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
+    {
+        uint32_t reg_value;
+        uint32_t PriorityGroupTmp = (PriorityGroup & (uint32_t)0x07);               /* only values 0..7 are used          */
 
-  reg_value  =  SCB->AIRCR;                                                   /* read old register configuration    */
-  reg_value &= ~(SCB_AIRCR_VECTKEY_Msk | SCB_AIRCR_PRIGROUP_Msk);             /* clear bits to change               */
-  reg_value  =  (reg_value                                 |
-                ((uint32_t)0x5FA << SCB_AIRCR_VECTKEY_Pos) |
-                (PriorityGroupTmp << 8));                                     /* Insert write key and priorty group */
-  SCB->AIRCR =  reg_value;
-}
+        reg_value  =  SCB->AIRCR;                                                   /* read old register configuration    */
+        reg_value &= ~(SCB_AIRCR_VECTKEY_Msk | SCB_AIRCR_PRIGROUP_Msk);             /* clear bits to change               */
+        reg_value  =  (reg_value                                 |
+                       ((uint32_t)0x5FA << SCB_AIRCR_VECTKEY_Pos) |
+                       (PriorityGroupTmp << 8));                                     /* Insert write key and priorty group */
+        SCB->AIRCR =  reg_value;
+    }
 
 
-/** \brief  Get Priority Grouping
+    /** \brief  Get Priority Grouping
 
-  This function gets the priority grouping from NVIC Interrupt Controller.
-  Priority grouping is SCB->AIRCR [10:8] PRIGROUP field.
+      The function reads the priority grouping field from the NVIC Interrupt Controller.
 
-    \return                Priority grouping field
- */
-static __INLINE uint32_t NVIC_GetPriorityGrouping(void)
-{
-  return ((SCB->AIRCR & SCB_AIRCR_PRIGROUP_Msk) >> SCB_AIRCR_PRIGROUP_Pos);   /* read priority grouping field */
-}
+        \return                Priority grouping field (SCB->AIRCR [10:8] PRIGROUP field).
+     */
+    __STATIC_INLINE uint32_t NVIC_GetPriorityGrouping(void)
+    {
+        return ((SCB->AIRCR & SCB_AIRCR_PRIGROUP_Msk) >> SCB_AIRCR_PRIGROUP_Pos);   /* read priority grouping field */
+    }
 
 
-/** \brief  Enable External Interrupt
+    /** \brief  Enable External Interrupt
 
-    This function enables a device specific interrupt in the NVIC interrupt controller.
-    The interrupt number cannot be a negative value.
+        The function enables a device-specific interrupt in the NVIC interrupt controller.
 
-    \param [in]      IRQn  Number of the external interrupt to enable
- */
-static __INLINE void NVIC_EnableIRQ(IRQn_Type IRQn)
-{
-/*  NVIC->ISER[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 0x1F));  enable interrupt */
-  NVIC->ISER[(uint32_t)((int32_t)IRQn) >> 5] = (uint32_t)(1 << ((uint32_t)((int32_t)IRQn) & (uint32_t)0x1F)); /* enable interrupt */
-}
+        \param [in]      IRQn  External interrupt number. Value cannot be negative.
+     */
+    __STATIC_INLINE void NVIC_EnableIRQ(IRQn_Type IRQn)
+    {
+        /*  NVIC->ISER[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 0x1F));  enable interrupt */
+        NVIC->ISER[(uint32_t)((int32_t)IRQn) >> 5] = (uint32_t)(1 << ((uint32_t)((int32_t)IRQn) & (uint32_t)0x1F)); /* enable interrupt */
+    }
 
 
-/** \brief  Disable External Interrupt
+    /** \brief  Disable External Interrupt
 
-    This function disables a device specific interrupt in the NVIC interrupt controller.
-    The interrupt number cannot be a negative value.
+        The function disables a device-specific interrupt in the NVIC interrupt controller.
 
-    \param [in]      IRQn  Number of the external interrupt to disable
- */
-static __INLINE void NVIC_DisableIRQ(IRQn_Type IRQn)
-{
-  NVIC->ICER[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 0x1F)); /* disable interrupt */
-}
+        \param [in]      IRQn  External interrupt number. Value cannot be negative.
+     */
+    __STATIC_INLINE void NVIC_DisableIRQ(IRQn_Type IRQn)
+    {
+        NVIC->ICER[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 0x1F)); /* disable interrupt */
+    }
 
 
-/** \brief  Get Pending Interrupt
+    /** \brief  Get Pending Interrupt
 
-    This function reads the pending register in the NVIC and returns the pending bit
-    for the specified interrupt.
+        The function reads the pending register in the NVIC and returns the pending bit
+        for the specified interrupt.
 
-    \param [in]      IRQn  Number of the interrupt for get pending
-    \return             0  Interrupt status is not pending
-    \return             1  Interrupt status is pending
- */
-static __INLINE uint32_t NVIC_GetPendingIRQ(IRQn_Type IRQn)
-{
-  return((uint32_t) ((NVIC->ISPR[(uint32_t)(IRQn) >> 5] & (1 << ((uint32_t)(IRQn) & 0x1F)))?1:0)); /* Return 1 if pending else 0 */
-}
+        \param [in]      IRQn  Interrupt number.
 
+        \return             0  Interrupt status is not pending.
+        \return             1  Interrupt status is pending.
+     */
+    __STATIC_INLINE uint32_t NVIC_GetPendingIRQ(IRQn_Type IRQn)
+    {
+        return((uint32_t) ((NVIC->ISPR[(uint32_t)(IRQn) >> 5] & (1 << ((uint32_t)(IRQn) & 0x1F)))?1:0)); /* Return 1 if pending else 0 */
+    }
 
-/** \brief  Set Pending Interrupt
 
-    This function sets the pending bit for the specified interrupt.
-    The interrupt number cannot be a negative value.
+    /** \brief  Set Pending Interrupt
 
-    \param [in]      IRQn  Number of the interrupt for set pending
- */
-static __INLINE void NVIC_SetPendingIRQ(IRQn_Type IRQn)
-{
-  NVIC->ISPR[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 0x1F)); /* set interrupt pending */
-}
+        The function sets the pending bit of an external interrupt.
 
+        \param [in]      IRQn  Interrupt number. Value cannot be negative.
+     */
+    __STATIC_INLINE void NVIC_SetPendingIRQ(IRQn_Type IRQn)
+    {
+        NVIC->ISPR[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 0x1F)); /* set interrupt pending */
+    }
 
-/** \brief  Clear Pending Interrupt
 
-    This function clears the pending bit for the specified interrupt.
-    The interrupt number cannot be a negative value.
+    /** \brief  Clear Pending Interrupt
 
-    \param [in]      IRQn  Number of the interrupt for clear pending
- */
-static __INLINE void NVIC_ClearPendingIRQ(IRQn_Type IRQn)
-{
-  NVIC->ICPR[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 0x1F)); /* Clear pending interrupt */
-}
+        The function clears the pending bit of an external interrupt.
 
+        \param [in]      IRQn  External interrupt number. Value cannot be negative.
+     */
+    __STATIC_INLINE void NVIC_ClearPendingIRQ(IRQn_Type IRQn)
+    {
+        NVIC->ICPR[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 0x1F)); /* Clear pending interrupt */
+    }
 
-/** \brief  Get Active Interrupt
 
-    This function reads the active register in NVIC and returns the active bit.
-    \param [in]      IRQn  Number of the interrupt for get active
-    \return             0  Interrupt status is not active
-    \return             1  Interrupt status is active
- */
-static __INLINE uint32_t NVIC_GetActive(IRQn_Type IRQn)
-{
-  return((uint32_t)((NVIC->IABR[(uint32_t)(IRQn) >> 5] & (1 << ((uint32_t)(IRQn) & 0x1F)))?1:0)); /* Return 1 if active else 0 */
-}
+    /** \brief  Get Active Interrupt
 
+        The function reads the active register in NVIC and returns the active bit.
 
-/** \brief  Set Interrupt Priority
+        \param [in]      IRQn  Interrupt number.
 
-    This function sets the priority for the specified interrupt. The interrupt
-    number can be positive to specify an external (device specific)
-    interrupt, or negative to specify an internal (core) interrupt.
+        \return             0  Interrupt status is not active.
+        \return             1  Interrupt status is active.
+     */
+    __STATIC_INLINE uint32_t NVIC_GetActive(IRQn_Type IRQn)
+    {
+        return((uint32_t)((NVIC->IABR[(uint32_t)(IRQn) >> 5] & (1 << ((uint32_t)(IRQn) & 0x1F)))?1:0)); /* Return 1 if active else 0 */
+    }
 
-    Note: The priority cannot be set for every core interrupt.
 
-    \param [in]      IRQn  Number of the interrupt for set priority
-    \param [in]  priority  Priority to set
- */
-static __INLINE void NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
-{
-  if(IRQn < 0) {
-    SCB->SHP[((uint32_t)(IRQn) & 0xF)-4] = ((priority << (8 - __NVIC_PRIO_BITS)) & 0xff); } /* set Priority for Cortex-M  System Interrupts */
-  else {
-    NVIC->IP[(uint32_t)(IRQn)] = ((priority << (8 - __NVIC_PRIO_BITS)) & 0xff);    }        /* set Priority for device specific Interrupts  */
-}
+    /** \brief  Set Interrupt Priority
 
+        The function sets the priority of an interrupt.
 
-/** \brief  Get Interrupt Priority
+        \note The priority cannot be set for every core interrupt.
 
-    This function reads the priority for the specified interrupt. The interrupt
-    number can be positive to specify an external (device specific)
-    interrupt, or negative to specify an internal (core) interrupt.
+        \param [in]      IRQn  Interrupt number.
+        \param [in]  priority  Priority to set.
+     */
+    __STATIC_INLINE void NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
+    {
+        if(IRQn < 0) {
+            SCB->SHP[((uint32_t)(IRQn) & 0xF)-4] = ((priority << (8 - __NVIC_PRIO_BITS)) & 0xff);
+        } /* set Priority for Cortex-M  System Interrupts */
+        else {
+            NVIC->IP[(uint32_t)(IRQn)] = ((priority << (8 - __NVIC_PRIO_BITS)) & 0xff);
+        }        /* set Priority for device specific Interrupts  */
+    }
 
-    The returned priority value is automatically aligned to the implemented
-    priority bits of the microcontroller.
 
-    \param [in]   IRQn  Number of the interrupt for get priority
-    \return             Interrupt Priority
- */
-static __INLINE uint32_t NVIC_GetPriority(IRQn_Type IRQn)
-{
+    /** \brief  Get Interrupt Priority
 
-  if(IRQn < 0) {
-    return((uint32_t)(SCB->SHP[((uint32_t)(IRQn) & 0xF)-4] >> (8 - __NVIC_PRIO_BITS)));  } /* get priority for Cortex-M  system interrupts */
-  else {
-    return((uint32_t)(NVIC->IP[(uint32_t)(IRQn)]           >> (8 - __NVIC_PRIO_BITS)));  } /* get priority for device specific interrupts  */
-}
+        The function reads the priority of an interrupt. The interrupt
+        number can be positive to specify an external (device specific)
+        interrupt, or negative to specify an internal (core) interrupt.
 
 
-/** \brief  Encode Priority
+        \param [in]   IRQn  Interrupt number.
+        \return             Interrupt Priority. Value is aligned automatically to the implemented
+                            priority bits of the microcontroller.
+     */
+    __STATIC_INLINE uint32_t NVIC_GetPriority(IRQn_Type IRQn)
+    {
 
-    This function encodes the priority for an interrupt with the given priority group,
-    preemptive priority value and sub priority value.
-    In case of a conflict between priority grouping and available
-    priority bits (__NVIC_PRIO_BITS) the samllest possible priority group is set.
+        if(IRQn < 0) {
+            return((uint32_t)(SCB->SHP[((uint32_t)(IRQn) & 0xF)-4] >> (8 - __NVIC_PRIO_BITS)));
+        } /* get priority for Cortex-M  system interrupts */
+        else {
+            return((uint32_t)(NVIC->IP[(uint32_t)(IRQn)]           >> (8 - __NVIC_PRIO_BITS)));
+        } /* get priority for device specific interrupts  */
+    }
 
-    The returned priority value can be used for NVIC_SetPriority(...) function
 
-    \param [in]     PriorityGroup  Used priority group
-    \param [in]   PreemptPriority  Preemptive priority value (starting from 0)
-    \param [in]       SubPriority  Sub priority value (starting from 0)
-    \return                        Encoded priority for the interrupt
- */
-static __INLINE uint32_t NVIC_EncodePriority (uint32_t PriorityGroup, uint32_t PreemptPriority, uint32_t SubPriority)
-{
-  uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);          /* only values 0..7 are used          */
-  uint32_t PreemptPriorityBits;
-  uint32_t SubPriorityBits;
+    /** \brief  Encode Priority
 
-  PreemptPriorityBits = ((7 - PriorityGroupTmp) > __NVIC_PRIO_BITS) ? __NVIC_PRIO_BITS : 7 - PriorityGroupTmp;
-  SubPriorityBits     = ((PriorityGroupTmp + __NVIC_PRIO_BITS) < 7) ? 0 : PriorityGroupTmp - 7 + __NVIC_PRIO_BITS;
+        The function encodes the priority for an interrupt with the given priority group,
+        preemptive priority value, and subpriority value.
+        In case of a conflict between priority grouping and available
+        priority bits (__NVIC_PRIO_BITS), the samllest possible priority group is set.
 
-  return (
-           ((PreemptPriority & ((1 << (PreemptPriorityBits)) - 1)) << SubPriorityBits) |
-           ((SubPriority     & ((1 << (SubPriorityBits    )) - 1)))
-         );
-}
+        \param [in]     PriorityGroup  Used priority group.
+        \param [in]   PreemptPriority  Preemptive priority value (starting from 0).
+        \param [in]       SubPriority  Subpriority value (starting from 0).
+        \return                        Encoded priority. Value can be used in the function \ref NVIC_SetPriority().
+     */
+    __STATIC_INLINE uint32_t NVIC_EncodePriority (uint32_t PriorityGroup, uint32_t PreemptPriority, uint32_t SubPriority)
+    {
+        uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);          /* only values 0..7 are used          */
+        uint32_t PreemptPriorityBits;
+        uint32_t SubPriorityBits;
 
+        PreemptPriorityBits = ((7 - PriorityGroupTmp) > __NVIC_PRIO_BITS) ? __NVIC_PRIO_BITS : 7 - PriorityGroupTmp;
+        SubPriorityBits     = ((PriorityGroupTmp + __NVIC_PRIO_BITS) < 7) ? 0 : PriorityGroupTmp - 7 + __NVIC_PRIO_BITS;
 
-/** \brief  Decode Priority
+        return (
+                   ((PreemptPriority & ((1 << (PreemptPriorityBits)) - 1)) << SubPriorityBits) |
+                   ((SubPriority     & ((1 << (SubPriorityBits    )) - 1)))
+               );
+    }
 
-    This function decodes an interrupt priority value with the given priority group to
-    preemptive priority value and sub priority value.
-    In case of a conflict between priority grouping and available
-    priority bits (__NVIC_PRIO_BITS) the samllest possible priority group is set.
 
-    The priority value can be retrieved with NVIC_GetPriority(...) function
+    /** \brief  Decode Priority
 
-    \param [in]         Priority   Priority value
-    \param [in]     PriorityGroup  Used priority group
-    \param [out] pPreemptPriority  Preemptive priority value (starting from 0)
-    \param [out]     pSubPriority  Sub priority value (starting from 0)
- */
-static __INLINE void NVIC_DecodePriority (uint32_t Priority, uint32_t PriorityGroup, uint32_t* pPreemptPriority, uint32_t* pSubPriority)
-{
-  uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);          /* only values 0..7 are used          */
-  uint32_t PreemptPriorityBits;
-  uint32_t SubPriorityBits;
+        The function decodes an interrupt priority value with a given priority group to
+        preemptive priority value and subpriority value.
+        In case of a conflict between priority grouping and available
+        priority bits (__NVIC_PRIO_BITS) the samllest possible priority group is set.
 
-  PreemptPriorityBits = ((7 - PriorityGroupTmp) > __NVIC_PRIO_BITS) ? __NVIC_PRIO_BITS : 7 - PriorityGroupTmp;
-  SubPriorityBits     = ((PriorityGroupTmp + __NVIC_PRIO_BITS) < 7) ? 0 : PriorityGroupTmp - 7 + __NVIC_PRIO_BITS;
+        \param [in]         Priority   Priority value, which can be retrieved with the function \ref NVIC_GetPriority().
+        \param [in]     PriorityGroup  Used priority group.
+        \param [out] pPreemptPriority  Preemptive priority value (starting from 0).
+        \param [out]     pSubPriority  Subpriority value (starting from 0).
+     */
+    __STATIC_INLINE void NVIC_DecodePriority (uint32_t Priority, uint32_t PriorityGroup, uint32_t* pPreemptPriority, uint32_t* pSubPriority)
+    {
+        uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);          /* only values 0..7 are used          */
+        uint32_t PreemptPriorityBits;
+        uint32_t SubPriorityBits;
 
-  *pPreemptPriority = (Priority >> SubPriorityBits) & ((1 << (PreemptPriorityBits)) - 1);
-  *pSubPriority     = (Priority                   ) & ((1 << (SubPriorityBits    )) - 1);
-}
+        PreemptPriorityBits = ((7 - PriorityGroupTmp) > __NVIC_PRIO_BITS) ? __NVIC_PRIO_BITS : 7 - PriorityGroupTmp;
+        SubPriorityBits     = ((PriorityGroupTmp + __NVIC_PRIO_BITS) < 7) ? 0 : PriorityGroupTmp - 7 + __NVIC_PRIO_BITS;
 
+        *pPreemptPriority = (Priority >> SubPriorityBits) & ((1 << (PreemptPriorityBits)) - 1);
+        *pSubPriority     = (Priority                   ) & ((1 << (SubPriorityBits    )) - 1);
+    }
 
-/** \brief  System Reset
 
-    This function initiate a system reset request to reset the MCU.
- */
-static __INLINE void NVIC_SystemReset(void)
-{
-  __DSB();                                                     /* Ensure all outstanding memory accesses included
+    /** \brief  System Reset
+
+        The function initiates a system reset request to reset the MCU.
+     */
+    __STATIC_INLINE void NVIC_SystemReset(void)
+    {
+        __DSB();                                                     /* Ensure all outstanding memory accesses included
                                                                   buffered write are completed before reset */
-  SCB->AIRCR  = ((0x5FA << SCB_AIRCR_VECTKEY_Pos)      |
-                 (SCB->AIRCR & SCB_AIRCR_PRIGROUP_Msk) |
-                 SCB_AIRCR_SYSRESETREQ_Msk);                   /* Keep priority group unchanged */
-  __DSB();                                                     /* Ensure completion of memory access */
-  while(1);                                                    /* wait until reset */
-}
+        SCB->AIRCR  = ((0x5FA << SCB_AIRCR_VECTKEY_Pos)      |
+                       (SCB->AIRCR & SCB_AIRCR_PRIGROUP_Msk) |
+                       SCB_AIRCR_SYSRESETREQ_Msk);                   /* Keep priority group unchanged */
+        __DSB();                                                     /* Ensure completion of memory access */
+        while(1);                                                    /* wait until reset */
+    }
 
-/*@} end of CMSIS_Core_NVICFunctions */
+    /*@} end of CMSIS_Core_NVICFunctions */
 
 
 
-/* ##################################    SysTick function  ############################################ */
-/** \ingroup  CMSIS_Core_FunctionInterface
-    \defgroup CMSIS_Core_SysTickFunctions CMSIS Core SysTick Functions
-  @{
- */
+    /* ##################################    SysTick function  ############################################ */
+    /** \ingroup  CMSIS_Core_FunctionInterface
+        \defgroup CMSIS_Core_SysTickFunctions SysTick Functions
+        \brief      Functions that configure the System.
+      @{
+     */
 
 #if (__Vendor_SysTickConfig == 0)
 
-/** \brief  System Tick Configuration
+    /** \brief  System Tick Configuration
 
-    This function initialises the system tick timer and its interrupt and start the system tick timer.
-    Counter is in free running mode to generate periodical interrupts.
+        The function initializes the System Timer and its interrupt, and starts the System Tick Timer.
+        Counter is in free running mode to generate periodic interrupts.
 
-    \param [in]  ticks  Number of ticks between two interrupts
-    \return          0  Function succeeded
-    \return          1  Function failed
- */
-static __INLINE uint32_t SysTick_Config(uint32_t ticks)
-{
-  if (ticks > SysTick_LOAD_RELOAD_Msk)  return (1);            /* Reload value impossible */
+        \param [in]  ticks  Number of ticks between two interrupts.
 
-  SysTick->LOAD  = (ticks & SysTick_LOAD_RELOAD_Msk) - 1;      /* set reload register */
-  NVIC_SetPriority (SysTick_IRQn, (1<<__NVIC_PRIO_BITS) - 1);  /* set Priority for Cortex-M0 System Interrupts */
-  SysTick->VAL   = 0;                                          /* Load the SysTick Counter Value */
-  SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
-                   SysTick_CTRL_TICKINT_Msk   |
-                   SysTick_CTRL_ENABLE_Msk;                    /* Enable SysTick IRQ and SysTick Timer */
-  return (0);                                                  /* Function successful */
-}
+        \return          0  Function succeeded.
+        \return          1  Function failed.
+
+        \note     When the variable <b>__Vendor_SysTickConfig</b> is set to 1, then the
+        function <b>SysTick_Config</b> is not included. In this case, the file <b><i>device</i>.h</b>
+        must contain a vendor-specific implementation of this function.
+
+     */
+    __STATIC_INLINE uint32_t SysTick_Config(uint32_t ticks)
+    {
+        if (ticks > SysTick_LOAD_RELOAD_Msk)  return (1);            /* Reload value impossible */
+
+        SysTick->LOAD  = (ticks & SysTick_LOAD_RELOAD_Msk) - 1;      /* set reload register */
+        NVIC_SetPriority (SysTick_IRQn, (1<<__NVIC_PRIO_BITS) - 1);  /* set Priority for Systick Interrupt */
+        SysTick->VAL   = 0;                                          /* Load the SysTick Counter Value */
+        SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
+                         SysTick_CTRL_TICKINT_Msk   |
+                         SysTick_CTRL_ENABLE_Msk;                    /* Enable SysTick IRQ and SysTick Timer */
+        return (0);                                                  /* Function successful */
+    }
 
 #endif
 
-/*@} end of CMSIS_Core_SysTickFunctions */
+    /*@} end of CMSIS_Core_SysTickFunctions */
 
 
 
-/* ##################################### Debug In/Output function ########################################### */
-/** \ingroup  CMSIS_Core_FunctionInterface
-    \defgroup CMSIS_core_DebugFunctions CMSIS Core Debug Functions
-  @{
- */
+    /* ##################################### Debug In/Output function ########################################### */
+    /** \ingroup  CMSIS_Core_FunctionInterface
+        \defgroup CMSIS_core_DebugFunctions ITM Functions
+        \brief   Functions that access the ITM debug interface.
+      @{
+     */
 
-extern volatile int32_t ITM_RxBuffer;                    /*!< external variable to receive characters                    */
-#define                 ITM_RXBUFFER_EMPTY    0x5AA55AA5 /*!< value identifying ITM_RxBuffer is ready for next character */
-
-
-/** \brief  ITM Send Character
-
-    This function transmits a character via the ITM channel 0.
-    It just returns when no debugger is connected that has booked the output.
-    It is blocking when a debugger is connected, but the previous character send is not transmitted.
-
-    \param [in]     ch  Character to transmit
-    \return             Character to transmit
- */
-static __INLINE uint32_t ITM_SendChar (uint32_t ch)
-{
-  if ((CoreDebug->DEMCR & CoreDebug_DEMCR_TRCENA_Msk)  &&      /* Trace enabled */
-      (ITM->TCR & ITM_TCR_ITMENA_Msk)                  &&      /* ITM enabled */
-      (ITM->TER & (1UL << 0)        )                    )     /* ITM Port #0 enabled */
-  {
-    while (ITM->PORT[0].u32 == 0);
-    ITM->PORT[0].u8 = (uint8_t) ch;
-  }
-  return (ch);
-}
+    extern volatile int32_t ITM_RxBuffer;                    /*!< External variable to receive characters.                         */
+#define                 ITM_RXBUFFER_EMPTY    0x5AA55AA5 /*!< Value identifying \ref ITM_RxBuffer is ready for next character. */
 
 
-/** \brief  ITM Receive Character
+    /** \brief  ITM Send Character
 
-    This function inputs a character via external variable ITM_RxBuffer.
-    It just returns when no debugger is connected that has booked the output.
-    It is blocking when a debugger is connected, but the previous character send is not transmitted.
+        The function transmits a character via the ITM channel 0, and
+        \li Just returns when no debugger is connected that has booked the output.
+        \li Is blocking when a debugger is connected, but the previous character sent has not been transmitted.
 
-    \return             Received character
-    \return         -1  No character received
- */
-static __INLINE int32_t ITM_ReceiveChar (void) {
-  int32_t ch = -1;                           /* no character available */
+        \param [in]     ch  Character to transmit.
 
-  if (ITM_RxBuffer != ITM_RXBUFFER_EMPTY) {
-    ch = ITM_RxBuffer;
-    ITM_RxBuffer = ITM_RXBUFFER_EMPTY;       /* ready for next character */
-  }
+        \returns            Character to transmit.
+     */
+    __STATIC_INLINE uint32_t ITM_SendChar (uint32_t ch)
+    {
+        if ((ITM->TCR & ITM_TCR_ITMENA_Msk)                  &&      /* ITM enabled */
+                (ITM->TER & (1UL << 0)        )                    )     /* ITM Port #0 enabled */
+        {
+            while (ITM->PORT[0].u32 == 0);
+            ITM->PORT[0].u8 = (uint8_t) ch;
+        }
+        return (ch);
+    }
 
-  return (ch);
-}
+
+    /** \brief  ITM Receive Character
+
+        The function inputs a character via the external variable \ref ITM_RxBuffer.
+
+        \return             Received character.
+        \return         -1  No character pending.
+     */
+    __STATIC_INLINE int32_t ITM_ReceiveChar (void) {
+        int32_t ch = -1;                           /* no character available */
+
+        if (ITM_RxBuffer != ITM_RXBUFFER_EMPTY) {
+            ch = ITM_RxBuffer;
+            ITM_RxBuffer = ITM_RXBUFFER_EMPTY;       /* ready for next character */
+        }
+
+        return (ch);
+    }
 
 
-/** \brief  ITM Check Character
+    /** \brief  ITM Check Character
 
-    This function checks external variable ITM_RxBuffer whether a character is available or not.
-    It returns '1' if a character is available and '0' if no character is available.
+        The function checks whether a character is pending for reading in the variable \ref ITM_RxBuffer.
 
-    \return          0  No character available
-    \return          1  Character available
- */
-static __INLINE int32_t ITM_CheckChar (void) {
+        \return          0  No character available.
+        \return          1  Character available.
+     */
+    __STATIC_INLINE int32_t ITM_CheckChar (void) {
 
-  if (ITM_RxBuffer == ITM_RXBUFFER_EMPTY) {
-    return (0);                                 /* no character available */
-  } else {
-    return (1);                                 /*    character available */
-  }
-}
+        if (ITM_RxBuffer == ITM_RXBUFFER_EMPTY) {
+            return (0);                                 /* no character available */
+        } else {
+            return (1);                                 /*    character available */
+        }
+    }
 
-/*@} end of CMSIS_core_DebugFunctions */
+    /*@} end of CMSIS_core_DebugFunctions */
 
 #endif /* __CORE_CM4_H_DEPENDANT */
 

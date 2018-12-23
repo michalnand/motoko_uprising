@@ -1,7 +1,8 @@
 #include "imu.h"
 
 #include <drivers.h>
-#include <robot_config.h>
+#include <config.h>
+
 
 //#define LSM6DS0_ADDRESS              ((unsigned char)0xD6)
 #define LSM6DS0_ADDRESS              ((unsigned char)0xD4)
@@ -83,9 +84,9 @@ IMU::IMU()
 
 }
 
-void IMU::init(I2C_Interface *i2c_)
+void IMU::init(I2C_Interface &i2c_)
 {
-    i2c = i2c_;
+    i2c = &i2c_;
     i2c->write_reg(LSM6DS0_ADDRESS, LSM6DS0_CTRL_REG1_G, LSM6DS0_G_ODR_476HZ | LSM6DS0_G_FS_500 );
 
     angular_rate.x = 0;
@@ -204,7 +205,7 @@ void IMU::read(bool calibration)
   z = ((int16_t)i2c->read(1)) << 8;
   z|= ((int16_t)i2c->read(0)) << 0;
 
-  i2c->stop(); 
+  i2c->stop();
 
   acceleration.x = x;
   acceleration.y = y;
@@ -227,10 +228,10 @@ bool IMU::ready()
 {
   bool res = m_ready;
 
-  disable_interrupt();
+  __disable_irq();
   if (res)
     m_ready = false;
-  enable_interrupt();
+  __enable_irq();
 
   return res;
 }

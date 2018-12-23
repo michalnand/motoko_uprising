@@ -1,8 +1,11 @@
 #ifndef _LINE_SENSOR_H_
 #define _LINE_SENSOR_H_
 
-#include <tgpio.h>
+#include <gpio.h>
 #include <thread.h>
+#include <array.h>
+#include <config.h>
+
 
 #define LINE_SENSOR_COUNT   ((unsigned int)8)
 #define LINE_TYPE_SINGLE    ((unsigned int)1)
@@ -18,7 +21,7 @@ struct sLineSensor
 class LineSensor: public Thread
 {
   protected:
-    TGpio<TGPIOA, 8, GPIO_MODE_OUT> sensor_led;        //sensor white led
+    Gpio<TGPIOA, 8, GPIO_MODE_OUT> sensor_led;        //sensor white led
 
 
     int threshold;
@@ -26,23 +29,23 @@ class LineSensor: public Thread
     bool m_ready;
 
   public:
-    int weights[LINE_SENSOR_COUNT];
+    Array<int, LINE_SENSOR_COUNT> weights;
 
-    int adc_calibration[LINE_SENSOR_COUNT];
-    int adc_calibration_k[LINE_SENSOR_COUNT];
+    Array<int, LINE_SENSOR_COUNT> adc_calibration;
+    Array<int, LINE_SENSOR_COUNT> adc_calibration_k;
 
-    int adc_result[LINE_SENSOR_COUNT];
+    Array<int, LINE_SENSOR_COUNT> adc_result;
 
   private:
     //line sensors
-    TGpio<TGPIOA, 0, GPIO_MODE_AN> sensor_in_0;
-    TGpio<TGPIOA, 1, GPIO_MODE_AN> sensor_in_1;
-    TGpio<TGPIOA, 2, GPIO_MODE_AN> sensor_in_2;
-    TGpio<TGPIOA, 3, GPIO_MODE_AN> sensor_in_3;
-    TGpio<TGPIOA, 4, GPIO_MODE_AN> sensor_in_4;
-    TGpio<TGPIOA, 5, GPIO_MODE_AN> sensor_in_5;
-    TGpio<TGPIOA, 6, GPIO_MODE_AN> sensor_in_6;
-    TGpio<TGPIOA, 7, GPIO_MODE_AN> sensor_in_7;
+    Gpio<TGPIOA, 0, GPIO_MODE_AN> sensor_in_0;
+    Gpio<TGPIOA, 1, GPIO_MODE_AN> sensor_in_1;
+    Gpio<TGPIOA, 2, GPIO_MODE_AN> sensor_in_2;
+    Gpio<TGPIOA, 3, GPIO_MODE_AN> sensor_in_3;
+    Gpio<TGPIOA, 4, GPIO_MODE_AN> sensor_in_4;
+    Gpio<TGPIOA, 5, GPIO_MODE_AN> sensor_in_5;
+    Gpio<TGPIOA, 6, GPIO_MODE_AN> sensor_in_6;
+    Gpio<TGPIOA, 7, GPIO_MODE_AN> sensor_in_7;
 
 
   public:
@@ -70,6 +73,7 @@ class LineSensor: public Thread
     int find_left_line_pos();
     int find_right_line_pos();
     int find_center_line_pos();
+
 
 };
 

@@ -1,9 +1,7 @@
-#include "line_sensor.h"
-
-#include <adc.h>
-
+#include <line_sensor.h>
 #include <drivers.h>
-#include <robot_config.h>
+
+
 
 LineSensor::LineSensor()
 {
@@ -16,6 +14,9 @@ LineSensor::~LineSensor()
 }
 
 
+
+
+
 int LineSensor::init()
 {
   int init_res = 0;
@@ -23,20 +24,19 @@ int LineSensor::init()
   sensor_led = 0;
   timer.delay_ms(100);
 
-  adc_init();
   timer.delay_ms(100);
 
-  for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
-    adc_calibration[i] = adc_read(i);
+  for (unsigned int i = 0; i < adc_calibration.size(); i++)
+    adc_calibration[i] = adc.read(i);
 
   sensor_led = 1;
   timer.delay_ms(100);
 
-  for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
-    adc_calibration_k[i] =  adc_read(i) - adc_calibration[i];
+  for (unsigned int i = 0; i < adc_calibration_k.size(); i++)
+    adc_calibration_k[i] =  adc.read(i) - adc_calibration[i];
 
 
-  for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
+  for (unsigned int i = 0; i < adc_result.size(); i++)
     adc_result[i] = 0;
 
   int step   = LINE_SENSOR_STEP;
@@ -62,10 +62,10 @@ bool LineSensor::ready()
 {
   bool res = m_ready;
 
-  disable_interrupt();
+  __disable_irq();
   if (res)
     m_ready = false;
-  enable_interrupt();
+  __enable_irq();
 
   return res;
 }
@@ -94,7 +94,7 @@ void LineSensor::main()
 {
   for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
   {
-    adc_result[i] = 1000-((adc_read(i) - adc_calibration[i])*1000)/adc_calibration_k[i];
+    adc_result[i] = 1000-((adc.read(i) - adc_calibration[i])*1000)/adc_calibration_k[i];
     if (adc_result[i] < 0)
       adc_result[i] = 0;
   }
@@ -208,7 +208,7 @@ int LineSensor::find_center_line_pos()
 {
   int adc_max = threshold - 1;
 
-  for (int i = 0; i < LINE_SENSOR_COUNT; i++)
+  for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
     if (adc_result[i] > threshold)
     if (adc_result[i] > adc_max)
     {

@@ -1,6 +1,6 @@
 ELF = bin/network_train.elf
 
-LIBS_PATH=$(HOME)/rysy
+LIBS_PATH=$(HOME)/libs/rysy
 
 INC+= -I.
 INC+= -I$(LIBS_PATH)/libs_common

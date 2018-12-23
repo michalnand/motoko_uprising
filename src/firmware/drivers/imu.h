@@ -34,12 +34,13 @@ class IMU: public Thread
     IMU();
     ~IMU();
 
-    void init(I2C_Interface *i2c_);
+    void init(I2C_Interface &i2c_);
     void read(bool calibration = false);
 
     void main();
     bool present();
     bool ready();
+
   private:
     void delay_loops(uint32_t loops);
 };

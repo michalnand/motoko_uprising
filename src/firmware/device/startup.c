@@ -1,4 +1,4 @@
-#include "stm32f303.h"
+#include <stm32f30x.h>
 
 
 #ifdef __cplusplus
@@ -18,8 +18,7 @@ void __attribute__((interrupt("IRQ"))) Default_Handler()
 
   while (1)
   {
-    __asm("nop");
-    GPIOB->BRR|= (1<<15);
+
   }
 }
 
@@ -29,8 +28,7 @@ void __attribute__((interrupt("IRQ"))) HardFault_Handler()
 {
   while (1)
   {
-    __asm("nop");
-    GPIOB->BRR|= (1<<15);
+
   }
 }
 
@@ -137,7 +135,6 @@ void (* const InterruptVector[])() __attribute__ ((section(".isr_vector"), align
     PendSV_Handler,
     SysTick_Handler,
 
-
     WWDG_IRQHandler,                   /* Window WatchDog */
     PVD_IRQHandler,                    /* PVD through EXTI Line detection */
     TAMPER_STAMP_IRQHandler,             /* Tamper and TimeStamps through the EXTI line */
@@ -243,8 +240,6 @@ void Reset_Handler(void)
 
     // enable FPU
     SCB->CPACR|= (1<<20)|(1<<21)|(1<<22)|(1<<23);   //full access
-
-    //FPU->FPCCR&=~((1<<31)|(1<<30));                 //disable context saving, single thread FPU!!
     FPU->FPCCR|= ((1<<31)|(1<<30));                 //enable context saving
 
 
@@ -259,6 +254,7 @@ void Reset_Handler(void)
     // __libc_init_array();
 
 
+    SystemInit();
     main();
 }
 

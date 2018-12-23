@@ -14,23 +14,27 @@ class LinePredictor
     NeuralNetwork *nn;
 
     unsigned int result;
+    long int distance;
 
   public:
-    LinePredictor(NeuralNetwork &nn);
-    virtual ~LinePredictor();
+      LinePredictor();
+      LinePredictor(NeuralNetwork &nn);
+      virtual ~LinePredictor();
 
-    unsigned int process(int *adc_result);
-    void print();
+      void init(NeuralNetwork &nn);
 
-    unsigned int get_result()
-    {
-      return result;
-    }
+      unsigned int process(Array<int, LINE_SENSOR_COUNT> &adc_result, long int distance_now, int sampling_distance_step = 10);
+      void print();
 
-    int8_t get_input(unsigned int idx)
-    {
-      return network_input[idx];
-    }
+      unsigned int get_result()
+      {
+          return result;
+      }
+
+      int8_t get_input(unsigned int idx)
+      {
+          return network_input[idx];
+      }
 
 };
 

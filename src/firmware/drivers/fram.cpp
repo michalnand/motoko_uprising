@@ -13,9 +13,9 @@ Fram::~Fram()
 
 }
 
-void Fram::init(I2C_Interface *i2c_)
+void Fram::init(I2C_Interface &i2c_)
 {
-  i2c = i2c_;
+  i2c = &i2c_;
   current_address = 0;
 }
 
@@ -131,7 +131,7 @@ Fram& Fram::operator >> (char &rhs)
 
   return *this;
 }
- 
+
 Fram& Fram::operator >> (unsigned char &rhs)
 {
   read(current_address, (char*)(&rhs), sizeof(rhs));

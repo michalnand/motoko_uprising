@@ -13,7 +13,7 @@ void diagnostic()
 
   while (1)
   {
-    predictor.process(line_sensor.adc_result);
+    predictor.process(line_sensor.adc_result, 0, 0);
 
     if (line_sensor.result.on_line)
       terminal << "1 ";
@@ -36,7 +36,7 @@ void diagnostic()
 
     terminal << motor_controll.get_speed_left() << " ";
     terminal << motor_controll.get_speed_right() << " ";
- 
+
 
     for (unsigned int i = 0; i < NETWORK_INPUT_SIZE; i++)
       terminal << predictor.get_input(i) << " ";
