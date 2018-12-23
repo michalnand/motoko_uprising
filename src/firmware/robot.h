@@ -8,6 +8,8 @@
 
 #include <line_following/line_search.h>
 
+#include <speed_ramp.h>
+
 class Robot
 {
     public:
@@ -27,8 +29,7 @@ class Robot
 
         LineSearch line_search;
 
-    private:
-        float speed, speed_max, speed_rise;
+        SpeedRamp<float> speed_ramp;
 };
 
 
