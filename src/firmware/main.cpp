@@ -9,8 +9,6 @@
 int main()
 {
     drivers.init();
-
-
     key.read();
 
     //drivers.test_imu_sensor();
@@ -21,12 +19,18 @@ int main()
 
     //diagnostic();
 
-    /*
     Robot robot;
-
     robot.main();
-    */
 
+
+
+    /*
+    line_search.set_last_line_position(-1.0);
+    line_search.main();
+
+    timer.delay_ms(1000);
+    */
+    /*
 
     int turn_distance = 150;
 
@@ -91,7 +95,7 @@ int main()
     position_control.stop();
 
     timer.delay_ms(200);
-
+    */
 
     while (1)
     {

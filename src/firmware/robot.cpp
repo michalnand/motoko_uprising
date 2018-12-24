@@ -1,13 +1,13 @@
 #include <robot.h>
-
+#include <robot_config.h>
 
 Robot::Robot()
 {
     //initialize steering PD controll
-    steering_pid.init(0.4, 0.0, 1.8, 10.0);
+    steering_pid.init(STEERING_PID_KP, STEERING_PID_KI, STEERING_PID_KD, STEERING_PID_LIMIT);
 
     //speed rise limit
-    speed_ramp.init(0.002);
+    speed_ramp.init(LINE_FOLLOWING_SPEED_RAMP_RISE);
 
     //initialize line curve type predictor using neural network
     line_predictor.init(cnn);
@@ -20,17 +20,6 @@ Robot::~Robot()
 
 void Robot::main()
 {
-    line_search.set_initial_conditions(1.0, 0.0);
-
-    while (1)
-    {
-        if (line_sensor.ready())
-        {
-            line_search.main();
-            speed_ramp.set_speed(line_search.get_speed());
-        }
-    }
-
     while (1)
     {
         /*
@@ -49,8 +38,15 @@ void Robot::main()
             }
             else
             {
+
                 line_search.main();
-                speed_ramp.set_speed(line_search.get_speed());
+
+                //speed_ramp.set_speed(0.4);
+
+                motor_controll.set_left_speed(0);
+                motor_controll.set_right_speed(0);
+                speed_ramp.set_speed(0.0);
+                steering_pid.reset();
             }
         }
     }
@@ -65,8 +61,8 @@ void Robot::line_following()
     float speed_limit = 0.0;
     switch (line_predictor.get_result())
     {
-      case   2: speed_limit = 0.8; break;
-      default : speed_limit = 0.4; break;
+      case   2: speed_limit = LINE_FOLLOWING_SPEED_MAX; break;
+      default : speed_limit = LINE_FOLLOWING_SPEED_MIN; break;
     }
 
     //compute next speed, using ramp and speed limit for this curve
@@ -88,5 +84,5 @@ void Robot::line_following()
     motor_controll.set_right_speed(speed_right);
 
     //set last line position for lost line search
-    line_search.set_initial_conditions(line_position, speed);
+    line_search.set_last_line_position(line_position);
 }

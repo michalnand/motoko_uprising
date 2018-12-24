@@ -1,8 +1,8 @@
 #ifndef _LINE_SEARCH_H_
 #define _LINE_SEARCH_H_
 
-#include <integrator.h>
-#include <ruler.h>
+
+#include <line_following/position_control.h>
 
 class LineSearch
 {
@@ -10,28 +10,16 @@ class LineSearch
         LineSearch();
         virtual ~LineSearch();
 
-        void set_initial_conditions(float initial_line_position, float speed);
+        void set_last_line_position(float last_line_position);
         void main();
 
-
         float get_speed();
+    private:
+        int process_move();
 
     private:
-        long int line_search_distance;
-
-        unsigned int state, motion_state;
-        float initial_line_position;
-        float turn_speed;
-
-        Integrator<float> integrator;
-
-        Ruler<long int> ruler;
-
-    private:
-        void set_motors(bool right, bool forward);
-        void motors_brake(bool forward);
-
-
+        float last_line_position;
+        PositionControll position_control;
 };
 
 #endif

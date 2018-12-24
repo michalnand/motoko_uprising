@@ -7,8 +7,6 @@ PositionControll::PositionControll()
 
     max_speed = 0.7;
 
-
-
     set_position(0, 0);
 }
 
@@ -17,6 +15,12 @@ PositionControll::~PositionControll()
 
 }
 
+void PositionControll::init(float max_speed)
+{
+    distance_limit  = 0;
+    this->max_speed = max_speed;
+    set_position(0, 0);
+}
 
 void PositionControll::set_position(long int d_left, long int d_right, int distance_limit)
 {
@@ -30,7 +34,7 @@ void PositionControll::set_position(long int d_left, long int d_right, int dista
     float k_fall_forward   = 0.01;
 
     float k_rise_backward   = 0.002;
-    float k_fall_backward   = 0.01; 
+    float k_fall_backward   = 0.01;
 
     if ((d_left > 0)&&(d_right > 0))
     {
@@ -57,7 +61,6 @@ bool PositionControll::process()
     float right_speed   = 0.0;
     float left_speed    = 0.0;
 
-
     if (left_end > encoder_sensor.get_left())
     {
         integrator_left_forward.process(max_speed);
@@ -82,14 +85,10 @@ bool PositionControll::process()
         right_speed = -integrator_right_backward.get();
     }
 
-
-
-
     motor_controll.set_right_speed(right_speed);
     motor_controll.set_left_speed(left_speed);
 
-
-    return is_done();
+    return is_done(distance_limit);
 }
 
 
@@ -123,7 +122,6 @@ bool PositionControll::is_done_right(int limit)
 
 void PositionControll::stop()
 {
-
     while ( (abs(motor_controll.get_speed_left()) > 0.01) || (abs(motor_controll.get_speed_right()) > 0.01) )
     {
         integrator_right_backward.process(0);

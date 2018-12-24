@@ -14,6 +14,8 @@ class PositionControll
         PositionControll();
         virtual ~PositionControll();
 
+        void init(float max_speed);
+
     public:
         void set_position(long int d_left, long int d_right, int distance_limit = POSITION_CONTROLL_DEFAULT_DISTANCE_LIMIT);
         bool process();
