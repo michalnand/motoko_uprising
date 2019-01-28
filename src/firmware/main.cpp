@@ -18,13 +18,12 @@ int main()
     //drivers.test_encoder_sensor();
     //drivers.test_motor_speed_feedback();
 
-    diagnostic();
+    //diagnostic();
 
-    /*
+
     Robot robot;
     robot.main();
-    */
-
+    
 
     /*
     line_search.set_last_line_position(-1.0);

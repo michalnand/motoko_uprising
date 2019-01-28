@@ -15,7 +15,7 @@ class LineSearch
 
         float get_speed();
     private:
-        int process_move();
+        int process_move(unsigned int sensor_inactive_time = 0);
 
     private:
         float last_line_position;

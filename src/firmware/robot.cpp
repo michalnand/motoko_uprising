@@ -20,6 +20,13 @@ Robot::~Robot()
 
 void Robot::main()
 {
+    /*
+    while(1)
+    {
+        line_search.main();
+    }
+    */
+
     while (1)
     {
         /*
@@ -38,7 +45,6 @@ void Robot::main()
             }
             else
             {
-
                 line_search.main();
 
                 //speed_ramp.set_speed(0.4);
