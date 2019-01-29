@@ -20,22 +20,18 @@ Robot::~Robot()
 
 void Robot::main()
 {
-    /*
-    while(1)
-    {
-        line_search.main();
-    }
-    */
-
     while (1)
     {
-        /*
-        if (distance_sensor.ready())
+        if (distance_sensor.ready() && distance_sensor.result.front_obstacle)
         {
-            //TODO brick avoid
+            allign_to_line(100);
+            brick_avoid.avoid_hard(BRICK_AVOID_SIDE_LEFT);
+
+            motor_controll.set_left_speed(0);
+            motor_controll.set_right_speed(0);
+            speed_ramp.set_speed(0.0);
         }
         else
-        */
         if (line_sensor.ready())
         {
             if (line_sensor.result.on_line)
@@ -71,6 +67,9 @@ void Robot::line_following()
       default : speed_limit = LINE_FOLLOWING_SPEED_MIN; break;
     }
 
+    if (distance_sensor.result.front_obstacle_warning)
+        speed_limit = LINE_FOLLOWING_SPEED_MIN;
+
     //compute next speed, using ramp and speed limit for this curve
     float speed = speed_ramp.process(speed_limit);
 
@@ -91,4 +90,37 @@ void Robot::line_following()
 
     //set last line position for lost line search
     line_search.set_last_line_position(line_position);
+}
+
+void Robot::allign_to_line(unsigned int cycles)
+{
+    while (cycles)
+    {
+        if (line_sensor.ready())
+        {
+            //compute line possition and of center error
+            float line_position = line_sensor.result.right_line_position*1.0/line_sensor.get_max();
+            float error         = 0.0 - line_position;
+
+            float steering = steering_pid.process(error, line_position);
+
+            //compute outputs for motors
+            float speed_left  = steering  ;
+            float speed_right = -steering ;
+
+            //input into PID controllers for motors
+            motor_controll.set_left_speed(speed_left);
+            motor_controll.set_right_speed(speed_right);
+
+            //set last line position for lost line search
+            line_search.set_last_line_position(line_position);
+
+            cycles--;
+        }
+    }
+}
+
+void Robot::brick_avoid_hard(unsigned int side)
+{
+
 }

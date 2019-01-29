@@ -16,4 +16,7 @@
 #define LINE_SEARCH_MAX_SPEED                       ((float)0.7)
 
 
+#define BRICK_AVOID_MAX_SPEED                       ((float)0.7)
+
+
 #endif

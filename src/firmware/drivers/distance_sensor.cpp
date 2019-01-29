@@ -31,7 +31,7 @@ int DistanceSensor::init()
   result.front_obstacle_warning = false;
   result.front_obstacle = false;
 
-  timer.add_task(this, 50, false);
+  timer.add_task(this, 20, false);
 
   m_ready = false;
 
@@ -67,12 +67,12 @@ void DistanceSensor::main()
       filter(&result.left, DISTANCE_LEFT);
       filter(&result.right, DISTANCE_RIGHT);
 
-      if (result.front < 240)
+      if (result.front < 190)
         result.front_obstacle_warning = true;
       else
         result.front_obstacle_warning = false;
 
-      if (result.front < 210)
+      if (result.front < 160)
         result.front_obstacle = true;
       else
         result.front_obstacle = false;

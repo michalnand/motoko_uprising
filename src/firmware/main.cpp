@@ -23,7 +23,7 @@ int main()
 
     Robot robot;
     robot.main();
-    
+
 
     /*
     line_search.set_last_line_position(-1.0);

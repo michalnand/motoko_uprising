@@ -10,7 +10,7 @@ LineSearch::LineSearch()
 
 LineSearch::~LineSearch()
 {
-
+ 
 }
 
 void LineSearch::set_last_line_position(float last_line_position)
@@ -45,7 +45,7 @@ void LineSearch::main()
         position_control.set_position(turn_distance, 0);
 
     if (process_move(150) == 0)
-        return; 
+        return;
 
     if (last_line_position < 0.0)
         position_control.set_position(0, -turn_distance);

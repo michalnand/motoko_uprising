@@ -54,10 +54,9 @@ int Drivers::init()
   line_sensor.init();
   terminal << "line sensor init done\n";
 
-/*
   distance_sensor.init();
   terminal << "distance sensor init done\n";
-*/
+
   encoder_sensor.init();
   terminal << "encoder sensor init done\n";
 
@@ -157,7 +156,7 @@ void Drivers::test_line_sensor(int count)
 
 void Drivers::test_distance_sensor(int count)
 {
-  terminal << "\test_distance_sensor\n";
+  terminal << "\ntest_distance_sensor\n";
 
   bool run = true;
   while (run)
