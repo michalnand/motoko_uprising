@@ -6,7 +6,7 @@
 
 #include <dataset_line.h>
 
-int main() 
+int main()
 {
   DatasetLine dataset;
 

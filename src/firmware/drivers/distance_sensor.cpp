@@ -72,7 +72,7 @@ void DistanceSensor::main()
       else
         result.front_obstacle_warning = false;
 
-      if (result.front < 160)
+      if (result.front < 180)
         result.front_obstacle = true;
       else
         result.front_obstacle = false;

@@ -24,12 +24,17 @@ void Robot::main()
     {
         if (distance_sensor.ready() && distance_sensor.result.front_obstacle)
         {
-            allign_to_line(100);
-            brick_avoid.avoid_hard(BRICK_AVOID_SIDE_LEFT);
+            //allign_to_line(100);
+            //brick_avoid.avoid_hard(BRICK_AVOID_SIDE_LEFT);
+            
+            brick_avoid.avoid(BRICK_AVOID_SIDE_LEFT);
 
             motor_controll.set_left_speed(0);
             motor_controll.set_right_speed(0);
             speed_ramp.set_speed(0.0);
+
+            float line_position = line_sensor.result.right_line_position*1.0/line_sensor.get_max();
+            steering_pid.reset(line_position);
         }
         else
         if (line_sensor.ready())
@@ -48,7 +53,9 @@ void Robot::main()
                 motor_controll.set_left_speed(0);
                 motor_controll.set_right_speed(0);
                 speed_ramp.set_speed(0.0);
-                steering_pid.reset();
+
+                float line_position = line_sensor.result.right_line_position*1.0/line_sensor.get_max();
+                steering_pid.reset(line_position);
             }
         }
     }

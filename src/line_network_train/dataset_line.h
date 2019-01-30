@@ -44,6 +44,7 @@ class DatasetLine: public DatasetInterface
     void save_image_downsampled(std::string file_name);
 
     float rnd(float min, float max);
+    void export_dataset_image(unsigned int size, std::string file_name);
 
 };
 

@@ -59,33 +59,9 @@ DatasetLine::DatasetLine()
     add_testing(item);
   }
 
+  export_dataset_image(20, "dataset_examples/examples.png");
 
 
-  for (unsigned int i = 0; i < 50; i++)
-  {
-
-    unsigned int line_position = rand()%area_width;
-
-    unsigned int line_pos = convert_raw_line_position(line_position);
-    float rotation = rnd(-straight_rotation_noise_level, straight_rotation_noise_level);
-
-    area_shifted_line(line_position, rotation);
-
-    downsample(area_downsampled, area);
-
-    add_noise(area_downsampled);
-
-    {
-      std::string file_name;
-      file_name = "dataset_examples/"  + std::to_string(line_pos) + "_" + std::to_string(i) + ".png";
-      save_image(file_name);
-    }
-    {
-      std::string file_name;
-      file_name = "dataset_examples/"  + std::to_string(line_pos) + "_" + std::to_string(i) +"_D" + ".png";
-      save_image_downsampled(file_name);
-    }
-  }
 
   print();
 }
@@ -242,4 +218,55 @@ float DatasetLine::rnd(float min, float max)
   float v = (rand()%100000)/100000.0;
 
   return (max - min)*v + min;
+}
+
+
+void DatasetLine::export_dataset_image(unsigned int size, std::string file_name)
+{
+  unsigned int spacing = 2;
+  unsigned int output_image_height = size*(height+spacing);
+  unsigned int output_image_width  = size*(width+spacing);
+  unsigned int slice_size = output_image_height*output_image_width;
+
+  ImageSave image(output_image_height, output_image_width, false);
+  std::vector<float> v(3*output_image_height*output_image_width);
+
+  for (unsigned int i = 0; i < v.size(); i++)
+    v[i] = 1.0;
+
+
+  for (unsigned int y = 0; y < size; y++)
+  for (unsigned int x = 0; x < size; x++)
+  {
+    unsigned int line_position = rand()%area_width;
+
+    unsigned int line_pos = convert_raw_line_position(line_position);
+    float rotation = rnd(-straight_rotation_noise_level, straight_rotation_noise_level);
+
+    area_shifted_line(line_position, rotation);
+
+    downsample(area_downsampled, area);
+
+    add_noise(area_downsampled);
+
+
+    for (unsigned int j = 0; j < height; j++)
+      for (unsigned int i = 0; i < width; i++)
+        {
+            unsigned int output_idx;
+            //output_idx = (j + y*size)*output_image_width + i + x*size;
+            output_idx = j*output_image_width + i + (y*(height + spacing)*size + x)*(width + spacing) + (spacing/2)*(1 + output_image_width);
+
+            float value = area_downsampled[j][i];
+
+            float r = 0.0;
+            float g = value;
+            float b = 0.0;
+            v[output_idx + slice_size*0] = r;
+            v[output_idx + slice_size*1] = g;
+            v[output_idx + slice_size*2] = b;
+        }
+  }
+
+  image.save(file_name, v);
 }

@@ -10,7 +10,7 @@ class PID
     float k0, k1, kd;
     float limit;
     float u;
- 
+
   public:
     PID(float kp = 0.0, float ki = 0.0, float kd = 0.0, float limit = 1.0);
     virtual ~PID();
@@ -20,7 +20,7 @@ class PID
     float process(float error, float plant_output);
     float process(float error);
 
-    void reset();
+    void reset(float inital_plant_output = 0.0);
 };
 
 #endif

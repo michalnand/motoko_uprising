@@ -13,6 +13,7 @@ class BrickAvoid
         virtual ~BrickAvoid();
 
         void avoid_hard(unsigned int side);
+        void avoid(unsigned int side);
 
     private:
         void process_move(long int d_left, long int d_right);

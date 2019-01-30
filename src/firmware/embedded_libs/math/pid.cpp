@@ -44,14 +44,14 @@ float PID::process(float error, float plant_output)
   return u;
 }
 
-void PID::reset()
+void PID::reset(float inital_plant_output)
 {
-  e0 = 0; 
+  e0 = 0;
   e1 = 0;
 
-  x0 = 0;
-  x1 = 0;
-  x2 = 0;
+  x0 = inital_plant_output;
+  x1 = inital_plant_output;
+  x2 = inital_plant_output;
 
   u = 0;
 }

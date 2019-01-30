@@ -20,17 +20,13 @@ int main()
 
     //diagnostic();
 
-
+    /*
+    BrickAvoid brick_avoid;
+    brick_avoid.avoid(BRICK_AVOID_SIDE_LEFT);
+    */
     Robot robot;
     robot.main();
 
-
-    /*
-    line_search.set_last_line_position(-1.0);
-    line_search.main();
-
-    timer.delay_ms(1000);
-    */
 
     while (1)
     {

@@ -10,7 +10,7 @@ LineSearch::LineSearch()
 
 LineSearch::~LineSearch()
 {
- 
+
 }
 
 void LineSearch::set_last_line_position(float last_line_position)
