@@ -26,7 +26,7 @@ void Robot::main()
         {
             //allign_to_line(100);
             //brick_avoid.avoid_hard(BRICK_AVOID_SIDE_LEFT);
-            
+
             brick_avoid.avoid(BRICK_AVOID_SIDE_LEFT);
 
             motor_controll.set_left_speed(0);
@@ -46,6 +46,7 @@ void Robot::main()
             }
             else
             {
+                line_search.keep_speed_enable();
                 line_search.main();
 
                 //speed_ramp.set_speed(0.4);

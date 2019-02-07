@@ -10,6 +10,10 @@ class LineSearch
         LineSearch();
         virtual ~LineSearch();
 
+        void keep_speed_enable();
+        void keep_speed_disable();
+
+
         void set_last_line_position(float last_line_position);
         void main();
 
@@ -20,6 +24,7 @@ class LineSearch
     private:
         float last_line_position;
         PositionControll position_control;
+        bool keep_speed;
 };
 
 #endif

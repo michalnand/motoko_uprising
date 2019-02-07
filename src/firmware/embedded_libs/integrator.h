@@ -25,9 +25,9 @@ template <class T> class Integrator
         }
 
 
-        Integrator(T k_rise, T k_fall)
+        Integrator(T k_rise, T k_fall, T value = 0)
         {
-            this->value     = 0;
+            this->value     = value;
             this->k_rise    = k_rise;
             this->k_fall    = k_fall;
         }
@@ -56,11 +56,11 @@ template <class T> class Integrator
         }
 
     public:
-        void init(T k_rise, T k_fall)
+        void init(T k_rise, T k_fall, T value = 0)
         {
             this->k_rise    = k_rise;
             this->k_fall    = k_fall;
-            this->value     = 0;
+            this->value     = value;
         }
 
 

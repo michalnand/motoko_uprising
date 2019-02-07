@@ -6,6 +6,7 @@
 LineSearch::LineSearch()
 {
     position_control.init(LINE_SEARCH_MAX_SPEED);
+    keep_speed = false;
 }
 
 LineSearch::~LineSearch()
@@ -18,14 +19,26 @@ void LineSearch::set_last_line_position(float last_line_position)
     this->last_line_position = last_line_position;
 }
 
+void LineSearch::keep_speed_enable()
+{
+  keep_speed = true;
+}
+
+void LineSearch::keep_speed_disable()
+{
+  keep_speed = false;
+}
+
 void LineSearch::main()
 {
     int  turn_distance = LINE_SEARCH_TURN_DISTANCE;
 
     if (last_line_position < 0.0)
-        position_control.set_position(turn_distance, 0);
+        position_control.set_position(turn_distance, 0, POSITION_CONTROLL_DEFAULT_DISTANCE_LIMIT, keep_speed);
     else
-        position_control.set_position(0, turn_distance);
+        position_control.set_position(0, turn_distance, POSITION_CONTROLL_DEFAULT_DISTANCE_LIMIT, keep_speed);
+
+    keep_speed = false;
 
     if (process_move(0) == 0)
         return;

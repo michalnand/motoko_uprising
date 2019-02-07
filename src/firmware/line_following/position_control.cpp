@@ -22,7 +22,7 @@ void PositionControll::init(float max_speed)
     set_position(0, 0);
 }
 
-void PositionControll::set_position(long int d_left, long int d_right, int distance_limit)
+void PositionControll::set_position(long int d_left, long int d_right, int distance_limit, bool keep_speed)
 {
     left_end    = encoder_sensor.get_left()  + d_left;
     right_end   = encoder_sensor.get_right() + d_right;
@@ -50,6 +50,22 @@ void PositionControll::set_position(long int d_left, long int d_right, int dista
     integrator_left_backward.reset();
     integrator_right_forward.reset();
     integrator_right_backward.reset();
+
+
+    if (keep_speed)
+    {
+      if ((d_right > d_left) && (d_right > 0))
+      {
+        float speed_right = motor_controll.get_speed_right();
+        integrator_right_forward.init(k_rise_forward, k_fall_forward, speed_right);
+      }
+
+      if ((d_right < d_left) && (d_left > 0))
+      {
+        float speed_left = motor_controll.get_speed_left();
+        integrator_left_forward.init(k_rise_forward, k_fall_forward, speed_left);
+      }
+    }
 }
 
 
