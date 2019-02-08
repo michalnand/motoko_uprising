@@ -49,11 +49,9 @@ void Robot::main()
                 line_search.keep_speed_enable();
                 line_search.main();
 
-                //speed_ramp.set_speed(0.4);
-
                 motor_controll.set_left_speed(0);
                 motor_controll.set_right_speed(0);
-                speed_ramp.set_speed(0.0);
+                speed_ramp.set_speed(0);
 
                 float line_position = line_sensor.result.right_line_position*1.0/line_sensor.get_max();
                 steering_pid.reset(line_position);
