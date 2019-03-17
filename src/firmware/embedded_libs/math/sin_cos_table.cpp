@@ -1,8 +1,9 @@
 #include <math/sin_cos_table.h>
 
-#define COS_SHIFT  ((unsigned int)256/4)
 
-unsigned char SinCosTable::sin_table[256] = {
+#define COS_SHIFT               ((unsigned int)COS_TABLE_SIZE/4)
+
+unsigned char SinCosTable::sin_table[COS_TABLE_SIZE] = {
 
 128,    131,    134,    137,    140,    143,    146,    149,
 152,    155,    158,    162,    165,    167,    170,    173,
@@ -56,4 +57,9 @@ unsigned char SinCosTable::sin(unsigned int x)
 unsigned char SinCosTable::cos(unsigned int x)
 {
     return sin_table[(x + COS_SHIFT)&255];
+}
+
+unsigned int SinCosTable::size()
+{
+    return COS_TABLE_SIZE;
 }

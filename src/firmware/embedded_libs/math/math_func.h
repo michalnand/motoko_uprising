@@ -31,6 +31,7 @@ template<class T> T max(T a, T b)
 {
     if (a > b)
         return a;
+
     return b;
 }
 
@@ -72,6 +73,14 @@ inline float sqrtf(float x)
     return(result);
 }
 
+
+template<class T> T map(T value, T from_low, T from_high, T to_low, T to_high)
+{
+    T k = (to_high - to_low)/(from_high - from_low);
+    T q = to_high - k*from_high;
+
+    return k*value + q;
+}
 
 
 #endif

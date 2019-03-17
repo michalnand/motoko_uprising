@@ -3,10 +3,11 @@
 
 class Thread
 {
-  public:
-    Thread() { };
-    virtual ~Thread() { }; 
-    virtual void main() { };
+    public:
+        Thread() { };
+        virtual ~Thread() { };
+
+        virtual void main() { };
 };
 
 #endif

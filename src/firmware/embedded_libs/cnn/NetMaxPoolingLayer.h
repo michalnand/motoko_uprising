@@ -5,15 +5,15 @@
 
 class NetMaxPoolingLayer: public NetworkLayer
 {
-  public:
-    NetMaxPoolingLayer(
-                        sLayerGeometry kernel_geometry,
-                        sLayerGeometry input_geometry,
-                        sLayerGeometry output_geometry );
+    public:
+        NetMaxPoolingLayer(
+                            sLayerGeometry kernel_geometry,
+                            sLayerGeometry input_geometry,
+                            sLayerGeometry output_geometry );
 
-    virtual ~NetMaxPoolingLayer();
+        virtual ~NetMaxPoolingLayer();
 
-    void forward(nn_layer_t *output, nn_layer_t *input);
+        void forward(nn_layer_t *output, nn_layer_t *input);
 };
 
 #endif

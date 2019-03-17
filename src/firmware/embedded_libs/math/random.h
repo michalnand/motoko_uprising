@@ -8,6 +8,7 @@ class Random
         static unsigned long int result;
 
     public:
+
         Random();
         Random(unsigned int seed);
         virtual ~Random();

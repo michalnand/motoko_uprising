@@ -44,27 +44,26 @@ class GpioInterface
        }
 
    public:
-
        GpioInterface& operator= (int value)
        {
-         write(value);
-         return *this;
+           write(value);
+           return *this;
        }
 
        GpioInterface& operator= (GpioInterface& rhs)
        {
-         write(rhs.read());
-         return *this;
+           write(rhs.read());
+           return *this;
        };
 
        operator int()
        {
-         return read();
+           return read();
        };
 
        operator unsigned int()
        {
-         return read();
+           return read();
        };
 };
 

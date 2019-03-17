@@ -181,10 +181,9 @@ template <unsigned int size_, class T = float> class Vec: public Array<T, size_>
             T result = 0;
             for (unsigned int i = 0; i < size_; i++)
                 result+= Array<T, size_>::v[i]*Array<T, size_>::v[i];
+
             return sqrtf(result);
         }
-
-
 };
 
 

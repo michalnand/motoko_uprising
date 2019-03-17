@@ -14,54 +14,54 @@
 
 class NeuralNetwork
 {
-  protected:
-    unsigned int layers_count;
-    NetworkLayer *layers[NETWORK_LAYERS_MAX_COUNT];
+    protected:
+        unsigned int layers_count;
+        NetworkLayer *layers[NETWORK_LAYERS_MAX_COUNT];
 
-    sLayerGeometry input_geometry, output_geometry;
+        sLayerGeometry input_geometry, output_geometry;
 
-  protected:
-    nn_layer_t *buffer_a;
-    nn_layer_t *buffer_b;
+    protected:
+        nn_layer_t *buffer_a;
+        nn_layer_t *buffer_b;
 
-    nn_layer_t *input, *output;
+        nn_layer_t *input, *output;
 
-  public:
-    NeuralNetwork();
-    virtual ~NeuralNetwork();
+    public:
+        NeuralNetwork();
 
-    virtual void set_input(nn_layer_t *input_);
+        virtual ~NeuralNetwork();
+        virtual void set_input(nn_layer_t *input_);
 
-    void forward();
+        void forward();
 
-    unsigned int input_size()
-    {
-      return input_geometry.w*input_geometry.h*input_geometry.d;
-    }
+        unsigned int input_size()
+        {
+            return input_geometry.w*input_geometry.h*input_geometry.d;
+        }
 
-    unsigned int output_size()
-    {
-      return output_geometry.w*output_geometry.h*output_geometry.d;
-    }
+        unsigned int output_size()
+        {
+            return output_geometry.w*output_geometry.h*output_geometry.d;
+        }
 
-    nn_layer_t* get_output()
-    {
-      return output;
-    }
+        nn_layer_t* get_output()
+        {
+            return output;
+        }
 
-    nn_layer_t* get_input()
-    {
-      return input;
-    }
+        nn_layer_t* get_input()
+        {
+            return input;
+        }
 
-    unsigned int class_result();
+        unsigned int class_result();
 
-  protected:
-    unsigned int get_required_buffer_size();
-    virtual void allocate_buffer();
+    protected:
+        unsigned int get_required_buffer_size();
+        virtual void allocate_buffer();
 
-  private:
-    void io_swap();
+    private:
+        void io_swap();
 
 };
 

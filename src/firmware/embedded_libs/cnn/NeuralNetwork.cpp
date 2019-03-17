@@ -2,67 +2,68 @@
 
 NeuralNetwork::NeuralNetwork()
 {
-  input_geometry.w = 0;
-  input_geometry.h = 0;
-  input_geometry.d = 0;
+    input_geometry.w = 0;
+    input_geometry.h = 0;
+    input_geometry.d = 0;
 
-  output_geometry.w = 0;
-  output_geometry.h = 0;
-  output_geometry.d = 0;
+    output_geometry.w = 0;
+    output_geometry.h = 0;
+    output_geometry.d = 0;
 
-  for (unsigned int i = 0; i < NETWORK_LAYERS_MAX_COUNT; i++)
-    layers[i] = nullptr;
+    for (unsigned int i = 0; i < NETWORK_LAYERS_MAX_COUNT; i++)
+        layers[i] = nullptr;
 
-  layers_count = 0;
-  buffer_a     = nullptr;
-  buffer_b     = nullptr;
+    layers_count = 0;
+
+    buffer_a     = nullptr;
+    buffer_b     = nullptr;
 }
 
 NeuralNetwork::~NeuralNetwork()
 {
-  delete[] buffer_a;
-  delete[] buffer_b;
+    delete[] buffer_a;
+    delete[] buffer_b;
 }
 
 void NeuralNetwork::forward()
 {
-  for (unsigned int i = 0; i < layers_count; i++)
-  {
-    for (unsigned int j = 0; j < layers[i]->get_output_size(); j++)
-      output[j] = 0;
+    for (unsigned int i = 0; i < layers_count; i++)
+    {
+        for (unsigned int j = 0; j < layers[i]->get_output_size(); j++)
+            output[j] = 0;
 
-    layers[i]->forward(output, input);
+        layers[i]->forward(output, input);
+
+        io_swap();
+    }
 
     io_swap();
-  }
-
-  io_swap();
 }
 
 
 void NeuralNetwork::set_input(nn_layer_t *input_)
 {
-  unsigned int input_size = input_geometry.w*input_geometry.h*input_geometry.d;
+    unsigned int input_size = input_geometry.w*input_geometry.h*input_geometry.d;
 
-  for (unsigned int i = 0; i < input_size; i++)
-    input[i] = input_[i];
+    for (unsigned int i = 0; i < input_size; i++)
+        input[i] = input_[i];
 }
 
 unsigned int NeuralNetwork::class_result()
 {
-  nn_t max = output[0];
-  unsigned int result = 0;
+    nn_t max = output[0];
+    unsigned int result = 0;
 
-  unsigned int output_size = output_geometry.w*output_geometry.h*output_geometry.d;
+    unsigned int output_size = output_geometry.w*output_geometry.h*output_geometry.d;
 
-  for (unsigned int i = 0; i < output_size; i++)
-    if (output[i] > max)
-    {
-      max = output[i];
-      result = i;
-    }
+    for (unsigned int i = 0; i < output_size; i++)
+        if (output[i] > max)
+        {
+            max = output[i];
+            result = i;
+        }
 
-  return result;
+    return result;
 }
 
 

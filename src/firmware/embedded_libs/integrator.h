@@ -46,6 +46,7 @@ template <class T> class Integrator
 
             return *this;
         }
+
         Integrator& operator=(const Integrator &other)
         {
             this->value     = other.value;
@@ -56,6 +57,7 @@ template <class T> class Integrator
         }
 
     public:
+        
         void init(T k_rise, T k_fall, T value = 0)
         {
             this->k_rise    = k_rise;

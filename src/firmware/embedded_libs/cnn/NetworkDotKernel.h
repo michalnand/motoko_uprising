@@ -6,3 +6,4 @@
 nn_t network_dot_kernel(nn_weight_t *va, nn_layer_t *vb, unsigned int size);
 
 #endif
+ 

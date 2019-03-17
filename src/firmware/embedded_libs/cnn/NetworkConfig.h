@@ -8,7 +8,7 @@
 
 struct sLayerGeometry
 {
-  unsigned int w, h, d;
+    unsigned int w, h, d;
 };
 
 

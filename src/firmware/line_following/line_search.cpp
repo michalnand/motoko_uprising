@@ -21,12 +21,12 @@ void LineSearch::set_last_line_position(float last_line_position)
 
 void LineSearch::keep_speed_enable()
 {
-  keep_speed = true;
+    keep_speed = true;
 }
 
 void LineSearch::keep_speed_disable()
 {
-  keep_speed = false;
+    keep_speed = false;
 }
 
 void LineSearch::main()

@@ -1,6 +1,5 @@
 #include "mem.h"
 
-
 typedef unsigned int size_t;
 
 extern unsigned int __data_start__;
@@ -12,20 +11,21 @@ unsigned char *mem_ptr;
 
 unsigned int mem_init()
 {
-  mem_ptr = (unsigned char*)(&__heap_start__);
-  return (unsigned int)mem_ptr;
+    mem_ptr = (unsigned char*)(&__heap_start__);
+    return (unsigned int)mem_ptr;
 }
 
 unsigned int mem_get_ptr()
 {
-  return (unsigned int)mem_ptr;
+    return (unsigned int)mem_ptr;
 }
 
 void *malloc(size_t size)
 {
-  unsigned char *mem_res = mem_ptr;
-  mem_ptr+= size;
-  return (void*)mem_res;
+    unsigned char *mem_res = mem_ptr;
+    mem_ptr+= size;
+
+    return (void*)mem_res;
 }
 
 void free(void *p)
@@ -40,13 +40,13 @@ void * operator new(size_t size) noexcept
 
 void operator delete(void *p) noexcept
 {
-  free(p);
+    free(p);
 }
 
 void operator delete(void *p, size_t size) noexcept
 {
-  (void)size;
-  operator delete(p);
+    (void)size;
+    operator delete(p);
 }
 
 void* operator new[](size_t size) noexcept

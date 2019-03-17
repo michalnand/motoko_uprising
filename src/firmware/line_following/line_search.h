@@ -18,6 +18,7 @@ class LineSearch
         void main();
 
         float get_speed();
+
     private:
         int process_move(unsigned int sensor_inactive_time = 0);
 

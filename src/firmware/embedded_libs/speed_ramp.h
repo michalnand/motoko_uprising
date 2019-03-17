@@ -43,6 +43,7 @@ template <class T> class SpeedRamp
 
             return *this;
         }
+        
         SpeedRamp& operator=(const SpeedRamp &other)
         {
             this->speed         = other.speed;
