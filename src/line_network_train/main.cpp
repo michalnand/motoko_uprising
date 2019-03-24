@@ -3,28 +3,25 @@
 
 
 #include <classification_experiment.h>
-
+ 
 #include <dataset_line.h>
 
 int main()
 {
-  DatasetLine dataset;
+    DatasetLine dataset;
 
-  dataset.save_to_binary("dataset/training.bin", "dataset/testing.bin", "dataset/unlabeled.bin");
+    dataset.save_to_binary("dataset/training.bin", "dataset/testing.bin", "dataset/unlabeled.bin");
+    JsonConfig parameters("experiments.json");
 
-  JsonConfig parameters("experiments.json");
 
+    for (unsigned int i = 0; i < parameters.result["experiments"].size(); i++)
+    {
+        std::cout << "processing experiment " << i << "\n";
+        std::string config_dir = parameters.result["experiments"][i].asString();
+        ClassificationExperiment experiment(dataset, config_dir);
+        experiment.run();
+    }
 
-  for (unsigned int i = 0; i < parameters.result["experiments"].size(); i++)
-  {
-    std::cout << "processing experiment " << i << "\n";
-
-    std::string config_dir = parameters.result["experiments"][i].asString();
-    ClassificationExperiment experiment(dataset, config_dir);
-    experiment.run();
-  }
-
-  std::cout << "program done\n";
-
-  return 0;
+    std::cout << "program done\n";
+    return 0;
 }

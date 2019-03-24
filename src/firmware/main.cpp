@@ -18,7 +18,7 @@ int main()
     //drivers.test_encoder_sensor();
     //drivers.test_motor_speed_feedback();
 
-    diagnostic();
+//    diagnostic();
 
     /*
     BrickAvoid brick_avoid;

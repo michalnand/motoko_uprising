@@ -17,8 +17,8 @@
         {
           "init_weight_range" : 0.0,
           "learning_rate"     : 0.001,
-          "lambda1"           : 0.00001,
-          "lambda2"           : 0.00001,
+          "lambda1"           : 0.000005,
+          "lambda2"           : 0.000005,
           "dropout"           : 0.05,
 
           "minibatch_size"    : 32
@@ -29,7 +29,7 @@
 
           {
             "type"      : "convolution",
-            "geometry"  : [3, 3, 6]
+            "geometry"  : [3, 3, 4]
           },
           {
             "type"      : "relu"
@@ -42,7 +42,15 @@
 
           {
             "type"      : "dense convolution",
-            "geometry"  : [3, 3, 6]
+            "geometry"  : [3, 3, 4]
+          },
+          {
+            "type"      : "relu"
+          },
+
+          {
+            "type"      : "dense convolution",
+            "geometry"  : [3, 3, 4]
           },
           {
             "type"      : "relu"

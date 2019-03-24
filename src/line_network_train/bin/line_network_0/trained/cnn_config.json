@@ -3,9 +3,9 @@
 	{
 		"dropout" : 0.05000000074505806,
 		"init_weight_range" : 0,
-		"lambda1" : 9.9999997473787516e-06,
-		"lambda2" : 9.9999997473787516e-06,
-		"learning_rate" : 0.0010000000474974513,
+		"lambda1" : 2.4999999368446879e-06,
+		"lambda2" : 2.4999999368446879e-06,
+		"learning_rate" : 0.00025000001187436283,
 		"minibatch_size" : 32
 	},
 	"input_geometry" : 
@@ -23,10 +23,34 @@
 				3,
 				4
 			],
+			"input_geometry" : 
+			[
+				8,
+				8,
+				1
+			],
+			"output_geometry" : 
+			[
+				8,
+				8,
+				4
+			],
 			"type" : "convolution",
 			"weights_file_name" : "line_network_0/trained/layer_0"
 		},
 		{
+			"input_geometry" : 
+			[
+				8,
+				8,
+				4
+			],
+			"output_geometry" : 
+			[
+				8,
+				8,
+				4
+			],
 			"type" : "relu",
 			"weights_file_name" : "line_network_0/trained/layer_1"
 		},
@@ -36,6 +60,18 @@
 				2,
 				2,
 				1
+			],
+			"input_geometry" : 
+			[
+				8,
+				8,
+				4
+			],
+			"output_geometry" : 
+			[
+				4,
+				4,
+				4
 			],
 			"type" : "max pooling",
 			"weights_file_name" : "line_network_0/trained/layer_2"
@@ -47,18 +83,66 @@
 				3,
 				4
 			],
+			"input_geometry" : 
+			[
+				4,
+				4,
+				4
+			],
+			"output_geometry" : 
+			[
+				4,
+				4,
+				8
+			],
 			"type" : "dense convolution",
 			"weights_file_name" : "line_network_0/trained/layer_3"
 		},
 		{
+			"input_geometry" : 
+			[
+				4,
+				4,
+				8
+			],
+			"output_geometry" : 
+			[
+				4,
+				4,
+				8
+			],
 			"type" : "relu",
 			"weights_file_name" : "line_network_0/trained/layer_4"
 		},
 		{
+			"input_geometry" : 
+			[
+				4,
+				4,
+				8
+			],
+			"output_geometry" : 
+			[
+				4,
+				4,
+				8
+			],
 			"type" : "dropout",
 			"weights_file_name" : "line_network_0/trained/layer_5"
 		},
 		{
+			"input_geometry" : 
+			[
+				4,
+				4,
+				8
+			],
+			"output_geometry" : 
+			[
+				1,
+				1,
+				5
+			],
 			"type" : "output",
 			"weights_file_name" : "line_network_0/trained/layer_6"
 		}

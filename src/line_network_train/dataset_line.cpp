@@ -19,7 +19,7 @@ DatasetLine::DatasetLine()
   luma_noise_level  = 1.0;
   white_noise_level = 0.2;
 
-  straight_rotation_noise_level = 0.1;
+  straight_rotation_noise_level = 0.6;
 
 
 
@@ -42,8 +42,8 @@ DatasetLine::DatasetLine()
 
 
 
-  unsigned int training_count = classes_count*4000;
-  unsigned int testing_count  = classes_count*500;
+  unsigned int training_count = classes_count*8000;
+  unsigned int testing_count  = classes_count*1000;
 
   training.resize(classes_count);
 

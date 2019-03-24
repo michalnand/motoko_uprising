@@ -1,6 +1,7 @@
 {
-  "experiments" :
-  [
-    "line_network_2/"
-  ]
+    "experiments" :
+    [
+        "line_network_1/",
+        "line_network_0/"
+    ]
 }
