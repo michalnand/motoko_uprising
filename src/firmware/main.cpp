@@ -7,6 +7,10 @@
 #include <line_following/position_control.h>
 #include <line_following/diagnostic.h>
 
+#include <line_following/LineNetwork/LineNetwork.h>
+
+#include <network_speed_test.h>
+
 int main()
 {
     drivers.init();
@@ -18,12 +22,15 @@ int main()
     //drivers.test_encoder_sensor();
     //drivers.test_motor_speed_feedback();
 
-//    diagnostic();
+
+    //diagnostic();
 
     /*
     BrickAvoid brick_avoid;
     brick_avoid.avoid(BRICK_AVOID_SIDE_LEFT);
     */
+
+
 
     Robot robot;
     robot.main();

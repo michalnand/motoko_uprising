@@ -3,6 +3,7 @@
 
 #include <line_sensor.h>
 #include <NeuralNetwork.h>
+#include <timer.h>
 
 #define NETWORK_INPUT_SIZE  (LINE_SENSOR_COUNT*LINE_SENSOR_COUNT)
 
@@ -25,6 +26,9 @@ class LinePredictor
 
         unsigned int process(Array<int, LINE_SENSOR_COUNT> &adc_result, long int distance_now, int sampling_distance_step = 10);
         void print();
+
+        void test();
+
 
         unsigned int get_result()
         {

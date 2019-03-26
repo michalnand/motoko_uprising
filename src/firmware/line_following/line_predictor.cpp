@@ -111,3 +111,18 @@ void LinePredictor::print()
 
     terminal << "\n\n";
 }
+
+void LinePredictor::test()
+{
+    unsigned int runs = 10;
+    timer.reset();
+    for (unsigned int i = 0; i < runs; i++)
+        process(line_sensor.adc_result, 0, 0);
+    auto computing_time = timer.elapsed_time();
+
+    terminal << "network time for " << runs << " runs : " << computing_time << "[ms]\n";
+
+    print();
+
+    timer.delay_ms(100);
+}

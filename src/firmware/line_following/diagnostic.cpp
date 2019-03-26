@@ -6,7 +6,7 @@
 #include <line_following/LineNetwork/LineNetwork.h>
 
 void diagnostic()
-{
+{ 
     LineNetwork nn;
     LinePredictor predictor(nn);
 

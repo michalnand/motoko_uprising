@@ -1,1 +1,1 @@
-~/libs/rysy/deployment/net_export/bin/net_export.elf ./line_network_1/trained/cnn_config.json LineNetwork/ LineNetwork
+~/libs/rysy/deployment/net_export/bin/net_export.elf ./line_network_2/trained/cnn_config.json LineNetwork/ LineNetwork

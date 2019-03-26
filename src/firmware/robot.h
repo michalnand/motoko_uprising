@@ -18,7 +18,7 @@ class Robot
         virtual ~Robot();
 
         void main();
-
+        
     private:
         void line_following();
         void allign_to_line(unsigned int cycles);

@@ -60,6 +60,7 @@ void Robot::main()
     }
 }
 
+
 void Robot::line_following()
 {
     //compute curve shape using CNN

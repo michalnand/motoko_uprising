@@ -3,7 +3,7 @@
 
 #include "NetworkConfig.h"
 
+nn_t network_dot_kernel_naive(nn_weight_t *va, nn_layer_t *vb, unsigned int size);
 nn_t network_dot_kernel(nn_weight_t *va, nn_layer_t *vb, unsigned int size);
 
 #endif
- 

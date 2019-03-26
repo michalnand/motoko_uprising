@@ -8,6 +8,7 @@
 #include "layer_5.h"
 #include "layer_6.h"
 #include "layer_7.h"
+#include "layer_8.h"
 
 
 LineNetwork::LineNetwork()
@@ -28,9 +29,10 @@ LineNetwork::LineNetwork()
 		layers[4] = new NetReluLayer(layer_4_kernel_geometry,layer_4_input_geometry,layer_4_output_geometry);
 		layers[5] = new NetDenseConvolutionLayer(layer_5_kernel_geometry,layer_5_input_geometry,layer_5_output_geometry,layer_5_weights,layer_5_bias,layer_5_weights_range,layer_5_bias_range);
 		layers[6] = new NetReluLayer(layer_6_kernel_geometry,layer_6_input_geometry,layer_6_output_geometry);
-		layers[7] = new NetFcLayer(layer_7_kernel_geometry,layer_7_input_geometry,layer_7_output_geometry,layer_7_weights,layer_7_bias,layer_7_weights_range,layer_7_bias_range);
+		layers[7] = new NetMaxPoolingLayer(layer_7_kernel_geometry,layer_7_input_geometry,layer_7_output_geometry);
+		layers[8] = new NetFcLayer(layer_8_kernel_geometry,layer_8_input_geometry,layer_8_output_geometry,layer_8_weights,layer_8_bias,layer_8_weights_range,layer_8_bias_range);
 
-		layers_count = 8;
+		layers_count = 9;
 		allocate_buffer();
 }
 
