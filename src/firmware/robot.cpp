@@ -18,6 +18,41 @@ Robot::~Robot()
 
 }
 
+
+void spot_move()
+{
+    unsigned int spot_state = 0;
+
+    while (true)
+    {
+        if (line_sensor.ready())
+        {
+            if (spot_state == 0)
+            {
+                motor_controll.set_right_speed(0);
+                motor_controll.set_left_speed(LINE_FOLLOWING_SPEED_MIN);
+
+                if (line_sensor.result.spot_line_position > -100)
+                    spot_state = 1;
+            }
+            else
+            {
+                motor_controll.set_right_speed(LINE_FOLLOWING_SPEED_MIN);
+                motor_controll.set_left_speed(0);
+
+                if (line_sensor.result.spot_line_position < 100)
+                    spot_state = 0;
+            }
+
+            if (line_sensor.result.line_type != LINE_TYPE_SPOT)
+                break;
+        }
+    }
+
+    motor_controll.set_left_speed(0);
+    motor_controll.set_right_speed(0);
+}
+
 void Robot::main()
 {
     while (1)
@@ -41,8 +76,14 @@ void Robot::main()
         {
             if (line_sensor.result.on_line)
             {
-                line_following();
-                //TODO mapping line
+                if (line_sensor.result.line_type == LINE_TYPE_SPOT)
+                {
+                    spot_move();
+
+                    speed_ramp.set_speed(0);
+                }
+                else
+                    line_following();
             }
             else
             {
@@ -72,6 +113,11 @@ void Robot::line_following()
     {
       case   2: speed_limit = LINE_FOLLOWING_SPEED_MAX; break;
       default : speed_limit = LINE_FOLLOWING_SPEED_MIN; break;
+    }
+
+    if (line_sensor.result.line_type == LINE_TYPE_SPOT)
+    {
+        speed_limit = LINE_FOLLOWING_SPEED_MIN;
     }
 
     if (distance_sensor.result.front_obstacle_warning)

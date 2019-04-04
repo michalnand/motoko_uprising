@@ -10,71 +10,66 @@
 #define LINE_SENSOR_COUNT   ((unsigned int)8)
 #define LINE_TYPE_SINGLE    ((unsigned int)1)
 #define LINE_TYPE_DOUBLE    ((unsigned int)2)
+#define LINE_TYPE_SPOT      ((unsigned int)3)
 
 struct sLineSensor
 {
-  unsigned char on_line, line_type;
-  int left_line_position, right_line_position;
+    unsigned char on_line, line_type;
+    int left_line_position, right_line_position, spot_line_position;
 };
 
 
 class LineSensor: public Thread
 {
-  protected:
-    Gpio<TGPIOA, 8, GPIO_MODE_OUT> sensor_led;        //sensor white led
+    protected:
+        Gpio<TGPIOA, 8, GPIO_MODE_OUT> sensor_led;        //sensor white led
+        int threshold;
+        bool m_ready;
 
+    public:
+        Array<int, LINE_SENSOR_COUNT> weights;
+        Array<int, LINE_SENSOR_COUNT> adc_calibration;
+        Array<int, LINE_SENSOR_COUNT> adc_calibration_k;
+        Array<int, LINE_SENSOR_COUNT> adc_result;
 
-    int threshold;
+    private:
+        //line sensors
+        Gpio<TGPIOA, 0, GPIO_MODE_AN> sensor_in_0;
+        Gpio<TGPIOA, 1, GPIO_MODE_AN> sensor_in_1;
+        Gpio<TGPIOA, 2, GPIO_MODE_AN> sensor_in_2;
+        Gpio<TGPIOA, 3, GPIO_MODE_AN> sensor_in_3;
+        Gpio<TGPIOA, 4, GPIO_MODE_AN> sensor_in_4;
+        Gpio<TGPIOA, 5, GPIO_MODE_AN> sensor_in_5;
+        Gpio<TGPIOA, 6, GPIO_MODE_AN> sensor_in_6;
+        Gpio<TGPIOA, 7, GPIO_MODE_AN> sensor_in_7;
 
-    bool m_ready;
+    public:
+        sLineSensor result;
 
-  public:
-    Array<int, LINE_SENSOR_COUNT> weights;
+    protected:
+        sLineSensor result_tmp;
 
-    Array<int, LINE_SENSOR_COUNT> adc_calibration;
-    Array<int, LINE_SENSOR_COUNT> adc_calibration_k;
+    public:
+        LineSensor();
+        ~LineSensor();
 
-    Array<int, LINE_SENSOR_COUNT> adc_result;
+        int init();
 
-  private:
-    //line sensors
-    Gpio<TGPIOA, 0, GPIO_MODE_AN> sensor_in_0;
-    Gpio<TGPIOA, 1, GPIO_MODE_AN> sensor_in_1;
-    Gpio<TGPIOA, 2, GPIO_MODE_AN> sensor_in_2;
-    Gpio<TGPIOA, 3, GPIO_MODE_AN> sensor_in_3;
-    Gpio<TGPIOA, 4, GPIO_MODE_AN> sensor_in_4;
-    Gpio<TGPIOA, 5, GPIO_MODE_AN> sensor_in_5;
-    Gpio<TGPIOA, 6, GPIO_MODE_AN> sensor_in_6;
-    Gpio<TGPIOA, 7, GPIO_MODE_AN> sensor_in_7;
+        void on();
+        void off();
+        bool ready();
+        int get_max();
+        int get_min();
 
+        void main();
 
-  public:
-    sLineSensor result;
+    protected:
+        int integrate(unsigned int center);
 
-  public:
-    LineSensor();
-    ~LineSensor();
-
-    int init();
-
-    void on();
-    void off();
-
-    bool ready();
-
-    int get_max();
-    int get_min();
-
-    void main();
-
-  protected:
-    int integrate(unsigned int center);
-
-    int find_left_line_pos();
-    int find_right_line_pos();
-    int find_center_line_pos();
-
-
+        int find_left_line_pos();
+        int find_right_line_pos();
+        int find_center_line_pos();
+        int find_spot_pos();
 };
 
 #endif
