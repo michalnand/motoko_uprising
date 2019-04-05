@@ -21,30 +21,24 @@ Robot::~Robot()
 
 void spot_move()
 {
-    unsigned int spot_state = 0;
+    int line_position = line_sensor.result.spot_line_position;
 
     while (true)
     {
         if (line_sensor.ready())
         {
-            if (spot_state == 0)
+            if (line_position > 0)
             {
                 motor_controll.set_right_speed(0);
                 motor_controll.set_left_speed(LINE_FOLLOWING_SPEED_MIN);
-
-                if (line_sensor.result.spot_line_position > -100)
-                    spot_state = 1;
             }
             else
             {
-                motor_controll.set_right_speed(LINE_FOLLOWING_SPEED_MIN);
-                motor_controll.set_left_speed(0);
-
-                if (line_sensor.result.spot_line_position < 100)
-                    spot_state = 0;
+                motor_controll.set_right_speed(0);
+                motor_controll.set_left_speed(LINE_FOLLOWING_SPEED_MIN);
             }
 
-            if (line_sensor.result.line_type != LINE_TYPE_SPOT)
+            if (line_sensor.result.on_line_count <= 3)
                 break;
         }
     }

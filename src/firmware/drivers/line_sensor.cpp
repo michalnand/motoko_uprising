@@ -56,6 +56,10 @@ int LineSensor::init()
   result.right_line_position    = 0;
   result.spot_line_position     = 0;
 
+  result.on_line_count  = 0;
+  result.max_left_idx   = 0;
+  result.max_right_idx  = 0;
+
   result_tmp = result;
 
   m_ready = false;
@@ -105,6 +109,31 @@ void LineSensor::main()
             adc_result[i] = 0;
     }
 
+    result_tmp.on_line_count = 0;
+    for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
+        if (adc_result[i] > threshold)
+            result_tmp.on_line_count++;
+
+    result_tmp.max_left_idx = 0;
+    result_tmp.max_right_idx = LINE_SENSOR_COUNT-1;
+
+    for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
+    {
+        if (adc_result[i] > threshold)
+        {
+            result_tmp.max_left_idx = i;
+            break;
+        }
+    }
+
+    for (unsigned int i = LINE_SENSOR_COUNT-1; i > 0; i--)
+    {
+        if (adc_result[i] > threshold)
+        {
+            result_tmp.max_right_idx = i;
+            break;
+        }
+    }
 
     result_tmp.on_line = false;
 
@@ -112,6 +141,11 @@ void LineSensor::main()
     int left_line   = find_left_line_pos();
     int right_line  = find_right_line_pos();
     int center_line = find_center_line_pos();
+
+
+
+
+
 
     if (spot_line != -1)
     {
@@ -233,20 +267,26 @@ int LineSensor::find_center_line_pos()
 
 int LineSensor::find_spot_pos()
 {
-    int kernel[3] = {-1, 2, -1};
-
-    int sum = 0;
-
-    int conv_result_max = 0;
-    int result = -1;
-
     bool on_line = false;
     for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
+    {
         if (adc_result[i] > threshold)
             on_line = true;
+    }
 
     if (on_line != true)
         return -1;
+
+    unsigned int count = 0;
+    for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
+        if (adc_result[i] > threshold)
+            count++;
+
+
+    int kernel[3] = {-1, 2, -1};
+    int sum = 0;
+    int conv_result_max = 0;
+    int result = -1;
 
     for (unsigned int i = 1; i < (LINE_SENSOR_COUNT-1); i++)
     {
@@ -268,11 +308,17 @@ int LineSensor::find_spot_pos()
         sum+= conv_result;
     }
 
+    /*
     if (sum < 1300)
     {
         return result;
     }
+    */
 
+    if (count > (LINE_SENSOR_COUNT - 2))
+    {
+        return result;
+    }
 
     return -1;
 }

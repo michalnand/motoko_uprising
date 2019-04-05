@@ -16,6 +16,9 @@ struct sLineSensor
 {
     unsigned char on_line, line_type;
     int left_line_position, right_line_position, spot_line_position;
+
+    unsigned int on_line_count;
+    unsigned int max_left_idx, max_right_idx;
 };
 
 
