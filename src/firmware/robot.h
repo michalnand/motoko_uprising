@@ -11,6 +11,8 @@
 
 #include <speed_ramp.h>
 
+#include <brick_detection.h>
+
 class Robot
 {
     public:
@@ -18,12 +20,11 @@ class Robot
         virtual ~Robot();
 
         void main();
-        
+
     private:
         void line_following();
         void allign_to_line(unsigned int cycles);
-        void brick_avoid_hard(unsigned int side);
-
+        void spot_move();
 
     private:
         PID steering_pid;
@@ -35,6 +36,8 @@ class Robot
         BrickAvoid brick_avoid;
 
         SpeedRamp<float> speed_ramp;
+
+        BrickDetection brick_detection;
 };
 
 

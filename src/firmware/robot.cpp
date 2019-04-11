@@ -11,6 +11,20 @@ Robot::Robot()
 
     //initialize line curve type predictor using neural network
     line_predictor.init(cnn);
+
+    int ignore_distance = 200;
+    Array<bool, MAX_OBSTACLES_COUNT> brick_detection_pattern;
+
+    brick_detection_pattern[0] = false;
+    brick_detection_pattern[1] = true;
+    brick_detection_pattern[2] = true;
+    brick_detection_pattern[3] = false;
+    brick_detection_pattern[4] = true;
+    brick_detection_pattern[5] = true;
+    brick_detection_pattern[6] = true;
+    brick_detection_pattern[7] = true;
+
+    brick_detection.init(brick_detection_pattern, ignore_distance);
 }
 
 Robot::~Robot()
@@ -19,44 +33,17 @@ Robot::~Robot()
 }
 
 
-void spot_move()
-{
-    int line_position = line_sensor.result.spot_line_position;
-
-    while (true)
-    {
-        if (line_sensor.ready())
-        {
-            if (line_position > 0)
-            {
-                motor_controll.set_right_speed(0);
-                motor_controll.set_left_speed(LINE_FOLLOWING_SPEED_MIN);
-            }
-            else
-            {
-                motor_controll.set_right_speed(0);
-                motor_controll.set_left_speed(LINE_FOLLOWING_SPEED_MIN);
-            }
-
-            if (line_sensor.result.on_line_count <= 3)
-                break;
-        }
-    }
-
-    motor_controll.set_left_speed(0);
-    motor_controll.set_right_speed(0);
-}
 
 void Robot::main()
 {
     while (1)
     {
-        if (distance_sensor.ready() && distance_sensor.result.front_obstacle)
+        if (distance_sensor.ready() && brick_detection.process(distance_sensor.result))
         {
             //allign_to_line(100);
             //brick_avoid.avoid_hard(BRICK_AVOID_SIDE_LEFT);
 
-            brick_avoid.avoid(BRICK_AVOID_SIDE_LEFT);
+            //brick_avoid.avoid(BRICK_AVOID_SIDE_LEFT);
 
             motor_controll.set_left_speed(0);
             motor_controll.set_right_speed(0);
@@ -167,7 +154,32 @@ void Robot::allign_to_line(unsigned int cycles)
     }
 }
 
-void Robot::brick_avoid_hard(unsigned int side)
-{
 
+
+void Robot::spot_move()
+{
+    int line_position = line_sensor.result.spot_line_position;
+
+    while (true)
+    {
+        if (line_sensor.ready())
+        {
+            if (line_position > 0)
+            {
+                motor_controll.set_right_speed(0);
+                motor_controll.set_left_speed(LINE_FOLLOWING_SPEED_MIN);
+            }
+            else
+            {
+                motor_controll.set_right_speed(0);
+                motor_controll.set_left_speed(LINE_FOLLOWING_SPEED_MIN);
+            }
+
+            if (line_sensor.result.on_line_count <= 3)
+                break;
+        }
+    }
+
+    motor_controll.set_left_speed(0);
+    motor_controll.set_right_speed(0);
 }
