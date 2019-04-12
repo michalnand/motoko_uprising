@@ -17,6 +17,7 @@ class BrickAvoid
 
     private:
         void process_move(long int d_left, long int d_right);
+        void move_forward(int sensor_distance);
 
 
     private:

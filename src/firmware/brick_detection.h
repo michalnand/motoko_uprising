@@ -14,12 +14,12 @@ class BrickDetection
         virtual ~BrickDetection();
 
     public:
-        void init(Array<bool, MAX_OBSTACLES_COUNT> &detection_pattern, int ignore_distance);
+        void init(Array<int, MAX_OBSTACLES_COUNT> &detection_pattern, int ignore_distance);
 
-        bool process(sDistanceSensor &distance_sensor_result);
+        int process(sDistanceSensor &distance_sensor_result);
 
     private:
-        Array<bool, MAX_OBSTACLES_COUNT> detection_pattern;
+        Array<int, MAX_OBSTACLES_COUNT> detection_pattern;
         unsigned int ignore_distance;
         int last_detection_distance;
         unsigned int obstacle_idx;

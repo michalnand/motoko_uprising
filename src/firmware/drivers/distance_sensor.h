@@ -4,53 +4,57 @@
 #include <gpio.h>
 #include <thread.h>
 #include <timer.h>
+#include <comb_filter.h>
 
 #define DISTANCE_SENSOR_COUNT   ((unsigned int)3)
 
-#define DISTANCE_FRONT    ((unsigned int)0)
-#define DISTANCE_LEFT     ((unsigned int)1)
-#define DISTANCE_RIGHT    ((unsigned int)2)
+#define DISTANCE_FRONT          ((unsigned int)0)
+#define DISTANCE_LEFT           ((unsigned int)1)
+#define DISTANCE_RIGHT          ((unsigned int)2)
 
-#define DISTANCE_MAX      ((int)256)
+#define DISTANCE_MAX            ((int)256)
 
 struct sDistanceSensor
 {
-  int left, front, right;
-  bool front_obstacle_warning, front_obstacle;
+    int left, front, right;
+    bool front_obstacle_warning, front_obstacle;
 };
 
 class DistanceSensor: public Thread
 {
   public:
-    sDistanceSensor result;
+      sDistanceSensor result;
 
   private:
-    bool m_ready;
+      bool m_ready;
 
-  protected: 
-    Gpio<TGPIOC, 13, GPIO_MODE_OUT> front_ir_led;        //front IR led
-  //  Gpio<TGPIOC, 2, GPIO_MODE_OUT> front_ir_led;        //front IR led
+  protected:
+      Gpio<TGPIOC, 13, GPIO_MODE_OUT> front_ir_led;        //front IR led
 
-    Gpio<TGPIOB, 0, GPIO_MODE_AN> sensor_in_0; //front as ADC input
-    Gpio<TGPIOB, 1, GPIO_MODE_AN> sensor_in_1; //left as ADC input
-    Gpio<TGPIOC, 0, GPIO_MODE_AN> sensor_in_2; //right as ADC input
+      Gpio<TGPIOB, 0, GPIO_MODE_AN> sensor_in_0; //front as ADC input
+      Gpio<TGPIOB, 1, GPIO_MODE_AN> sensor_in_1; //left as ADC input
+      Gpio<TGPIOC, 0, GPIO_MODE_AN> sensor_in_2; //right as ADC input
 
-    unsigned int state;
-    int adc_res_on[DISTANCE_SENSOR_COUNT];
-    int adc_res_off[DISTANCE_SENSOR_COUNT];
+      unsigned int state;
+      int adc_res_on[DISTANCE_SENSOR_COUNT];
+      int adc_res_off[DISTANCE_SENSOR_COUNT];
 
   public:
-    DistanceSensor();
-    ~DistanceSensor();
+      DistanceSensor();
+      virtual ~DistanceSensor();
 
-    int init();
-    void main();
+      int init();
+      void main();
 
-    bool ready();
+      bool ready();
 
   private:
-    void filter(int *res_prev, unsigned int sensor_id);
+      void filter(int *res_prev, unsigned int sensor_id);
 
+  private:
+      CombFilter<int, 3> front_distance_filter;
+      CombFilter<int, 3> left_distance_filter;
+      CombFilter<int, 3> right_distance_filter;
 };
 
 

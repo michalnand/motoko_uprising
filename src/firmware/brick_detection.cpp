@@ -6,7 +6,7 @@
 BrickDetection::BrickDetection()
 {
     for (unsigned int i = 0; i < this->detection_pattern.size(); i++)
-        this->detection_pattern[i] = true;
+        this->detection_pattern[i] = 1;
 
     this->ignore_distance           = 0;
     this->last_detection_distance   = 0;
@@ -19,7 +19,7 @@ BrickDetection::~BrickDetection()
 }
 
 
-void BrickDetection::init(Array<bool, MAX_OBSTACLES_COUNT> &detection_pattern, int ignore_distance)
+void BrickDetection::init(Array<int, MAX_OBSTACLES_COUNT> &detection_pattern, int ignore_distance)
 {
     this->detection_pattern         = detection_pattern;
     this->ignore_distance           = ignore_distance;
@@ -27,22 +27,22 @@ void BrickDetection::init(Array<bool, MAX_OBSTACLES_COUNT> &detection_pattern, i
     this->obstacle_idx              = 0;
 }
 
-bool BrickDetection::process(sDistanceSensor &distance_sensor_result)
+int BrickDetection::process(sDistanceSensor &distance_sensor_result)
 {
-    bool result = false;
+    int result = 0;
 
     if (distance_sensor.result.front_obstacle)
     {
         auto dist = encoder_sensor.get_distance() - this->last_detection_distance;
         dist = abs(dist);
 
-        this->last_detection_distance = encoder_sensor.get_distance();
-
         if (dist > this->ignore_distance)
         {
-            if (this->detection_pattern[obstacle_idx] == true)
+            this->last_detection_distance = encoder_sensor.get_distance();
+
+            if (this->detection_pattern[obstacle_idx] != 0)
             {
-                result = true;
+                result = this->detection_pattern[obstacle_idx];
             }
 
             if (this->obstacle_idx < this->detection_pattern.size() - 1)

@@ -315,7 +315,7 @@ int LineSensor::find_spot_pos()
     }
     */
 
-    if (count > (LINE_SENSOR_COUNT - 2))
+    if (count > (LINE_SENSOR_COUNT - 3))
     {
         return result;
     }

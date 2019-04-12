@@ -13,16 +13,16 @@ Robot::Robot()
     line_predictor.init(cnn);
 
     int ignore_distance = 200;
-    Array<bool, MAX_OBSTACLES_COUNT> brick_detection_pattern;
+    Array<int, MAX_OBSTACLES_COUNT> brick_detection_pattern;
 
-    brick_detection_pattern[0] = false;
-    brick_detection_pattern[1] = true;
-    brick_detection_pattern[2] = true;
-    brick_detection_pattern[3] = false;
-    brick_detection_pattern[4] = true;
-    brick_detection_pattern[5] = true;
-    brick_detection_pattern[6] = true;
-    brick_detection_pattern[7] = true;
+    brick_detection_pattern[0] = 0;
+    brick_detection_pattern[1] = 1;
+    brick_detection_pattern[2] = 1;
+    brick_detection_pattern[3] = 0;
+    brick_detection_pattern[4] = 0;
+    brick_detection_pattern[5] = 0;
+    brick_detection_pattern[6] = 0;
+    brick_detection_pattern[7] = 0;
 
     brick_detection.init(brick_detection_pattern, ignore_distance);
 }
@@ -38,12 +38,14 @@ void Robot::main()
 {
     while (1)
     {
-        if (distance_sensor.ready() && brick_detection.process(distance_sensor.result))
+        if (distance_sensor.ready() && brick_detection.process(distance_sensor.result) != 0)
+        //if (distance_sensor.ready() && distance_sensor.result.front_obstacle)
         {
-            //allign_to_line(100);
+            allign_to_line(50);
             //brick_avoid.avoid_hard(BRICK_AVOID_SIDE_LEFT);
 
-            //brick_avoid.avoid(BRICK_AVOID_SIDE_LEFT);
+            brick_avoid.avoid(BRICK_AVOID_SIDE_LEFT);
+
 
             motor_controll.set_left_speed(0);
             motor_controll.set_right_speed(0);

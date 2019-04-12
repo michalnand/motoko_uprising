@@ -15,75 +15,98 @@ DistanceSensor::~DistanceSensor()
 
 int DistanceSensor::init()
 {
-  state = 0;
-  front_ir_led = 0;
+    state = 0;
+    front_ir_led = 0;
 
-  for (unsigned int i = 0; i < DISTANCE_SENSOR_COUNT; i++)
-    adc_res_on[i] = 0;
+    for (unsigned int i = 0; i < DISTANCE_SENSOR_COUNT; i++)
+        adc_res_on[i] = 0;
 
-  for (unsigned int i = 0; i < DISTANCE_SENSOR_COUNT; i++)
-    adc_res_off[i] = 0;
+    for (unsigned int i = 0; i < DISTANCE_SENSOR_COUNT; i++)
+        adc_res_off[i] = 0;
 
-  result.left   = DISTANCE_MAX;
-  result.front  = DISTANCE_MAX;
-  result.right  = DISTANCE_MAX;
+    result.left   = DISTANCE_MAX;
+    result.front  = DISTANCE_MAX;
+    result.right  = DISTANCE_MAX;
 
-  result.front_obstacle_warning = false;
-  result.front_obstacle = false;
+    result.front_obstacle_warning = false;
+    result.front_obstacle = false;
 
-  timer.add_task(this, 20, false);
+    front_distance_filter.fill(result.front);
+    left_distance_filter.fill(result.left);
+    right_distance_filter.fill(result.right);
 
-  m_ready = false;
+    timer.add_task(this, 5, false);
 
-  return 0;
+    m_ready = false;
+
+    return 0;
 }
 
 void DistanceSensor::main()
 {
-  switch (state)
-  {
-    case 0:
+    switch (state)
     {
+        case 0:
+        {
 
-      adc_res_off[DISTANCE_FRONT] = adc.read(ADC_FRONT);
-      adc_res_off[DISTANCE_LEFT]  = adc.read(ADC_LEFT);
-      adc_res_off[DISTANCE_RIGHT] = adc.read(ADC_RIGHT);
+          adc_res_off[DISTANCE_FRONT] = adc.read(ADC_FRONT);
+          adc_res_off[DISTANCE_LEFT]  = adc.read(ADC_LEFT);
+          adc_res_off[DISTANCE_RIGHT] = adc.read(ADC_RIGHT);
 
-      front_ir_led = 1;
+          front_ir_led = 1;
 
-      state = 1;
+          state = 1;
+        }
+        break;
+
+        case 1:
+        {
+            adc_res_on[DISTANCE_FRONT]  = adc.read(ADC_FRONT);
+            adc_res_on[DISTANCE_LEFT]   = adc.read(ADC_LEFT);
+            adc_res_on[DISTANCE_RIGHT]  = adc.read(ADC_RIGHT);
+
+            front_ir_led = 0;
+
+            int dif;
+
+            dif = 4096 - (adc_res_off[DISTANCE_FRONT] - adc_res_on[DISTANCE_FRONT]);
+            if (dif < 0)
+              dif = 0;
+            result.front = front_distance_filter.process(dif);
+
+
+            dif = 4096 - (adc_res_off[DISTANCE_LEFT] - adc_res_on[DISTANCE_LEFT]);
+            if (dif < 0)
+              dif = 0;
+            result.left = left_distance_filter.process(dif);
+
+
+            dif = 4096 - (adc_res_off[DISTANCE_RIGHT] - adc_res_on[DISTANCE_RIGHT]);
+            if (dif < 0)
+              dif = 0;
+            result.right = right_distance_filter.process(dif);
+
+
+            if (result.front < 2900)
+                result.front_obstacle_warning = true;
+            else
+                result.front_obstacle_warning = false;
+
+            if (result.front < 2500)
+                result.front_obstacle = true;
+            else
+                result.front_obstacle = false;
+
+            state = 0;
+            m_ready = true;
+        }
+ 
+        break;
     }
-    break;
-
-    case 1:
-    {
-      adc_res_on[DISTANCE_FRONT]  = adc.read(ADC_FRONT);
-      adc_res_on[DISTANCE_LEFT]   = adc.read(ADC_LEFT);
-      adc_res_on[DISTANCE_RIGHT]  = adc.read(ADC_RIGHT);
-
-      front_ir_led = 0;
-
-      filter(&result.front, DISTANCE_FRONT);
-      filter(&result.left, DISTANCE_LEFT);
-      filter(&result.right, DISTANCE_RIGHT);
-
-      if (result.front < 190)
-        result.front_obstacle_warning = true;
-      else
-        result.front_obstacle_warning = false;
-
-      if (result.front < 180)
-        result.front_obstacle = true;
-      else
-        result.front_obstacle = false;
-
-      state = 0;
-      m_ready = true;
-    }
-    break;
-  }
 }
 
+
+/*
 void DistanceSensor::filter(int *res_prev, unsigned int sensor_id)
 {
   int dif = adc_res_off[sensor_id] - adc_res_on[sensor_id];
@@ -93,16 +116,16 @@ void DistanceSensor::filter(int *res_prev, unsigned int sensor_id)
   int k = 3;
   *res_prev = (k* (*res_prev) + (DISTANCE_MAX*(4096 - dif))/4096)/(1+k);
 }
-
+*/
 
 bool DistanceSensor::ready()
 {
-  bool res = m_ready;
+    bool res = m_ready;
 
-  __disable_irq();
-  if (res)
-    m_ready = false;
-  __enable_irq();
+    __disable_irq();
+    if (res)
+        m_ready = false;
+    __enable_irq();
 
-  return res;
+    return res;
 }
