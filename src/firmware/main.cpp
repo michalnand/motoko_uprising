@@ -1,15 +1,7 @@
 #include <embedded_libs.h>
-
 #include <drivers/drivers.h>
-
 #include <robot.h>
-
-#include <line_following/position_control.h>
-#include <line_following/diagnostic.h>
-
-#include <line_following/LineNetwork/LineNetwork.h>
-
-#include <network_speed_test.h>
+#include <diagnostic.h>
 
 
 int main()
@@ -24,7 +16,7 @@ int main()
     //drivers.test_motor_speed_feedback();
 
 
-    //diagnostic();
+    diagnostic();
 
 
     Robot robot;

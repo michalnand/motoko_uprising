@@ -1,7 +1,7 @@
 #ifndef _BRICK_AVOID_H_
 #define _BRICK_AVOID_H_
 
-#include <line_following/position_control.h>
+#include <position_control.h>
 
 #define BRICK_AVOID_SIDE_RIGHT      ((unsigned int)0)
 #define BRICK_AVOID_SIDE_LEFT       ((unsigned int)1)

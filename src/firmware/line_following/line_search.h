@@ -2,7 +2,7 @@
 #define _LINE_SEARCH_H_
 
 
-#include <line_following/position_control.h>
+#include <position_control.h>
 
 class LineSearch
 {

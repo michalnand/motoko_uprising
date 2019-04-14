@@ -7,7 +7,7 @@
 #include <line_following/line_predictor.h>
 
 #include <line_following/line_search.h>
-#include <line_following/brick_avoid.h>
+#include <brick_avoid.h>
 
 #include <speed_ramp.h>
 
