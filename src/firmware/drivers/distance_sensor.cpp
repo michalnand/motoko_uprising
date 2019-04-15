@@ -87,12 +87,12 @@ void DistanceSensor::main()
             result.right = right_distance_filter.process(dif);
 
 
-            if (result.front < 2900)
+            if (result.front < 2200)
                 result.front_obstacle_warning = true;
             else
                 result.front_obstacle_warning = false;
 
-            if (result.front < 2500)
+            if (result.front < 1500)
                 result.front_obstacle = true;
             else
                 result.front_obstacle = false;
@@ -100,7 +100,7 @@ void DistanceSensor::main()
             state = 0;
             m_ready = true;
         }
- 
+
         break;
     }
 }

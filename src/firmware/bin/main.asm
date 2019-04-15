@@ -4360,10 +4360,10 @@ Disassembly of section .text:
  80029a0:	f7ff ff8a 	bl	80028b8 <_ZN10CombFilterIiLj3EE7processERi.isra.0>
  80029a4:	68a3      	ldr	r3, [r4, #8]
  80029a6:	60e0      	str	r0, [r4, #12]
- 80029a8:	f640 3253 	movw	r2, #2899	; 0xb53
+ 80029a8:	f640 0297 	movw	r2, #2199	; 0x897
  80029ac:	4293      	cmp	r3, r2
  80029ae:	dc07      	bgt.n	80029c0 <_ZN14DistanceSensor4mainEv+0xc8>
- 80029b0:	f640 12c3 	movw	r2, #2499	; 0x9c3
+ 80029b0:	f240 52db 	movw	r2, #1499	; 0x5db
  80029b4:	4293      	cmp	r3, r2
  80029b6:	7425      	strb	r5, [r4, #16]
  80029b8:	dd05      	ble.n	80029c6 <_ZN14DistanceSensor4mainEv+0xce>
