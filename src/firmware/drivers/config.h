@@ -28,12 +28,21 @@
 
 #define MOTOR_CONTROLL_SPEED_MAX         ((float)2000.0)
 
+/*
 #define MOTOR_CONTROLL_PID_LEFT_KP    ((float)0.8)
 #define MOTOR_CONTROLL_PID_LEFT_KI    ((float)0.09)
 #define MOTOR_CONTROLL_PID_LEFT_KD    ((float)1.0)
 #define MOTOR_CONTROLL_PID_RIGHT_KP   ((float)0.8)
 #define MOTOR_CONTROLL_PID_RIGHT_KI   ((float)0.09)
 #define MOTOR_CONTROLL_PID_RIGHT_KD   ((float)1.0)
+*/
 
+
+#define MOTOR_CONTROLL_PID_LEFT_KP    ((float)1.1)
+#define MOTOR_CONTROLL_PID_LEFT_KI    ((float)0.09)
+#define MOTOR_CONTROLL_PID_LEFT_KD    ((float)1.0)
+#define MOTOR_CONTROLL_PID_RIGHT_KP   ((float)1.1)
+#define MOTOR_CONTROLL_PID_RIGHT_KI   ((float)0.09)
+#define MOTOR_CONTROLL_PID_RIGHT_KD   ((float)1.0)
 
 #endif

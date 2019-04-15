@@ -67,6 +67,7 @@ void Robot::main()
                 }
                 else
                     line_following();
+
             }
             else
             {
