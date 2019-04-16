@@ -17,12 +17,14 @@ class BrickDetection
         void init(Array<int, MAX_OBSTACLES_COUNT> &detection_pattern, int ignore_distance);
 
         int process(sDistanceSensor &distance_sensor_result);
-
+        int get();
+        
     private:
         Array<int, MAX_OBSTACLES_COUNT> detection_pattern;
         unsigned int ignore_distance;
         int last_detection_distance;
         unsigned int obstacle_idx;
+        int result;
 };
 
 

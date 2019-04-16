@@ -144,9 +144,6 @@ void LineSensor::main()
 
 
 
-
-
-
     if (spot_line != -1)
     {
         result_tmp.line_type            = LINE_TYPE_SPOT;
@@ -283,6 +280,20 @@ int LineSensor::find_spot_pos()
             count++;
 
 
+    unsigned int continuos_count = 0;
+    unsigned int tmp = 0;
+    for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
+    {
+        if (adc_result[i] > threshold)
+            tmp++;
+        else
+            tmp = 0;
+
+        if (tmp > continuos_count)
+            continuos_count = tmp;
+    }
+
+
     int kernel[3] = {-1, 2, -1};
     int sum = 0;
     int conv_result_max = 0;
@@ -308,14 +319,13 @@ int LineSensor::find_spot_pos()
         sum+= conv_result;
     }
 
-    /*
-    if (sum < 1300)
+
+    if (count > (LINE_SENSOR_COUNT - 1))
     {
         return result;
     }
-    */
 
-    if (count > (LINE_SENSOR_COUNT - 3))
+    if (continuos_count >= LINE_SENSOR_COUNT/2)
     {
         return result;
     }

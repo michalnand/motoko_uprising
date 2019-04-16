@@ -86,13 +86,13 @@ void DistanceSensor::main()
               dif = 0;
             result.right = right_distance_filter.process(dif);
 
-
-            if (result.front < 2200)
+ 
+            if (result.front < 1900)
                 result.front_obstacle_warning = true;
             else
                 result.front_obstacle_warning = false;
 
-            if (result.front < 1500)
+            if (result.front < 1400)
                 result.front_obstacle = true;
             else
                 result.front_obstacle = false;

@@ -11,6 +11,8 @@ BrickDetection::BrickDetection()
     this->ignore_distance           = 0;
     this->last_detection_distance   = 0;
     this->obstacle_idx              = 0;
+
+    this->result = 0;
 }
 
 BrickDetection::~BrickDetection()
@@ -29,7 +31,7 @@ void BrickDetection::init(Array<int, MAX_OBSTACLES_COUNT> &detection_pattern, in
 
 int BrickDetection::process(sDistanceSensor &distance_sensor_result)
 {
-    int result = 0;
+    result = 0;
 
     if (distance_sensor.result.front_obstacle)
     {
@@ -50,5 +52,10 @@ int BrickDetection::process(sDistanceSensor &distance_sensor_result)
         }
     }
 
+    return result;
+}
+
+int BrickDetection::get()
+{
     return result;
 }

@@ -17,71 +17,9 @@ BrickAvoid::~BrickAvoid()
 }
 
 
-void BrickAvoid::avoid_hard(unsigned int side)
-{
-    int angle1 = 1.7*WHEEL_CIRCUMFERENCE/4;
-    int angle2 = 2.8*WHEEL_CIRCUMFERENCE/4;
-    int angle3 = 1.7*WHEEL_CIRCUMFERENCE/4;
-
-    process_move(-angle1, angle1);
-    process_move(200, 200);
-
-    process_move(angle2, -angle2);
-    process_move(300, 300);
-
-    process_move(angle3, -angle3);
-
-
-    /*
-    SpeedRamp<float> speed_ramp;
-    float speed_limit =  0.4;
-
-    //speed rise limit
-    speed_ramp.init(0.02);
-
-    while (1)
-    {
-        float speed     = speed_ramp.process(speed_limit);
-
-        float steering  = -0.06;
-
-        float speed_left  = -steering  + speed;
-        float speed_right = steering + speed;
-
-        motor_controll.set_left_speed(speed_left);
-        motor_controll.set_right_speed(speed_right);
-    }
-    */
-
-    while (1)
-    {
-
-    }
-    /*
-    int right_angle_distance = 2.1*WHEEL_CIRCUMFERENCE/4;
-
-    timer.delay_ms(50);
-
-
-    process_move(-right_angle_distance, right_angle_distance);
-    process_move(200, 200);
-    process_move(right_angle_distance, -right_angle_distance);
-    process_move(180, 180);
-    process_move(right_angle_distance, -right_angle_distance);
-    process_move(120, 120);
-    process_move(-right_angle_distance, right_angle_distance);
-
-    timer.delay_ms(50);
-    */
-}
-
-void BrickAvoid::avoid(unsigned int side)
+void BrickAvoid::avoid(int side)
 {
     int right_angle_distance = WHEEL_CIRCUMFERENCE;
-
-    process_move(-right_angle_distance/4, -right_angle_distance/4);
-    process_move(0, right_angle_distance);
-
 
     float steering_max = 0.3;
     float speed_limit =  0.25;
@@ -92,17 +30,39 @@ void BrickAvoid::avoid(unsigned int side)
     steering_pid.init(0.18, 0.0, 0.3, 10.0);
     steering_pid.reset(distance_sensor.result.right/1000.0);
 
-
     speed_ramp.init(0.01);
+
+    process_move(-right_angle_distance/4, -right_angle_distance/4);
+
+    if (side == BRICK_AVOID_SIDE_LEFT)
+    {
+        process_move(0, right_angle_distance);
+    }
+
+    if (side == BRICK_AVOID_SIDE_RIGHT)
+    {
+        process_move(right_angle_distance, 0);
+    }
+
+
 
     while (1)
     {
         if (distance_sensor.ready())
         {
+            float distance, error;
             //compute distance error
-            float distance = distance_sensor.result.right/1000.0;
+            if (side == BRICK_AVOID_SIDE_LEFT)
+            {
+                distance = distance_sensor.result.right/1000.0;
+                error    = 3.8 - distance;
+            }
 
-            float error    = 3.8 - distance;
+            if (side == BRICK_AVOID_SIDE_RIGHT)
+            {
+                distance = distance_sensor.result.left/1000.0;
+                error    = -(3.7 - distance);
+            }
 
             //compute steering using PID
             float steering  = steering_pid.process(error);
@@ -128,7 +88,15 @@ void BrickAvoid::avoid(unsigned int side)
     }
 
 
-    process_move(0, (130*right_angle_distance)/100);
+    if (side == BRICK_AVOID_SIDE_LEFT)
+    {
+        process_move(0, (90*right_angle_distance)/100);
+    }
+
+    if (side == BRICK_AVOID_SIDE_RIGHT)
+    {
+        process_move((90*right_angle_distance)/100, 0);
+    }
 }
 
 

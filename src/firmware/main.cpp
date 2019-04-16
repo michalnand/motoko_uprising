@@ -3,7 +3,7 @@
 #include <robot.h>
 #include <diagnostic.h>
 
-
+/*
 void brick_avoid_test()
 {
     int right_angle_distance = WHEEL_CIRCUMFERENCE;
@@ -48,6 +48,7 @@ void brick_avoid_test()
         }
     }
 }
+*/
 
 int main()
 {

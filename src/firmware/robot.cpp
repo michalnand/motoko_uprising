@@ -15,14 +15,16 @@ Robot::Robot()
     int ignore_distance = 200;
     Array<int, MAX_OBSTACLES_COUNT> brick_detection_pattern;
 
+
     brick_detection_pattern[0] = 0;
-    brick_detection_pattern[1] = 1;
-    brick_detection_pattern[2] = 1;
+    brick_detection_pattern[1] = BRICK_AVOID_SIDE_LEFT;
+    brick_detection_pattern[2] = BRICK_AVOID_SIDE_RIGHT;
     brick_detection_pattern[3] = 0;
     brick_detection_pattern[4] = 0;
     brick_detection_pattern[5] = 0;
     brick_detection_pattern[6] = 0;
     brick_detection_pattern[7] = 0;
+
 
     brick_detection.init(brick_detection_pattern, ignore_distance);
 }
@@ -42,9 +44,11 @@ void Robot::main()
         //if (distance_sensor.ready() && distance_sensor.result.front_obstacle)
         {
             allign_to_line(50);
-            //brick_avoid.avoid_hard(BRICK_AVOID_SIDE_LEFT);
 
-            brick_avoid.avoid(BRICK_AVOID_SIDE_LEFT);
+            if (brick_detection.get() > 0)
+                brick_avoid.avoid(BRICK_AVOID_SIDE_LEFT);
+            else
+                brick_avoid.avoid(BRICK_AVOID_SIDE_RIGHT);
 
 
             motor_controll.set_left_speed(0);
@@ -96,6 +100,8 @@ void Robot::line_following()
     switch (line_predictor.get_result())
     {
       case   2: speed_limit = LINE_FOLLOWING_SPEED_MAX; break;
+      case   1:
+      case   3: speed_limit = (LINE_FOLLOWING_SPEED_MAX + LINE_FOLLOWING_SPEED_MIN)/2.0; break;
       default : speed_limit = LINE_FOLLOWING_SPEED_MIN; break;
     }
 
@@ -162,6 +168,10 @@ void Robot::allign_to_line(unsigned int cycles)
 void Robot::spot_move()
 {
     int line_position = line_sensor.result.spot_line_position;
+
+
+    motor_controll.set_left_speed(0);
+    motor_controll.set_right_speed(0);
 
     while (true)
     {

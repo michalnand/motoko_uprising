@@ -3,8 +3,8 @@
 
 #include <position_control.h>
 
-#define BRICK_AVOID_SIDE_RIGHT      ((unsigned int)0)
-#define BRICK_AVOID_SIDE_LEFT       ((unsigned int)1)
+#define BRICK_AVOID_SIDE_RIGHT      ((int)-1)
+#define BRICK_AVOID_SIDE_LEFT       ((int)1)
 
 class BrickAvoid
 {
@@ -12,8 +12,7 @@ class BrickAvoid
         BrickAvoid();
         virtual ~BrickAvoid();
 
-        void avoid_hard(unsigned int side);
-        void avoid(unsigned int side);
+        void avoid(int side);
 
     private:
         void process_move(long int d_left, long int d_right);
