@@ -325,10 +325,12 @@ int LineSensor::find_spot_pos()
         return result;
     }
 
+    /*
     if (continuos_count >= LINE_SENSOR_COUNT/2)
     {
         return result;
     }
-
+    */
+    
     return -1;
 }

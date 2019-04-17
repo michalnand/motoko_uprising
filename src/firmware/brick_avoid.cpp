@@ -27,8 +27,9 @@ void BrickAvoid::avoid(int side)
     PID steering_pid;
     SpeedRamp<float> speed_ramp;
 
-    steering_pid.init(0.18, 0.0, 0.3, 10.0);
-    steering_pid.reset(distance_sensor.result.right/1000.0);
+    //steering_pid.init(0.18, 0.0, 0.3, 10.0);
+    steering_pid.init(0.6, 0.0, 0.3, 10.0);
+    steering_pid.reset(distance_sensor.result.right);
 
     speed_ramp.init(0.01);
 
@@ -37,7 +38,7 @@ void BrickAvoid::avoid(int side)
     if (side == BRICK_AVOID_SIDE_LEFT)
     {
         process_move(0, right_angle_distance);
-    }
+    } 
 
     if (side == BRICK_AVOID_SIDE_RIGHT)
     {
@@ -54,14 +55,16 @@ void BrickAvoid::avoid(int side)
             //compute distance error
             if (side == BRICK_AVOID_SIDE_LEFT)
             {
-                distance = distance_sensor.result.right/1000.0;
-                error    = 3.8 - distance;
+                distance = distance_sensor.result.right;
+                //error    = 3.8 - distance;
+                error    = 0.92 - distance;
             }
 
             if (side == BRICK_AVOID_SIDE_RIGHT)
             {
-                distance = distance_sensor.result.left/1000.0;
-                error    = -(3.7 - distance);
+                distance = distance_sensor.result.left;
+                //error    = -(3.7 - distance);
+                error    = -(0.86 - distance);
             }
 
             //compute steering using PID

@@ -4,7 +4,8 @@
 #include <gpio.h>
 #include <thread.h>
 #include <timer.h>
-#include <comb_filter.h>
+#include <embedded_libs/math/filter.h>
+#include <embedded_libs/comb_filter.h>
 
 #define DISTANCE_SENSOR_COUNT   ((unsigned int)3)
 
@@ -12,11 +13,12 @@
 #define DISTANCE_LEFT           ((unsigned int)1)
 #define DISTANCE_RIGHT          ((unsigned int)2)
 
-#define DISTANCE_MAX            ((int)256)
+//#define DISTANCE_MAX            ((int)256)
+#define DISTANCE_MAX            ((float)1.0)
 
 struct sDistanceSensor
 {
-    int left, front, right;
+    float left, front, right;
     bool front_obstacle_warning, front_obstacle;
 };
 
@@ -52,9 +54,11 @@ class DistanceSensor: public Thread
       void filter(int *res_prev, unsigned int sensor_id);
 
   private:
-      CombFilter<int, 3> front_distance_filter;
-      CombFilter<int, 3> left_distance_filter;
-      CombFilter<int, 3> right_distance_filter;
+
+     //Filter front_distance_filter, left_distance_filter, right_distance_filter;
+
+
+      CombFilter<float, 3> front_distance_filter, left_distance_filter, right_distance_filter;
 };
 
 

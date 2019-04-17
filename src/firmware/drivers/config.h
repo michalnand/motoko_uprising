@@ -10,7 +10,8 @@
 
 
 //line sensor parameters
-#define LINE_SENSOR_THRESHOLD   ((int)400)
+//#define LINE_SENSOR_THRESHOLD   ((int)400)
+#define LINE_SENSOR_THRESHOLD   ((int)300)
 #define LINE_SENSOR_DT          ((unsigned int)4)
 #define LINE_SENSOR_STEP        ((int)64)
 

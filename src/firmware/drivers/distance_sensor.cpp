@@ -31,9 +31,21 @@ int DistanceSensor::init()
     result.front_obstacle_warning = false;
     result.front_obstacle = false;
 
+
     front_distance_filter.fill(result.front);
     left_distance_filter.fill(result.left);
     right_distance_filter.fill(result.right);
+
+
+
+    /*
+    float r = 0.98;
+    float b = (1.0 - r*r)/2.0;
+    front_distance_filter.set_coefs(0.0, -r*r, b, 0.0, -b);
+    left_distance_filter.set_coefs(0.0,  -r*r, b, 0.0, -b);
+    right_distance_filter.set_coefs(0.0, -r*r, b, 0.0, -b);
+    */
+
 
     timer.add_task(this, 5, false);
 
@@ -67,32 +79,32 @@ void DistanceSensor::main()
 
             front_ir_led = 0;
 
-            int dif;
+            float dif;
 
-            dif = 4096 - (adc_res_off[DISTANCE_FRONT] - adc_res_on[DISTANCE_FRONT]);
+            dif = 1.0 - (adc_res_off[DISTANCE_FRONT] - adc_res_on[DISTANCE_FRONT])/4096.0;
             if (dif < 0)
               dif = 0;
             result.front = front_distance_filter.process(dif);
 
 
-            dif = 4096 - (adc_res_off[DISTANCE_LEFT] - adc_res_on[DISTANCE_LEFT]);
+            dif = 1.0 - (adc_res_off[DISTANCE_LEFT] - adc_res_on[DISTANCE_LEFT])/4096.0;
             if (dif < 0)
               dif = 0;
             result.left = left_distance_filter.process(dif);
 
 
-            dif = 4096 - (adc_res_off[DISTANCE_RIGHT] - adc_res_on[DISTANCE_RIGHT]);
+            dif = 1.0 - (adc_res_off[DISTANCE_RIGHT] - adc_res_on[DISTANCE_RIGHT])/4096.0;
             if (dif < 0)
               dif = 0;
             result.right = right_distance_filter.process(dif);
 
- 
-            if (result.front < 1900)
+
+            if (result.front < 0.38)
                 result.front_obstacle_warning = true;
             else
                 result.front_obstacle_warning = false;
 
-            if (result.front < 1400)
+            if (result.front < 0.31) 
                 result.front_obstacle = true;
             else
                 result.front_obstacle = false;
@@ -100,23 +112,44 @@ void DistanceSensor::main()
             state = 0;
             m_ready = true;
         }
-
         break;
     }
+
+    /*
+
+    front_distance_filter.process(adc.read(ADC_FRONT)/4096.0);
+    left_distance_filter.process(adc.read(ADC_LEFT)/4096.0);
+    right_distance_filter.process(adc.read(ADC_RIGHT)/4096.0);
+
+
+    result.front    = front_distance_filter.get_absolute();
+    result.left     = left_distance_filter.get_absolute();
+    result.right    = right_distance_filter.get_absolute();
+
+
+    if (result.front < 1900)
+        result.front_obstacle_warning = true;
+    else
+        result.front_obstacle_warning = false;
+
+    if (result.front < 1100)
+        result.front_obstacle = true;
+    else
+        result.front_obstacle = false;
+
+    m_ready = true;
+
+
+    unsigned int period = 2;
+
+    if ((state%period) == 0)
+        front_ir_led = 0;
+    if ((state%period) == period/2)
+        front_ir_led = 1;
+    state++;
+    */
 }
 
-
-/*
-void DistanceSensor::filter(int *res_prev, unsigned int sensor_id)
-{
-  int dif = adc_res_off[sensor_id] - adc_res_on[sensor_id];
-  if (dif < 0)
-    dif = 0;
-
-  int k = 3;
-  *res_prev = (k* (*res_prev) + (DISTANCE_MAX*(4096 - dif))/4096)/(1+k);
-}
-*/
 
 bool DistanceSensor::ready()
 {

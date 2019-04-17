@@ -39,7 +39,7 @@ template <class T, const unsigned int size_> class CombFilter
             return size_;
         }
 
-        T process(T &input)
+        T process(T input)
         {
             filter[ptr] = input;
             ptr = (ptr+1)%size_;

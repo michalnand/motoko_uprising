@@ -3,7 +3,7 @@
 #include <robot.h>
 #include <diagnostic.h>
 
-/*
+
 void brick_avoid_test()
 {
     int right_angle_distance = WHEEL_CIRCUMFERENCE;
@@ -14,7 +14,7 @@ void brick_avoid_test()
     PID steering_pid;
     SpeedRamp<float> speed_ramp;
 
-    steering_pid.init(0.18, 0.0, 0.3, 10.0);
+    steering_pid.init(0.6, 0.0, 0.3, 10.0);
     steering_pid.reset(distance_sensor.result.right/1000.0);
 
 
@@ -25,9 +25,9 @@ void brick_avoid_test()
         if (distance_sensor.ready())
         {
             //compute distance error
-            float distance = distance_sensor.result.right/1000.0;
+            float distance = distance_sensor.result.right;
 
-            float error    = 3.8 - distance;
+            float error    = 0.9 - distance;
 
             //compute steering using PID
             float steering  = steering_pid.process(error);
@@ -48,7 +48,7 @@ void brick_avoid_test()
         }
     }
 }
-*/
+
 
 int main()
 {
@@ -63,8 +63,9 @@ int main()
     //drivers.test_motor_speed_feedback();
 
 
-//    diagnostic();
+    //diagnostic();
 
+    //brick_avoid_test();
 
     Robot robot;
     robot.main();
