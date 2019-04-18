@@ -55,10 +55,8 @@ class DistanceSensor: public Thread
 
   private:
 
-     //Filter front_distance_filter, left_distance_filter, right_distance_filter;
-
-
-      CombFilter<float, 3> front_distance_filter, left_distance_filter, right_distance_filter;
+     Filter front_distance_filter, left_distance_filter, right_distance_filter;
+     //CombFilter<float, 3> front_distance_filter, left_distance_filter, right_distance_filter;
 };
 
 

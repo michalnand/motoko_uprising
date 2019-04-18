@@ -58,7 +58,7 @@ int main()
     //brick_avoid_test();
     //drivers.test_imu_sensor();
     //drivers.test_line_sensor();
-    //drivers.test_distance_sensor();
+    drivers.test_distance_sensor();
     //drivers.test_encoder_sensor();
     //drivers.test_motor_speed_feedback();
 

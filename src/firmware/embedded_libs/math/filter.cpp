@@ -22,7 +22,7 @@ Filter::~Filter()
 void Filter::set_coefs(float a1, float a2, float b0, float b1, float b2)
 {
     this->a1 = a1;
-    this->a1 = a2;
+    this->a2 = a2;
 
     this->b0 = b0;
     this->b1 = b1;
@@ -38,14 +38,10 @@ void Filter::reset()
     x0 = 0.0;
     x1 = 0.0;
     x2 = 0.0;
-
-    result = 0.0;
 }
 
 float Filter::process(float x)
 {
-    float sum;
-
     x2 = x1;
     x1 = x0;
     x0 = x;
@@ -53,28 +49,24 @@ float Filter::process(float x)
     y2 = y1;
     y1 = y0;
 
-    sum = b0*x0;
-    sum+= b1*x1;
-    sum+= b2*x2;
+    y0 = b0*x0;
+    y0+= b1*x1;
+    y0+= b2*x2;
 
-    sum+= a1*y1;
-    sum+= a2*y2;
+    y0+= a1*y1;
+    y0+= a2*y2;
 
-    y0 = sum;
-
-    result = sum;
-
-    return result;
+    return y0;
 }
 
 float Filter::get()
 {
-    return result;
+    return y0;
 }
 
 float Filter::get_absolute()
 {
-    float tmp = result;
+    float tmp = y0;
     if (tmp < 0.0)
         tmp = -tmp;
 

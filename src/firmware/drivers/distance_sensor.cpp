@@ -31,20 +31,19 @@ int DistanceSensor::init()
     result.front_obstacle_warning = false;
     result.front_obstacle = false;
 
-
+    /*
     front_distance_filter.fill(result.front);
     left_distance_filter.fill(result.left);
     right_distance_filter.fill(result.right);
+    */
 
 
 
-    /*
-    float r = 0.98;
+    float r = 0.5;
     float b = (1.0 - r*r)/2.0;
     front_distance_filter.set_coefs(0.0, -r*r, b, 0.0, -b);
     left_distance_filter.set_coefs(0.0,  -r*r, b, 0.0, -b);
     right_distance_filter.set_coefs(0.0, -r*r, b, 0.0, -b);
-    */
 
 
     timer.add_task(this, 5, false);
@@ -56,6 +55,8 @@ int DistanceSensor::init()
 
 void DistanceSensor::main()
 {
+
+    /*
     switch (state)
     {
         case 0:
@@ -104,7 +105,7 @@ void DistanceSensor::main()
             else
                 result.front_obstacle_warning = false;
 
-            if (result.front < 0.31) 
+            if (result.front < 0.31)
                 result.front_obstacle = true;
             else
                 result.front_obstacle = false;
@@ -114,25 +115,27 @@ void DistanceSensor::main()
         }
         break;
     }
+    */
 
-    /*
+    float adc_front = adc.read(ADC_FRONT)/4096.0;
+    float adc_left = adc.read(ADC_LEFT)/4096.0;
+    float adc_right = adc.read(ADC_RIGHT)/4096.0;
 
-    front_distance_filter.process(adc.read(ADC_FRONT)/4096.0);
-    left_distance_filter.process(adc.read(ADC_LEFT)/4096.0);
-    right_distance_filter.process(adc.read(ADC_RIGHT)/4096.0);
-
-
-    result.front    = front_distance_filter.get_absolute();
-    result.left     = left_distance_filter.get_absolute();
-    result.right    = right_distance_filter.get_absolute();
+    front_distance_filter.process(adc_front);
+    left_distance_filter.process(adc_left);
+    right_distance_filter.process(adc_right);
 
 
-    if (result.front < 1900)
+    result.front    = 1.0 - front_distance_filter.get_absolute();
+    result.left     = 1.0 - left_distance_filter.get_absolute();
+    result.right    = 1.0 - right_distance_filter.get_absolute();
+
+    if (result.front < 0.7)
         result.front_obstacle_warning = true;
     else
         result.front_obstacle_warning = false;
 
-    if (result.front < 1100)
+    if (result.front < 0.64)
         result.front_obstacle = true;
     else
         result.front_obstacle = false;
@@ -140,14 +143,13 @@ void DistanceSensor::main()
     m_ready = true;
 
 
-    unsigned int period = 2;
+    unsigned int period = 4;
 
     if ((state%period) == 0)
         front_ir_led = 0;
     if ((state%period) == period/2)
         front_ir_led = 1;
     state++;
-    */
 }
 
 

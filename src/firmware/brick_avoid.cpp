@@ -38,7 +38,7 @@ void BrickAvoid::avoid(int side)
     if (side == BRICK_AVOID_SIDE_LEFT)
     {
         process_move(0, right_angle_distance);
-    } 
+    }
 
     if (side == BRICK_AVOID_SIDE_RIGHT)
     {
@@ -64,7 +64,7 @@ void BrickAvoid::avoid(int side)
             {
                 distance = distance_sensor.result.left;
                 //error    = -(3.7 - distance);
-                error    = -(0.86 - distance);
+                error    = -(0.89 - distance);
             }
 
             //compute steering using PID

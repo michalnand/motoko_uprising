@@ -15,7 +15,7 @@ Robot::Robot()
     int ignore_distance = 200;
     Array<int, MAX_OBSTACLES_COUNT> brick_detection_pattern;
 
-    /*
+
     brick_detection_pattern[0] = 0;
     brick_detection_pattern[1] = BRICK_AVOID_SIDE_LEFT;
     brick_detection_pattern[2] = BRICK_AVOID_SIDE_RIGHT;
@@ -24,8 +24,9 @@ Robot::Robot()
     brick_detection_pattern[5] = 0;
     brick_detection_pattern[6] = 0;
     brick_detection_pattern[7] = 0;
-    */
 
+
+    /*
     brick_detection_pattern[0] = BRICK_AVOID_SIDE_LEFT;
     brick_detection_pattern[1] = BRICK_AVOID_SIDE_RIGHT;
     brick_detection_pattern[2] = 0;
@@ -34,6 +35,7 @@ Robot::Robot()
     brick_detection_pattern[5] = 0;
     brick_detection_pattern[6] = 0;
     brick_detection_pattern[7] = 0;
+    */
 
     brick_detection.init(brick_detection_pattern, ignore_distance);
 }
@@ -178,7 +180,7 @@ void Robot::spot_move()
 {
     int line_position = line_sensor.result.spot_line_position;
 
-
+    
     motor_controll.set_left_speed(0);
     motor_controll.set_right_speed(0);
 
