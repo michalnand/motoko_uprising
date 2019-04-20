@@ -6,6 +6,7 @@ Terminal                  terminal;
 Timer                     timer;
 TI2C<TGPIOB, 7, 6, 10>    i2c;
 IMU                       imu_sensor;
+EEPROM                    eeprom;
 ADC                       adc;
 LineSensor                line_sensor;
 DistanceSensor            distance_sensor;
@@ -47,6 +48,9 @@ int Drivers::init()
 
   imu_sensor.init(i2c);
   terminal << "imu init done with " << imu_sensor.present() << "\n";
+
+  eeprom.init(i2c);
+  terminal << "eeprom init done with " << eeprom.present() << "\n";
 
   adc.init();
   terminal << "adc init done\n";

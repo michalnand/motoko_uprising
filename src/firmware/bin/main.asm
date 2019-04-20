@@ -49,7 +49,7 @@ Disassembly of section .isr_vector:
  80000a4:	08000189 	stmdaeq	r0, {r0, r3, r7, r8}
  80000a8:	08000189 	stmdaeq	r0, {r0, r3, r7, r8}
  80000ac:	08000189 	stmdaeq	r0, {r0, r3, r7, r8}
- 80000b0:	08002e79 	stmdaeq	r0, {r0, r3, r4, r5, r6, r9, sl, fp, sp}
+ 80000b0:	08002ef9 	stmdaeq	r0, {r0, r3, r4, r5, r6, r7, r9, sl, fp, sp}
  80000b4:	08000189 	stmdaeq	r0, {r0, r3, r7, r8}
  80000b8:	08000189 	stmdaeq	r0, {r0, r3, r7, r8}
  80000bc:	08000189 	stmdaeq	r0, {r0, r3, r7, r8}
@@ -154,10 +154,10 @@ Disassembly of section .text:
  80001f2:	bf00      	nop
  80001f4:	20000000 	andcs	r0, r0, r0
  80001f8:	20000000 	andcs	r0, r0, r0
- 80001fc:	08004a58 	stmdaeq	r0, {r3, r4, r6, r9, fp, lr}
+ 80001fc:	08004b44 	stmdaeq	r0, {r2, r6, r8, r9, fp, lr}
  8000200:	e000ed00 	and	lr, r0, r0, lsl #26
- 8000204:	08004a58 	stmdaeq	r0, {r3, r4, r6, r9, fp, lr}
- 8000208:	08004a5c 	stmdaeq	r0, {r2, r3, r4, r6, r9, fp, lr}
+ 8000204:	08004b44 	stmdaeq	r0, {r2, r6, r8, r9, fp, lr}
+ 8000208:	08004b48 	stmdaeq	r0, {r3, r6, r8, r9, fp, lr}
 
 0800020c <SystemInit>:
  800020c:	4a39      	ldr	r2, [pc, #228]	; (80002f4 <SystemInit+0xe8>)
@@ -464,13 +464,13 @@ Disassembly of section .text:
  80004d4:	f001 f870 	bl	80015b8 <_ZN3PIDC1Effff>
  80004d8:	f104 08e0 	add.w	r8, r4, #224	; 0xe0
  80004dc:	4648      	mov	r0, r9
- 80004de:	f003 fabf 	bl	8003a60 <_ZN11LineNetworkC1Ev>
+ 80004de:	f003 fb23 	bl	8003b28 <_ZN11LineNetworkC1Ev>
  80004e2:	4640      	mov	r0, r8
- 80004e4:	f003 fa0a 	bl	80038fc <_ZN13LinePredictorC1Ev>
+ 80004e4:	f003 fa6e 	bl	80039c4 <_ZN13LinePredictorC1Ev>
  80004e8:	f504 7098 	add.w	r0, r4, #304	; 0x130
- 80004ec:	f003 f916 	bl	800371c <_ZN10LineSearchC1Ev>
+ 80004ec:	f003 f97a 	bl	80037e4 <_ZN10LineSearchC1Ev>
  80004f0:	f504 70c8 	add.w	r0, r4, #400	; 0x190
- 80004f4:	f003 fe1e 	bl	8004134 <_ZN10BrickAvoidC1Ev>
+ 80004f4:	f003 fe82 	bl	80041fc <_ZN10BrickAvoidC1Ev>
  80004f8:	f504 77fa 	add.w	r7, r4, #500	; 0x1f4
  80004fc:	4b19      	ldr	r3, [pc, #100]	; (8000564 <_ZN5RobotC1Ev+0xb4>)
  80004fe:	f8c4 31e8 	str.w	r3, [r4, #488]	; 0x1e8
@@ -490,7 +490,7 @@ Disassembly of section .text:
  8000526:	4649      	mov	r1, r9
  8000528:	4640      	mov	r0, r8
  800052a:	f8c4 51ec 	str.w	r5, [r4, #492]	; 0x1ec
- 800052e:	f003 f9f9 	bl	8003924 <_ZN13LinePredictor4initER13NeuralNetwork>
+ 800052e:	f003 fa5d 	bl	80039ec <_ZN13LinePredictor4initER13NeuralNetwork>
  8000532:	2201      	movs	r2, #1
  8000534:	9205      	str	r2, [sp, #20]
  8000536:	4b10      	ldr	r3, [pc, #64]	; (8000578 <_ZN5RobotC1Ev+0xc8>)
@@ -511,13 +511,13 @@ Disassembly of section .text:
  8000558:	4620      	mov	r0, r4
  800055a:	b00d      	add	sp, #52	; 0x34
  800055c:	e8bd 83f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, pc}
- 8000560:	08004354 	stmdaeq	r0, {r2, r4, r6, r8, r9, lr}
- 8000564:	08004344 	stmdaeq	r0, {r2, r6, r8, r9, lr}
+ 8000560:	0800441c 	stmdaeq	r0, {r2, r3, r4, sl, lr}
+ 8000564:	0800440c 	stmdaeq	r0, {r2, r3, sl, lr}
  8000568:	41200000 			; <UNDEFINED> instruction: 0x41200000
  800056c:	3fe66666 	svccc	0x00e66666
  8000570:	3e99999a 			; <UNDEFINED> instruction: 0x3e99999a
- 8000574:	3b03126f 	blcc	80c4f38 <_sidata+0xc04dc>
- 8000578:	08004334 	stmdaeq	r0, {r2, r4, r5, r8, r9, lr}
+ 8000574:	3b03126f 	blcc	80c4f38 <_sidata+0xc03f0>
+ 8000578:	080043fc 	stmdaeq	r0, {r2, r3, r4, r5, r6, r7, r8, r9, lr}
 
 0800057c <_ZN5Robot14line_followingEv>:
  800057c:	b510      	push	{r4, lr}
@@ -529,7 +529,7 @@ Disassembly of section .text:
  800058c:	4602      	mov	r2, r0
  800058e:	4933      	ldr	r1, [pc, #204]	; (800065c <_ZN5Robot14line_followingEv+0xe0>)
  8000590:	f104 00e0 	add.w	r0, r4, #224	; 0xe0
- 8000594:	f003 f9d6 	bl	8003944 <_ZN13LinePredictor7processER5ArrayIiLj8EEli>
+ 8000594:	f003 fa3a 	bl	8003a0c <_ZN13LinePredictor7processER5ArrayIiLj8EEli>
  8000598:	f8d4 3128 	ldr.w	r3, [r4, #296]	; 0x128
  800059c:	2b02      	cmp	r3, #2
  800059e:	d058      	beq.n	8000652 <_ZN5Robot14line_followingEv+0xd6>
@@ -583,19 +583,19 @@ Disassembly of section .text:
  800063c:	ecbd 8b04 	vpop	{d8-d9}
  8000640:	f504 7098 	add.w	r0, r4, #304	; 0x130
  8000644:	e8bd 4010 	ldmia.w	sp!, {r4, lr}
- 8000648:	f003 b87e 	b.w	8003748 <_ZN10LineSearch22set_last_line_positionEf>
+ 8000648:	f003 b8e2 	b.w	8003810 <_ZN10LineSearch22set_last_line_positionEf>
  800064c:	eddf 7a06 	vldr	s15, [pc, #24]	; 8000668 <_ZN5Robot14line_followingEv+0xec>
  8000650:	e7ac      	b.n	80005ac <_ZN5Robot14line_followingEv+0x30>
  8000652:	eddf 7a09 	vldr	s15, [pc, #36]	; 8000678 <_ZN5Robot14line_followingEv+0xfc>
  8000656:	e7a9      	b.n	80005ac <_ZN5Robot14line_followingEv+0x30>
- 8000658:	20000234 	andcs	r0, r0, r4, lsr r2
- 800065c:	20000330 	andcs	r0, r0, r0, lsr r3
+ 8000658:	20000240 	andcs	r0, r0, r0, asr #4
+ 800065c:	2000033c 	andcs	r0, r0, ip, lsr r3
  8000660:	3f19999a 	svccc	0x0019999a
- 8000664:	200002b4 			; <UNDEFINED> instruction: 0x200002b4
+ 8000664:	200002c0 	andcs	r0, r0, r0, asr #5
  8000668:	3ecccccd 	cdpcc	12, 12, cr12, cr12, cr13, {6}
  800066c:	20000158 	andcs	r0, r0, r8, asr r1
  8000670:	00000000 	andeq	r0, r0, r0
- 8000674:	200003ac 	andcs	r0, r0, ip, lsr #7
+ 8000674:	200003b8 			; <UNDEFINED> instruction: 0x200003b8
  8000678:	3f4ccccd 	svccc	0x004ccccd
 
 0800067c <_ZN5Robot14allign_to_lineEj>:
@@ -632,14 +632,14 @@ Disassembly of section .text:
  80006d6:	f002 f945 	bl	8002964 <_ZN13MotorControll15set_right_speedEf>
  80006da:	ee18 1a10 	vmov	r1, s16
  80006de:	f506 7098 	add.w	r0, r6, #304	; 0x130
- 80006e2:	f003 f831 	bl	8003748 <_ZN10LineSearch22set_last_line_positionEf>
+ 80006e2:	f003 f895 	bl	8003810 <_ZN10LineSearch22set_last_line_positionEf>
  80006e6:	e7d1      	b.n	800068c <_ZN5Robot14allign_to_lineEj+0x10>
  80006e8:	ecbd 8b04 	vpop	{d8-d9}
  80006ec:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
  80006ee:	bf00      	nop
- 80006f0:	200002b4 			; <UNDEFINED> instruction: 0x200002b4
+ 80006f0:	200002c0 	andcs	r0, r0, r0, asr #5
  80006f4:	00000000 	andeq	r0, r0, r0
- 80006f8:	200003ac 	andcs	r0, r0, ip, lsr #7
+ 80006f8:	200003b8 			; <UNDEFINED> instruction: 0x200003b8
 
 080006fc <_ZN5Robot9spot_moveEv>:
  80006fc:	b510      	push	{r4, lr}
@@ -671,8 +671,8 @@ Disassembly of section .text:
  800073e:	e8bd 4010 	ldmia.w	sp!, {r4, lr}
  8000742:	f002 b90f 	b.w	8002964 <_ZN13MotorControll15set_right_speedEf>
  8000746:	bf00      	nop
- 8000748:	200003ac 	andcs	r0, r0, ip, lsr #7
- 800074c:	200002b4 			; <UNDEFINED> instruction: 0x200002b4
+ 8000748:	200003b8 			; <UNDEFINED> instruction: 0x200003b8
+ 800074c:	200002c0 	andcs	r0, r0, r0, asr #5
  8000750:	3ecccccd 	cdpcc	12, 12, cr12, cr12, cr13, {6}
 
 08000754 <_ZN5Robot4mainEv>:
@@ -683,7 +683,7 @@ Disassembly of section .text:
  8000762:	4604      	mov	r4, r0
  8000764:	2600      	movs	r6, #0
  8000766:	4640      	mov	r0, r8
- 8000768:	f002 fad6 	bl	8002d18 <_ZN14DistanceSensor5readyEv>
+ 8000768:	f002 fb16 	bl	8002d98 <_ZN14DistanceSensor5readyEv>
  800076c:	b138      	cbz	r0, 800077e <_ZN5Robot4mainEv+0x2a>
  800076e:	f504 77fa 	add.w	r7, r4, #500	; 0x1f4
  8000772:	492a      	ldr	r1, [pc, #168]	; (800081c <_ZN5Robot4mainEv+0xc8>)
@@ -705,7 +705,7 @@ Disassembly of section .text:
  800079c:	f8c4 61ec 	str.w	r6, [r4, #492]	; 0x1ec
  80007a0:	e7e1      	b.n	8000766 <_ZN5Robot4mainEv+0x12>
  80007a2:	2101      	movs	r1, #1
- 80007a4:	f003 fd0e 	bl	80041c4 <_ZN10BrickAvoid5avoidEi>
+ 80007a4:	f003 fd72 	bl	800428c <_ZN10BrickAvoid5avoidEi>
  80007a8:	2100      	movs	r1, #0
  80007aa:	481d      	ldr	r0, [pc, #116]	; (8000820 <_ZN5Robot4mainEv+0xcc>)
  80007ac:	f002 f8d8 	bl	8002960 <_ZN13MotorControll14set_left_speedEf>
@@ -728,9 +728,9 @@ Disassembly of section .text:
  80007e6:	e7be      	b.n	8000766 <_ZN5Robot4mainEv+0x12>
  80007e8:	f504 7798 	add.w	r7, r4, #304	; 0x130
  80007ec:	4638      	mov	r0, r7
- 80007ee:	f002 ffad 	bl	800374c <_ZN10LineSearch17keep_speed_enableEv>
+ 80007ee:	f003 f811 	bl	8003814 <_ZN10LineSearch17keep_speed_enableEv>
  80007f2:	4638      	mov	r0, r7
- 80007f4:	f002 ffe2 	bl	80037bc <_ZN10LineSearch4mainEv>
+ 80007f4:	f003 f846 	bl	8003884 <_ZN10LineSearch4mainEv>
  80007f8:	e7d6      	b.n	80007a8 <_ZN5Robot4mainEv+0x54>
  80007fa:	2132      	movs	r1, #50	; 0x32
  80007fc:	4620      	mov	r0, r4
@@ -743,9 +743,9 @@ Disassembly of section .text:
  8000810:	f04f 31ff 	mov.w	r1, #4294967295	; 0xffffffff
  8000814:	e7c6      	b.n	80007a4 <_ZN5Robot4mainEv+0x50>
  8000816:	bf00      	nop
- 8000818:	200002b4 			; <UNDEFINED> instruction: 0x200002b4
+ 8000818:	200002c0 	andcs	r0, r0, r0, asr #5
  800081c:	2000015c 	andcs	r0, r0, ip, asr r1
- 8000820:	200003ac 	andcs	r0, r0, ip, lsr #7
+ 8000820:	200003b8 			; <UNDEFINED> instruction: 0x200003b8
  8000824:	20000158 	andcs	r0, r0, r8, asr r1
 
 08000828 <_ZN5RobotD1Ev>:
@@ -756,19 +756,19 @@ Disassembly of section .text:
  8000830:	f500 70fa 	add.w	r0, r0, #500	; 0x1f4
  8000834:	f000 ff38 	bl	80016a8 <_ZN14BrickDetectionD1Ev>
  8000838:	f504 70c8 	add.w	r0, r4, #400	; 0x190
- 800083c:	f003 fcac 	bl	8004198 <_ZN10BrickAvoidD1Ev>
+ 800083c:	f003 fd10 	bl	8004260 <_ZN10BrickAvoidD1Ev>
  8000840:	f504 7098 	add.w	r0, r4, #304	; 0x130
- 8000844:	f003 f83c 	bl	80038c0 <_ZN10LineSearchD1Ev>
+ 8000844:	f003 f8a0 	bl	8003988 <_ZN10LineSearchD1Ev>
  8000848:	f104 00e0 	add.w	r0, r4, #224	; 0xe0
- 800084c:	f003 f84e 	bl	80038ec <_ZN13LinePredictorD1Ev>
+ 800084c:	f003 f8b2 	bl	80039b4 <_ZN13LinePredictorD1Ev>
  8000850:	f104 0030 	add.w	r0, r4, #48	; 0x30
- 8000854:	f003 f8de 	bl	8003a14 <_ZN11LineNetworkD1Ev>
+ 8000854:	f003 f942 	bl	8003adc <_ZN11LineNetworkD1Ev>
  8000858:	1d20      	adds	r0, r4, #4
  800085a:	f000 fe8d 	bl	8001578 <_ZN3PIDD1Ev>
  800085e:	4620      	mov	r0, r4
  8000860:	bd10      	pop	{r4, pc}
  8000862:	bf00      	nop
- 8000864:	08004354 	stmdaeq	r0, {r2, r4, r6, r8, r9, lr}
+ 8000864:	0800441c 	stmdaeq	r0, {r2, r3, r4, sl, lr}
 
 08000868 <_ZN5RobotD0Ev>:
  8000868:	b510      	push	{r4, lr}
@@ -815,7 +815,7 @@ Disassembly of section .text:
  80008a2:	6003      	str	r3, [r0, #0]
  80008a4:	4770      	bx	lr
  80008a6:	bf00      	nop
- 80008a8:	08004364 	stmdaeq	r0, {r2, r5, r6, r8, r9, lr}
+ 80008a8:	0800442c 	stmdaeq	r0, {r2, r3, r5, sl, lr}
 
 080008ac <_ZN13I2C_Interface9write_regEhhh>:
  80008ac:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
@@ -906,7 +906,7 @@ Disassembly of section .text:
  8000950:	f000 fd24 	bl	800139c <_ZN12NetworkLayerD1Ev>
  8000954:	4620      	mov	r0, r4
  8000956:	bd10      	pop	{r4, pc}
- 8000958:	08004388 	stmdaeq	r0, {r3, r7, r8, r9, lr}
+ 8000958:	08004450 	stmdaeq	r0, {r4, r6, sl, lr}
 
 0800095c <_ZN10NetFcLayerD0Ev>:
  800095c:	b510      	push	{r4, lr}
@@ -998,7 +998,7 @@ Disassembly of section .text:
  8000a2e:	63a3      	str	r3, [r4, #56]	; 0x38
  8000a30:	b005      	add	sp, #20
  8000a32:	bd30      	pop	{r4, r5, pc}
- 8000a34:	08004388 	stmdaeq	r0, {r3, r7, r8, r9, lr}
+ 8000a34:	08004450 	stmdaeq	r0, {r4, r6, sl, lr}
 
 08000a38 <_ZN12NetReluLayer7forwardEPaS0_>:
  8000a38:	b570      	push	{r4, r5, r6, lr}
@@ -1027,7 +1027,7 @@ Disassembly of section .text:
  8000a64:	f000 fc9a 	bl	800139c <_ZN12NetworkLayerD1Ev>
  8000a68:	4620      	mov	r0, r4
  8000a6a:	bd10      	pop	{r4, pc}
- 8000a6c:	0800439c 	stmdaeq	r0, {r2, r3, r4, r7, r8, r9, lr}
+ 8000a6c:	08004464 	stmdaeq	r0, {r2, r5, r6, sl, lr}
 
 08000a70 <_ZN12NetReluLayerD0Ev>:
  8000a70:	b510      	push	{r4, lr}
@@ -1068,7 +1068,7 @@ Disassembly of section .text:
  8000ac6:	62a3      	str	r3, [r4, #40]	; 0x28
  8000ac8:	b005      	add	sp, #20
  8000aca:	bd30      	pop	{r4, r5, pc}
- 8000acc:	0800439c 	stmdaeq	r0, {r2, r3, r4, r7, r8, r9, lr}
+ 8000acc:	08004464 	stmdaeq	r0, {r2, r5, r6, sl, lr}
 
 08000ad0 <_Z28t_network_convolution_kernelILj3EEvPaS0_S0_S0_iijjjj>:
  8000ad0:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -1506,7 +1506,7 @@ Disassembly of section .text:
  8000f68:	f000 fa18 	bl	800139c <_ZN12NetworkLayerD1Ev>
  8000f6c:	4620      	mov	r0, r4
  8000f6e:	bd10      	pop	{r4, pc}
- 8000f70:	080043b0 	stmdaeq	r0, {r4, r5, r7, r8, r9, lr}
+ 8000f70:	08004478 	stmdaeq	r0, {r3, r4, r5, r6, sl, lr}
 
 08000f74 <_ZN24NetDenseConvolutionLayerD0Ev>:
  8000f74:	b510      	push	{r4, lr}
@@ -1592,7 +1592,7 @@ Disassembly of section .text:
  800102e:	4620      	mov	r0, r4
  8001030:	b005      	add	sp, #20
  8001032:	bd30      	pop	{r4, r5, pc}
- 8001034:	080043b0 	stmdaeq	r0, {r4, r5, r7, r8, r9, lr}
+ 8001034:	08004478 	stmdaeq	r0, {r3, r4, r5, r6, sl, lr}
 
 08001038 <_ZN18NetMaxPoolingLayerD1Ev>:
  8001038:	b510      	push	{r4, lr}
@@ -1602,7 +1602,7 @@ Disassembly of section .text:
  8001040:	f000 f9ac 	bl	800139c <_ZN12NetworkLayerD1Ev>
  8001044:	4620      	mov	r0, r4
  8001046:	bd10      	pop	{r4, pc}
- 8001048:	080043c4 	stmdaeq	r0, {r2, r6, r7, r8, r9, lr}
+ 8001048:	0800448c 	stmdaeq	r0, {r2, r3, r7, sl, lr}
 
 0800104c <_ZN18NetMaxPoolingLayerD0Ev>:
  800104c:	b510      	push	{r4, lr}
@@ -1724,7 +1724,7 @@ Disassembly of section .text:
  8001166:	4628      	mov	r0, r5
  8001168:	b005      	add	sp, #20
  800116a:	bd30      	pop	{r4, r5, pc}
- 800116c:	080043c4 	stmdaeq	r0, {r2, r6, r7, r8, r9, lr}
+ 800116c:	0800448c 	stmdaeq	r0, {r2, r3, r7, sl, lr}
 
 08001170 <_ZN13NeuralNetwork9set_inputEPa>:
  8001170:	f8d0 308c 	ldr.w	r3, [r0, #140]	; 0x8c
@@ -1757,7 +1757,7 @@ Disassembly of section .text:
  80011b0:	f000 f980 	bl	80014b4 <_ZdaPv>
  80011b4:	4620      	mov	r0, r4
  80011b6:	bd10      	pop	{r4, pc}
- 80011b8:	080043d8 	stmdaeq	r0, {r3, r4, r6, r7, r8, r9, lr}
+ 80011b8:	080044a0 	stmdaeq	r0, {r5, r7, sl, lr}
 
 080011bc <_ZN13NeuralNetworkD0Ev>:
  80011bc:	b510      	push	{r4, lr}
@@ -1789,7 +1789,7 @@ Disassembly of section .text:
  8001204:	f8c0 30a4 	str.w	r3, [r0, #164]	; 0xa4
  8001208:	4770      	bx	lr
  800120a:	bf00      	nop
- 800120c:	080043d8 	stmdaeq	r0, {r3, r4, r6, r7, r8, r9, lr}
+ 800120c:	080044a0 	stmdaeq	r0, {r5, r7, sl, lr}
 
 08001210 <_ZN13NeuralNetwork7forwardEv>:
  8001210:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
@@ -1978,7 +1978,7 @@ Disassembly of section .text:
  80013c6:	6242      	str	r2, [r0, #36]	; 0x24
  80013c8:	4770      	bx	lr
  80013ca:	bf00      	nop
- 80013cc:	080043f0 	stmdaeq	r0, {r4, r5, r6, r7, r8, r9, lr}
+ 80013cc:	080044b8 	stmdaeq	r0, {r3, r4, r5, r7, sl, lr}
 
 080013d0 <_ZN19NetConvolutionLayerD1Ev>:
  80013d0:	b510      	push	{r4, lr}
@@ -1988,7 +1988,7 @@ Disassembly of section .text:
  80013d8:	f7ff ffe0 	bl	800139c <_ZN12NetworkLayerD1Ev>
  80013dc:	4620      	mov	r0, r4
  80013de:	bd10      	pop	{r4, pc}
- 80013e0:	08004404 	stmdaeq	r0, {r2, sl, lr}
+ 80013e0:	080044cc 	stmdaeq	r0, {r2, r3, r6, r7, sl, lr}
 
 080013e4 <_ZN19NetConvolutionLayerD0Ev>:
  80013e4:	b510      	push	{r4, lr}
@@ -2057,7 +2057,7 @@ Disassembly of section .text:
  8001476:	4620      	mov	r0, r4
  8001478:	b005      	add	sp, #20
  800147a:	bd30      	pop	{r4, r5, pc}
- 800147c:	08004404 	stmdaeq	r0, {r2, sl, lr}
+ 800147c:	080044cc 	stmdaeq	r0, {r2, r3, r6, r7, sl, lr}
 
 08001480 <_Z8mem_initv>:
  8001480:	4b01      	ldr	r3, [pc, #4]	; (8001488 <_Z8mem_initv+0x8>)
@@ -2065,7 +2065,7 @@ Disassembly of section .text:
  8001484:	6018      	str	r0, [r3, #0]
  8001486:	4770      	bx	lr
  8001488:	20000000 	andcs	r0, r0, r0
- 800148c:	20000448 	andcs	r0, r0, r8, asr #8
+ 800148c:	20000454 	andcs	r0, r0, r4, asr r4
 
 08001490 <_Znwj>:
  8001490:	4a02      	ldr	r2, [pc, #8]	; (800149c <_Znwj+0xc>)
@@ -2140,7 +2140,7 @@ Disassembly of section .text:
  80014fc:	6143      	str	r3, [r0, #20]
  80014fe:	f7ff ffec 	bl	80014da <_ZN6Filter5resetEv>
  8001502:	bd08      	pop	{r3, pc}
- 8001504:	08004418 	stmdaeq	r0, {r3, r4, sl, lr}
+ 8001504:	080044e0 	stmdaeq	r0, {r5, r6, r7, sl, lr}
 
 08001508 <_ZN6Filter7processEf>:
  8001508:	edd0 7a09 	vldr	s15, [r0, #36]	; 0x24
@@ -2217,7 +2217,7 @@ Disassembly of section .text:
  80015c6:	b003      	add	sp, #12
  80015c8:	bd30      	pop	{r4, r5, pc}
  80015ca:	bf00      	nop
- 80015cc:	08004428 	stmdaeq	r0, {r3, r5, sl, lr}
+ 80015cc:	080044f0 	stmdaeq	r0, {r4, r5, r6, r7, sl, lr}
 
 080015d0 <_ZN3PID7processEff>:
  80015d0:	edd0 6a03 	vldr	s13, [r0, #12]
@@ -2275,12 +2275,12 @@ Disassembly of section .text:
  800166a:	4c0d      	ldr	r4, [pc, #52]	; (80016a0 <main+0x38>)
  800166c:	f5ad 7d0c 	sub.w	sp, sp, #560	; 0x230
  8001670:	4620      	mov	r0, r4
- 8001672:	f001 fe07 	bl	8003284 <_ZN7Drivers4initEv>
+ 8001672:	f001 fe47 	bl	8003304 <_ZN7Drivers4initEv>
  8001676:	480b      	ldr	r0, [pc, #44]	; (80016a4 <main+0x3c>)
  8001678:	f000 fb00 	bl	8001c7c <_ZN3Key4readEv>
  800167c:	f04f 31ff 	mov.w	r1, #4294967295	; 0xffffffff
  8001680:	4620      	mov	r0, r4
- 8001682:	f001 fc99 	bl	8002fb8 <_ZN7Drivers20test_distance_sensorEi>
+ 8001682:	f001 fcd9 	bl	8003038 <_ZN7Drivers20test_distance_sensorEi>
  8001686:	a801      	add	r0, sp, #4
  8001688:	f7fe ff12 	bl	80004b0 <_ZN5RobotC1Ev>
  800168c:	a801      	add	r0, sp, #4
@@ -2291,7 +2291,7 @@ Disassembly of section .text:
  800169a:	f50d 7d0c 	add.w	sp, sp, #560	; 0x230
  800169e:	bd10      	pop	{r4, pc}
  80016a0:	2000022c 	andcs	r0, r0, ip, lsr #4
- 80016a4:	2000029c 	mulcs	r0, ip, r2
+ 80016a4:	200002a8 	andcs	r0, r0, r8, lsr #5
 
 080016a8 <_ZN14BrickDetectionD1Ev>:
  80016a8:	4770      	bx	lr
@@ -2322,8 +2322,8 @@ Disassembly of section .text:
  80016da:	6343      	str	r3, [r0, #52]	; 0x34
  80016dc:	4770      	bx	lr
  80016de:	bf00      	nop
- 80016e0:	08004438 	stmdaeq	r0, {r3, r4, r5, sl, lr}
- 80016e4:	08004334 	stmdaeq	r0, {r2, r4, r5, r8, r9, lr}
+ 80016e0:	08004500 	stmdaeq	r0, {r8, sl, lr}
+ 80016e4:	080043fc 	stmdaeq	r0, {r2, r3, r4, r5, r6, r7, r8, r9, lr}
 
 080016e8 <_ZN14BrickDetection4initER5ArrayIiLj8EEi>:
  80016e8:	b530      	push	{r4, r5, lr}
@@ -2373,7 +2373,7 @@ Disassembly of section .text:
  8001748:	6b60      	ldr	r0, [r4, #52]	; 0x34
  800174a:	bd10      	pop	{r4, pc}
  800174c:	20000158 	andcs	r0, r0, r8, asr r1
- 8001750:	20000234 	andcs	r0, r0, r4, lsr r2
+ 8001750:	20000240 	andcs	r0, r0, r0, asr #4
 
 08001754 <_ZN14BrickDetection3getEv>:
  8001754:	6b40      	ldr	r0, [r0, #52]	; 0x34
@@ -2387,7 +2387,7 @@ Disassembly of section .text:
  8001760:	f001 f924 	bl	80029ac <_ZN5UsartD1Ev>
  8001764:	4620      	mov	r0, r4
  8001766:	bd10      	pop	{r4, pc}
- 8001768:	08004448 	stmdaeq	r0, {r3, r6, sl, lr}
+ 8001768:	08004510 	stmdaeq	r0, {r4, r8, sl, lr}
 
 0800176c <_ZN8TerminalD0Ev>:
  800176c:	b510      	push	{r4, lr}
@@ -2407,7 +2407,7 @@ Disassembly of section .text:
  800178a:	6023      	str	r3, [r4, #0]
  800178c:	4620      	mov	r0, r4
  800178e:	bd10      	pop	{r4, pc}
- 8001790:	08004448 	stmdaeq	r0, {r3, r6, sl, lr}
+ 8001790:	08004510 	stmdaeq	r0, {r4, r8, sl, lr}
 
 08001794 <_ZN8Terminal4putsEPc>:
  8001794:	b538      	push	{r3, r4, r5, lr}
@@ -2684,7 +2684,7 @@ Disassembly of section .text:
  8001a20:	601a      	str	r2, [r3, #0]
  8001a22:	bd30      	pop	{r4, r5, pc}
  8001a24:	40021000 	andmi	r1, r2, r0
- 8001a28:	08004458 	stmdaeq	r0, {r3, r4, r6, sl, lr}
+ 8001a28:	08004520 	stmdaeq	r0, {r5, r8, sl, lr}
  8001a2c:	48000400 	stmdami	r0, {sl}
 
 08001a30 <_ZN5Motor8run_leftEi>:
@@ -2921,7 +2921,7 @@ Disassembly of section .text:
  8001c48:	bd10      	pop	{r4, pc}
  8001c4a:	bf00      	nop
  8001c4c:	40021000 	andmi	r1, r2, r0
- 8001c50:	08004468 	stmdaeq	r0, {r3, r5, r6, sl, lr}
+ 8001c50:	08004530 	stmdaeq	r0, {r4, r5, r8, sl, lr}
  8001c54:	48000400 	stmdami	r0, {sl}
 
 08001c58 <_ZN3Key4initEv>:
@@ -2934,11 +2934,11 @@ Disassembly of section .text:
  8001c66:	4601      	mov	r1, r0
  8001c68:	f44f 72fa 	mov.w	r2, #500	; 0x1f4
  8001c6c:	4802      	ldr	r0, [pc, #8]	; (8001c78 <_ZN3Key4initEv+0x20>)
- 8001c6e:	f001 f8b1 	bl	8002dd4 <_ZN5Timer8add_taskEP6Threadjb>
+ 8001c6e:	f001 f8f1 	bl	8002e54 <_ZN5Timer8add_taskEP6Threadjb>
  8001c72:	6120      	str	r0, [r4, #16]
  8001c74:	bd10      	pop	{r4, pc}
  8001c76:	bf00      	nop
- 8001c78:	20000444 	andcs	r0, r0, r4, asr #8
+ 8001c78:	20000450 	andcs	r0, r0, r0, asr r4
 
 08001c7c <_ZN3Key4readEv>:
  8001c7c:	6843      	ldr	r3, [r0, #4]
@@ -2955,16 +2955,16 @@ Disassembly of section .text:
  8001c92:	7c21      	ldrb	r1, [r4, #16]
  8001c94:	480f      	ldr	r0, [pc, #60]	; (8001cd4 <_ZN3Key4readEv+0x58>)
  8001c96:	4d0f      	ldr	r5, [pc, #60]	; (8001cd4 <_ZN3Key4readEv+0x58>)
- 8001c98:	f001 f8c4 	bl	8002e24 <_ZN5Timer10set_periodEhj>
+ 8001c98:	f001 f904 	bl	8002ea4 <_ZN5Timer10set_periodEhj>
  8001c9c:	480d      	ldr	r0, [pc, #52]	; (8001cd4 <_ZN3Key4readEv+0x58>)
- 8001c9e:	f001 f8cd 	bl	8002e3c <_ZN5Timer8get_timeEv>
+ 8001c9e:	f001 f90d 	bl	8002ebc <_ZN5Timer8get_timeEv>
  8001ca2:	f500 66fa 	add.w	r6, r0, #2000	; 0x7d0
  8001ca6:	6863      	ldr	r3, [r4, #4]
  8001ca8:	8a1b      	ldrh	r3, [r3, #16]
  8001caa:	04db      	lsls	r3, r3, #19
  8001cac:	d40f      	bmi.n	8001cce <_ZN3Key4readEv+0x52>
  8001cae:	4809      	ldr	r0, [pc, #36]	; (8001cd4 <_ZN3Key4readEv+0x58>)
- 8001cb0:	f001 f8c4 	bl	8002e3c <_ZN5Timer8get_timeEv>
+ 8001cb0:	f001 f904 	bl	8002ebc <_ZN5Timer8get_timeEv>
  8001cb4:	42b0      	cmp	r0, r6
  8001cb6:	d9f6      	bls.n	8001ca6 <_ZN3Key4readEv+0x2a>
  8001cb8:	6963      	ldr	r3, [r4, #20]
@@ -2973,14 +2973,14 @@ Disassembly of section .text:
  8001cbe:	2232      	movs	r2, #50	; 0x32
  8001cc0:	7c21      	ldrb	r1, [r4, #16]
  8001cc2:	4628      	mov	r0, r5
- 8001cc4:	f001 f8ae 	bl	8002e24 <_ZN5Timer10set_periodEhj>
+ 8001cc4:	f001 f8ee 	bl	8002ea4 <_ZN5Timer10set_periodEhj>
  8001cc8:	2302      	movs	r3, #2
  8001cca:	6163      	str	r3, [r4, #20]
  8001ccc:	e7eb      	b.n	8001ca6 <_ZN3Key4readEv+0x2a>
  8001cce:	6960      	ldr	r0, [r4, #20]
  8001cd0:	bd70      	pop	{r4, r5, r6, pc}
  8001cd2:	bf00      	nop
- 8001cd4:	20000444 	andcs	r0, r0, r4, asr #8
+ 8001cd4:	20000450 	andcs	r0, r0, r0, asr r4
 
 08001cd8 <_ZN3ADCD1Ev>:
  8001cd8:	4770      	bx	lr
@@ -2998,7 +2998,7 @@ Disassembly of section .text:
  8001cea:	6003      	str	r3, [r0, #0]
  8001cec:	4770      	bx	lr
  8001cee:	bf00      	nop
- 8001cf0:	080044b0 	stmdaeq	r0, {r4, r5, r7, sl, lr}
+ 8001cf0:	08004578 	stmdaeq	r0, {r3, r4, r5, r6, r8, sl, lr}
 
 08001cf4 <_ZN3ADC16RCC_ADCCLKConfigEm>:
  8001cf4:	0f0b      	lsrs	r3, r1, #28
@@ -3123,8 +3123,8 @@ Disassembly of section .text:
  8001e0a:	6c20      	ldr	r0, [r4, #64]	; 0x40
  8001e0c:	b002      	add	sp, #8
  8001e0e:	bd10      	pop	{r4, pc}
- 8001e10:	08004480 	stmdaeq	r0, {r7, sl, lr}
- 8001e14:	08004474 	stmdaeq	r0, {r2, r4, r5, r6, sl, lr}
+ 8001e10:	08004548 	stmdaeq	r0, {r3, r6, r8, sl, lr}
+ 8001e14:	0800453c 	stmdaeq	r0, {r2, r3, r4, r5, r8, sl, lr}
 
 08001e18 <_ZN3ADC4initEv>:
  8001e18:	e92d 43f7 	stmdb	sp!, {r0, r1, r2, r4, r5, r6, r7, r8, r9, lr}
@@ -3316,8 +3316,8 @@ Disassembly of section .text:
  8002004:	601a      	str	r2, [r3, #0]
  8002006:	bd10      	pop	{r4, pc}
  8002008:	40021000 	andmi	r1, r2, r0
- 800200c:	080044c0 	stmdaeq	r0, {r6, r7, sl, lr}
- 8002010:	08004334 	stmdaeq	r0, {r2, r4, r5, r8, r9, lr}
+ 800200c:	08004588 	stmdaeq	r0, {r3, r7, r8, sl, lr}
+ 8002010:	080043fc 	stmdaeq	r0, {r2, r3, r4, r5, r6, r7, r8, r9, lr}
 
 08002014 <_ZN10LineSensor4initEv>:
  8002014:	6842      	ldr	r2, [r0, #4]
@@ -3330,7 +3330,7 @@ Disassembly of section .text:
  8002026:	8513      	strh	r3, [r2, #40]	; 0x28
  8002028:	4836      	ldr	r0, [pc, #216]	; (8002104 <_ZN10LineSensor4initEv+0xf0>)
  800202a:	f8df 80dc 	ldr.w	r8, [pc, #220]	; 8002108 <_ZN10LineSensor4initEv+0xf4>
- 800202e:	f000 ff11 	bl	8002e54 <_ZN5Timer8delay_msEj>
+ 800202e:	f000 ff51 	bl	8002ed4 <_ZN5Timer8delay_msEj>
  8002032:	f104 0638 	add.w	r6, r4, #56	; 0x38
  8002036:	4637      	mov	r7, r6
  8002038:	2500      	movs	r5, #0
@@ -3348,7 +3348,7 @@ Disassembly of section .text:
  8002054:	f443 7380 	orr.w	r3, r3, #256	; 0x100
  8002058:	6193      	str	r3, [r2, #24]
  800205a:	2164      	movs	r1, #100	; 0x64
- 800205c:	f000 fefa 	bl	8002e54 <_ZN5Timer8delay_msEj>
+ 800205c:	f000 ff3a 	bl	8002ed4 <_ZN5Timer8delay_msEj>
  8002060:	2500      	movs	r5, #0
  8002062:	4629      	mov	r1, r5
  8002064:	4638      	mov	r0, r7
@@ -3403,10 +3403,10 @@ Disassembly of section .text:
  80020f4:	2204      	movs	r2, #4
  80020f6:	4621      	mov	r1, r4
  80020f8:	4802      	ldr	r0, [pc, #8]	; (8002104 <_ZN10LineSensor4initEv+0xf0>)
- 80020fa:	f000 fe6b 	bl	8002dd4 <_ZN5Timer8add_taskEP6Threadjb>
+ 80020fa:	f000 feab 	bl	8002e54 <_ZN5Timer8add_taskEP6Threadjb>
  80020fe:	2000      	movs	r0, #0
  8002100:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
- 8002104:	20000444 	andcs	r0, r0, r4, asr #8
+ 8002104:	20000450 	andcs	r0, r0, r0, asr r4
  8002108:	20000154 	andcs	r0, r0, r4, asr r1
 
 0800210c <_ZN10LineSensor5readyEv>:
@@ -3508,7 +3508,7 @@ Disassembly of section .text:
  80021e0:	bd70      	pop	{r4, r5, r6, pc}
  80021e2:	f04f 30ff 	mov.w	r0, #4294967295	; 0xffffffff
  80021e6:	bd70      	pop	{r4, r5, r6, pc}
- 80021e8:	20000334 	andcs	r0, r0, r4, lsr r3
+ 80021e8:	20000340 	andcs	r0, r0, r0, asr #6
 
 080021ec <_ZN10LineSensor4mainEv>:
  80021ec:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -3624,7 +3624,7 @@ Disassembly of section .text:
  800230e:	6003      	str	r3, [r0, #0]
  8002310:	4770      	bx	lr
  8002312:	bf00      	nop
- 8002314:	080044d4 	stmdaeq	r0, {r2, r4, r6, r7, sl, lr}
+ 8002314:	0800459c 	stmdaeq	r0, {r2, r3, r4, r7, r8, sl, lr}
 
 08002318 <_ZN3IMU4readEb>:
  8002318:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
@@ -3924,10 +3924,10 @@ Disassembly of section .text:
  8002594:	6323      	str	r3, [r4, #48]	; 0x30
  8002596:	220a      	movs	r2, #10
  8002598:	462b      	mov	r3, r5
- 800259a:	f000 fc1b 	bl	8002dd4 <_ZN5Timer8add_taskEP6Threadjb>
+ 800259a:	f000 fc5b 	bl	8002e54 <_ZN5Timer8add_taskEP6Threadjb>
  800259e:	f884 503c 	strb.w	r5, [r4, #60]	; 0x3c
  80025a2:	bd38      	pop	{r3, r4, r5, pc}
- 80025a4:	20000444 	andcs	r0, r0, r4, asr #8
+ 80025a4:	20000450 	andcs	r0, r0, r0, asr r4
 
 080025a8 <_ZN13EncoderSensorD1Ev>:
  80025a8:	4770      	bx	lr
@@ -4020,7 +4020,7 @@ Disassembly of section .text:
  8002678:	60da      	str	r2, [r3, #12]
  800267a:	bd10      	pop	{r4, pc}
  800267c:	40021000 	andmi	r1, r2, r0
- 8002680:	080044e8 	stmdaeq	r0, {r3, r5, r6, r7, sl, lr}
+ 8002680:	080045b0 	stmdaeq	r0, {r4, r5, r7, r8, sl, lr}
  8002684:	48000800 	stmdami	r0, {fp}
 
 08002688 <_ZN13EncoderSensor4initEv>:
@@ -4230,7 +4230,7 @@ Disassembly of section .text:
  800289c:	ee17 1a90 	vmov	r1, s15
  80028a0:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
  80028a4:	f7ff b8e4 	b.w	8001a70 <_ZN5Motor9run_rightEi>
- 80028a8:	20000234 	andcs	r0, r0, r4, lsr r2
+ 80028a8:	20000240 	andcs	r0, r0, r0, asr #4
  80028ac:	3dcccccd 	stclcc	12, cr12, [ip, #820]	; 0x334
  80028b0:	3f666666 	svccc	0x00666666
  80028b4:	3e000000 	cdpcc	0, 0, cr0, cr0, cr0, {0}
@@ -4260,7 +4260,7 @@ Disassembly of section .text:
  80028f2:	b002      	add	sp, #8
  80028f4:	bd70      	pop	{r4, r5, r6, pc}
  80028f6:	bf00      	nop
- 80028f8:	080044f8 	stmdaeq	r0, {r3, r4, r5, r6, r7, sl, lr}
+ 80028f8:	080045c0 	stmdaeq	r0, {r6, r7, r8, sl, lr}
 
 080028fc <_ZN13MotorControll4initEv>:
  80028fc:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
@@ -4296,13 +4296,13 @@ Disassembly of section .text:
  8002944:	2204      	movs	r2, #4
  8002946:	4621      	mov	r1, r4
  8002948:	4804      	ldr	r0, [pc, #16]	; (800295c <_ZN13MotorControll4initEv+0x60>)
- 800294a:	f000 fa43 	bl	8002dd4 <_ZN5Timer8add_taskEP6Threadjb>
+ 800294a:	f000 fa83 	bl	8002e54 <_ZN5Timer8add_taskEP6Threadjb>
  800294e:	4628      	mov	r0, r5
  8002950:	b003      	add	sp, #12
  8002952:	bdf0      	pop	{r4, r5, r6, r7, pc}
  8002954:	3db851ec 	ldfccs	f5, [r8, #944]!	; 0x3b0
  8002958:	3f8ccccd 	svccc	0x008ccccd
- 800295c:	20000444 	andcs	r0, r0, r4, asr #8
+ 800295c:	20000450 	andcs	r0, r0, r0, asr r4
 
 08002960 <_ZN13MotorControll14set_left_speedEf>:
  8002960:	61c1      	str	r1, [r0, #28]
@@ -4333,7 +4333,7 @@ Disassembly of section .text:
  800298e:	4620      	mov	r0, r4
  8002990:	bd10      	pop	{r4, pc}
  8002992:	bf00      	nop
- 8002994:	080044f8 	stmdaeq	r0, {r3, r4, r5, r6, r7, sl, lr}
+ 8002994:	080045c0 	stmdaeq	r0, {r6, r7, r8, sl, lr}
 
 08002998 <_ZN13MotorControllD0Ev>:
  8002998:	b510      	push	{r4, lr}
@@ -4361,7 +4361,7 @@ Disassembly of section .text:
  80029be:	6003      	str	r3, [r0, #0]
  80029c0:	4770      	bx	lr
  80029c2:	bf00      	nop
- 80029c4:	0800450c 	stmdaeq	r0, {r2, r3, r8, sl, lr}
+ 80029c4:	080045d4 	stmdaeq	r0, {r2, r4, r6, r7, r8, sl, lr}
 
 080029c8 <_ZN5Usart4initEj>:
  80029c8:	4a27      	ldr	r2, [pc, #156]	; (8002a68 <_ZN5Usart4initEj+0xa0>)
@@ -4443,2958 +4443,3065 @@ Disassembly of section .text:
  8002a86:	bf00      	nop
  8002a88:	40013800 	andmi	r3, r1, r0, lsl #16
 
-08002a8c <_ZN14DistanceSensor4mainEv>:
- 8002a8c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8002a8e:	2108      	movs	r1, #8
- 8002a90:	4604      	mov	r4, r0
- 8002a92:	ed2d 8b04 	vpush	{d8-d9}
- 8002a96:	4841      	ldr	r0, [pc, #260]	; (8002b9c <_ZN14DistanceSensor4mainEv+0x110>)
- 8002a98:	f7ff f99a 	bl	8001dd0 <_ZN3ADC4readEj>
- 8002a9c:	2109      	movs	r1, #9
- 8002a9e:	ee08 0a10 	vmov	s16, r0
- 8002aa2:	483e      	ldr	r0, [pc, #248]	; (8002b9c <_ZN14DistanceSensor4mainEv+0x110>)
- 8002aa4:	f7ff f994 	bl	8001dd0 <_ZN3ADC4readEj>
- 8002aa8:	210a      	movs	r1, #10
- 8002aaa:	ee09 0a10 	vmov	s18, r0
- 8002aae:	483b      	ldr	r0, [pc, #236]	; (8002b9c <_ZN14DistanceSensor4mainEv+0x110>)
- 8002ab0:	f7ff f98e 	bl	8001dd0 <_ZN3ADC4readEj>
- 8002ab4:	eef8 7ac8 	vcvt.f32.s32	s15, s16
- 8002ab8:	ed9f 8a39 	vldr	s16, [pc, #228]	; 8002ba0 <_ZN14DistanceSensor4mainEv+0x114>
- 8002abc:	ee67 7a88 	vmul.f32	s15, s15, s16
- 8002ac0:	f104 0744 	add.w	r7, r4, #68	; 0x44
- 8002ac4:	ee17 1a90 	vmov	r1, s15
- 8002ac8:	ee08 0a90 	vmov	s17, r0
- 8002acc:	4638      	mov	r0, r7
- 8002ace:	f7fe fd1b 	bl	8001508 <_ZN6Filter7processEf>
- 8002ad2:	eeb8 9ac9 	vcvt.f32.s32	s18, s18
- 8002ad6:	f104 0674 	add.w	r6, r4, #116	; 0x74
- 8002ada:	ee69 7a08 	vmul.f32	s15, s18, s16
- 8002ade:	4630      	mov	r0, r6
- 8002ae0:	ee17 1a90 	vmov	r1, s15
- 8002ae4:	f7fe fd10 	bl	8001508 <_ZN6Filter7processEf>
- 8002ae8:	eef8 8ae8 	vcvt.f32.s32	s17, s17
- 8002aec:	f104 05a4 	add.w	r5, r4, #164	; 0xa4
- 8002af0:	ee68 7a88 	vmul.f32	s15, s17, s16
- 8002af4:	4628      	mov	r0, r5
- 8002af6:	ee17 1a90 	vmov	r1, s15
- 8002afa:	f7fe fd05 	bl	8001508 <_ZN6Filter7processEf>
- 8002afe:	4638      	mov	r0, r7
- 8002b00:	f7fe fd2e 	bl	8001560 <_ZN6Filter12get_absoluteEv>
- 8002b04:	ed9f 8a27 	vldr	s16, [pc, #156]	; 8002ba4 <_ZN14DistanceSensor4mainEv+0x118>
- 8002b08:	ee07 0a90 	vmov	s15, r0
- 8002b0c:	ee78 7a67 	vsub.f32	s15, s16, s15
- 8002b10:	4630      	mov	r0, r6
- 8002b12:	edc4 7a02 	vstr	s15, [r4, #8]
- 8002b16:	f7fe fd23 	bl	8001560 <_ZN6Filter12get_absoluteEv>
- 8002b1a:	ee07 0a90 	vmov	s15, r0
- 8002b1e:	ee78 7a67 	vsub.f32	s15, s16, s15
- 8002b22:	4628      	mov	r0, r5
- 8002b24:	edc4 7a01 	vstr	s15, [r4, #4]
- 8002b28:	f7fe fd1a 	bl	8001560 <_ZN6Filter12get_absoluteEv>
- 8002b2c:	ee07 0a90 	vmov	s15, r0
- 8002b30:	ed9f 7a1d 	vldr	s14, [pc, #116]	; 8002ba8 <_ZN14DistanceSensor4mainEv+0x11c>
- 8002b34:	ee38 8a67 	vsub.f32	s16, s16, s15
- 8002b38:	edd4 7a02 	vldr	s15, [r4, #8]
- 8002b3c:	ed84 8a03 	vstr	s16, [r4, #12]
- 8002b40:	eef4 7ac7 	vcmpe.f32	s15, s14
- 8002b44:	ed9f 7a19 	vldr	s14, [pc, #100]	; 8002bac <_ZN14DistanceSensor4mainEv+0x120>
- 8002b48:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8002b4c:	bf4c      	ite	mi
- 8002b4e:	2301      	movmi	r3, #1
- 8002b50:	2300      	movpl	r3, #0
- 8002b52:	eef4 7ac7 	vcmpe.f32	s15, s14
- 8002b56:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8002b5a:	7423      	strb	r3, [r4, #16]
- 8002b5c:	f04f 0301 	mov.w	r3, #1
- 8002b60:	bf48      	it	mi
- 8002b62:	7463      	strbmi	r3, [r4, #17]
- 8002b64:	7523      	strb	r3, [r4, #20]
- 8002b66:	6aa3      	ldr	r3, [r4, #40]	; 0x28
- 8002b68:	bf5c      	itt	pl
- 8002b6a:	2200      	movpl	r2, #0
- 8002b6c:	7462      	strbpl	r2, [r4, #17]
- 8002b6e:	f013 0203 	ands.w	r2, r3, #3
- 8002b72:	d10a      	bne.n	8002b8a <_ZN14DistanceSensor4mainEv+0xfe>
- 8002b74:	69a1      	ldr	r1, [r4, #24]
- 8002b76:	8d0a      	ldrh	r2, [r1, #40]	; 0x28
- 8002b78:	b292      	uxth	r2, r2
- 8002b7a:	f442 5200 	orr.w	r2, r2, #8192	; 0x2000
- 8002b7e:	850a      	strh	r2, [r1, #40]	; 0x28
- 8002b80:	ecbd 8b04 	vpop	{d8-d9}
- 8002b84:	3301      	adds	r3, #1
- 8002b86:	62a3      	str	r3, [r4, #40]	; 0x28
- 8002b88:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
- 8002b8a:	2a02      	cmp	r2, #2
- 8002b8c:	bf01      	itttt	eq
- 8002b8e:	69a1      	ldreq	r1, [r4, #24]
- 8002b90:	698a      	ldreq	r2, [r1, #24]
- 8002b92:	f442 5200 	orreq.w	r2, r2, #8192	; 0x2000
- 8002b96:	618a      	streq	r2, [r1, #24]
- 8002b98:	e7f2      	b.n	8002b80 <_ZN14DistanceSensor4mainEv+0xf4>
- 8002b9a:	bf00      	nop
- 8002b9c:	20000154 	andcs	r0, r0, r4, asr r1
- 8002ba0:	39800000 	stmibcc	r0, {}	; <UNPREDICTABLE>
- 8002ba4:	3f800000 	svccc	0x00800000
- 8002ba8:	3f333333 	svccc	0x00333333
- 8002bac:	3f23d70a 	svccc	0x0023d70a
+08002a8c <_ZN6EEPROMD1Ev>:
+ 8002a8c:	4770      	bx	lr
 
-08002bb0 <_ZN14DistanceSensorC1Ev>:
- 8002bb0:	492f      	ldr	r1, [pc, #188]	; (8002c70 <_ZN14DistanceSensorC1Ev+0xc0>)
- 8002bb2:	4b30      	ldr	r3, [pc, #192]	; (8002c74 <_ZN14DistanceSensorC1Ev+0xc4>)
- 8002bb4:	b510      	push	{r4, lr}
- 8002bb6:	6003      	str	r3, [r0, #0]
- 8002bb8:	694b      	ldr	r3, [r1, #20]
- 8002bba:	f443 03fc 	orr.w	r3, r3, #8257536	; 0x7e0000
- 8002bbe:	614b      	str	r3, [r1, #20]
- 8002bc0:	4b2d      	ldr	r3, [pc, #180]	; (8002c78 <_ZN14DistanceSensorC1Ev+0xc8>)
- 8002bc2:	6183      	str	r3, [r0, #24]
- 8002bc4:	689a      	ldr	r2, [r3, #8]
- 8002bc6:	f022 6240 	bic.w	r2, r2, #201326592	; 0xc000000
- 8002bca:	609a      	str	r2, [r3, #8]
- 8002bcc:	689a      	ldr	r2, [r3, #8]
- 8002bce:	f042 6240 	orr.w	r2, r2, #201326592	; 0xc000000
- 8002bd2:	609a      	str	r2, [r3, #8]
- 8002bd4:	889a      	ldrh	r2, [r3, #4]
- 8002bd6:	f422 5200 	bic.w	r2, r2, #8192	; 0x2000
- 8002bda:	0412      	lsls	r2, r2, #16
- 8002bdc:	0c12      	lsrs	r2, r2, #16
- 8002bde:	809a      	strh	r2, [r3, #4]
- 8002be0:	889a      	ldrh	r2, [r3, #4]
- 8002be2:	b292      	uxth	r2, r2
- 8002be4:	809a      	strh	r2, [r3, #4]
- 8002be6:	681a      	ldr	r2, [r3, #0]
- 8002be8:	f022 6240 	bic.w	r2, r2, #201326592	; 0xc000000
- 8002bec:	601a      	str	r2, [r3, #0]
- 8002bee:	681a      	ldr	r2, [r3, #0]
- 8002bf0:	f042 6280 	orr.w	r2, r2, #67108864	; 0x4000000
- 8002bf4:	601a      	str	r2, [r3, #0]
- 8002bf6:	694a      	ldr	r2, [r1, #20]
- 8002bf8:	f442 02fc 	orr.w	r2, r2, #8257536	; 0x7e0000
- 8002bfc:	614a      	str	r2, [r1, #20]
- 8002bfe:	4a1f      	ldr	r2, [pc, #124]	; (8002c7c <_ZN14DistanceSensorC1Ev+0xcc>)
- 8002c00:	61c2      	str	r2, [r0, #28]
- 8002c02:	4604      	mov	r4, r0
- 8002c04:	6810      	ldr	r0, [r2, #0]
- 8002c06:	f020 0003 	bic.w	r0, r0, #3
- 8002c0a:	6010      	str	r0, [r2, #0]
- 8002c0c:	6810      	ldr	r0, [r2, #0]
- 8002c0e:	f040 0003 	orr.w	r0, r0, #3
- 8002c12:	6010      	str	r0, [r2, #0]
- 8002c14:	6948      	ldr	r0, [r1, #20]
- 8002c16:	f440 00fc 	orr.w	r0, r0, #8257536	; 0x7e0000
- 8002c1a:	6148      	str	r0, [r1, #20]
- 8002c1c:	6810      	ldr	r0, [r2, #0]
- 8002c1e:	6222      	str	r2, [r4, #32]
- 8002c20:	f020 000c 	bic.w	r0, r0, #12
- 8002c24:	6010      	str	r0, [r2, #0]
- 8002c26:	6810      	ldr	r0, [r2, #0]
- 8002c28:	f040 000c 	orr.w	r0, r0, #12
- 8002c2c:	6010      	str	r0, [r2, #0]
- 8002c2e:	694a      	ldr	r2, [r1, #20]
- 8002c30:	f442 02fc 	orr.w	r2, r2, #8257536	; 0x7e0000
- 8002c34:	614a      	str	r2, [r1, #20]
- 8002c36:	681a      	ldr	r2, [r3, #0]
- 8002c38:	6263      	str	r3, [r4, #36]	; 0x24
- 8002c3a:	f022 0203 	bic.w	r2, r2, #3
- 8002c3e:	601a      	str	r2, [r3, #0]
- 8002c40:	681a      	ldr	r2, [r3, #0]
- 8002c42:	f042 0203 	orr.w	r2, r2, #3
- 8002c46:	601a      	str	r2, [r3, #0]
- 8002c48:	f104 0044 	add.w	r0, r4, #68	; 0x44
- 8002c4c:	f7fe fc4e 	bl	80014ec <_ZN6FilterC1Ev>
- 8002c50:	f104 0074 	add.w	r0, r4, #116	; 0x74
- 8002c54:	f7fe fc4a 	bl	80014ec <_ZN6FilterC1Ev>
- 8002c58:	f104 00a4 	add.w	r0, r4, #164	; 0xa4
- 8002c5c:	f7fe fc46 	bl	80014ec <_ZN6FilterC1Ev>
- 8002c60:	69a2      	ldr	r2, [r4, #24]
- 8002c62:	8d13      	ldrh	r3, [r2, #40]	; 0x28
- 8002c64:	b29b      	uxth	r3, r3
- 8002c66:	f443 5300 	orr.w	r3, r3, #8192	; 0x2000
- 8002c6a:	8513      	strh	r3, [r2, #40]	; 0x28
- 8002c6c:	4620      	mov	r0, r4
- 8002c6e:	bd10      	pop	{r4, pc}
- 8002c70:	40021000 	andmi	r1, r2, r0
- 8002c74:	0800451c 	stmdaeq	r0, {r2, r3, r4, r8, sl, lr}
- 8002c78:	48000800 	stmdami	r0, {fp}
- 8002c7c:	48000400 	stmdami	r0, {sl}
+08002a8e <_ZN6EEPROMD0Ev>:
+ 8002a8e:	b510      	push	{r4, lr}
+ 8002a90:	210c      	movs	r1, #12
+ 8002a92:	4604      	mov	r4, r0
+ 8002a94:	f7fe fd04 	bl	80014a0 <_ZdlPvj>
+ 8002a98:	4620      	mov	r0, r4
+ 8002a9a:	bd10      	pop	{r4, pc}
 
-08002c80 <_ZN14DistanceSensor4initEv>:
- 8002c80:	e92d 43f7 	stmdb	sp!, {r0, r1, r2, r4, r5, r6, r7, r8, r9, lr}
- 8002c84:	6982      	ldr	r2, [r0, #24]
- 8002c86:	4f21      	ldr	r7, [pc, #132]	; (8002d0c <_ZN14DistanceSensor4initEv+0x8c>)
- 8002c88:	8d13      	ldrh	r3, [r2, #40]	; 0x28
- 8002c8a:	f8df 9088 	ldr.w	r9, [pc, #136]	; 8002d14 <_ZN14DistanceSensor4initEv+0x94>
- 8002c8e:	b29b      	uxth	r3, r3
- 8002c90:	2500      	movs	r5, #0
- 8002c92:	f443 5300 	orr.w	r3, r3, #8192	; 0x2000
- 8002c96:	6285      	str	r5, [r0, #40]	; 0x28
- 8002c98:	2600      	movs	r6, #0
- 8002c9a:	8513      	strh	r3, [r2, #40]	; 0x28
- 8002c9c:	f04f 587b 	mov.w	r8, #1052770304	; 0x3ec00000
- 8002ca0:	f04f 537e 	mov.w	r3, #1065353216	; 0x3f800000
- 8002ca4:	4604      	mov	r4, r0
- 8002ca6:	62c5      	str	r5, [r0, #44]	; 0x2c
- 8002ca8:	6305      	str	r5, [r0, #48]	; 0x30
- 8002caa:	6345      	str	r5, [r0, #52]	; 0x34
- 8002cac:	6385      	str	r5, [r0, #56]	; 0x38
- 8002cae:	63c5      	str	r5, [r0, #60]	; 0x3c
- 8002cb0:	6405      	str	r5, [r0, #64]	; 0x40
- 8002cb2:	6043      	str	r3, [r0, #4]
- 8002cb4:	6083      	str	r3, [r0, #8]
- 8002cb6:	60c3      	str	r3, [r0, #12]
- 8002cb8:	7405      	strb	r5, [r0, #16]
- 8002cba:	7445      	strb	r5, [r0, #17]
- 8002cbc:	4643      	mov	r3, r8
- 8002cbe:	463a      	mov	r2, r7
- 8002cc0:	4631      	mov	r1, r6
- 8002cc2:	f8cd 9004 	str.w	r9, [sp, #4]
- 8002cc6:	9600      	str	r6, [sp, #0]
- 8002cc8:	3044      	adds	r0, #68	; 0x44
- 8002cca:	f7fe fbfe 	bl	80014ca <_ZN6Filter9set_coefsEfffff>
- 8002cce:	4643      	mov	r3, r8
- 8002cd0:	463a      	mov	r2, r7
- 8002cd2:	4631      	mov	r1, r6
- 8002cd4:	f104 0074 	add.w	r0, r4, #116	; 0x74
- 8002cd8:	f8cd 9004 	str.w	r9, [sp, #4]
- 8002cdc:	9600      	str	r6, [sp, #0]
- 8002cde:	f7fe fbf4 	bl	80014ca <_ZN6Filter9set_coefsEfffff>
- 8002ce2:	4643      	mov	r3, r8
- 8002ce4:	463a      	mov	r2, r7
- 8002ce6:	4631      	mov	r1, r6
- 8002ce8:	f104 00a4 	add.w	r0, r4, #164	; 0xa4
- 8002cec:	f8cd 9004 	str.w	r9, [sp, #4]
- 8002cf0:	9600      	str	r6, [sp, #0]
- 8002cf2:	f7fe fbea 	bl	80014ca <_ZN6Filter9set_coefsEfffff>
- 8002cf6:	462b      	mov	r3, r5
- 8002cf8:	2205      	movs	r2, #5
- 8002cfa:	4621      	mov	r1, r4
- 8002cfc:	4804      	ldr	r0, [pc, #16]	; (8002d10 <_ZN14DistanceSensor4initEv+0x90>)
- 8002cfe:	f000 f869 	bl	8002dd4 <_ZN5Timer8add_taskEP6Threadjb>
- 8002d02:	4628      	mov	r0, r5
- 8002d04:	7525      	strb	r5, [r4, #20]
- 8002d06:	b003      	add	sp, #12
- 8002d08:	e8bd 83f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, pc}
- 8002d0c:	be800000 	cdplt	0, 8, cr0, cr0, cr0, {0}
- 8002d10:	20000444 	andcs	r0, r0, r4, asr #8
- 8002d14:	bec00000 	cdplt	0, 12, cr0, cr0, cr0, {0}
+08002a9c <_ZN6EEPROMC1Ev>:
+ 8002a9c:	4a02      	ldr	r2, [pc, #8]	; (8002aa8 <_ZN6EEPROMC1Ev+0xc>)
+ 8002a9e:	6002      	str	r2, [r0, #0]
+ 8002aa0:	2200      	movs	r2, #0
+ 8002aa2:	7202      	strb	r2, [r0, #8]
+ 8002aa4:	4770      	bx	lr
+ 8002aa6:	bf00      	nop
+ 8002aa8:	080045e4 	stmdaeq	r0, {r2, r5, r6, r7, r8, sl, lr}
 
-08002d18 <_ZN14DistanceSensor5readyEv>:
- 8002d18:	7d03      	ldrb	r3, [r0, #20]
- 8002d1a:	b672      	cpsid	i
- 8002d1c:	b10b      	cbz	r3, 8002d22 <_ZN14DistanceSensor5readyEv+0xa>
- 8002d1e:	2200      	movs	r2, #0
- 8002d20:	7502      	strb	r2, [r0, #20]
- 8002d22:	b662      	cpsie	i
- 8002d24:	4618      	mov	r0, r3
- 8002d26:	4770      	bx	lr
+08002aac <_ZN6EEPROM4initER13I2C_Interface>:
+ 8002aac:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8002aae:	2301      	movs	r3, #1
+ 8002ab0:	4604      	mov	r4, r0
+ 8002ab2:	6041      	str	r1, [r0, #4]
+ 8002ab4:	7203      	strb	r3, [r0, #8]
+ 8002ab6:	b672      	cpsid	i
+ 8002ab8:	680b      	ldr	r3, [r1, #0]
+ 8002aba:	4608      	mov	r0, r1
+ 8002abc:	689b      	ldr	r3, [r3, #8]
+ 8002abe:	4798      	blx	r3
+ 8002ac0:	6860      	ldr	r0, [r4, #4]
+ 8002ac2:	6803      	ldr	r3, [r0, #0]
+ 8002ac4:	21b0      	movs	r1, #176	; 0xb0
+ 8002ac6:	695b      	ldr	r3, [r3, #20]
+ 8002ac8:	4798      	blx	r3
+ 8002aca:	4607      	mov	r7, r0
+ 8002acc:	6860      	ldr	r0, [r4, #4]
+ 8002ace:	6803      	ldr	r3, [r0, #0]
+ 8002ad0:	2100      	movs	r1, #0
+ 8002ad2:	695b      	ldr	r3, [r3, #20]
+ 8002ad4:	4798      	blx	r3
+ 8002ad6:	4606      	mov	r6, r0
+ 8002ad8:	6860      	ldr	r0, [r4, #4]
+ 8002ada:	6803      	ldr	r3, [r0, #0]
+ 8002adc:	2100      	movs	r1, #0
+ 8002ade:	695b      	ldr	r3, [r3, #20]
+ 8002ae0:	4798      	blx	r3
+ 8002ae2:	4605      	mov	r5, r0
+ 8002ae4:	6860      	ldr	r0, [r4, #4]
+ 8002ae6:	6803      	ldr	r3, [r0, #0]
+ 8002ae8:	68db      	ldr	r3, [r3, #12]
+ 8002aea:	4798      	blx	r3
+ 8002aec:	b662      	cpsie	i
+ 8002aee:	2f01      	cmp	r7, #1
+ 8002af0:	bf1c      	itt	ne
+ 8002af2:	2300      	movne	r3, #0
+ 8002af4:	7223      	strbne	r3, [r4, #8]
+ 8002af6:	2e01      	cmp	r6, #1
+ 8002af8:	bf1c      	itt	ne
+ 8002afa:	2300      	movne	r3, #0
+ 8002afc:	7223      	strbne	r3, [r4, #8]
+ 8002afe:	2d01      	cmp	r5, #1
+ 8002b00:	bf1c      	itt	ne
+ 8002b02:	2300      	movne	r3, #0
+ 8002b04:	7223      	strbne	r3, [r4, #8]
+ 8002b06:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
 
-08002d28 <_ZN14DistanceSensorD1Ev>:
- 8002d28:	b510      	push	{r4, lr}
- 8002d2a:	4b08      	ldr	r3, [pc, #32]	; (8002d4c <_ZN14DistanceSensorD1Ev+0x24>)
- 8002d2c:	4604      	mov	r4, r0
- 8002d2e:	f840 3ba4 	str.w	r3, [r0], #164
- 8002d32:	f7fe fbc2 	bl	80014ba <_ZN6FilterD1Ev>
- 8002d36:	f104 0074 	add.w	r0, r4, #116	; 0x74
- 8002d3a:	f7fe fbbe 	bl	80014ba <_ZN6FilterD1Ev>
- 8002d3e:	f104 0044 	add.w	r0, r4, #68	; 0x44
- 8002d42:	f7fe fbba 	bl	80014ba <_ZN6FilterD1Ev>
- 8002d46:	4620      	mov	r0, r4
- 8002d48:	bd10      	pop	{r4, pc}
- 8002d4a:	bf00      	nop
- 8002d4c:	0800451c 	stmdaeq	r0, {r2, r3, r4, r8, sl, lr}
+08002b08 <_ZN6EEPROM7presentEv>:
+ 8002b08:	7a00      	ldrb	r0, [r0, #8]
+ 8002b0a:	4770      	bx	lr
 
-08002d50 <_ZN14DistanceSensorD0Ev>:
- 8002d50:	b510      	push	{r4, lr}
- 8002d52:	4604      	mov	r4, r0
- 8002d54:	f7ff ffe8 	bl	8002d28 <_ZN14DistanceSensorD1Ev>
- 8002d58:	4620      	mov	r0, r4
- 8002d5a:	21d4      	movs	r1, #212	; 0xd4
- 8002d5c:	f7fe fba0 	bl	80014a0 <_ZdlPvj>
- 8002d60:	4620      	mov	r0, r4
- 8002d62:	bd10      	pop	{r4, pc}
+08002b0c <_ZN14DistanceSensor4mainEv>:
+ 8002b0c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8002b0e:	2108      	movs	r1, #8
+ 8002b10:	4604      	mov	r4, r0
+ 8002b12:	ed2d 8b04 	vpush	{d8-d9}
+ 8002b16:	4841      	ldr	r0, [pc, #260]	; (8002c1c <_ZN14DistanceSensor4mainEv+0x110>)
+ 8002b18:	f7ff f95a 	bl	8001dd0 <_ZN3ADC4readEj>
+ 8002b1c:	2109      	movs	r1, #9
+ 8002b1e:	ee08 0a10 	vmov	s16, r0
+ 8002b22:	483e      	ldr	r0, [pc, #248]	; (8002c1c <_ZN14DistanceSensor4mainEv+0x110>)
+ 8002b24:	f7ff f954 	bl	8001dd0 <_ZN3ADC4readEj>
+ 8002b28:	210a      	movs	r1, #10
+ 8002b2a:	ee09 0a10 	vmov	s18, r0
+ 8002b2e:	483b      	ldr	r0, [pc, #236]	; (8002c1c <_ZN14DistanceSensor4mainEv+0x110>)
+ 8002b30:	f7ff f94e 	bl	8001dd0 <_ZN3ADC4readEj>
+ 8002b34:	eef8 7ac8 	vcvt.f32.s32	s15, s16
+ 8002b38:	ed9f 8a39 	vldr	s16, [pc, #228]	; 8002c20 <_ZN14DistanceSensor4mainEv+0x114>
+ 8002b3c:	ee67 7a88 	vmul.f32	s15, s15, s16
+ 8002b40:	f104 0744 	add.w	r7, r4, #68	; 0x44
+ 8002b44:	ee17 1a90 	vmov	r1, s15
+ 8002b48:	ee08 0a90 	vmov	s17, r0
+ 8002b4c:	4638      	mov	r0, r7
+ 8002b4e:	f7fe fcdb 	bl	8001508 <_ZN6Filter7processEf>
+ 8002b52:	eeb8 9ac9 	vcvt.f32.s32	s18, s18
+ 8002b56:	f104 0674 	add.w	r6, r4, #116	; 0x74
+ 8002b5a:	ee69 7a08 	vmul.f32	s15, s18, s16
+ 8002b5e:	4630      	mov	r0, r6
+ 8002b60:	ee17 1a90 	vmov	r1, s15
+ 8002b64:	f7fe fcd0 	bl	8001508 <_ZN6Filter7processEf>
+ 8002b68:	eef8 8ae8 	vcvt.f32.s32	s17, s17
+ 8002b6c:	f104 05a4 	add.w	r5, r4, #164	; 0xa4
+ 8002b70:	ee68 7a88 	vmul.f32	s15, s17, s16
+ 8002b74:	4628      	mov	r0, r5
+ 8002b76:	ee17 1a90 	vmov	r1, s15
+ 8002b7a:	f7fe fcc5 	bl	8001508 <_ZN6Filter7processEf>
+ 8002b7e:	4638      	mov	r0, r7
+ 8002b80:	f7fe fcee 	bl	8001560 <_ZN6Filter12get_absoluteEv>
+ 8002b84:	ed9f 8a27 	vldr	s16, [pc, #156]	; 8002c24 <_ZN14DistanceSensor4mainEv+0x118>
+ 8002b88:	ee07 0a90 	vmov	s15, r0
+ 8002b8c:	ee78 7a67 	vsub.f32	s15, s16, s15
+ 8002b90:	4630      	mov	r0, r6
+ 8002b92:	edc4 7a02 	vstr	s15, [r4, #8]
+ 8002b96:	f7fe fce3 	bl	8001560 <_ZN6Filter12get_absoluteEv>
+ 8002b9a:	ee07 0a90 	vmov	s15, r0
+ 8002b9e:	ee78 7a67 	vsub.f32	s15, s16, s15
+ 8002ba2:	4628      	mov	r0, r5
+ 8002ba4:	edc4 7a01 	vstr	s15, [r4, #4]
+ 8002ba8:	f7fe fcda 	bl	8001560 <_ZN6Filter12get_absoluteEv>
+ 8002bac:	ee07 0a90 	vmov	s15, r0
+ 8002bb0:	ed9f 7a1d 	vldr	s14, [pc, #116]	; 8002c28 <_ZN14DistanceSensor4mainEv+0x11c>
+ 8002bb4:	ee38 8a67 	vsub.f32	s16, s16, s15
+ 8002bb8:	edd4 7a02 	vldr	s15, [r4, #8]
+ 8002bbc:	ed84 8a03 	vstr	s16, [r4, #12]
+ 8002bc0:	eef4 7ac7 	vcmpe.f32	s15, s14
+ 8002bc4:	ed9f 7a19 	vldr	s14, [pc, #100]	; 8002c2c <_ZN14DistanceSensor4mainEv+0x120>
+ 8002bc8:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 8002bcc:	bf4c      	ite	mi
+ 8002bce:	2301      	movmi	r3, #1
+ 8002bd0:	2300      	movpl	r3, #0
+ 8002bd2:	eef4 7ac7 	vcmpe.f32	s15, s14
+ 8002bd6:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 8002bda:	7423      	strb	r3, [r4, #16]
+ 8002bdc:	f04f 0301 	mov.w	r3, #1
+ 8002be0:	bf48      	it	mi
+ 8002be2:	7463      	strbmi	r3, [r4, #17]
+ 8002be4:	7523      	strb	r3, [r4, #20]
+ 8002be6:	6aa3      	ldr	r3, [r4, #40]	; 0x28
+ 8002be8:	bf5c      	itt	pl
+ 8002bea:	2200      	movpl	r2, #0
+ 8002bec:	7462      	strbpl	r2, [r4, #17]
+ 8002bee:	f013 0203 	ands.w	r2, r3, #3
+ 8002bf2:	d10a      	bne.n	8002c0a <_ZN14DistanceSensor4mainEv+0xfe>
+ 8002bf4:	69a1      	ldr	r1, [r4, #24]
+ 8002bf6:	8d0a      	ldrh	r2, [r1, #40]	; 0x28
+ 8002bf8:	b292      	uxth	r2, r2
+ 8002bfa:	f442 5200 	orr.w	r2, r2, #8192	; 0x2000
+ 8002bfe:	850a      	strh	r2, [r1, #40]	; 0x28
+ 8002c00:	ecbd 8b04 	vpop	{d8-d9}
+ 8002c04:	3301      	adds	r3, #1
+ 8002c06:	62a3      	str	r3, [r4, #40]	; 0x28
+ 8002c08:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+ 8002c0a:	2a02      	cmp	r2, #2
+ 8002c0c:	bf01      	itttt	eq
+ 8002c0e:	69a1      	ldreq	r1, [r4, #24]
+ 8002c10:	698a      	ldreq	r2, [r1, #24]
+ 8002c12:	f442 5200 	orreq.w	r2, r2, #8192	; 0x2000
+ 8002c16:	618a      	streq	r2, [r1, #24]
+ 8002c18:	e7f2      	b.n	8002c00 <_ZN14DistanceSensor4mainEv+0xf4>
+ 8002c1a:	bf00      	nop
+ 8002c1c:	20000154 	andcs	r0, r0, r4, asr r1
+ 8002c20:	39800000 	stmibcc	r0, {}	; <UNPREDICTABLE>
+ 8002c24:	3f800000 	svccc	0x00800000
+ 8002c28:	3f333333 	svccc	0x00333333
+ 8002c2c:	3f23d70a 	svccc	0x0023d70a
 
-08002d64 <_ZN5TimerC1Ev>:
- 8002d64:	4770      	bx	lr
- 8002d66:	0000      	movs	r0, r0
+08002c30 <_ZN14DistanceSensorC1Ev>:
+ 8002c30:	492f      	ldr	r1, [pc, #188]	; (8002cf0 <_ZN14DistanceSensorC1Ev+0xc0>)
+ 8002c32:	4b30      	ldr	r3, [pc, #192]	; (8002cf4 <_ZN14DistanceSensorC1Ev+0xc4>)
+ 8002c34:	b510      	push	{r4, lr}
+ 8002c36:	6003      	str	r3, [r0, #0]
+ 8002c38:	694b      	ldr	r3, [r1, #20]
+ 8002c3a:	f443 03fc 	orr.w	r3, r3, #8257536	; 0x7e0000
+ 8002c3e:	614b      	str	r3, [r1, #20]
+ 8002c40:	4b2d      	ldr	r3, [pc, #180]	; (8002cf8 <_ZN14DistanceSensorC1Ev+0xc8>)
+ 8002c42:	6183      	str	r3, [r0, #24]
+ 8002c44:	689a      	ldr	r2, [r3, #8]
+ 8002c46:	f022 6240 	bic.w	r2, r2, #201326592	; 0xc000000
+ 8002c4a:	609a      	str	r2, [r3, #8]
+ 8002c4c:	689a      	ldr	r2, [r3, #8]
+ 8002c4e:	f042 6240 	orr.w	r2, r2, #201326592	; 0xc000000
+ 8002c52:	609a      	str	r2, [r3, #8]
+ 8002c54:	889a      	ldrh	r2, [r3, #4]
+ 8002c56:	f422 5200 	bic.w	r2, r2, #8192	; 0x2000
+ 8002c5a:	0412      	lsls	r2, r2, #16
+ 8002c5c:	0c12      	lsrs	r2, r2, #16
+ 8002c5e:	809a      	strh	r2, [r3, #4]
+ 8002c60:	889a      	ldrh	r2, [r3, #4]
+ 8002c62:	b292      	uxth	r2, r2
+ 8002c64:	809a      	strh	r2, [r3, #4]
+ 8002c66:	681a      	ldr	r2, [r3, #0]
+ 8002c68:	f022 6240 	bic.w	r2, r2, #201326592	; 0xc000000
+ 8002c6c:	601a      	str	r2, [r3, #0]
+ 8002c6e:	681a      	ldr	r2, [r3, #0]
+ 8002c70:	f042 6280 	orr.w	r2, r2, #67108864	; 0x4000000
+ 8002c74:	601a      	str	r2, [r3, #0]
+ 8002c76:	694a      	ldr	r2, [r1, #20]
+ 8002c78:	f442 02fc 	orr.w	r2, r2, #8257536	; 0x7e0000
+ 8002c7c:	614a      	str	r2, [r1, #20]
+ 8002c7e:	4a1f      	ldr	r2, [pc, #124]	; (8002cfc <_ZN14DistanceSensorC1Ev+0xcc>)
+ 8002c80:	61c2      	str	r2, [r0, #28]
+ 8002c82:	4604      	mov	r4, r0
+ 8002c84:	6810      	ldr	r0, [r2, #0]
+ 8002c86:	f020 0003 	bic.w	r0, r0, #3
+ 8002c8a:	6010      	str	r0, [r2, #0]
+ 8002c8c:	6810      	ldr	r0, [r2, #0]
+ 8002c8e:	f040 0003 	orr.w	r0, r0, #3
+ 8002c92:	6010      	str	r0, [r2, #0]
+ 8002c94:	6948      	ldr	r0, [r1, #20]
+ 8002c96:	f440 00fc 	orr.w	r0, r0, #8257536	; 0x7e0000
+ 8002c9a:	6148      	str	r0, [r1, #20]
+ 8002c9c:	6810      	ldr	r0, [r2, #0]
+ 8002c9e:	6222      	str	r2, [r4, #32]
+ 8002ca0:	f020 000c 	bic.w	r0, r0, #12
+ 8002ca4:	6010      	str	r0, [r2, #0]
+ 8002ca6:	6810      	ldr	r0, [r2, #0]
+ 8002ca8:	f040 000c 	orr.w	r0, r0, #12
+ 8002cac:	6010      	str	r0, [r2, #0]
+ 8002cae:	694a      	ldr	r2, [r1, #20]
+ 8002cb0:	f442 02fc 	orr.w	r2, r2, #8257536	; 0x7e0000
+ 8002cb4:	614a      	str	r2, [r1, #20]
+ 8002cb6:	681a      	ldr	r2, [r3, #0]
+ 8002cb8:	6263      	str	r3, [r4, #36]	; 0x24
+ 8002cba:	f022 0203 	bic.w	r2, r2, #3
+ 8002cbe:	601a      	str	r2, [r3, #0]
+ 8002cc0:	681a      	ldr	r2, [r3, #0]
+ 8002cc2:	f042 0203 	orr.w	r2, r2, #3
+ 8002cc6:	601a      	str	r2, [r3, #0]
+ 8002cc8:	f104 0044 	add.w	r0, r4, #68	; 0x44
+ 8002ccc:	f7fe fc0e 	bl	80014ec <_ZN6FilterC1Ev>
+ 8002cd0:	f104 0074 	add.w	r0, r4, #116	; 0x74
+ 8002cd4:	f7fe fc0a 	bl	80014ec <_ZN6FilterC1Ev>
+ 8002cd8:	f104 00a4 	add.w	r0, r4, #164	; 0xa4
+ 8002cdc:	f7fe fc06 	bl	80014ec <_ZN6FilterC1Ev>
+ 8002ce0:	69a2      	ldr	r2, [r4, #24]
+ 8002ce2:	8d13      	ldrh	r3, [r2, #40]	; 0x28
+ 8002ce4:	b29b      	uxth	r3, r3
+ 8002ce6:	f443 5300 	orr.w	r3, r3, #8192	; 0x2000
+ 8002cea:	8513      	strh	r3, [r2, #40]	; 0x28
+ 8002cec:	4620      	mov	r0, r4
+ 8002cee:	bd10      	pop	{r4, pc}
+ 8002cf0:	40021000 	andmi	r1, r2, r0
+ 8002cf4:	080045f4 	stmdaeq	r0, {r2, r4, r5, r6, r7, r8, sl, lr}
+ 8002cf8:	48000800 	stmdami	r0, {fp}
+ 8002cfc:	48000400 	stmdami	r0, {sl}
 
-08002d68 <_ZN5Timer4initEv>:
- 8002d68:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
- 8002d6a:	2200      	movs	r2, #0
- 8002d6c:	4d15      	ldr	r5, [pc, #84]	; (8002dc4 <_ZN5Timer4initEv+0x5c>)
- 8002d6e:	2714      	movs	r7, #20
- 8002d70:	4613      	mov	r3, r2
- 8002d72:	f44f 767a 	mov.w	r6, #1000	; 0x3e8
- 8002d76:	fb07 f402 	mul.w	r4, r7, r2
- 8002d7a:	1929      	adds	r1, r5, r4
- 8002d7c:	3201      	adds	r2, #1
- 8002d7e:	2a10      	cmp	r2, #16
- 8002d80:	512b      	str	r3, [r5, r4]
- 8002d82:	604b      	str	r3, [r1, #4]
- 8002d84:	608e      	str	r6, [r1, #8]
- 8002d86:	60cb      	str	r3, [r1, #12]
- 8002d88:	740b      	strb	r3, [r1, #16]
- 8002d8a:	744b      	strb	r3, [r1, #17]
- 8002d8c:	d1f3      	bne.n	8002d76 <_ZN5Timer4initEv+0xe>
- 8002d8e:	4a0e      	ldr	r2, [pc, #56]	; (8002dc8 <_ZN5Timer4initEv+0x60>)
- 8002d90:	6013      	str	r3, [r2, #0]
- 8002d92:	4a0e      	ldr	r2, [pc, #56]	; (8002dcc <_ZN5Timer4initEv+0x64>)
- 8002d94:	6003      	str	r3, [r0, #0]
- 8002d96:	69d3      	ldr	r3, [r2, #28]
- 8002d98:	f043 0301 	orr.w	r3, r3, #1
- 8002d9c:	61d3      	str	r3, [r2, #28]
+08002d00 <_ZN14DistanceSensor4initEv>:
+ 8002d00:	e92d 43f7 	stmdb	sp!, {r0, r1, r2, r4, r5, r6, r7, r8, r9, lr}
+ 8002d04:	6982      	ldr	r2, [r0, #24]
+ 8002d06:	4f21      	ldr	r7, [pc, #132]	; (8002d8c <_ZN14DistanceSensor4initEv+0x8c>)
+ 8002d08:	8d13      	ldrh	r3, [r2, #40]	; 0x28
+ 8002d0a:	f8df 9088 	ldr.w	r9, [pc, #136]	; 8002d94 <_ZN14DistanceSensor4initEv+0x94>
+ 8002d0e:	b29b      	uxth	r3, r3
+ 8002d10:	2500      	movs	r5, #0
+ 8002d12:	f443 5300 	orr.w	r3, r3, #8192	; 0x2000
+ 8002d16:	6285      	str	r5, [r0, #40]	; 0x28
+ 8002d18:	2600      	movs	r6, #0
+ 8002d1a:	8513      	strh	r3, [r2, #40]	; 0x28
+ 8002d1c:	f04f 587b 	mov.w	r8, #1052770304	; 0x3ec00000
+ 8002d20:	f04f 537e 	mov.w	r3, #1065353216	; 0x3f800000
+ 8002d24:	4604      	mov	r4, r0
+ 8002d26:	62c5      	str	r5, [r0, #44]	; 0x2c
+ 8002d28:	6305      	str	r5, [r0, #48]	; 0x30
+ 8002d2a:	6345      	str	r5, [r0, #52]	; 0x34
+ 8002d2c:	6385      	str	r5, [r0, #56]	; 0x38
+ 8002d2e:	63c5      	str	r5, [r0, #60]	; 0x3c
+ 8002d30:	6405      	str	r5, [r0, #64]	; 0x40
+ 8002d32:	6043      	str	r3, [r0, #4]
+ 8002d34:	6083      	str	r3, [r0, #8]
+ 8002d36:	60c3      	str	r3, [r0, #12]
+ 8002d38:	7405      	strb	r5, [r0, #16]
+ 8002d3a:	7445      	strb	r5, [r0, #17]
+ 8002d3c:	4643      	mov	r3, r8
+ 8002d3e:	463a      	mov	r2, r7
+ 8002d40:	4631      	mov	r1, r6
+ 8002d42:	f8cd 9004 	str.w	r9, [sp, #4]
+ 8002d46:	9600      	str	r6, [sp, #0]
+ 8002d48:	3044      	adds	r0, #68	; 0x44
+ 8002d4a:	f7fe fbbe 	bl	80014ca <_ZN6Filter9set_coefsEfffff>
+ 8002d4e:	4643      	mov	r3, r8
+ 8002d50:	463a      	mov	r2, r7
+ 8002d52:	4631      	mov	r1, r6
+ 8002d54:	f104 0074 	add.w	r0, r4, #116	; 0x74
+ 8002d58:	f8cd 9004 	str.w	r9, [sp, #4]
+ 8002d5c:	9600      	str	r6, [sp, #0]
+ 8002d5e:	f7fe fbb4 	bl	80014ca <_ZN6Filter9set_coefsEfffff>
+ 8002d62:	4643      	mov	r3, r8
+ 8002d64:	463a      	mov	r2, r7
+ 8002d66:	4631      	mov	r1, r6
+ 8002d68:	f104 00a4 	add.w	r0, r4, #164	; 0xa4
+ 8002d6c:	f8cd 9004 	str.w	r9, [sp, #4]
+ 8002d70:	9600      	str	r6, [sp, #0]
+ 8002d72:	f7fe fbaa 	bl	80014ca <_ZN6Filter9set_coefsEfffff>
+ 8002d76:	462b      	mov	r3, r5
+ 8002d78:	2205      	movs	r2, #5
+ 8002d7a:	4621      	mov	r1, r4
+ 8002d7c:	4804      	ldr	r0, [pc, #16]	; (8002d90 <_ZN14DistanceSensor4initEv+0x90>)
+ 8002d7e:	f000 f869 	bl	8002e54 <_ZN5Timer8add_taskEP6Threadjb>
+ 8002d82:	4628      	mov	r0, r5
+ 8002d84:	7525      	strb	r5, [r4, #20]
+ 8002d86:	b003      	add	sp, #12
+ 8002d88:	e8bd 83f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, pc}
+ 8002d8c:	be800000 	cdplt	0, 8, cr0, cr0, cr0, {0}
+ 8002d90:	20000450 	andcs	r0, r0, r0, asr r4
+ 8002d94:	bec00000 	cdplt	0, 12, cr0, cr0, cr0, {0}
+
+08002d98 <_ZN14DistanceSensor5readyEv>:
+ 8002d98:	7d03      	ldrb	r3, [r0, #20]
+ 8002d9a:	b672      	cpsid	i
+ 8002d9c:	b10b      	cbz	r3, 8002da2 <_ZN14DistanceSensor5readyEv+0xa>
  8002d9e:	2200      	movs	r2, #0
- 8002da0:	2364      	movs	r3, #100	; 0x64
- 8002da2:	9300      	str	r3, [sp, #0]
- 8002da4:	4611      	mov	r1, r2
- 8002da6:	f240 23cf 	movw	r3, #719	; 0x2cf
- 8002daa:	f04f 4080 	mov.w	r0, #1073741824	; 0x40000000
- 8002dae:	f7fd facd 	bl	800034c <_Z10timer_initP11TIM_TypeDefmmmm>
- 8002db2:	2201      	movs	r2, #1
- 8002db4:	2100      	movs	r1, #0
- 8002db6:	201c      	movs	r0, #28
- 8002db8:	f7fd faa6 	bl	8000308 <_Z9nvic_initmmm>
- 8002dbc:	b662      	cpsie	i
- 8002dbe:	b003      	add	sp, #12
- 8002dc0:	bdf0      	pop	{r4, r5, r6, r7, pc}
- 8002dc2:	bf00      	nop
- 8002dc4:	20000014 	andcs	r0, r0, r4, lsl r0
- 8002dc8:	20000010 	andcs	r0, r0, r0, lsl r0
- 8002dcc:	40021000 	andmi	r1, r2, r0
+ 8002da0:	7502      	strb	r2, [r0, #20]
+ 8002da2:	b662      	cpsie	i
+ 8002da4:	4618      	mov	r0, r3
+ 8002da6:	4770      	bx	lr
 
-08002dd0 <_ZN5TimerD1Ev>:
- 8002dd0:	4770      	bx	lr
- 8002dd2:	0000      	movs	r0, r0
+08002da8 <_ZN14DistanceSensorD1Ev>:
+ 8002da8:	b510      	push	{r4, lr}
+ 8002daa:	4b08      	ldr	r3, [pc, #32]	; (8002dcc <_ZN14DistanceSensorD1Ev+0x24>)
+ 8002dac:	4604      	mov	r4, r0
+ 8002dae:	f840 3ba4 	str.w	r3, [r0], #164
+ 8002db2:	f7fe fb82 	bl	80014ba <_ZN6FilterD1Ev>
+ 8002db6:	f104 0074 	add.w	r0, r4, #116	; 0x74
+ 8002dba:	f7fe fb7e 	bl	80014ba <_ZN6FilterD1Ev>
+ 8002dbe:	f104 0044 	add.w	r0, r4, #68	; 0x44
+ 8002dc2:	f7fe fb7a 	bl	80014ba <_ZN6FilterD1Ev>
+ 8002dc6:	4620      	mov	r0, r4
+ 8002dc8:	bd10      	pop	{r4, pc}
+ 8002dca:	bf00      	nop
+ 8002dcc:	080045f4 	stmdaeq	r0, {r2, r4, r5, r6, r7, r8, sl, lr}
 
-08002dd4 <_ZN5Timer8add_taskEP6Threadjb>:
- 8002dd4:	b5f0      	push	{r4, r5, r6, r7, lr}
- 8002dd6:	b672      	cpsid	i
- 8002dd8:	4d11      	ldr	r5, [pc, #68]	; (8002e20 <_ZN5Timer8add_taskEP6Threadjb+0x4c>)
- 8002dda:	2400      	movs	r4, #0
- 8002ddc:	f04f 30ff 	mov.w	r0, #4294967295	; 0xffffffff
- 8002de0:	f04f 0e14 	mov.w	lr, #20
- 8002de4:	462f      	mov	r7, r5
- 8002de6:	fb0e f604 	mul.w	r6, lr, r4
- 8002dea:	eb05 0c06 	add.w	ip, r5, r6
- 8002dee:	59ae      	ldr	r6, [r5, r6]
- 8002df0:	b926      	cbnz	r6, 8002dfc <_ZN5Timer8add_taskEP6Threadjb+0x28>
- 8002df2:	f8dc 6004 	ldr.w	r6, [ip, #4]
- 8002df6:	2e00      	cmp	r6, #0
- 8002df8:	bf08      	it	eq
- 8002dfa:	4620      	moveq	r0, r4
- 8002dfc:	3401      	adds	r4, #1
- 8002dfe:	2c10      	cmp	r4, #16
- 8002e00:	d1f1      	bne.n	8002de6 <_ZN5Timer8add_taskEP6Threadjb+0x12>
- 8002e02:	1c44      	adds	r4, r0, #1
- 8002e04:	d00a      	beq.n	8002e1c <_ZN5Timer8add_taskEP6Threadjb+0x48>
- 8002e06:	b2c4      	uxtb	r4, r0
- 8002e08:	2514      	movs	r5, #20
- 8002e0a:	4365      	muls	r5, r4
- 8002e0c:	197c      	adds	r4, r7, r5
- 8002e0e:	2600      	movs	r6, #0
- 8002e10:	517e      	str	r6, [r7, r5]
- 8002e12:	6061      	str	r1, [r4, #4]
- 8002e14:	60a2      	str	r2, [r4, #8]
- 8002e16:	60e2      	str	r2, [r4, #12]
- 8002e18:	7426      	strb	r6, [r4, #16]
- 8002e1a:	7463      	strb	r3, [r4, #17]
- 8002e1c:	b662      	cpsie	i
- 8002e1e:	bdf0      	pop	{r4, r5, r6, r7, pc}
- 8002e20:	20000014 	andcs	r0, r0, r4, lsl r0
+08002dd0 <_ZN14DistanceSensorD0Ev>:
+ 8002dd0:	b510      	push	{r4, lr}
+ 8002dd2:	4604      	mov	r4, r0
+ 8002dd4:	f7ff ffe8 	bl	8002da8 <_ZN14DistanceSensorD1Ev>
+ 8002dd8:	4620      	mov	r0, r4
+ 8002dda:	21d4      	movs	r1, #212	; 0xd4
+ 8002ddc:	f7fe fb60 	bl	80014a0 <_ZdlPvj>
+ 8002de0:	4620      	mov	r0, r4
+ 8002de2:	bd10      	pop	{r4, pc}
 
-08002e24 <_ZN5Timer10set_periodEhj>:
- 8002e24:	4804      	ldr	r0, [pc, #16]	; (8002e38 <_ZN5Timer10set_periodEhj+0x14>)
- 8002e26:	2314      	movs	r3, #20
- 8002e28:	fb03 0101 	mla	r1, r3, r1, r0
- 8002e2c:	2300      	movs	r3, #0
- 8002e2e:	60ca      	str	r2, [r1, #12]
- 8002e30:	608a      	str	r2, [r1, #8]
- 8002e32:	740b      	strb	r3, [r1, #16]
- 8002e34:	4770      	bx	lr
- 8002e36:	bf00      	nop
- 8002e38:	20000014 	andcs	r0, r0, r4, lsl r0
+08002de4 <_ZN5TimerC1Ev>:
+ 8002de4:	4770      	bx	lr
+ 8002de6:	0000      	movs	r0, r0
 
-08002e3c <_ZN5Timer8get_timeEv>:
- 8002e3c:	b082      	sub	sp, #8
- 8002e3e:	b672      	cpsid	i
- 8002e40:	4b03      	ldr	r3, [pc, #12]	; (8002e50 <_ZN5Timer8get_timeEv+0x14>)
- 8002e42:	681b      	ldr	r3, [r3, #0]
- 8002e44:	9301      	str	r3, [sp, #4]
- 8002e46:	b662      	cpsie	i
- 8002e48:	9801      	ldr	r0, [sp, #4]
- 8002e4a:	b002      	add	sp, #8
- 8002e4c:	4770      	bx	lr
- 8002e4e:	bf00      	nop
- 8002e50:	20000010 	andcs	r0, r0, r0, lsl r0
+08002de8 <_ZN5Timer4initEv>:
+ 8002de8:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+ 8002dea:	2200      	movs	r2, #0
+ 8002dec:	4d15      	ldr	r5, [pc, #84]	; (8002e44 <_ZN5Timer4initEv+0x5c>)
+ 8002dee:	2714      	movs	r7, #20
+ 8002df0:	4613      	mov	r3, r2
+ 8002df2:	f44f 767a 	mov.w	r6, #1000	; 0x3e8
+ 8002df6:	fb07 f402 	mul.w	r4, r7, r2
+ 8002dfa:	1929      	adds	r1, r5, r4
+ 8002dfc:	3201      	adds	r2, #1
+ 8002dfe:	2a10      	cmp	r2, #16
+ 8002e00:	512b      	str	r3, [r5, r4]
+ 8002e02:	604b      	str	r3, [r1, #4]
+ 8002e04:	608e      	str	r6, [r1, #8]
+ 8002e06:	60cb      	str	r3, [r1, #12]
+ 8002e08:	740b      	strb	r3, [r1, #16]
+ 8002e0a:	744b      	strb	r3, [r1, #17]
+ 8002e0c:	d1f3      	bne.n	8002df6 <_ZN5Timer4initEv+0xe>
+ 8002e0e:	4a0e      	ldr	r2, [pc, #56]	; (8002e48 <_ZN5Timer4initEv+0x60>)
+ 8002e10:	6013      	str	r3, [r2, #0]
+ 8002e12:	4a0e      	ldr	r2, [pc, #56]	; (8002e4c <_ZN5Timer4initEv+0x64>)
+ 8002e14:	6003      	str	r3, [r0, #0]
+ 8002e16:	69d3      	ldr	r3, [r2, #28]
+ 8002e18:	f043 0301 	orr.w	r3, r3, #1
+ 8002e1c:	61d3      	str	r3, [r2, #28]
+ 8002e1e:	2200      	movs	r2, #0
+ 8002e20:	2364      	movs	r3, #100	; 0x64
+ 8002e22:	9300      	str	r3, [sp, #0]
+ 8002e24:	4611      	mov	r1, r2
+ 8002e26:	f240 23cf 	movw	r3, #719	; 0x2cf
+ 8002e2a:	f04f 4080 	mov.w	r0, #1073741824	; 0x40000000
+ 8002e2e:	f7fd fa8d 	bl	800034c <_Z10timer_initP11TIM_TypeDefmmmm>
+ 8002e32:	2201      	movs	r2, #1
+ 8002e34:	2100      	movs	r1, #0
+ 8002e36:	201c      	movs	r0, #28
+ 8002e38:	f7fd fa66 	bl	8000308 <_Z9nvic_initmmm>
+ 8002e3c:	b662      	cpsie	i
+ 8002e3e:	b003      	add	sp, #12
+ 8002e40:	bdf0      	pop	{r4, r5, r6, r7, pc}
+ 8002e42:	bf00      	nop
+ 8002e44:	20000014 	andcs	r0, r0, r4, lsl r0
+ 8002e48:	20000010 	andcs	r0, r0, r0, lsl r0
+ 8002e4c:	40021000 	andmi	r1, r2, r0
 
-08002e54 <_ZN5Timer8delay_msEj>:
- 8002e54:	b507      	push	{r0, r1, r2, lr}
- 8002e56:	4602      	mov	r2, r0
- 8002e58:	f7ff fff0 	bl	8002e3c <_ZN5Timer8get_timeEv>
- 8002e5c:	4401      	add	r1, r0
- 8002e5e:	9101      	str	r1, [sp, #4]
- 8002e60:	4610      	mov	r0, r2
- 8002e62:	f7ff ffeb 	bl	8002e3c <_ZN5Timer8get_timeEv>
- 8002e66:	9b01      	ldr	r3, [sp, #4]
- 8002e68:	4298      	cmp	r0, r3
- 8002e6a:	d201      	bcs.n	8002e70 <_ZN5Timer8delay_msEj+0x1c>
- 8002e6c:	bf00      	nop
- 8002e6e:	e7f7      	b.n	8002e60 <_ZN5Timer8delay_msEj+0xc>
- 8002e70:	b003      	add	sp, #12
- 8002e72:	f85d fb04 	ldr.w	pc, [sp], #4
- 8002e76:	0000      	movs	r0, r0
+08002e50 <_ZN5TimerD1Ev>:
+ 8002e50:	4770      	bx	lr
+ 8002e52:	0000      	movs	r0, r0
 
-08002e78 <TIM2_IRQHandler>:
- 8002e78:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8002e7a:	f04f 4380 	mov.w	r3, #1073741824	; 0x40000000
- 8002e7e:	691a      	ldr	r2, [r3, #16]
- 8002e80:	07d2      	lsls	r2, r2, #31
- 8002e82:	d514      	bpl.n	8002eae <TIM2_IRQHandler+0x36>
- 8002e84:	4f19      	ldr	r7, [pc, #100]	; (8002eec <TIM2_IRQHandler+0x74>)
- 8002e86:	f64f 72fe 	movw	r2, #65534	; 0xfffe
- 8002e8a:	611a      	str	r2, [r3, #16]
- 8002e8c:	2400      	movs	r4, #0
- 8002e8e:	2614      	movs	r6, #20
- 8002e90:	463d      	mov	r5, r7
- 8002e92:	fb06 7304 	mla	r3, r6, r4, r7
- 8002e96:	68da      	ldr	r2, [r3, #12]
- 8002e98:	b152      	cbz	r2, 8002eb0 <TIM2_IRQHandler+0x38>
- 8002e9a:	68da      	ldr	r2, [r3, #12]
- 8002e9c:	3a01      	subs	r2, #1
- 8002e9e:	60da      	str	r2, [r3, #12]
- 8002ea0:	3401      	adds	r4, #1
- 8002ea2:	2c10      	cmp	r4, #16
- 8002ea4:	d1f5      	bne.n	8002e92 <TIM2_IRQHandler+0x1a>
- 8002ea6:	4a12      	ldr	r2, [pc, #72]	; (8002ef0 <TIM2_IRQHandler+0x78>)
- 8002ea8:	6813      	ldr	r3, [r2, #0]
- 8002eaa:	3301      	adds	r3, #1
- 8002eac:	6013      	str	r3, [r2, #0]
- 8002eae:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
- 8002eb0:	689a      	ldr	r2, [r3, #8]
- 8002eb2:	60da      	str	r2, [r3, #12]
- 8002eb4:	7c1a      	ldrb	r2, [r3, #16]
- 8002eb6:	2aff      	cmp	r2, #255	; 0xff
- 8002eb8:	bf1f      	itttt	ne
- 8002eba:	7c1a      	ldrbne	r2, [r3, #16]
- 8002ebc:	3201      	addne	r2, #1
- 8002ebe:	b2d2      	uxtbne	r2, r2
- 8002ec0:	741a      	strbne	r2, [r3, #16]
- 8002ec2:	fb06 f304 	mul.w	r3, r6, r4
- 8002ec6:	18ea      	adds	r2, r5, r3
- 8002ec8:	7c52      	ldrb	r2, [r2, #17]
- 8002eca:	2a00      	cmp	r2, #0
- 8002ecc:	d1e8      	bne.n	8002ea0 <TIM2_IRQHandler+0x28>
- 8002ece:	58ea      	ldr	r2, [r5, r3]
- 8002ed0:	b10a      	cbz	r2, 8002ed6 <TIM2_IRQHandler+0x5e>
- 8002ed2:	58eb      	ldr	r3, [r5, r3]
- 8002ed4:	4798      	blx	r3
- 8002ed6:	fb06 5304 	mla	r3, r6, r4, r5
- 8002eda:	685a      	ldr	r2, [r3, #4]
- 8002edc:	2a00      	cmp	r2, #0
- 8002ede:	d0df      	beq.n	8002ea0 <TIM2_IRQHandler+0x28>
- 8002ee0:	6858      	ldr	r0, [r3, #4]
- 8002ee2:	6803      	ldr	r3, [r0, #0]
- 8002ee4:	689b      	ldr	r3, [r3, #8]
- 8002ee6:	4798      	blx	r3
- 8002ee8:	e7da      	b.n	8002ea0 <TIM2_IRQHandler+0x28>
- 8002eea:	bf00      	nop
- 8002eec:	20000014 	andcs	r0, r0, r4, lsl r0
- 8002ef0:	20000010 	andcs	r0, r0, r0, lsl r0
+08002e54 <_ZN5Timer8add_taskEP6Threadjb>:
+ 8002e54:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 8002e56:	b672      	cpsid	i
+ 8002e58:	4d11      	ldr	r5, [pc, #68]	; (8002ea0 <_ZN5Timer8add_taskEP6Threadjb+0x4c>)
+ 8002e5a:	2400      	movs	r4, #0
+ 8002e5c:	f04f 30ff 	mov.w	r0, #4294967295	; 0xffffffff
+ 8002e60:	f04f 0e14 	mov.w	lr, #20
+ 8002e64:	462f      	mov	r7, r5
+ 8002e66:	fb0e f604 	mul.w	r6, lr, r4
+ 8002e6a:	eb05 0c06 	add.w	ip, r5, r6
+ 8002e6e:	59ae      	ldr	r6, [r5, r6]
+ 8002e70:	b926      	cbnz	r6, 8002e7c <_ZN5Timer8add_taskEP6Threadjb+0x28>
+ 8002e72:	f8dc 6004 	ldr.w	r6, [ip, #4]
+ 8002e76:	2e00      	cmp	r6, #0
+ 8002e78:	bf08      	it	eq
+ 8002e7a:	4620      	moveq	r0, r4
+ 8002e7c:	3401      	adds	r4, #1
+ 8002e7e:	2c10      	cmp	r4, #16
+ 8002e80:	d1f1      	bne.n	8002e66 <_ZN5Timer8add_taskEP6Threadjb+0x12>
+ 8002e82:	1c44      	adds	r4, r0, #1
+ 8002e84:	d00a      	beq.n	8002e9c <_ZN5Timer8add_taskEP6Threadjb+0x48>
+ 8002e86:	b2c4      	uxtb	r4, r0
+ 8002e88:	2514      	movs	r5, #20
+ 8002e8a:	4365      	muls	r5, r4
+ 8002e8c:	197c      	adds	r4, r7, r5
+ 8002e8e:	2600      	movs	r6, #0
+ 8002e90:	517e      	str	r6, [r7, r5]
+ 8002e92:	6061      	str	r1, [r4, #4]
+ 8002e94:	60a2      	str	r2, [r4, #8]
+ 8002e96:	60e2      	str	r2, [r4, #12]
+ 8002e98:	7426      	strb	r6, [r4, #16]
+ 8002e9a:	7463      	strb	r3, [r4, #17]
+ 8002e9c:	b662      	cpsie	i
+ 8002e9e:	bdf0      	pop	{r4, r5, r6, r7, pc}
+ 8002ea0:	20000014 	andcs	r0, r0, r4, lsl r0
 
-08002ef4 <_ZN7DriversD1Ev>:
- 8002ef4:	4770      	bx	lr
+08002ea4 <_ZN5Timer10set_periodEhj>:
+ 8002ea4:	4804      	ldr	r0, [pc, #16]	; (8002eb8 <_ZN5Timer10set_periodEhj+0x14>)
+ 8002ea6:	2314      	movs	r3, #20
+ 8002ea8:	fb03 0101 	mla	r1, r3, r1, r0
+ 8002eac:	2300      	movs	r3, #0
+ 8002eae:	60ca      	str	r2, [r1, #12]
+ 8002eb0:	608a      	str	r2, [r1, #8]
+ 8002eb2:	740b      	strb	r3, [r1, #16]
+ 8002eb4:	4770      	bx	lr
+ 8002eb6:	bf00      	nop
+ 8002eb8:	20000014 	andcs	r0, r0, r4, lsl r0
 
-08002ef6 <_ZN7DriversD0Ev>:
- 8002ef6:	b510      	push	{r4, lr}
- 8002ef8:	2108      	movs	r1, #8
- 8002efa:	4604      	mov	r4, r0
- 8002efc:	f7fe fad0 	bl	80014a0 <_ZdlPvj>
- 8002f00:	4620      	mov	r0, r4
- 8002f02:	bd10      	pop	{r4, pc}
+08002ebc <_ZN5Timer8get_timeEv>:
+ 8002ebc:	b082      	sub	sp, #8
+ 8002ebe:	b672      	cpsid	i
+ 8002ec0:	4b03      	ldr	r3, [pc, #12]	; (8002ed0 <_ZN5Timer8get_timeEv+0x14>)
+ 8002ec2:	681b      	ldr	r3, [r3, #0]
+ 8002ec4:	9301      	str	r3, [sp, #4]
+ 8002ec6:	b662      	cpsie	i
+ 8002ec8:	9801      	ldr	r0, [sp, #4]
+ 8002eca:	b002      	add	sp, #8
+ 8002ecc:	4770      	bx	lr
+ 8002ece:	bf00      	nop
+ 8002ed0:	20000010 	andcs	r0, r0, r0, lsl r0
 
-08002f04 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EED1Ev>:
- 8002f04:	b510      	push	{r4, lr}
- 8002f06:	4b03      	ldr	r3, [pc, #12]	; (8002f14 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EED1Ev+0x10>)
- 8002f08:	6003      	str	r3, [r0, #0]
- 8002f0a:	4604      	mov	r4, r0
- 8002f0c:	f7fd fcc0 	bl	8000890 <_ZN13I2C_InterfaceD1Ev>
- 8002f10:	4620      	mov	r0, r4
- 8002f12:	bd10      	pop	{r4, pc}
- 8002f14:	08004530 	stmdaeq	r0, {r4, r5, r8, sl, lr}
+08002ed4 <_ZN5Timer8delay_msEj>:
+ 8002ed4:	b507      	push	{r0, r1, r2, lr}
+ 8002ed6:	4602      	mov	r2, r0
+ 8002ed8:	f7ff fff0 	bl	8002ebc <_ZN5Timer8get_timeEv>
+ 8002edc:	4401      	add	r1, r0
+ 8002ede:	9101      	str	r1, [sp, #4]
+ 8002ee0:	4610      	mov	r0, r2
+ 8002ee2:	f7ff ffeb 	bl	8002ebc <_ZN5Timer8get_timeEv>
+ 8002ee6:	9b01      	ldr	r3, [sp, #4]
+ 8002ee8:	4298      	cmp	r0, r3
+ 8002eea:	d201      	bcs.n	8002ef0 <_ZN5Timer8delay_msEj+0x1c>
+ 8002eec:	bf00      	nop
+ 8002eee:	e7f7      	b.n	8002ee0 <_ZN5Timer8delay_msEj+0xc>
+ 8002ef0:	b003      	add	sp, #12
+ 8002ef2:	f85d fb04 	ldr.w	pc, [sp], #4
+ 8002ef6:	0000      	movs	r0, r0
 
-08002f18 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EED0Ev>:
- 8002f18:	b510      	push	{r4, lr}
- 8002f1a:	4604      	mov	r4, r0
- 8002f1c:	f7ff fff2 	bl	8002f04 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EED1Ev>
- 8002f20:	4620      	mov	r0, r4
- 8002f22:	2110      	movs	r1, #16
- 8002f24:	f7fe fabc 	bl	80014a0 <_ZdlPvj>
- 8002f28:	4620      	mov	r0, r4
- 8002f2a:	bd10      	pop	{r4, pc}
+08002ef8 <TIM2_IRQHandler>:
+ 8002ef8:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8002efa:	f04f 4380 	mov.w	r3, #1073741824	; 0x40000000
+ 8002efe:	691a      	ldr	r2, [r3, #16]
+ 8002f00:	07d2      	lsls	r2, r2, #31
+ 8002f02:	d514      	bpl.n	8002f2e <TIM2_IRQHandler+0x36>
+ 8002f04:	4f19      	ldr	r7, [pc, #100]	; (8002f6c <TIM2_IRQHandler+0x74>)
+ 8002f06:	f64f 72fe 	movw	r2, #65534	; 0xfffe
+ 8002f0a:	611a      	str	r2, [r3, #16]
+ 8002f0c:	2400      	movs	r4, #0
+ 8002f0e:	2614      	movs	r6, #20
+ 8002f10:	463d      	mov	r5, r7
+ 8002f12:	fb06 7304 	mla	r3, r6, r4, r7
+ 8002f16:	68da      	ldr	r2, [r3, #12]
+ 8002f18:	b152      	cbz	r2, 8002f30 <TIM2_IRQHandler+0x38>
+ 8002f1a:	68da      	ldr	r2, [r3, #12]
+ 8002f1c:	3a01      	subs	r2, #1
+ 8002f1e:	60da      	str	r2, [r3, #12]
+ 8002f20:	3401      	adds	r4, #1
+ 8002f22:	2c10      	cmp	r4, #16
+ 8002f24:	d1f5      	bne.n	8002f12 <TIM2_IRQHandler+0x1a>
+ 8002f26:	4a12      	ldr	r2, [pc, #72]	; (8002f70 <TIM2_IRQHandler+0x78>)
+ 8002f28:	6813      	ldr	r3, [r2, #0]
+ 8002f2a:	3301      	adds	r3, #1
+ 8002f2c:	6013      	str	r3, [r2, #0]
+ 8002f2e:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+ 8002f30:	689a      	ldr	r2, [r3, #8]
+ 8002f32:	60da      	str	r2, [r3, #12]
+ 8002f34:	7c1a      	ldrb	r2, [r3, #16]
+ 8002f36:	2aff      	cmp	r2, #255	; 0xff
+ 8002f38:	bf1f      	itttt	ne
+ 8002f3a:	7c1a      	ldrbne	r2, [r3, #16]
+ 8002f3c:	3201      	addne	r2, #1
+ 8002f3e:	b2d2      	uxtbne	r2, r2
+ 8002f40:	741a      	strbne	r2, [r3, #16]
+ 8002f42:	fb06 f304 	mul.w	r3, r6, r4
+ 8002f46:	18ea      	adds	r2, r5, r3
+ 8002f48:	7c52      	ldrb	r2, [r2, #17]
+ 8002f4a:	2a00      	cmp	r2, #0
+ 8002f4c:	d1e8      	bne.n	8002f20 <TIM2_IRQHandler+0x28>
+ 8002f4e:	58ea      	ldr	r2, [r5, r3]
+ 8002f50:	b10a      	cbz	r2, 8002f56 <TIM2_IRQHandler+0x5e>
+ 8002f52:	58eb      	ldr	r3, [r5, r3]
+ 8002f54:	4798      	blx	r3
+ 8002f56:	fb06 5304 	mla	r3, r6, r4, r5
+ 8002f5a:	685a      	ldr	r2, [r3, #4]
+ 8002f5c:	2a00      	cmp	r2, #0
+ 8002f5e:	d0df      	beq.n	8002f20 <TIM2_IRQHandler+0x28>
+ 8002f60:	6858      	ldr	r0, [r3, #4]
+ 8002f62:	6803      	ldr	r3, [r0, #0]
+ 8002f64:	689b      	ldr	r3, [r3, #8]
+ 8002f66:	4798      	blx	r3
+ 8002f68:	e7da      	b.n	8002f20 <TIM2_IRQHandler+0x28>
+ 8002f6a:	bf00      	nop
+ 8002f6c:	20000014 	andcs	r0, r0, r4, lsl r0
+ 8002f70:	20000010 	andcs	r0, r0, r0, lsl r0
 
-08002f2c <_ZN8TerminallsEb>:
- 8002f2c:	b510      	push	{r4, lr}
- 8002f2e:	4604      	mov	r4, r0
- 8002f30:	b121      	cbz	r1, 8002f3c <_ZN8TerminallsEb+0x10>
- 8002f32:	4903      	ldr	r1, [pc, #12]	; (8002f40 <_ZN8TerminallsEb+0x14>)
- 8002f34:	f7fe fc39 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 8002f38:	4620      	mov	r0, r4
- 8002f3a:	bd10      	pop	{r4, pc}
- 8002f3c:	4901      	ldr	r1, [pc, #4]	; (8002f44 <_ZN8TerminallsEb+0x18>)
- 8002f3e:	e7f9      	b.n	8002f34 <_ZN8TerminallsEb+0x8>
- 8002f40:	0800468e 	stmdaeq	r0, {r1, r2, r3, r7, r9, sl, lr}
- 8002f44:	08004693 	stmdaeq	r0, {r0, r1, r4, r7, r9, sl, lr}
+08002f74 <_ZN7DriversD1Ev>:
+ 8002f74:	4770      	bx	lr
 
-08002f48 <_ZN7DriversC1Ev>:
- 8002f48:	4910      	ldr	r1, [pc, #64]	; (8002f8c <_ZN7DriversC1Ev+0x44>)
- 8002f4a:	4b11      	ldr	r3, [pc, #68]	; (8002f90 <_ZN7DriversC1Ev+0x48>)
- 8002f4c:	6003      	str	r3, [r0, #0]
- 8002f4e:	694b      	ldr	r3, [r1, #20]
- 8002f50:	f443 03fc 	orr.w	r3, r3, #8257536	; 0x7e0000
- 8002f54:	614b      	str	r3, [r1, #20]
- 8002f56:	4b0f      	ldr	r3, [pc, #60]	; (8002f94 <_ZN7DriversC1Ev+0x4c>)
- 8002f58:	6043      	str	r3, [r0, #4]
- 8002f5a:	689a      	ldr	r2, [r3, #8]
- 8002f5c:	f022 4240 	bic.w	r2, r2, #3221225472	; 0xc0000000
- 8002f60:	609a      	str	r2, [r3, #8]
- 8002f62:	689a      	ldr	r2, [r3, #8]
- 8002f64:	f042 4240 	orr.w	r2, r2, #3221225472	; 0xc0000000
- 8002f68:	609a      	str	r2, [r3, #8]
- 8002f6a:	889a      	ldrh	r2, [r3, #4]
- 8002f6c:	f3c2 020e 	ubfx	r2, r2, #0, #15
- 8002f70:	809a      	strh	r2, [r3, #4]
- 8002f72:	889a      	ldrh	r2, [r3, #4]
- 8002f74:	b292      	uxth	r2, r2
- 8002f76:	809a      	strh	r2, [r3, #4]
- 8002f78:	681a      	ldr	r2, [r3, #0]
- 8002f7a:	f022 4240 	bic.w	r2, r2, #3221225472	; 0xc0000000
- 8002f7e:	601a      	str	r2, [r3, #0]
- 8002f80:	681a      	ldr	r2, [r3, #0]
- 8002f82:	f042 4280 	orr.w	r2, r2, #1073741824	; 0x40000000
- 8002f86:	601a      	str	r2, [r3, #0]
- 8002f88:	4770      	bx	lr
- 8002f8a:	bf00      	nop
- 8002f8c:	40021000 	andmi	r1, r2, r0
- 8002f90:	080046a4 	stmdaeq	r0, {r2, r5, r7, r9, sl, lr}
- 8002f94:	48000400 	stmdami	r0, {sl}
+08002f76 <_ZN7DriversD0Ev>:
+ 8002f76:	b510      	push	{r4, lr}
+ 8002f78:	2108      	movs	r1, #8
+ 8002f7a:	4604      	mov	r4, r0
+ 8002f7c:	f7fe fa90 	bl	80014a0 <_ZdlPvj>
+ 8002f80:	4620      	mov	r0, r4
+ 8002f82:	bd10      	pop	{r4, pc}
 
-08002f98 <_ZN4GpioILh1ELh15ELh0EE5writeEi>:
- 8002f98:	6802      	ldr	r2, [r0, #0]
- 8002f9a:	b121      	cbz	r1, 8002fa6 <_ZN4GpioILh1ELh15ELh0EE5writeEi+0xe>
- 8002f9c:	6993      	ldr	r3, [r2, #24]
- 8002f9e:	f443 4300 	orr.w	r3, r3, #32768	; 0x8000
- 8002fa2:	6193      	str	r3, [r2, #24]
- 8002fa4:	4770      	bx	lr
- 8002fa6:	8d13      	ldrh	r3, [r2, #40]	; 0x28
- 8002fa8:	ea6f 4343 	mvn.w	r3, r3, lsl #17
- 8002fac:	ea6f 4353 	mvn.w	r3, r3, lsr #17
- 8002fb0:	b29b      	uxth	r3, r3
- 8002fb2:	8513      	strh	r3, [r2, #40]	; 0x28
- 8002fb4:	4770      	bx	lr
- 8002fb6:	0000      	movs	r0, r0
+08002f84 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EED1Ev>:
+ 8002f84:	b510      	push	{r4, lr}
+ 8002f86:	4b03      	ldr	r3, [pc, #12]	; (8002f94 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EED1Ev+0x10>)
+ 8002f88:	6003      	str	r3, [r0, #0]
+ 8002f8a:	4604      	mov	r4, r0
+ 8002f8c:	f7fd fc80 	bl	8000890 <_ZN13I2C_InterfaceD1Ev>
+ 8002f90:	4620      	mov	r0, r4
+ 8002f92:	bd10      	pop	{r4, pc}
+ 8002f94:	08004608 	stmdaeq	r0, {r3, r9, sl, lr}
 
-08002fb8 <_ZN7Drivers20test_distance_sensorEi>:
- 8002fb8:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
- 8002fbc:	4681      	mov	r9, r0
- 8002fbe:	460f      	mov	r7, r1
- 8002fc0:	482c      	ldr	r0, [pc, #176]	; (8003074 <_ZN7Drivers20test_distance_sensorEi+0xbc>)
- 8002fc2:	492d      	ldr	r1, [pc, #180]	; (8003078 <_ZN7Drivers20test_distance_sensorEi+0xc0>)
- 8002fc4:	4d2d      	ldr	r5, [pc, #180]	; (800307c <_ZN7Drivers20test_distance_sensorEi+0xc4>)
- 8002fc6:	4c2b      	ldr	r4, [pc, #172]	; (8003074 <_ZN7Drivers20test_distance_sensorEi+0xbc>)
- 8002fc8:	4e2d      	ldr	r6, [pc, #180]	; (8003080 <_ZN7Drivers20test_distance_sensorEi+0xc8>)
- 8002fca:	f7fe fbee 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 8002fce:	f04f 0801 	mov.w	r8, #1
- 8002fd2:	f1b8 0f00 	cmp.w	r8, #0
- 8002fd6:	d04a      	beq.n	800306e <_ZN7Drivers20test_distance_sensorEi+0xb6>
- 8002fd8:	4628      	mov	r0, r5
- 8002fda:	f7ff fe9d 	bl	8002d18 <_ZN14DistanceSensor5readyEv>
- 8002fde:	2800      	cmp	r0, #0
- 8002fe0:	d0f7      	beq.n	8002fd2 <_ZN7Drivers20test_distance_sensorEi+0x1a>
- 8002fe2:	f109 0804 	add.w	r8, r9, #4
- 8002fe6:	2f00      	cmp	r7, #0
- 8002fe8:	4640      	mov	r0, r8
- 8002fea:	f04f 0101 	mov.w	r1, #1
- 8002fee:	bfc8      	it	gt
- 8002ff0:	f107 37ff 	addgt.w	r7, r7, #4294967295	; 0xffffffff
- 8002ff4:	f7ff ffd0 	bl	8002f98 <_ZN4GpioILh1ELh15ELh0EE5writeEi>
- 8002ff8:	2203      	movs	r2, #3
- 8002ffa:	6869      	ldr	r1, [r5, #4]
- 8002ffc:	4620      	mov	r0, r4
- 8002ffe:	f7fe fc1b 	bl	8001838 <_ZN8Terminal4putfEfh>
- 8003002:	4631      	mov	r1, r6
- 8003004:	4620      	mov	r0, r4
- 8003006:	f7fe fbd0 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 800300a:	2203      	movs	r2, #3
- 800300c:	68a9      	ldr	r1, [r5, #8]
- 800300e:	4620      	mov	r0, r4
- 8003010:	f7fe fc12 	bl	8001838 <_ZN8Terminal4putfEfh>
- 8003014:	4631      	mov	r1, r6
- 8003016:	4620      	mov	r0, r4
- 8003018:	f7fe fbc7 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 800301c:	2203      	movs	r2, #3
- 800301e:	68e9      	ldr	r1, [r5, #12]
- 8003020:	4620      	mov	r0, r4
- 8003022:	f7fe fc09 	bl	8001838 <_ZN8Terminal4putfEfh>
- 8003026:	4631      	mov	r1, r6
- 8003028:	4620      	mov	r0, r4
- 800302a:	f7fe fbbe 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 800302e:	7c29      	ldrb	r1, [r5, #16]
- 8003030:	4620      	mov	r0, r4
- 8003032:	f7ff ff7b 	bl	8002f2c <_ZN8TerminallsEb>
- 8003036:	4631      	mov	r1, r6
- 8003038:	f7fe fbb7 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 800303c:	7c69      	ldrb	r1, [r5, #17]
- 800303e:	4620      	mov	r0, r4
- 8003040:	f7ff ff74 	bl	8002f2c <_ZN8TerminallsEb>
- 8003044:	4631      	mov	r1, r6
- 8003046:	f7fe fbb0 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 800304a:	490e      	ldr	r1, [pc, #56]	; (8003084 <_ZN7Drivers20test_distance_sensorEi+0xcc>)
- 800304c:	4620      	mov	r0, r4
- 800304e:	f7fe fbac 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 8003052:	4640      	mov	r0, r8
- 8003054:	2100      	movs	r1, #0
- 8003056:	f7ff ff9f 	bl	8002f98 <_ZN4GpioILh1ELh15ELh0EE5writeEi>
- 800305a:	21c8      	movs	r1, #200	; 0xc8
- 800305c:	480a      	ldr	r0, [pc, #40]	; (8003088 <_ZN7Drivers20test_distance_sensorEi+0xd0>)
- 800305e:	f7ff fef9 	bl	8002e54 <_ZN5Timer8delay_msEj>
- 8003062:	f117 0800 	adds.w	r8, r7, #0
- 8003066:	bf18      	it	ne
- 8003068:	f04f 0801 	movne.w	r8, #1
- 800306c:	e7b1      	b.n	8002fd2 <_ZN7Drivers20test_distance_sensorEi+0x1a>
- 800306e:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
- 8003072:	bf00      	nop
- 8003074:	20000440 	andcs	r0, r0, r0, asr #8
- 8003078:	08004561 	stmdaeq	r0, {r0, r5, r6, r8, sl, lr}
- 800307c:	20000158 	andcs	r0, r0, r8, asr r1
- 8003080:	0800455f 	stmdaeq	r0, {r0, r1, r2, r3, r4, r6, r8, sl, lr}
- 8003084:	08004582 	stmdaeq	r0, {r1, r7, r8, sl, lr}
- 8003088:	20000444 	andcs	r0, r0, r4, asr #8
+08002f98 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EED0Ev>:
+ 8002f98:	b510      	push	{r4, lr}
+ 8002f9a:	4604      	mov	r4, r0
+ 8002f9c:	f7ff fff2 	bl	8002f84 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EED1Ev>
+ 8002fa0:	4620      	mov	r0, r4
+ 8002fa2:	2110      	movs	r1, #16
+ 8002fa4:	f7fe fa7c 	bl	80014a0 <_ZdlPvj>
+ 8002fa8:	4620      	mov	r0, r4
+ 8002faa:	bd10      	pop	{r4, pc}
 
-0800308c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>:
- 800308c:	b9d1      	cbnz	r1, 80030c4 <_ZN4GpioILh1ELh7ELh1EE8set_modeEh+0x38>
- 800308e:	6803      	ldr	r3, [r0, #0]
- 8003090:	689a      	ldr	r2, [r3, #8]
- 8003092:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
- 8003096:	609a      	str	r2, [r3, #8]
- 8003098:	689a      	ldr	r2, [r3, #8]
- 800309a:	f442 4240 	orr.w	r2, r2, #49152	; 0xc000
- 800309e:	609a      	str	r2, [r3, #8]
- 80030a0:	889a      	ldrh	r2, [r3, #4]
- 80030a2:	f022 0280 	bic.w	r2, r2, #128	; 0x80
- 80030a6:	0412      	lsls	r2, r2, #16
- 80030a8:	0c12      	lsrs	r2, r2, #16
- 80030aa:	809a      	strh	r2, [r3, #4]
- 80030ac:	889a      	ldrh	r2, [r3, #4]
- 80030ae:	b292      	uxth	r2, r2
- 80030b0:	809a      	strh	r2, [r3, #4]
- 80030b2:	681a      	ldr	r2, [r3, #0]
- 80030b4:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
- 80030b8:	601a      	str	r2, [r3, #0]
- 80030ba:	681a      	ldr	r2, [r3, #0]
- 80030bc:	f442 4280 	orr.w	r2, r2, #16384	; 0x4000
- 80030c0:	601a      	str	r2, [r3, #0]
- 80030c2:	4770      	bx	lr
- 80030c4:	2901      	cmp	r1, #1
- 80030c6:	d10e      	bne.n	80030e6 <_ZN4GpioILh1ELh7ELh1EE8set_modeEh+0x5a>
- 80030c8:	6803      	ldr	r3, [r0, #0]
- 80030ca:	689a      	ldr	r2, [r3, #8]
- 80030cc:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
- 80030d0:	609a      	str	r2, [r3, #8]
- 80030d2:	689a      	ldr	r2, [r3, #8]
- 80030d4:	f442 4240 	orr.w	r2, r2, #49152	; 0xc000
- 80030d8:	609a      	str	r2, [r3, #8]
- 80030da:	681a      	ldr	r2, [r3, #0]
- 80030dc:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
- 80030e0:	601a      	str	r2, [r3, #0]
- 80030e2:	681a      	ldr	r2, [r3, #0]
- 80030e4:	e7ec      	b.n	80030c0 <_ZN4GpioILh1ELh7ELh1EE8set_modeEh+0x34>
- 80030e6:	2902      	cmp	r1, #2
- 80030e8:	d113      	bne.n	8003112 <_ZN4GpioILh1ELh7ELh1EE8set_modeEh+0x86>
- 80030ea:	6803      	ldr	r3, [r0, #0]
- 80030ec:	689a      	ldr	r2, [r3, #8]
- 80030ee:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
- 80030f2:	609a      	str	r2, [r3, #8]
- 80030f4:	689a      	ldr	r2, [r3, #8]
- 80030f6:	f442 4240 	orr.w	r2, r2, #49152	; 0xc000
- 80030fa:	609a      	str	r2, [r3, #8]
- 80030fc:	681a      	ldr	r2, [r3, #0]
- 80030fe:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
- 8003102:	601a      	str	r2, [r3, #0]
- 8003104:	681a      	ldr	r2, [r3, #0]
- 8003106:	601a      	str	r2, [r3, #0]
- 8003108:	68da      	ldr	r2, [r3, #12]
- 800310a:	f442 4280 	orr.w	r2, r2, #16384	; 0x4000
- 800310e:	60da      	str	r2, [r3, #12]
- 8003110:	4770      	bx	lr
- 8003112:	2905      	cmp	r1, #5
- 8003114:	d110      	bne.n	8003138 <_ZN4GpioILh1ELh7ELh1EE8set_modeEh+0xac>
- 8003116:	6803      	ldr	r3, [r0, #0]
+08002fac <_ZN8TerminallsEb>:
+ 8002fac:	b510      	push	{r4, lr}
+ 8002fae:	4604      	mov	r4, r0
+ 8002fb0:	b121      	cbz	r1, 8002fbc <_ZN8TerminallsEb+0x10>
+ 8002fb2:	4903      	ldr	r1, [pc, #12]	; (8002fc0 <_ZN8TerminallsEb+0x14>)
+ 8002fb4:	f7fe fbf9 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 8002fb8:	4620      	mov	r0, r4
+ 8002fba:	bd10      	pop	{r4, pc}
+ 8002fbc:	4901      	ldr	r1, [pc, #4]	; (8002fc4 <_ZN8TerminallsEb+0x18>)
+ 8002fbe:	e7f9      	b.n	8002fb4 <_ZN8TerminallsEb+0x8>
+ 8002fc0:	0800477d 	stmdaeq	r0, {r0, r2, r3, r4, r5, r6, r8, r9, sl, lr}
+ 8002fc4:	08004782 	stmdaeq	r0, {r1, r7, r8, r9, sl, lr}
+
+08002fc8 <_ZN7DriversC1Ev>:
+ 8002fc8:	4910      	ldr	r1, [pc, #64]	; (800300c <_ZN7DriversC1Ev+0x44>)
+ 8002fca:	4b11      	ldr	r3, [pc, #68]	; (8003010 <_ZN7DriversC1Ev+0x48>)
+ 8002fcc:	6003      	str	r3, [r0, #0]
+ 8002fce:	694b      	ldr	r3, [r1, #20]
+ 8002fd0:	f443 03fc 	orr.w	r3, r3, #8257536	; 0x7e0000
+ 8002fd4:	614b      	str	r3, [r1, #20]
+ 8002fd6:	4b0f      	ldr	r3, [pc, #60]	; (8003014 <_ZN7DriversC1Ev+0x4c>)
+ 8002fd8:	6043      	str	r3, [r0, #4]
+ 8002fda:	689a      	ldr	r2, [r3, #8]
+ 8002fdc:	f022 4240 	bic.w	r2, r2, #3221225472	; 0xc0000000
+ 8002fe0:	609a      	str	r2, [r3, #8]
+ 8002fe2:	689a      	ldr	r2, [r3, #8]
+ 8002fe4:	f042 4240 	orr.w	r2, r2, #3221225472	; 0xc0000000
+ 8002fe8:	609a      	str	r2, [r3, #8]
+ 8002fea:	889a      	ldrh	r2, [r3, #4]
+ 8002fec:	f3c2 020e 	ubfx	r2, r2, #0, #15
+ 8002ff0:	809a      	strh	r2, [r3, #4]
+ 8002ff2:	889a      	ldrh	r2, [r3, #4]
+ 8002ff4:	b292      	uxth	r2, r2
+ 8002ff6:	809a      	strh	r2, [r3, #4]
+ 8002ff8:	681a      	ldr	r2, [r3, #0]
+ 8002ffa:	f022 4240 	bic.w	r2, r2, #3221225472	; 0xc0000000
+ 8002ffe:	601a      	str	r2, [r3, #0]
+ 8003000:	681a      	ldr	r2, [r3, #0]
+ 8003002:	f042 4280 	orr.w	r2, r2, #1073741824	; 0x40000000
+ 8003006:	601a      	str	r2, [r3, #0]
+ 8003008:	4770      	bx	lr
+ 800300a:	bf00      	nop
+ 800300c:	40021000 	andmi	r1, r2, r0
+ 8003010:	08004790 	stmdaeq	r0, {r4, r7, r8, r9, sl, lr}
+ 8003014:	48000400 	stmdami	r0, {sl}
+
+08003018 <_ZN4GpioILh1ELh15ELh0EE5writeEi>:
+ 8003018:	6802      	ldr	r2, [r0, #0]
+ 800301a:	b121      	cbz	r1, 8003026 <_ZN4GpioILh1ELh15ELh0EE5writeEi+0xe>
+ 800301c:	6993      	ldr	r3, [r2, #24]
+ 800301e:	f443 4300 	orr.w	r3, r3, #32768	; 0x8000
+ 8003022:	6193      	str	r3, [r2, #24]
+ 8003024:	4770      	bx	lr
+ 8003026:	8d13      	ldrh	r3, [r2, #40]	; 0x28
+ 8003028:	ea6f 4343 	mvn.w	r3, r3, lsl #17
+ 800302c:	ea6f 4353 	mvn.w	r3, r3, lsr #17
+ 8003030:	b29b      	uxth	r3, r3
+ 8003032:	8513      	strh	r3, [r2, #40]	; 0x28
+ 8003034:	4770      	bx	lr
+ 8003036:	0000      	movs	r0, r0
+
+08003038 <_ZN7Drivers20test_distance_sensorEi>:
+ 8003038:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
+ 800303c:	4681      	mov	r9, r0
+ 800303e:	460f      	mov	r7, r1
+ 8003040:	482c      	ldr	r0, [pc, #176]	; (80030f4 <_ZN7Drivers20test_distance_sensorEi+0xbc>)
+ 8003042:	492d      	ldr	r1, [pc, #180]	; (80030f8 <_ZN7Drivers20test_distance_sensorEi+0xc0>)
+ 8003044:	4d2d      	ldr	r5, [pc, #180]	; (80030fc <_ZN7Drivers20test_distance_sensorEi+0xc4>)
+ 8003046:	4c2b      	ldr	r4, [pc, #172]	; (80030f4 <_ZN7Drivers20test_distance_sensorEi+0xbc>)
+ 8003048:	4e2d      	ldr	r6, [pc, #180]	; (8003100 <_ZN7Drivers20test_distance_sensorEi+0xc8>)
+ 800304a:	f7fe fbae 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 800304e:	f04f 0801 	mov.w	r8, #1
+ 8003052:	f1b8 0f00 	cmp.w	r8, #0
+ 8003056:	d04a      	beq.n	80030ee <_ZN7Drivers20test_distance_sensorEi+0xb6>
+ 8003058:	4628      	mov	r0, r5
+ 800305a:	f7ff fe9d 	bl	8002d98 <_ZN14DistanceSensor5readyEv>
+ 800305e:	2800      	cmp	r0, #0
+ 8003060:	d0f7      	beq.n	8003052 <_ZN7Drivers20test_distance_sensorEi+0x1a>
+ 8003062:	f109 0804 	add.w	r8, r9, #4
+ 8003066:	2f00      	cmp	r7, #0
+ 8003068:	4640      	mov	r0, r8
+ 800306a:	f04f 0101 	mov.w	r1, #1
+ 800306e:	bfc8      	it	gt
+ 8003070:	f107 37ff 	addgt.w	r7, r7, #4294967295	; 0xffffffff
+ 8003074:	f7ff ffd0 	bl	8003018 <_ZN4GpioILh1ELh15ELh0EE5writeEi>
+ 8003078:	2203      	movs	r2, #3
+ 800307a:	6869      	ldr	r1, [r5, #4]
+ 800307c:	4620      	mov	r0, r4
+ 800307e:	f7fe fbdb 	bl	8001838 <_ZN8Terminal4putfEfh>
+ 8003082:	4631      	mov	r1, r6
+ 8003084:	4620      	mov	r0, r4
+ 8003086:	f7fe fb90 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 800308a:	2203      	movs	r2, #3
+ 800308c:	68a9      	ldr	r1, [r5, #8]
+ 800308e:	4620      	mov	r0, r4
+ 8003090:	f7fe fbd2 	bl	8001838 <_ZN8Terminal4putfEfh>
+ 8003094:	4631      	mov	r1, r6
+ 8003096:	4620      	mov	r0, r4
+ 8003098:	f7fe fb87 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 800309c:	2203      	movs	r2, #3
+ 800309e:	68e9      	ldr	r1, [r5, #12]
+ 80030a0:	4620      	mov	r0, r4
+ 80030a2:	f7fe fbc9 	bl	8001838 <_ZN8Terminal4putfEfh>
+ 80030a6:	4631      	mov	r1, r6
+ 80030a8:	4620      	mov	r0, r4
+ 80030aa:	f7fe fb7e 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 80030ae:	7c29      	ldrb	r1, [r5, #16]
+ 80030b0:	4620      	mov	r0, r4
+ 80030b2:	f7ff ff7b 	bl	8002fac <_ZN8TerminallsEb>
+ 80030b6:	4631      	mov	r1, r6
+ 80030b8:	f7fe fb77 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 80030bc:	7c69      	ldrb	r1, [r5, #17]
+ 80030be:	4620      	mov	r0, r4
+ 80030c0:	f7ff ff74 	bl	8002fac <_ZN8TerminallsEb>
+ 80030c4:	4631      	mov	r1, r6
+ 80030c6:	f7fe fb70 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 80030ca:	490e      	ldr	r1, [pc, #56]	; (8003104 <_ZN7Drivers20test_distance_sensorEi+0xcc>)
+ 80030cc:	4620      	mov	r0, r4
+ 80030ce:	f7fe fb6c 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 80030d2:	4640      	mov	r0, r8
+ 80030d4:	2100      	movs	r1, #0
+ 80030d6:	f7ff ff9f 	bl	8003018 <_ZN4GpioILh1ELh15ELh0EE5writeEi>
+ 80030da:	21c8      	movs	r1, #200	; 0xc8
+ 80030dc:	480a      	ldr	r0, [pc, #40]	; (8003108 <_ZN7Drivers20test_distance_sensorEi+0xd0>)
+ 80030de:	f7ff fef9 	bl	8002ed4 <_ZN5Timer8delay_msEj>
+ 80030e2:	f117 0800 	adds.w	r8, r7, #0
+ 80030e6:	bf18      	it	ne
+ 80030e8:	f04f 0801 	movne.w	r8, #1
+ 80030ec:	e7b1      	b.n	8003052 <_ZN7Drivers20test_distance_sensorEi+0x1a>
+ 80030ee:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
+ 80030f2:	bf00      	nop
+ 80030f4:	2000044c 	andcs	r0, r0, ip, asr #8
+ 80030f8:	08004639 	stmdaeq	r0, {r0, r3, r4, r5, r9, sl, lr}
+ 80030fc:	20000158 	andcs	r0, r0, r8, asr r1
+ 8003100:	08004637 	stmdaeq	r0, {r0, r1, r2, r4, r5, r9, sl, lr}
+ 8003104:	0800465a 	stmdaeq	r0, {r1, r3, r4, r6, r9, sl, lr}
+ 8003108:	20000450 	andcs	r0, r0, r0, asr r4
+
+0800310c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>:
+ 800310c:	b9d1      	cbnz	r1, 8003144 <_ZN4GpioILh1ELh7ELh1EE8set_modeEh+0x38>
+ 800310e:	6803      	ldr	r3, [r0, #0]
+ 8003110:	689a      	ldr	r2, [r3, #8]
+ 8003112:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
+ 8003116:	609a      	str	r2, [r3, #8]
  8003118:	689a      	ldr	r2, [r3, #8]
- 800311a:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
+ 800311a:	f442 4240 	orr.w	r2, r2, #49152	; 0xc000
  800311e:	609a      	str	r2, [r3, #8]
- 8003120:	689a      	ldr	r2, [r3, #8]
- 8003122:	f442 4240 	orr.w	r2, r2, #49152	; 0xc000
- 8003126:	609a      	str	r2, [r3, #8]
- 8003128:	681a      	ldr	r2, [r3, #0]
- 800312a:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
- 800312e:	601a      	str	r2, [r3, #0]
- 8003130:	681a      	ldr	r2, [r3, #0]
- 8003132:	f442 4200 	orr.w	r2, r2, #32768	; 0x8000
- 8003136:	e7c3      	b.n	80030c0 <_ZN4GpioILh1ELh7ELh1EE8set_modeEh+0x34>
- 8003138:	2904      	cmp	r1, #4
- 800313a:	d1c2      	bne.n	80030c2 <_ZN4GpioILh1ELh7ELh1EE8set_modeEh+0x36>
- 800313c:	6803      	ldr	r3, [r0, #0]
- 800313e:	681a      	ldr	r2, [r3, #0]
- 8003140:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
- 8003144:	601a      	str	r2, [r3, #0]
- 8003146:	681a      	ldr	r2, [r3, #0]
- 8003148:	f442 4240 	orr.w	r2, r2, #49152	; 0xc000
- 800314c:	e7b8      	b.n	80030c0 <_ZN4GpioILh1ELh7ELh1EE8set_modeEh+0x34>
- 800314e:	0000      	movs	r0, r0
-
-08003150 <_ZN4GpioILh1ELh7ELh1EE4initEv>:
- 8003150:	4a05      	ldr	r2, [pc, #20]	; (8003168 <_ZN4GpioILh1ELh7ELh1EE4initEv+0x18>)
- 8003152:	b508      	push	{r3, lr}
- 8003154:	6953      	ldr	r3, [r2, #20]
- 8003156:	f443 03fc 	orr.w	r3, r3, #8257536	; 0x7e0000
- 800315a:	6153      	str	r3, [r2, #20]
- 800315c:	4b03      	ldr	r3, [pc, #12]	; (800316c <_ZN4GpioILh1ELh7ELh1EE4initEv+0x1c>)
- 800315e:	6003      	str	r3, [r0, #0]
- 8003160:	2101      	movs	r1, #1
- 8003162:	f7ff ff93 	bl	800308c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
- 8003166:	bd08      	pop	{r3, pc}
- 8003168:	40021000 	andmi	r1, r2, r0
- 800316c:	48000400 	stmdami	r0, {sl}
-
-08003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>:
- 8003170:	b9d1      	cbnz	r1, 80031a8 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh+0x38>
- 8003172:	6803      	ldr	r3, [r0, #0]
+ 8003120:	889a      	ldrh	r2, [r3, #4]
+ 8003122:	f022 0280 	bic.w	r2, r2, #128	; 0x80
+ 8003126:	0412      	lsls	r2, r2, #16
+ 8003128:	0c12      	lsrs	r2, r2, #16
+ 800312a:	809a      	strh	r2, [r3, #4]
+ 800312c:	889a      	ldrh	r2, [r3, #4]
+ 800312e:	b292      	uxth	r2, r2
+ 8003130:	809a      	strh	r2, [r3, #4]
+ 8003132:	681a      	ldr	r2, [r3, #0]
+ 8003134:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
+ 8003138:	601a      	str	r2, [r3, #0]
+ 800313a:	681a      	ldr	r2, [r3, #0]
+ 800313c:	f442 4280 	orr.w	r2, r2, #16384	; 0x4000
+ 8003140:	601a      	str	r2, [r3, #0]
+ 8003142:	4770      	bx	lr
+ 8003144:	2901      	cmp	r1, #1
+ 8003146:	d10e      	bne.n	8003166 <_ZN4GpioILh1ELh7ELh1EE8set_modeEh+0x5a>
+ 8003148:	6803      	ldr	r3, [r0, #0]
+ 800314a:	689a      	ldr	r2, [r3, #8]
+ 800314c:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
+ 8003150:	609a      	str	r2, [r3, #8]
+ 8003152:	689a      	ldr	r2, [r3, #8]
+ 8003154:	f442 4240 	orr.w	r2, r2, #49152	; 0xc000
+ 8003158:	609a      	str	r2, [r3, #8]
+ 800315a:	681a      	ldr	r2, [r3, #0]
+ 800315c:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
+ 8003160:	601a      	str	r2, [r3, #0]
+ 8003162:	681a      	ldr	r2, [r3, #0]
+ 8003164:	e7ec      	b.n	8003140 <_ZN4GpioILh1ELh7ELh1EE8set_modeEh+0x34>
+ 8003166:	2902      	cmp	r1, #2
+ 8003168:	d113      	bne.n	8003192 <_ZN4GpioILh1ELh7ELh1EE8set_modeEh+0x86>
+ 800316a:	6803      	ldr	r3, [r0, #0]
+ 800316c:	689a      	ldr	r2, [r3, #8]
+ 800316e:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
+ 8003172:	609a      	str	r2, [r3, #8]
  8003174:	689a      	ldr	r2, [r3, #8]
- 8003176:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
+ 8003176:	f442 4240 	orr.w	r2, r2, #49152	; 0xc000
  800317a:	609a      	str	r2, [r3, #8]
- 800317c:	689a      	ldr	r2, [r3, #8]
- 800317e:	f442 5240 	orr.w	r2, r2, #12288	; 0x3000
- 8003182:	609a      	str	r2, [r3, #8]
- 8003184:	889a      	ldrh	r2, [r3, #4]
- 8003186:	f022 0240 	bic.w	r2, r2, #64	; 0x40
- 800318a:	0412      	lsls	r2, r2, #16
- 800318c:	0c12      	lsrs	r2, r2, #16
- 800318e:	809a      	strh	r2, [r3, #4]
- 8003190:	889a      	ldrh	r2, [r3, #4]
- 8003192:	b292      	uxth	r2, r2
- 8003194:	809a      	strh	r2, [r3, #4]
- 8003196:	681a      	ldr	r2, [r3, #0]
- 8003198:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
- 800319c:	601a      	str	r2, [r3, #0]
- 800319e:	681a      	ldr	r2, [r3, #0]
- 80031a0:	f442 5280 	orr.w	r2, r2, #4096	; 0x1000
- 80031a4:	601a      	str	r2, [r3, #0]
- 80031a6:	4770      	bx	lr
- 80031a8:	2901      	cmp	r1, #1
- 80031aa:	d10e      	bne.n	80031ca <_ZN4GpioILh1ELh6ELh1EE8set_modeEh+0x5a>
- 80031ac:	6803      	ldr	r3, [r0, #0]
- 80031ae:	689a      	ldr	r2, [r3, #8]
- 80031b0:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
- 80031b4:	609a      	str	r2, [r3, #8]
- 80031b6:	689a      	ldr	r2, [r3, #8]
- 80031b8:	f442 5240 	orr.w	r2, r2, #12288	; 0x3000
- 80031bc:	609a      	str	r2, [r3, #8]
+ 800317c:	681a      	ldr	r2, [r3, #0]
+ 800317e:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
+ 8003182:	601a      	str	r2, [r3, #0]
+ 8003184:	681a      	ldr	r2, [r3, #0]
+ 8003186:	601a      	str	r2, [r3, #0]
+ 8003188:	68da      	ldr	r2, [r3, #12]
+ 800318a:	f442 4280 	orr.w	r2, r2, #16384	; 0x4000
+ 800318e:	60da      	str	r2, [r3, #12]
+ 8003190:	4770      	bx	lr
+ 8003192:	2905      	cmp	r1, #5
+ 8003194:	d110      	bne.n	80031b8 <_ZN4GpioILh1ELh7ELh1EE8set_modeEh+0xac>
+ 8003196:	6803      	ldr	r3, [r0, #0]
+ 8003198:	689a      	ldr	r2, [r3, #8]
+ 800319a:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
+ 800319e:	609a      	str	r2, [r3, #8]
+ 80031a0:	689a      	ldr	r2, [r3, #8]
+ 80031a2:	f442 4240 	orr.w	r2, r2, #49152	; 0xc000
+ 80031a6:	609a      	str	r2, [r3, #8]
+ 80031a8:	681a      	ldr	r2, [r3, #0]
+ 80031aa:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
+ 80031ae:	601a      	str	r2, [r3, #0]
+ 80031b0:	681a      	ldr	r2, [r3, #0]
+ 80031b2:	f442 4200 	orr.w	r2, r2, #32768	; 0x8000
+ 80031b6:	e7c3      	b.n	8003140 <_ZN4GpioILh1ELh7ELh1EE8set_modeEh+0x34>
+ 80031b8:	2904      	cmp	r1, #4
+ 80031ba:	d1c2      	bne.n	8003142 <_ZN4GpioILh1ELh7ELh1EE8set_modeEh+0x36>
+ 80031bc:	6803      	ldr	r3, [r0, #0]
  80031be:	681a      	ldr	r2, [r3, #0]
- 80031c0:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
+ 80031c0:	f422 4240 	bic.w	r2, r2, #49152	; 0xc000
  80031c4:	601a      	str	r2, [r3, #0]
  80031c6:	681a      	ldr	r2, [r3, #0]
- 80031c8:	e7ec      	b.n	80031a4 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh+0x34>
- 80031ca:	2902      	cmp	r1, #2
- 80031cc:	d113      	bne.n	80031f6 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh+0x86>
- 80031ce:	6803      	ldr	r3, [r0, #0]
- 80031d0:	689a      	ldr	r2, [r3, #8]
- 80031d2:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
- 80031d6:	609a      	str	r2, [r3, #8]
- 80031d8:	689a      	ldr	r2, [r3, #8]
- 80031da:	f442 5240 	orr.w	r2, r2, #12288	; 0x3000
- 80031de:	609a      	str	r2, [r3, #8]
- 80031e0:	681a      	ldr	r2, [r3, #0]
- 80031e2:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
- 80031e6:	601a      	str	r2, [r3, #0]
- 80031e8:	681a      	ldr	r2, [r3, #0]
- 80031ea:	601a      	str	r2, [r3, #0]
- 80031ec:	68da      	ldr	r2, [r3, #12]
- 80031ee:	f442 5280 	orr.w	r2, r2, #4096	; 0x1000
- 80031f2:	60da      	str	r2, [r3, #12]
- 80031f4:	4770      	bx	lr
- 80031f6:	2905      	cmp	r1, #5
- 80031f8:	d110      	bne.n	800321c <_ZN4GpioILh1ELh6ELh1EE8set_modeEh+0xac>
- 80031fa:	6803      	ldr	r3, [r0, #0]
+ 80031c8:	f442 4240 	orr.w	r2, r2, #49152	; 0xc000
+ 80031cc:	e7b8      	b.n	8003140 <_ZN4GpioILh1ELh7ELh1EE8set_modeEh+0x34>
+ 80031ce:	0000      	movs	r0, r0
+
+080031d0 <_ZN4GpioILh1ELh7ELh1EE4initEv>:
+ 80031d0:	4a05      	ldr	r2, [pc, #20]	; (80031e8 <_ZN4GpioILh1ELh7ELh1EE4initEv+0x18>)
+ 80031d2:	b508      	push	{r3, lr}
+ 80031d4:	6953      	ldr	r3, [r2, #20]
+ 80031d6:	f443 03fc 	orr.w	r3, r3, #8257536	; 0x7e0000
+ 80031da:	6153      	str	r3, [r2, #20]
+ 80031dc:	4b03      	ldr	r3, [pc, #12]	; (80031ec <_ZN4GpioILh1ELh7ELh1EE4initEv+0x1c>)
+ 80031de:	6003      	str	r3, [r0, #0]
+ 80031e0:	2101      	movs	r1, #1
+ 80031e2:	f7ff ff93 	bl	800310c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
+ 80031e6:	bd08      	pop	{r3, pc}
+ 80031e8:	40021000 	andmi	r1, r2, r0
+ 80031ec:	48000400 	stmdami	r0, {sl}
+
+080031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>:
+ 80031f0:	b9d1      	cbnz	r1, 8003228 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh+0x38>
+ 80031f2:	6803      	ldr	r3, [r0, #0]
+ 80031f4:	689a      	ldr	r2, [r3, #8]
+ 80031f6:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
+ 80031fa:	609a      	str	r2, [r3, #8]
  80031fc:	689a      	ldr	r2, [r3, #8]
- 80031fe:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
+ 80031fe:	f442 5240 	orr.w	r2, r2, #12288	; 0x3000
  8003202:	609a      	str	r2, [r3, #8]
- 8003204:	689a      	ldr	r2, [r3, #8]
- 8003206:	f442 5240 	orr.w	r2, r2, #12288	; 0x3000
- 800320a:	609a      	str	r2, [r3, #8]
- 800320c:	681a      	ldr	r2, [r3, #0]
- 800320e:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
- 8003212:	601a      	str	r2, [r3, #0]
- 8003214:	681a      	ldr	r2, [r3, #0]
- 8003216:	f442 5200 	orr.w	r2, r2, #8192	; 0x2000
- 800321a:	e7c3      	b.n	80031a4 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh+0x34>
- 800321c:	2904      	cmp	r1, #4
- 800321e:	d1c2      	bne.n	80031a6 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh+0x36>
- 8003220:	6803      	ldr	r3, [r0, #0]
- 8003222:	681a      	ldr	r2, [r3, #0]
- 8003224:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
- 8003228:	601a      	str	r2, [r3, #0]
- 800322a:	681a      	ldr	r2, [r3, #0]
- 800322c:	f442 5240 	orr.w	r2, r2, #12288	; 0x3000
- 8003230:	e7b8      	b.n	80031a4 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh+0x34>
- 8003232:	0000      	movs	r0, r0
+ 8003204:	889a      	ldrh	r2, [r3, #4]
+ 8003206:	f022 0240 	bic.w	r2, r2, #64	; 0x40
+ 800320a:	0412      	lsls	r2, r2, #16
+ 800320c:	0c12      	lsrs	r2, r2, #16
+ 800320e:	809a      	strh	r2, [r3, #4]
+ 8003210:	889a      	ldrh	r2, [r3, #4]
+ 8003212:	b292      	uxth	r2, r2
+ 8003214:	809a      	strh	r2, [r3, #4]
+ 8003216:	681a      	ldr	r2, [r3, #0]
+ 8003218:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
+ 800321c:	601a      	str	r2, [r3, #0]
+ 800321e:	681a      	ldr	r2, [r3, #0]
+ 8003220:	f442 5280 	orr.w	r2, r2, #4096	; 0x1000
+ 8003224:	601a      	str	r2, [r3, #0]
+ 8003226:	4770      	bx	lr
+ 8003228:	2901      	cmp	r1, #1
+ 800322a:	d10e      	bne.n	800324a <_ZN4GpioILh1ELh6ELh1EE8set_modeEh+0x5a>
+ 800322c:	6803      	ldr	r3, [r0, #0]
+ 800322e:	689a      	ldr	r2, [r3, #8]
+ 8003230:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
+ 8003234:	609a      	str	r2, [r3, #8]
+ 8003236:	689a      	ldr	r2, [r3, #8]
+ 8003238:	f442 5240 	orr.w	r2, r2, #12288	; 0x3000
+ 800323c:	609a      	str	r2, [r3, #8]
+ 800323e:	681a      	ldr	r2, [r3, #0]
+ 8003240:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
+ 8003244:	601a      	str	r2, [r3, #0]
+ 8003246:	681a      	ldr	r2, [r3, #0]
+ 8003248:	e7ec      	b.n	8003224 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh+0x34>
+ 800324a:	2902      	cmp	r1, #2
+ 800324c:	d113      	bne.n	8003276 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh+0x86>
+ 800324e:	6803      	ldr	r3, [r0, #0]
+ 8003250:	689a      	ldr	r2, [r3, #8]
+ 8003252:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
+ 8003256:	609a      	str	r2, [r3, #8]
+ 8003258:	689a      	ldr	r2, [r3, #8]
+ 800325a:	f442 5240 	orr.w	r2, r2, #12288	; 0x3000
+ 800325e:	609a      	str	r2, [r3, #8]
+ 8003260:	681a      	ldr	r2, [r3, #0]
+ 8003262:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
+ 8003266:	601a      	str	r2, [r3, #0]
+ 8003268:	681a      	ldr	r2, [r3, #0]
+ 800326a:	601a      	str	r2, [r3, #0]
+ 800326c:	68da      	ldr	r2, [r3, #12]
+ 800326e:	f442 5280 	orr.w	r2, r2, #4096	; 0x1000
+ 8003272:	60da      	str	r2, [r3, #12]
+ 8003274:	4770      	bx	lr
+ 8003276:	2905      	cmp	r1, #5
+ 8003278:	d110      	bne.n	800329c <_ZN4GpioILh1ELh6ELh1EE8set_modeEh+0xac>
+ 800327a:	6803      	ldr	r3, [r0, #0]
+ 800327c:	689a      	ldr	r2, [r3, #8]
+ 800327e:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
+ 8003282:	609a      	str	r2, [r3, #8]
+ 8003284:	689a      	ldr	r2, [r3, #8]
+ 8003286:	f442 5240 	orr.w	r2, r2, #12288	; 0x3000
+ 800328a:	609a      	str	r2, [r3, #8]
+ 800328c:	681a      	ldr	r2, [r3, #0]
+ 800328e:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
+ 8003292:	601a      	str	r2, [r3, #0]
+ 8003294:	681a      	ldr	r2, [r3, #0]
+ 8003296:	f442 5200 	orr.w	r2, r2, #8192	; 0x2000
+ 800329a:	e7c3      	b.n	8003224 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh+0x34>
+ 800329c:	2904      	cmp	r1, #4
+ 800329e:	d1c2      	bne.n	8003226 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh+0x36>
+ 80032a0:	6803      	ldr	r3, [r0, #0]
+ 80032a2:	681a      	ldr	r2, [r3, #0]
+ 80032a4:	f422 5240 	bic.w	r2, r2, #12288	; 0x3000
+ 80032a8:	601a      	str	r2, [r3, #0]
+ 80032aa:	681a      	ldr	r2, [r3, #0]
+ 80032ac:	f442 5240 	orr.w	r2, r2, #12288	; 0x3000
+ 80032b0:	e7b8      	b.n	8003224 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh+0x34>
+ 80032b2:	0000      	movs	r0, r0
 
-08003234 <_ZN4GpioILh1ELh6ELh1EE4initEv>:
- 8003234:	4a05      	ldr	r2, [pc, #20]	; (800324c <_ZN4GpioILh1ELh6ELh1EE4initEv+0x18>)
- 8003236:	b508      	push	{r3, lr}
- 8003238:	6953      	ldr	r3, [r2, #20]
- 800323a:	f443 03fc 	orr.w	r3, r3, #8257536	; 0x7e0000
- 800323e:	6153      	str	r3, [r2, #20]
- 8003240:	4b03      	ldr	r3, [pc, #12]	; (8003250 <_ZN4GpioILh1ELh6ELh1EE4initEv+0x1c>)
- 8003242:	6003      	str	r3, [r0, #0]
- 8003244:	2101      	movs	r1, #1
- 8003246:	f7ff ff93 	bl	8003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
- 800324a:	bd08      	pop	{r3, pc}
- 800324c:	40021000 	andmi	r1, r2, r0
- 8003250:	48000400 	stmdami	r0, {sl}
+080032b4 <_ZN4GpioILh1ELh6ELh1EE4initEv>:
+ 80032b4:	4a05      	ldr	r2, [pc, #20]	; (80032cc <_ZN4GpioILh1ELh6ELh1EE4initEv+0x18>)
+ 80032b6:	b508      	push	{r3, lr}
+ 80032b8:	6953      	ldr	r3, [r2, #20]
+ 80032ba:	f443 03fc 	orr.w	r3, r3, #8257536	; 0x7e0000
+ 80032be:	6153      	str	r3, [r2, #20]
+ 80032c0:	4b03      	ldr	r3, [pc, #12]	; (80032d0 <_ZN4GpioILh1ELh6ELh1EE4initEv+0x1c>)
+ 80032c2:	6003      	str	r3, [r0, #0]
+ 80032c4:	2101      	movs	r1, #1
+ 80032c6:	f7ff ff93 	bl	80031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
+ 80032ca:	bd08      	pop	{r3, pc}
+ 80032cc:	40021000 	andmi	r1, r2, r0
+ 80032d0:	48000400 	stmdami	r0, {sl}
 
-08003254 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE4initEv>:
- 8003254:	230a      	movs	r3, #10
- 8003256:	b510      	push	{r4, lr}
- 8003258:	6043      	str	r3, [r0, #4]
- 800325a:	4604      	mov	r4, r0
- 800325c:	3008      	adds	r0, #8
- 800325e:	f7ff ff77 	bl	8003150 <_ZN4GpioILh1ELh7ELh1EE4initEv>
- 8003262:	f104 000c 	add.w	r0, r4, #12
- 8003266:	f7ff ffe5 	bl	8003234 <_ZN4GpioILh1ELh6ELh1EE4initEv>
- 800326a:	68a2      	ldr	r2, [r4, #8]
- 800326c:	8d13      	ldrh	r3, [r2, #40]	; 0x28
- 800326e:	b29b      	uxth	r3, r3
- 8003270:	f043 0380 	orr.w	r3, r3, #128	; 0x80
- 8003274:	8513      	strh	r3, [r2, #40]	; 0x28
- 8003276:	68e2      	ldr	r2, [r4, #12]
- 8003278:	8d13      	ldrh	r3, [r2, #40]	; 0x28
- 800327a:	b29b      	uxth	r3, r3
- 800327c:	f043 0340 	orr.w	r3, r3, #64	; 0x40
- 8003280:	8513      	strh	r3, [r2, #40]	; 0x28
- 8003282:	bd10      	pop	{r4, pc}
+080032d4 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE4initEv>:
+ 80032d4:	230a      	movs	r3, #10
+ 80032d6:	b510      	push	{r4, lr}
+ 80032d8:	6043      	str	r3, [r0, #4]
+ 80032da:	4604      	mov	r4, r0
+ 80032dc:	3008      	adds	r0, #8
+ 80032de:	f7ff ff77 	bl	80031d0 <_ZN4GpioILh1ELh7ELh1EE4initEv>
+ 80032e2:	f104 000c 	add.w	r0, r4, #12
+ 80032e6:	f7ff ffe5 	bl	80032b4 <_ZN4GpioILh1ELh6ELh1EE4initEv>
+ 80032ea:	68a2      	ldr	r2, [r4, #8]
+ 80032ec:	8d13      	ldrh	r3, [r2, #40]	; 0x28
+ 80032ee:	b29b      	uxth	r3, r3
+ 80032f0:	f043 0380 	orr.w	r3, r3, #128	; 0x80
+ 80032f4:	8513      	strh	r3, [r2, #40]	; 0x28
+ 80032f6:	68e2      	ldr	r2, [r4, #12]
+ 80032f8:	8d13      	ldrh	r3, [r2, #40]	; 0x28
+ 80032fa:	b29b      	uxth	r3, r3
+ 80032fc:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+ 8003300:	8513      	strh	r3, [r2, #40]	; 0x28
+ 8003302:	bd10      	pop	{r4, pc}
 
-08003284 <_ZN7Drivers4initEv>:
- 8003284:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
- 8003288:	4c45      	ldr	r4, [pc, #276]	; (80033a0 <_ZN7Drivers4initEv+0x11c>)
- 800328a:	4f46      	ldr	r7, [pc, #280]	; (80033a4 <_ZN7Drivers4initEv+0x120>)
- 800328c:	f8df 8178 	ldr.w	r8, [pc, #376]	; 8003408 <_ZN7Drivers4initEv+0x184>
- 8003290:	1d05      	adds	r5, r0, #4
- 8003292:	4628      	mov	r0, r5
- 8003294:	2101      	movs	r1, #1
- 8003296:	f7ff fe7f 	bl	8002f98 <_ZN4GpioILh1ELh15ELh0EE5writeEi>
- 800329a:	4620      	mov	r0, r4
- 800329c:	f44f 31e1 	mov.w	r1, #115200	; 0x1c200
- 80032a0:	f7ff fb92 	bl	80029c8 <_ZN5Usart4initEj>
- 80032a4:	4620      	mov	r0, r4
- 80032a6:	4940      	ldr	r1, [pc, #256]	; (80033a8 <_ZN7Drivers4initEv+0x124>)
- 80032a8:	f7fe fa7f 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 80032ac:	493f      	ldr	r1, [pc, #252]	; (80033ac <_ZN7Drivers4initEv+0x128>)
- 80032ae:	4620      	mov	r0, r4
- 80032b0:	f7fe fa7b 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 80032b4:	f7fe f8e4 	bl	8001480 <_Z8mem_initv>
- 80032b8:	493d      	ldr	r1, [pc, #244]	; (80033b0 <_ZN7Drivers4initEv+0x12c>)
- 80032ba:	4606      	mov	r6, r0
- 80032bc:	4620      	mov	r0, r4
- 80032be:	f7fe fa74 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 80032c2:	4631      	mov	r1, r6
- 80032c4:	4e3b      	ldr	r6, [pc, #236]	; (80033b4 <_ZN7Drivers4initEv+0x130>)
- 80032c6:	4620      	mov	r0, r4
- 80032c8:	f7fe fa9a 	bl	8001800 <_ZN8Terminal5putuiEm>
- 80032cc:	4631      	mov	r1, r6
- 80032ce:	4620      	mov	r0, r4
- 80032d0:	f7fe fa6b 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 80032d4:	4638      	mov	r0, r7
- 80032d6:	f7ff fd47 	bl	8002d68 <_ZN5Timer4initEv>
- 80032da:	4620      	mov	r0, r4
- 80032dc:	4936      	ldr	r1, [pc, #216]	; (80033b8 <_ZN7Drivers4initEv+0x134>)
- 80032de:	f7fe fa64 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 80032e2:	4620      	mov	r0, r4
- 80032e4:	4935      	ldr	r1, [pc, #212]	; (80033bc <_ZN7Drivers4initEv+0x138>)
- 80032e6:	f7fe fa60 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 80032ea:	4638      	mov	r0, r7
- 80032ec:	21c8      	movs	r1, #200	; 0xc8
- 80032ee:	f7ff fdb1 	bl	8002e54 <_ZN5Timer8delay_msEj>
- 80032f2:	4933      	ldr	r1, [pc, #204]	; (80033c0 <_ZN7Drivers4initEv+0x13c>)
- 80032f4:	4f33      	ldr	r7, [pc, #204]	; (80033c4 <_ZN7Drivers4initEv+0x140>)
- 80032f6:	4620      	mov	r0, r4
- 80032f8:	f7fe fa57 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 80032fc:	4640      	mov	r0, r8
- 80032fe:	f7ff ffa9 	bl	8003254 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE4initEv>
- 8003302:	4620      	mov	r0, r4
- 8003304:	4930      	ldr	r1, [pc, #192]	; (80033c8 <_ZN7Drivers4initEv+0x144>)
- 8003306:	f7fe fa50 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 800330a:	4641      	mov	r1, r8
- 800330c:	4638      	mov	r0, r7
- 800330e:	f7ff f8cf 	bl	80024b0 <_ZN3IMU4initER13I2C_Interface>
- 8003312:	492e      	ldr	r1, [pc, #184]	; (80033cc <_ZN7Drivers4initEv+0x148>)
- 8003314:	4620      	mov	r0, r4
- 8003316:	f7fe fa48 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 800331a:	4638      	mov	r0, r7
- 800331c:	f7ff f8bd 	bl	800249a <_ZN3IMU7presentEv>
- 8003320:	4601      	mov	r1, r0
- 8003322:	4620      	mov	r0, r4
- 8003324:	f7ff fe02 	bl	8002f2c <_ZN8TerminallsEb>
- 8003328:	4631      	mov	r1, r6
- 800332a:	f7fe fa3e 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 800332e:	4828      	ldr	r0, [pc, #160]	; (80033d0 <_ZN7Drivers4initEv+0x14c>)
- 8003330:	f7fe fd72 	bl	8001e18 <_ZN3ADC4initEv>
- 8003334:	4927      	ldr	r1, [pc, #156]	; (80033d4 <_ZN7Drivers4initEv+0x150>)
- 8003336:	4620      	mov	r0, r4
- 8003338:	f7fe fa37 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 800333c:	4826      	ldr	r0, [pc, #152]	; (80033d8 <_ZN7Drivers4initEv+0x154>)
- 800333e:	f7fe fe69 	bl	8002014 <_ZN10LineSensor4initEv>
- 8003342:	4926      	ldr	r1, [pc, #152]	; (80033dc <_ZN7Drivers4initEv+0x158>)
- 8003344:	4620      	mov	r0, r4
- 8003346:	f7fe fa30 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 800334a:	4825      	ldr	r0, [pc, #148]	; (80033e0 <_ZN7Drivers4initEv+0x15c>)
- 800334c:	f7ff fc98 	bl	8002c80 <_ZN14DistanceSensor4initEv>
- 8003350:	4924      	ldr	r1, [pc, #144]	; (80033e4 <_ZN7Drivers4initEv+0x160>)
- 8003352:	4620      	mov	r0, r4
- 8003354:	f7fe fa29 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 8003358:	4823      	ldr	r0, [pc, #140]	; (80033e8 <_ZN7Drivers4initEv+0x164>)
- 800335a:	f7ff f995 	bl	8002688 <_ZN13EncoderSensor4initEv>
- 800335e:	4923      	ldr	r1, [pc, #140]	; (80033ec <_ZN7Drivers4initEv+0x168>)
- 8003360:	4620      	mov	r0, r4
- 8003362:	f7fe fa22 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 8003366:	4822      	ldr	r0, [pc, #136]	; (80033f0 <_ZN7Drivers4initEv+0x16c>)
- 8003368:	f7ff fac8 	bl	80028fc <_ZN13MotorControll4initEv>
- 800336c:	4620      	mov	r0, r4
- 800336e:	4921      	ldr	r1, [pc, #132]	; (80033f4 <_ZN7Drivers4initEv+0x170>)
- 8003370:	f7fe fa1b 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 8003374:	2100      	movs	r1, #0
- 8003376:	4628      	mov	r0, r5
- 8003378:	f7ff fe0e 	bl	8002f98 <_ZN4GpioILh1ELh15ELh0EE5writeEi>
- 800337c:	481e      	ldr	r0, [pc, #120]	; (80033f8 <_ZN7Drivers4initEv+0x174>)
- 800337e:	f7fe fc6b 	bl	8001c58 <_ZN3Key4initEv>
+08003304 <_ZN7Drivers4initEv>:
+ 8003304:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+ 8003308:	4c4f      	ldr	r4, [pc, #316]	; (8003448 <_ZN7Drivers4initEv+0x144>)
+ 800330a:	4e50      	ldr	r6, [pc, #320]	; (800344c <_ZN7Drivers4initEv+0x148>)
+ 800330c:	f8df 81a4 	ldr.w	r8, [pc, #420]	; 80034b4 <_ZN7Drivers4initEv+0x1b0>
+ 8003310:	1d07      	adds	r7, r0, #4
+ 8003312:	4638      	mov	r0, r7
+ 8003314:	2101      	movs	r1, #1
+ 8003316:	f7ff fe7f 	bl	8003018 <_ZN4GpioILh1ELh15ELh0EE5writeEi>
+ 800331a:	4620      	mov	r0, r4
+ 800331c:	f44f 31e1 	mov.w	r1, #115200	; 0x1c200
+ 8003320:	f7ff fb52 	bl	80029c8 <_ZN5Usart4initEj>
+ 8003324:	4620      	mov	r0, r4
+ 8003326:	494a      	ldr	r1, [pc, #296]	; (8003450 <_ZN7Drivers4initEv+0x14c>)
+ 8003328:	f7fe fa3f 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 800332c:	4949      	ldr	r1, [pc, #292]	; (8003454 <_ZN7Drivers4initEv+0x150>)
+ 800332e:	4620      	mov	r0, r4
+ 8003330:	f7fe fa3b 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 8003334:	f7fe f8a4 	bl	8001480 <_Z8mem_initv>
+ 8003338:	4947      	ldr	r1, [pc, #284]	; (8003458 <_ZN7Drivers4initEv+0x154>)
+ 800333a:	4605      	mov	r5, r0
+ 800333c:	4620      	mov	r0, r4
+ 800333e:	f7fe fa34 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 8003342:	4629      	mov	r1, r5
+ 8003344:	4d45      	ldr	r5, [pc, #276]	; (800345c <_ZN7Drivers4initEv+0x158>)
+ 8003346:	4620      	mov	r0, r4
+ 8003348:	f7fe fa5a 	bl	8001800 <_ZN8Terminal5putuiEm>
+ 800334c:	4629      	mov	r1, r5
+ 800334e:	4620      	mov	r0, r4
+ 8003350:	f7fe fa2b 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 8003354:	4630      	mov	r0, r6
+ 8003356:	f7ff fd47 	bl	8002de8 <_ZN5Timer4initEv>
+ 800335a:	4620      	mov	r0, r4
+ 800335c:	4940      	ldr	r1, [pc, #256]	; (8003460 <_ZN7Drivers4initEv+0x15c>)
+ 800335e:	f7fe fa24 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 8003362:	4620      	mov	r0, r4
+ 8003364:	493f      	ldr	r1, [pc, #252]	; (8003464 <_ZN7Drivers4initEv+0x160>)
+ 8003366:	f7fe fa20 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 800336a:	4630      	mov	r0, r6
+ 800336c:	21c8      	movs	r1, #200	; 0xc8
+ 800336e:	4e3e      	ldr	r6, [pc, #248]	; (8003468 <_ZN7Drivers4initEv+0x164>)
+ 8003370:	f7ff fdb0 	bl	8002ed4 <_ZN5Timer8delay_msEj>
+ 8003374:	493d      	ldr	r1, [pc, #244]	; (800346c <_ZN7Drivers4initEv+0x168>)
+ 8003376:	4620      	mov	r0, r4
+ 8003378:	f7fe fa17 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 800337c:	4630      	mov	r0, r6
+ 800337e:	f7ff ffa9 	bl	80032d4 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE4initEv>
  8003382:	4620      	mov	r0, r4
- 8003384:	491d      	ldr	r1, [pc, #116]	; (80033fc <_ZN7Drivers4initEv+0x178>)
+ 8003384:	493a      	ldr	r1, [pc, #232]	; (8003470 <_ZN7Drivers4initEv+0x16c>)
  8003386:	f7fe fa10 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 800338a:	4620      	mov	r0, r4
- 800338c:	491c      	ldr	r1, [pc, #112]	; (8003400 <_ZN7Drivers4initEv+0x17c>)
- 800338e:	f7fe fa0c 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 8003392:	4620      	mov	r0, r4
- 8003394:	491b      	ldr	r1, [pc, #108]	; (8003404 <_ZN7Drivers4initEv+0x180>)
+ 800338a:	4631      	mov	r1, r6
+ 800338c:	4640      	mov	r0, r8
+ 800338e:	f7ff f88f 	bl	80024b0 <_ZN3IMU4initER13I2C_Interface>
+ 8003392:	4938      	ldr	r1, [pc, #224]	; (8003474 <_ZN7Drivers4initEv+0x170>)
+ 8003394:	4620      	mov	r0, r4
  8003396:	f7fe fa08 	bl	80017aa <_ZN8Terminal4putsEPKc>
- 800339a:	2000      	movs	r0, #0
- 800339c:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
- 80033a0:	20000440 	andcs	r0, r0, r0, asr #8
- 80033a4:	20000444 	andcs	r0, r0, r4, asr #8
- 80033a8:	08004578 	stmdaeq	r0, {r3, r4, r5, r6, r8, sl, lr}
- 80033ac:	08004584 	stmdaeq	r0, {r2, r7, r8, sl, lr}
- 80033b0:	08004598 	stmdaeq	r0, {r3, r4, r7, r8, sl, lr}
- 80033b4:	08004582 	stmdaeq	r0, {r1, r7, r8, sl, lr}
- 80033b8:	080045b6 	stmdaeq	r0, {r1, r2, r4, r5, r7, r8, sl, lr}
- 80033bc:	080045c7 	stmdaeq	r0, {r0, r1, r2, r6, r7, r8, sl, lr}
- 80033c0:	080045de 	stmdaeq	r0, {r1, r2, r3, r4, r6, r7, r8, sl, lr}
- 80033c4:	20000258 	andcs	r0, r0, r8, asr r2
- 80033c8:	080045d5 	stmdaeq	r0, {r0, r2, r4, r6, r7, r8, sl, lr}
- 80033cc:	080045e4 	stmdaeq	r0, {r2, r5, r6, r7, r8, sl, lr}
- 80033d0:	20000154 	andcs	r0, r0, r4, asr r1
- 80033d4:	080045f8 	stmdaeq	r0, {r3, r4, r5, r6, r7, r8, sl, lr}
- 80033d8:	200002b4 			; <UNDEFINED> instruction: 0x200002b4
- 80033dc:	08004607 	stmdaeq	r0, {r0, r1, r2, r9, sl, lr}
- 80033e0:	20000158 	andcs	r0, r0, r8, asr r1
- 80033e4:	0800461e 	stmdaeq	r0, {r1, r2, r3, r4, r9, sl, lr}
- 80033e8:	20000234 	andcs	r0, r0, r4, lsr r2
- 80033ec:	08004639 	stmdaeq	r0, {r0, r3, r4, r5, r9, sl, lr}
- 80033f0:	200003ac 	andcs	r0, r0, ip, lsr #7
- 80033f4:	08004653 	stmdaeq	r0, {r0, r1, r4, r6, r9, sl, lr}
- 80033f8:	2000029c 	mulcs	r0, ip, r2
- 80033fc:	0800466d 	stmdaeq	r0, {r0, r2, r3, r5, r6, r9, sl, lr}
- 8003400:	08004581 	stmdaeq	r0, {r0, r7, r8, sl, lr}
- 8003404:	0800467c 	stmdaeq	r0, {r2, r3, r4, r5, r6, r9, sl, lr}
- 8003408:	20000248 	andcs	r0, r0, r8, asr #4
+ 800339a:	4640      	mov	r0, r8
+ 800339c:	f7ff f87d 	bl	800249a <_ZN3IMU7presentEv>
+ 80033a0:	f8df 8114 	ldr.w	r8, [pc, #276]	; 80034b8 <_ZN7Drivers4initEv+0x1b4>
+ 80033a4:	4601      	mov	r1, r0
+ 80033a6:	4620      	mov	r0, r4
+ 80033a8:	f7ff fe00 	bl	8002fac <_ZN8TerminallsEb>
+ 80033ac:	4629      	mov	r1, r5
+ 80033ae:	f7fe f9fc 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 80033b2:	4631      	mov	r1, r6
+ 80033b4:	4640      	mov	r0, r8
+ 80033b6:	f7ff fb79 	bl	8002aac <_ZN6EEPROM4initER13I2C_Interface>
+ 80033ba:	492f      	ldr	r1, [pc, #188]	; (8003478 <_ZN7Drivers4initEv+0x174>)
+ 80033bc:	4620      	mov	r0, r4
+ 80033be:	f7fe f9f4 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 80033c2:	4640      	mov	r0, r8
+ 80033c4:	f7ff fba0 	bl	8002b08 <_ZN6EEPROM7presentEv>
+ 80033c8:	4601      	mov	r1, r0
+ 80033ca:	4620      	mov	r0, r4
+ 80033cc:	f7ff fdee 	bl	8002fac <_ZN8TerminallsEb>
+ 80033d0:	4629      	mov	r1, r5
+ 80033d2:	f7fe f9ea 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 80033d6:	4829      	ldr	r0, [pc, #164]	; (800347c <_ZN7Drivers4initEv+0x178>)
+ 80033d8:	f7fe fd1e 	bl	8001e18 <_ZN3ADC4initEv>
+ 80033dc:	4928      	ldr	r1, [pc, #160]	; (8003480 <_ZN7Drivers4initEv+0x17c>)
+ 80033de:	4620      	mov	r0, r4
+ 80033e0:	f7fe f9e3 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 80033e4:	4827      	ldr	r0, [pc, #156]	; (8003484 <_ZN7Drivers4initEv+0x180>)
+ 80033e6:	f7fe fe15 	bl	8002014 <_ZN10LineSensor4initEv>
+ 80033ea:	4927      	ldr	r1, [pc, #156]	; (8003488 <_ZN7Drivers4initEv+0x184>)
+ 80033ec:	4620      	mov	r0, r4
+ 80033ee:	f7fe f9dc 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 80033f2:	4826      	ldr	r0, [pc, #152]	; (800348c <_ZN7Drivers4initEv+0x188>)
+ 80033f4:	f7ff fc84 	bl	8002d00 <_ZN14DistanceSensor4initEv>
+ 80033f8:	4925      	ldr	r1, [pc, #148]	; (8003490 <_ZN7Drivers4initEv+0x18c>)
+ 80033fa:	4620      	mov	r0, r4
+ 80033fc:	f7fe f9d5 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 8003400:	4824      	ldr	r0, [pc, #144]	; (8003494 <_ZN7Drivers4initEv+0x190>)
+ 8003402:	f7ff f941 	bl	8002688 <_ZN13EncoderSensor4initEv>
+ 8003406:	4924      	ldr	r1, [pc, #144]	; (8003498 <_ZN7Drivers4initEv+0x194>)
+ 8003408:	4620      	mov	r0, r4
+ 800340a:	f7fe f9ce 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 800340e:	4823      	ldr	r0, [pc, #140]	; (800349c <_ZN7Drivers4initEv+0x198>)
+ 8003410:	f7ff fa74 	bl	80028fc <_ZN13MotorControll4initEv>
+ 8003414:	4620      	mov	r0, r4
+ 8003416:	4922      	ldr	r1, [pc, #136]	; (80034a0 <_ZN7Drivers4initEv+0x19c>)
+ 8003418:	f7fe f9c7 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 800341c:	2100      	movs	r1, #0
+ 800341e:	4638      	mov	r0, r7
+ 8003420:	f7ff fdfa 	bl	8003018 <_ZN4GpioILh1ELh15ELh0EE5writeEi>
+ 8003424:	481f      	ldr	r0, [pc, #124]	; (80034a4 <_ZN7Drivers4initEv+0x1a0>)
+ 8003426:	f7fe fc17 	bl	8001c58 <_ZN3Key4initEv>
+ 800342a:	4620      	mov	r0, r4
+ 800342c:	491e      	ldr	r1, [pc, #120]	; (80034a8 <_ZN7Drivers4initEv+0x1a4>)
+ 800342e:	f7fe f9bc 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 8003432:	4620      	mov	r0, r4
+ 8003434:	491d      	ldr	r1, [pc, #116]	; (80034ac <_ZN7Drivers4initEv+0x1a8>)
+ 8003436:	f7fe f9b8 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 800343a:	4620      	mov	r0, r4
+ 800343c:	491c      	ldr	r1, [pc, #112]	; (80034b0 <_ZN7Drivers4initEv+0x1ac>)
+ 800343e:	f7fe f9b4 	bl	80017aa <_ZN8Terminal4putsEPKc>
+ 8003442:	2000      	movs	r0, #0
+ 8003444:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+ 8003448:	2000044c 	andcs	r0, r0, ip, asr #8
+ 800344c:	20000450 	andcs	r0, r0, r0, asr r4
+ 8003450:	08004650 	stmdaeq	r0, {r4, r6, r9, sl, lr}
+ 8003454:	0800465c 	stmdaeq	r0, {r2, r3, r4, r6, r9, sl, lr}
+ 8003458:	08004670 	stmdaeq	r0, {r4, r5, r6, r9, sl, lr}
+ 800345c:	0800465a 	stmdaeq	r0, {r1, r3, r4, r6, r9, sl, lr}
+ 8003460:	0800468e 	stmdaeq	r0, {r1, r2, r3, r7, r9, sl, lr}
+ 8003464:	0800469f 	stmdaeq	r0, {r0, r1, r2, r3, r4, r7, r9, sl, lr}
+ 8003468:	20000254 	andcs	r0, r0, r4, asr r2
+ 800346c:	080046b6 	stmdaeq	r0, {r1, r2, r4, r5, r7, r9, sl, lr}
+ 8003470:	080046ad 	stmdaeq	r0, {r0, r2, r3, r5, r7, r9, sl, lr}
+ 8003474:	080046bc 	stmdaeq	r0, {r2, r3, r4, r5, r7, r9, sl, lr}
+ 8003478:	080046d0 	stmdaeq	r0, {r4, r6, r7, r9, sl, lr}
+ 800347c:	20000154 	andcs	r0, r0, r4, asr r1
+ 8003480:	080046e7 	stmdaeq	r0, {r0, r1, r2, r5, r6, r7, r9, sl, lr}
+ 8003484:	200002c0 	andcs	r0, r0, r0, asr #5
+ 8003488:	080046f6 	stmdaeq	r0, {r1, r2, r4, r5, r6, r7, r9, sl, lr}
+ 800348c:	20000158 	andcs	r0, r0, r8, asr r1
+ 8003490:	0800470d 	stmdaeq	r0, {r0, r2, r3, r8, r9, sl, lr}
+ 8003494:	20000240 	andcs	r0, r0, r0, asr #4
+ 8003498:	08004728 	stmdaeq	r0, {r3, r5, r8, r9, sl, lr}
+ 800349c:	200003b8 			; <UNDEFINED> instruction: 0x200003b8
+ 80034a0:	08004742 	stmdaeq	r0, {r1, r6, r8, r9, sl, lr}
+ 80034a4:	200002a8 	andcs	r0, r0, r8, lsr #5
+ 80034a8:	0800475c 	stmdaeq	r0, {r2, r3, r4, r6, r8, r9, sl, lr}
+ 80034ac:	08004659 	stmdaeq	r0, {r0, r3, r4, r6, r9, sl, lr}
+ 80034b0:	0800476b 	stmdaeq	r0, {r0, r1, r3, r5, r6, r8, r9, sl, lr}
+ 80034b4:	20000264 	andcs	r0, r0, r4, ror #4
+ 80034b8:	20000234 	andcs	r0, r0, r4, lsr r2
 
-0800340c <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE4stopEv>:
- 800340c:	b570      	push	{r4, r5, r6, lr}
- 800340e:	4604      	mov	r4, r0
- 8003410:	f100 060c 	add.w	r6, r0, #12
- 8003414:	f104 0508 	add.w	r5, r4, #8
- 8003418:	4630      	mov	r0, r6
- 800341a:	2100      	movs	r1, #0
- 800341c:	f7ff fea8 	bl	8003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
- 8003420:	4628      	mov	r0, r5
- 8003422:	2100      	movs	r1, #0
- 8003424:	f7ff fe32 	bl	800308c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
- 8003428:	4630      	mov	r0, r6
- 800342a:	2101      	movs	r1, #1
- 800342c:	f7ff fea0 	bl	8003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
- 8003430:	4628      	mov	r0, r5
- 8003432:	2100      	movs	r1, #0
- 8003434:	f7ff fe2a 	bl	800308c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
- 8003438:	4630      	mov	r0, r6
- 800343a:	2101      	movs	r1, #1
- 800343c:	f7ff fe98 	bl	8003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
- 8003440:	4628      	mov	r0, r5
- 8003442:	2101      	movs	r1, #1
- 8003444:	f7ff fe22 	bl	800308c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
- 8003448:	4620      	mov	r0, r4
- 800344a:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
- 800344e:	f7fd ba72 	b.w	8000936 <_ZN13I2C_Interface5delayEv>
+080034bc <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE4stopEv>:
+ 80034bc:	b570      	push	{r4, r5, r6, lr}
+ 80034be:	4604      	mov	r4, r0
+ 80034c0:	f100 060c 	add.w	r6, r0, #12
+ 80034c4:	f104 0508 	add.w	r5, r4, #8
+ 80034c8:	4630      	mov	r0, r6
+ 80034ca:	2100      	movs	r1, #0
+ 80034cc:	f7ff fe90 	bl	80031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
+ 80034d0:	4628      	mov	r0, r5
+ 80034d2:	2100      	movs	r1, #0
+ 80034d4:	f7ff fe1a 	bl	800310c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
+ 80034d8:	4630      	mov	r0, r6
+ 80034da:	2101      	movs	r1, #1
+ 80034dc:	f7ff fe88 	bl	80031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
+ 80034e0:	4628      	mov	r0, r5
+ 80034e2:	2100      	movs	r1, #0
+ 80034e4:	f7ff fe12 	bl	800310c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
+ 80034e8:	4630      	mov	r0, r6
+ 80034ea:	2101      	movs	r1, #1
+ 80034ec:	f7ff fe80 	bl	80031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
+ 80034f0:	4628      	mov	r0, r5
+ 80034f2:	2101      	movs	r1, #1
+ 80034f4:	f7ff fe0a 	bl	800310c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
+ 80034f8:	4620      	mov	r0, r4
+ 80034fa:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
+ 80034fe:	f7fd ba1a 	b.w	8000936 <_ZN13I2C_Interface5delayEv>
 
-08003452 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE5startEv>:
- 8003452:	b570      	push	{r4, r5, r6, lr}
- 8003454:	4604      	mov	r4, r0
- 8003456:	f100 060c 	add.w	r6, r0, #12
- 800345a:	f104 0508 	add.w	r5, r4, #8
- 800345e:	4630      	mov	r0, r6
- 8003460:	2101      	movs	r1, #1
- 8003462:	f7ff fe85 	bl	8003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
- 8003466:	4628      	mov	r0, r5
- 8003468:	2101      	movs	r1, #1
- 800346a:	f7ff fe0f 	bl	800308c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
- 800346e:	4630      	mov	r0, r6
- 8003470:	2101      	movs	r1, #1
- 8003472:	f7ff fe7d 	bl	8003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
- 8003476:	4628      	mov	r0, r5
- 8003478:	2100      	movs	r1, #0
- 800347a:	f7ff fe07 	bl	800308c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
- 800347e:	4630      	mov	r0, r6
- 8003480:	2100      	movs	r1, #0
- 8003482:	f7ff fe75 	bl	8003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
- 8003486:	4628      	mov	r0, r5
- 8003488:	2101      	movs	r1, #1
- 800348a:	f7ff fdff 	bl	800308c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
- 800348e:	4620      	mov	r0, r4
- 8003490:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
- 8003494:	f7fd ba4f 	b.w	8000936 <_ZN13I2C_Interface5delayEv>
-
-08003498 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE4readEh>:
- 8003498:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
- 800349c:	4604      	mov	r4, r0
- 800349e:	f100 0708 	add.w	r7, r0, #8
- 80034a2:	4638      	mov	r0, r7
- 80034a4:	4689      	mov	r9, r1
- 80034a6:	f104 060c 	add.w	r6, r4, #12
- 80034aa:	2101      	movs	r1, #1
- 80034ac:	f7ff fdee 	bl	800308c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
- 80034b0:	2100      	movs	r1, #0
- 80034b2:	4630      	mov	r0, r6
- 80034b4:	f7ff fe5c 	bl	8003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
- 80034b8:	4620      	mov	r0, r4
- 80034ba:	f7fd fa3c 	bl	8000936 <_ZN13I2C_Interface5delayEv>
- 80034be:	f04f 0809 	mov.w	r8, #9
- 80034c2:	2500      	movs	r5, #0
- 80034c4:	f1b8 0801 	subs.w	r8, r8, #1
- 80034c8:	d017      	beq.n	80034fa <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE4readEh+0x62>
- 80034ca:	2101      	movs	r1, #1
- 80034cc:	4630      	mov	r0, r6
- 80034ce:	f7ff fe4f 	bl	8003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
- 80034d2:	4620      	mov	r0, r4
- 80034d4:	f7fd fa2f 	bl	8000936 <_ZN13I2C_Interface5delayEv>
- 80034d8:	68a3      	ldr	r3, [r4, #8]
- 80034da:	8a1b      	ldrh	r3, [r3, #16]
- 80034dc:	006d      	lsls	r5, r5, #1
- 80034de:	061b      	lsls	r3, r3, #24
- 80034e0:	4630      	mov	r0, r6
- 80034e2:	b2ed      	uxtb	r5, r5
- 80034e4:	f04f 0100 	mov.w	r1, #0
- 80034e8:	bf48      	it	mi
- 80034ea:	f045 0501 	orrmi.w	r5, r5, #1
- 80034ee:	f7ff fe3f 	bl	8003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
- 80034f2:	4620      	mov	r0, r4
- 80034f4:	f7fd fa1f 	bl	8000936 <_ZN13I2C_Interface5delayEv>
- 80034f8:	e7e4      	b.n	80034c4 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE4readEh+0x2c>
- 80034fa:	f1b9 0f00 	cmp.w	r9, #0
- 80034fe:	d01e      	beq.n	800353e <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE4readEh+0xa6>
- 8003500:	4641      	mov	r1, r8
- 8003502:	4638      	mov	r0, r7
- 8003504:	f7ff fdc2 	bl	800308c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
- 8003508:	4620      	mov	r0, r4
- 800350a:	f7fd fa14 	bl	8000936 <_ZN13I2C_Interface5delayEv>
- 800350e:	2101      	movs	r1, #1
- 8003510:	4630      	mov	r0, r6
- 8003512:	f7ff fe2d 	bl	8003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
- 8003516:	4620      	mov	r0, r4
- 8003518:	f7fd fa0d 	bl	8000936 <_ZN13I2C_Interface5delayEv>
- 800351c:	2100      	movs	r1, #0
+08003502 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE5startEv>:
+ 8003502:	b570      	push	{r4, r5, r6, lr}
+ 8003504:	4604      	mov	r4, r0
+ 8003506:	f100 060c 	add.w	r6, r0, #12
+ 800350a:	f104 0508 	add.w	r5, r4, #8
+ 800350e:	4630      	mov	r0, r6
+ 8003510:	2101      	movs	r1, #1
+ 8003512:	f7ff fe6d 	bl	80031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
+ 8003516:	4628      	mov	r0, r5
+ 8003518:	2101      	movs	r1, #1
+ 800351a:	f7ff fdf7 	bl	800310c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
  800351e:	4630      	mov	r0, r6
- 8003520:	f7ff fe26 	bl	8003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
- 8003524:	4620      	mov	r0, r4
- 8003526:	f7fd fa06 	bl	8000936 <_ZN13I2C_Interface5delayEv>
- 800352a:	2101      	movs	r1, #1
- 800352c:	4638      	mov	r0, r7
- 800352e:	f7ff fdad 	bl	800308c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
- 8003532:	4620      	mov	r0, r4
- 8003534:	f7fd f9ff 	bl	8000936 <_ZN13I2C_Interface5delayEv>
- 8003538:	4628      	mov	r0, r5
- 800353a:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
- 800353e:	2101      	movs	r1, #1
- 8003540:	e7df      	b.n	8003502 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE4readEh+0x6a>
+ 8003520:	2101      	movs	r1, #1
+ 8003522:	f7ff fe65 	bl	80031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
+ 8003526:	4628      	mov	r0, r5
+ 8003528:	2100      	movs	r1, #0
+ 800352a:	f7ff fdef 	bl	800310c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
+ 800352e:	4630      	mov	r0, r6
+ 8003530:	2100      	movs	r1, #0
+ 8003532:	f7ff fe5d 	bl	80031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
+ 8003536:	4628      	mov	r0, r5
+ 8003538:	2101      	movs	r1, #1
+ 800353a:	f7ff fde7 	bl	800310c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
+ 800353e:	4620      	mov	r0, r4
+ 8003540:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
+ 8003544:	f7fd b9f7 	b.w	8000936 <_ZN13I2C_Interface5delayEv>
 
-08003542 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE5writeEh>:
- 8003542:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
- 8003546:	4604      	mov	r4, r0
- 8003548:	460d      	mov	r5, r1
- 800354a:	2709      	movs	r7, #9
- 800354c:	f100 060c 	add.w	r6, r0, #12
- 8003550:	f100 0808 	add.w	r8, r0, #8
- 8003554:	3f01      	subs	r7, #1
- 8003556:	d01a      	beq.n	800358e <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE5writeEh+0x4c>
- 8003558:	2100      	movs	r1, #0
- 800355a:	4630      	mov	r0, r6
- 800355c:	f7ff fe08 	bl	8003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
- 8003560:	4620      	mov	r0, r4
- 8003562:	f7fd f9e8 	bl	8000936 <_ZN13I2C_Interface5delayEv>
- 8003566:	062b      	lsls	r3, r5, #24
- 8003568:	bf4c      	ite	mi
- 800356a:	2101      	movmi	r1, #1
- 800356c:	2100      	movpl	r1, #0
- 800356e:	4640      	mov	r0, r8
- 8003570:	f7ff fd8c 	bl	800308c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
- 8003574:	4620      	mov	r0, r4
- 8003576:	f7fd f9de 	bl	8000936 <_ZN13I2C_Interface5delayEv>
+08003548 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE4readEh>:
+ 8003548:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
+ 800354c:	4604      	mov	r4, r0
+ 800354e:	f100 0708 	add.w	r7, r0, #8
+ 8003552:	4638      	mov	r0, r7
+ 8003554:	4689      	mov	r9, r1
+ 8003556:	f104 060c 	add.w	r6, r4, #12
+ 800355a:	2101      	movs	r1, #1
+ 800355c:	f7ff fdd6 	bl	800310c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
+ 8003560:	2100      	movs	r1, #0
+ 8003562:	4630      	mov	r0, r6
+ 8003564:	f7ff fe44 	bl	80031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
+ 8003568:	4620      	mov	r0, r4
+ 800356a:	f7fd f9e4 	bl	8000936 <_ZN13I2C_Interface5delayEv>
+ 800356e:	f04f 0809 	mov.w	r8, #9
+ 8003572:	2500      	movs	r5, #0
+ 8003574:	f1b8 0801 	subs.w	r8, r8, #1
+ 8003578:	d017      	beq.n	80035aa <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE4readEh+0x62>
  800357a:	2101      	movs	r1, #1
  800357c:	4630      	mov	r0, r6
- 800357e:	f7ff fdf7 	bl	8003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
- 8003582:	006d      	lsls	r5, r5, #1
- 8003584:	4620      	mov	r0, r4
- 8003586:	f7fd f9d6 	bl	8000936 <_ZN13I2C_Interface5delayEv>
- 800358a:	b2ed      	uxtb	r5, r5
- 800358c:	e7e2      	b.n	8003554 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE5writeEh+0x12>
- 800358e:	4639      	mov	r1, r7
+ 800357e:	f7ff fe37 	bl	80031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
+ 8003582:	4620      	mov	r0, r4
+ 8003584:	f7fd f9d7 	bl	8000936 <_ZN13I2C_Interface5delayEv>
+ 8003588:	68a3      	ldr	r3, [r4, #8]
+ 800358a:	8a1b      	ldrh	r3, [r3, #16]
+ 800358c:	006d      	lsls	r5, r5, #1
+ 800358e:	061b      	lsls	r3, r3, #24
  8003590:	4630      	mov	r0, r6
- 8003592:	f7ff fded 	bl	8003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
- 8003596:	4620      	mov	r0, r4
- 8003598:	f7fd f9cd 	bl	8000936 <_ZN13I2C_Interface5delayEv>
- 800359c:	2101      	movs	r1, #1
- 800359e:	4640      	mov	r0, r8
- 80035a0:	f7ff fd74 	bl	800308c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
- 80035a4:	4620      	mov	r0, r4
- 80035a6:	f7fd f9c6 	bl	8000936 <_ZN13I2C_Interface5delayEv>
- 80035aa:	2101      	movs	r1, #1
- 80035ac:	4630      	mov	r0, r6
- 80035ae:	f7ff fddf 	bl	8003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
- 80035b2:	4620      	mov	r0, r4
- 80035b4:	f7fd f9bf 	bl	8000936 <_ZN13I2C_Interface5delayEv>
- 80035b8:	68a3      	ldr	r3, [r4, #8]
- 80035ba:	8a1d      	ldrh	r5, [r3, #16]
- 80035bc:	4639      	mov	r1, r7
- 80035be:	4630      	mov	r0, r6
- 80035c0:	f7ff fdd6 	bl	8003170 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
- 80035c4:	b2ad      	uxth	r5, r5
+ 8003592:	b2ed      	uxtb	r5, r5
+ 8003594:	f04f 0100 	mov.w	r1, #0
+ 8003598:	bf48      	it	mi
+ 800359a:	f045 0501 	orrmi.w	r5, r5, #1
+ 800359e:	f7ff fe27 	bl	80031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
+ 80035a2:	4620      	mov	r0, r4
+ 80035a4:	f7fd f9c7 	bl	8000936 <_ZN13I2C_Interface5delayEv>
+ 80035a8:	e7e4      	b.n	8003574 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE4readEh+0x2c>
+ 80035aa:	f1b9 0f00 	cmp.w	r9, #0
+ 80035ae:	d01e      	beq.n	80035ee <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE4readEh+0xa6>
+ 80035b0:	4641      	mov	r1, r8
+ 80035b2:	4638      	mov	r0, r7
+ 80035b4:	f7ff fdaa 	bl	800310c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
+ 80035b8:	4620      	mov	r0, r4
+ 80035ba:	f7fd f9bc 	bl	8000936 <_ZN13I2C_Interface5delayEv>
+ 80035be:	2101      	movs	r1, #1
+ 80035c0:	4630      	mov	r0, r6
+ 80035c2:	f7ff fe15 	bl	80031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
  80035c6:	4620      	mov	r0, r4
  80035c8:	f7fd f9b5 	bl	8000936 <_ZN13I2C_Interface5delayEv>
- 80035cc:	f085 0080 	eor.w	r0, r5, #128	; 0x80
- 80035d0:	f3c0 10c0 	ubfx	r0, r0, #7, #1
- 80035d4:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+ 80035cc:	2100      	movs	r1, #0
+ 80035ce:	4630      	mov	r0, r6
+ 80035d0:	f7ff fe0e 	bl	80031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
+ 80035d4:	4620      	mov	r0, r4
+ 80035d6:	f7fd f9ae 	bl	8000936 <_ZN13I2C_Interface5delayEv>
+ 80035da:	2101      	movs	r1, #1
+ 80035dc:	4638      	mov	r0, r7
+ 80035de:	f7ff fd95 	bl	800310c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
+ 80035e2:	4620      	mov	r0, r4
+ 80035e4:	f7fd f9a7 	bl	8000936 <_ZN13I2C_Interface5delayEv>
+ 80035e8:	4628      	mov	r0, r5
+ 80035ea:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
+ 80035ee:	2101      	movs	r1, #1
+ 80035f0:	e7df      	b.n	80035b2 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE4readEh+0x6a>
 
-080035d8 <_GLOBAL__sub_I_drivers>:
- 80035d8:	b538      	push	{r3, r4, r5, lr}
- 80035da:	4d38      	ldr	r5, [pc, #224]	; (80036bc <_GLOBAL__sub_I_drivers+0xe4>)
- 80035dc:	4c38      	ldr	r4, [pc, #224]	; (80036c0 <_GLOBAL__sub_I_drivers+0xe8>)
- 80035de:	4628      	mov	r0, r5
- 80035e0:	f7ff fcb2 	bl	8002f48 <_ZN7DriversC1Ev>
- 80035e4:	4628      	mov	r0, r5
- 80035e6:	4d37      	ldr	r5, [pc, #220]	; (80036c4 <_GLOBAL__sub_I_drivers+0xec>)
- 80035e8:	4937      	ldr	r1, [pc, #220]	; (80036c8 <_GLOBAL__sub_I_drivers+0xf0>)
- 80035ea:	4622      	mov	r2, r4
- 80035ec:	f7fd ff63 	bl	80014b6 <__aeabi_atexit>
- 80035f0:	4628      	mov	r0, r5
- 80035f2:	f7fe f8c5 	bl	8001780 <_ZN8TerminalC1Ev>
- 80035f6:	4628      	mov	r0, r5
- 80035f8:	4d34      	ldr	r5, [pc, #208]	; (80036cc <_GLOBAL__sub_I_drivers+0xf4>)
- 80035fa:	4935      	ldr	r1, [pc, #212]	; (80036d0 <_GLOBAL__sub_I_drivers+0xf8>)
- 80035fc:	4622      	mov	r2, r4
- 80035fe:	f7fd ff5a 	bl	80014b6 <__aeabi_atexit>
- 8003602:	4628      	mov	r0, r5
- 8003604:	f7ff fbae 	bl	8002d64 <_ZN5TimerC1Ev>
- 8003608:	4628      	mov	r0, r5
- 800360a:	4d32      	ldr	r5, [pc, #200]	; (80036d4 <_GLOBAL__sub_I_drivers+0xfc>)
- 800360c:	4932      	ldr	r1, [pc, #200]	; (80036d8 <_GLOBAL__sub_I_drivers+0x100>)
- 800360e:	4622      	mov	r2, r4
- 8003610:	f7fd ff51 	bl	80014b6 <__aeabi_atexit>
- 8003614:	4628      	mov	r0, r5
- 8003616:	f7fd f943 	bl	80008a0 <_ZN13I2C_InterfaceC1Ev>
- 800361a:	4628      	mov	r0, r5
- 800361c:	4b2f      	ldr	r3, [pc, #188]	; (80036dc <_GLOBAL__sub_I_drivers+0x104>)
- 800361e:	f840 3b08 	str.w	r3, [r0], #8
- 8003622:	f7ff fd95 	bl	8003150 <_ZN4GpioILh1ELh7ELh1EE4initEv>
- 8003626:	f105 000c 	add.w	r0, r5, #12
- 800362a:	f7ff fe03 	bl	8003234 <_ZN4GpioILh1ELh6ELh1EE4initEv>
- 800362e:	4628      	mov	r0, r5
- 8003630:	4d2b      	ldr	r5, [pc, #172]	; (80036e0 <_GLOBAL__sub_I_drivers+0x108>)
- 8003632:	492c      	ldr	r1, [pc, #176]	; (80036e4 <_GLOBAL__sub_I_drivers+0x10c>)
- 8003634:	4622      	mov	r2, r4
- 8003636:	f7fd ff3e 	bl	80014b6 <__aeabi_atexit>
- 800363a:	4628      	mov	r0, r5
- 800363c:	f7fe fe66 	bl	800230c <_ZN3IMUC1Ev>
- 8003640:	4628      	mov	r0, r5
- 8003642:	4d29      	ldr	r5, [pc, #164]	; (80036e8 <_GLOBAL__sub_I_drivers+0x110>)
- 8003644:	4929      	ldr	r1, [pc, #164]	; (80036ec <_GLOBAL__sub_I_drivers+0x114>)
- 8003646:	4622      	mov	r2, r4
- 8003648:	f7fd ff35 	bl	80014b6 <__aeabi_atexit>
- 800364c:	4628      	mov	r0, r5
- 800364e:	f7fe fb4b 	bl	8001ce8 <_ZN3ADCC1Ev>
- 8003652:	4628      	mov	r0, r5
- 8003654:	4d26      	ldr	r5, [pc, #152]	; (80036f0 <_GLOBAL__sub_I_drivers+0x118>)
- 8003656:	4927      	ldr	r1, [pc, #156]	; (80036f4 <_GLOBAL__sub_I_drivers+0x11c>)
- 8003658:	4622      	mov	r2, r4
- 800365a:	f7fd ff2c 	bl	80014b6 <__aeabi_atexit>
- 800365e:	4628      	mov	r0, r5
- 8003660:	f7fe fc38 	bl	8001ed4 <_ZN10LineSensorC1Ev>
- 8003664:	4628      	mov	r0, r5
- 8003666:	4d24      	ldr	r5, [pc, #144]	; (80036f8 <_GLOBAL__sub_I_drivers+0x120>)
- 8003668:	4924      	ldr	r1, [pc, #144]	; (80036fc <_GLOBAL__sub_I_drivers+0x124>)
- 800366a:	4622      	mov	r2, r4
- 800366c:	f7fd ff23 	bl	80014b6 <__aeabi_atexit>
- 8003670:	4628      	mov	r0, r5
- 8003672:	f7ff fa9d 	bl	8002bb0 <_ZN14DistanceSensorC1Ev>
- 8003676:	4628      	mov	r0, r5
- 8003678:	4d21      	ldr	r5, [pc, #132]	; (8003700 <_GLOBAL__sub_I_drivers+0x128>)
- 800367a:	4922      	ldr	r1, [pc, #136]	; (8003704 <_GLOBAL__sub_I_drivers+0x12c>)
- 800367c:	4622      	mov	r2, r4
- 800367e:	f7fd ff1a 	bl	80014b6 <__aeabi_atexit>
- 8003682:	4628      	mov	r0, r5
- 8003684:	f7fe ff98 	bl	80025b8 <_ZN13EncoderSensorC1Ev>
- 8003688:	4628      	mov	r0, r5
- 800368a:	4d1f      	ldr	r5, [pc, #124]	; (8003708 <_GLOBAL__sub_I_drivers+0x130>)
- 800368c:	491f      	ldr	r1, [pc, #124]	; (800370c <_GLOBAL__sub_I_drivers+0x134>)
- 800368e:	4622      	mov	r2, r4
- 8003690:	f7fd ff11 	bl	80014b6 <__aeabi_atexit>
+080035f2 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE5writeEh>:
+ 80035f2:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+ 80035f6:	4604      	mov	r4, r0
+ 80035f8:	460d      	mov	r5, r1
+ 80035fa:	2709      	movs	r7, #9
+ 80035fc:	f100 060c 	add.w	r6, r0, #12
+ 8003600:	f100 0808 	add.w	r8, r0, #8
+ 8003604:	3f01      	subs	r7, #1
+ 8003606:	d01a      	beq.n	800363e <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE5writeEh+0x4c>
+ 8003608:	2100      	movs	r1, #0
+ 800360a:	4630      	mov	r0, r6
+ 800360c:	f7ff fdf0 	bl	80031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
+ 8003610:	4620      	mov	r0, r4
+ 8003612:	f7fd f990 	bl	8000936 <_ZN13I2C_Interface5delayEv>
+ 8003616:	062b      	lsls	r3, r5, #24
+ 8003618:	bf4c      	ite	mi
+ 800361a:	2101      	movmi	r1, #1
+ 800361c:	2100      	movpl	r1, #0
+ 800361e:	4640      	mov	r0, r8
+ 8003620:	f7ff fd74 	bl	800310c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
+ 8003624:	4620      	mov	r0, r4
+ 8003626:	f7fd f986 	bl	8000936 <_ZN13I2C_Interface5delayEv>
+ 800362a:	2101      	movs	r1, #1
+ 800362c:	4630      	mov	r0, r6
+ 800362e:	f7ff fddf 	bl	80031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
+ 8003632:	006d      	lsls	r5, r5, #1
+ 8003634:	4620      	mov	r0, r4
+ 8003636:	f7fd f97e 	bl	8000936 <_ZN13I2C_Interface5delayEv>
+ 800363a:	b2ed      	uxtb	r5, r5
+ 800363c:	e7e2      	b.n	8003604 <_ZN4TI2CILh1ELh7ELh6ELh10ELh1EE5writeEh+0x12>
+ 800363e:	4639      	mov	r1, r7
+ 8003640:	4630      	mov	r0, r6
+ 8003642:	f7ff fdd5 	bl	80031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
+ 8003646:	4620      	mov	r0, r4
+ 8003648:	f7fd f975 	bl	8000936 <_ZN13I2C_Interface5delayEv>
+ 800364c:	2101      	movs	r1, #1
+ 800364e:	4640      	mov	r0, r8
+ 8003650:	f7ff fd5c 	bl	800310c <_ZN4GpioILh1ELh7ELh1EE8set_modeEh>
+ 8003654:	4620      	mov	r0, r4
+ 8003656:	f7fd f96e 	bl	8000936 <_ZN13I2C_Interface5delayEv>
+ 800365a:	2101      	movs	r1, #1
+ 800365c:	4630      	mov	r0, r6
+ 800365e:	f7ff fdc7 	bl	80031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
+ 8003662:	4620      	mov	r0, r4
+ 8003664:	f7fd f967 	bl	8000936 <_ZN13I2C_Interface5delayEv>
+ 8003668:	68a3      	ldr	r3, [r4, #8]
+ 800366a:	8a1d      	ldrh	r5, [r3, #16]
+ 800366c:	4639      	mov	r1, r7
+ 800366e:	4630      	mov	r0, r6
+ 8003670:	f7ff fdbe 	bl	80031f0 <_ZN4GpioILh1ELh6ELh1EE8set_modeEh>
+ 8003674:	b2ad      	uxth	r5, r5
+ 8003676:	4620      	mov	r0, r4
+ 8003678:	f7fd f95d 	bl	8000936 <_ZN13I2C_Interface5delayEv>
+ 800367c:	f085 0080 	eor.w	r0, r5, #128	; 0x80
+ 8003680:	f3c0 10c0 	ubfx	r0, r0, #7, #1
+ 8003684:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+
+08003688 <_GLOBAL__sub_I_drivers>:
+ 8003688:	b538      	push	{r3, r4, r5, lr}
+ 800368a:	4d3c      	ldr	r5, [pc, #240]	; (800377c <_GLOBAL__sub_I_drivers+0xf4>)
+ 800368c:	4c3c      	ldr	r4, [pc, #240]	; (8003780 <_GLOBAL__sub_I_drivers+0xf8>)
+ 800368e:	4628      	mov	r0, r5
+ 8003690:	f7ff fc9a 	bl	8002fc8 <_ZN7DriversC1Ev>
  8003694:	4628      	mov	r0, r5
- 8003696:	f7ff f911 	bl	80028bc <_ZN13MotorControllC1Ev>
- 800369a:	4628      	mov	r0, r5
- 800369c:	4d1c      	ldr	r5, [pc, #112]	; (8003710 <_GLOBAL__sub_I_drivers+0x138>)
- 800369e:	491d      	ldr	r1, [pc, #116]	; (8003714 <_GLOBAL__sub_I_drivers+0x13c>)
- 80036a0:	4622      	mov	r2, r4
- 80036a2:	f7fd ff08 	bl	80014b6 <__aeabi_atexit>
+ 8003696:	4d3b      	ldr	r5, [pc, #236]	; (8003784 <_GLOBAL__sub_I_drivers+0xfc>)
+ 8003698:	493b      	ldr	r1, [pc, #236]	; (8003788 <_GLOBAL__sub_I_drivers+0x100>)
+ 800369a:	4622      	mov	r2, r4
+ 800369c:	f7fd ff0b 	bl	80014b6 <__aeabi_atexit>
+ 80036a0:	4628      	mov	r0, r5
+ 80036a2:	f7fe f86d 	bl	8001780 <_ZN8TerminalC1Ev>
  80036a6:	4628      	mov	r0, r5
- 80036a8:	f7fe fa96 	bl	8001bd8 <_ZN3KeyC1Ev>
+ 80036a8:	4d38      	ldr	r5, [pc, #224]	; (800378c <_GLOBAL__sub_I_drivers+0x104>)
+ 80036aa:	4939      	ldr	r1, [pc, #228]	; (8003790 <_GLOBAL__sub_I_drivers+0x108>)
  80036ac:	4622      	mov	r2, r4
- 80036ae:	4628      	mov	r0, r5
- 80036b0:	4919      	ldr	r1, [pc, #100]	; (8003718 <_GLOBAL__sub_I_drivers+0x140>)
- 80036b2:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
- 80036b6:	f7fd befe 	b.w	80014b6 <__aeabi_atexit>
- 80036ba:	bf00      	nop
- 80036bc:	2000022c 	andcs	r0, r0, ip, lsr #4
- 80036c0:	20000004 	andcs	r0, r0, r4
- 80036c4:	20000440 	andcs	r0, r0, r0, asr #8
- 80036c8:	08002ef5 	stmdaeq	r0, {r0, r2, r4, r5, r6, r7, r9, sl, fp, sp}
- 80036cc:	20000444 	andcs	r0, r0, r4, asr #8
- 80036d0:	08001759 	stmdaeq	r0, {r0, r3, r4, r6, r8, r9, sl, ip}
- 80036d4:	20000248 	andcs	r0, r0, r8, asr #4
- 80036d8:	08002dd1 	stmdaeq	r0, {r0, r4, r6, r7, r8, sl, fp, sp}
- 80036dc:	08004530 	stmdaeq	r0, {r4, r5, r8, sl, lr}
- 80036e0:	20000258 	andcs	r0, r0, r8, asr r2
- 80036e4:	08002f05 	stmdaeq	r0, {r0, r2, r8, r9, sl, fp, sp}
- 80036e8:	20000154 	andcs	r0, r0, r4, asr r1
- 80036ec:	080022fd 	stmdaeq	r0, {r0, r2, r3, r4, r5, r6, r7, r9, sp}
- 80036f0:	200002b4 			; <UNDEFINED> instruction: 0x200002b4
- 80036f4:	08001cd9 	stmdaeq	r0, {r0, r3, r4, r6, r7, sl, fp, ip}
- 80036f8:	20000158 	andcs	r0, r0, r8, asr r1
- 80036fc:	08001ec5 	stmdaeq	r0, {r0, r2, r6, r7, r9, sl, fp, ip}
- 8003700:	20000234 	andcs	r0, r0, r4, lsr r2
- 8003704:	08002d29 	stmdaeq	r0, {r0, r3, r5, r8, sl, fp, sp}
- 8003708:	200003ac 	andcs	r0, r0, ip, lsr #7
- 800370c:	080025a9 	stmdaeq	r0, {r0, r3, r5, r7, r8, sl, sp}
- 8003710:	2000029c 	mulcs	r0, ip, r2
- 8003714:	08002971 	stmdaeq	r0, {r0, r4, r5, r6, r8, fp, sp}
- 8003718:	08001ba1 	stmdaeq	r0, {r0, r5, r7, r8, r9, fp, ip}
+ 80036ae:	f7fd ff02 	bl	80014b6 <__aeabi_atexit>
+ 80036b2:	4628      	mov	r0, r5
+ 80036b4:	f7ff fb96 	bl	8002de4 <_ZN5TimerC1Ev>
+ 80036b8:	4628      	mov	r0, r5
+ 80036ba:	4d36      	ldr	r5, [pc, #216]	; (8003794 <_GLOBAL__sub_I_drivers+0x10c>)
+ 80036bc:	4936      	ldr	r1, [pc, #216]	; (8003798 <_GLOBAL__sub_I_drivers+0x110>)
+ 80036be:	4622      	mov	r2, r4
+ 80036c0:	f7fd fef9 	bl	80014b6 <__aeabi_atexit>
+ 80036c4:	4628      	mov	r0, r5
+ 80036c6:	f7fd f8eb 	bl	80008a0 <_ZN13I2C_InterfaceC1Ev>
+ 80036ca:	4628      	mov	r0, r5
+ 80036cc:	4b33      	ldr	r3, [pc, #204]	; (800379c <_GLOBAL__sub_I_drivers+0x114>)
+ 80036ce:	f840 3b08 	str.w	r3, [r0], #8
+ 80036d2:	f7ff fd7d 	bl	80031d0 <_ZN4GpioILh1ELh7ELh1EE4initEv>
+ 80036d6:	f105 000c 	add.w	r0, r5, #12
+ 80036da:	f7ff fdeb 	bl	80032b4 <_ZN4GpioILh1ELh6ELh1EE4initEv>
+ 80036de:	4628      	mov	r0, r5
+ 80036e0:	4d2f      	ldr	r5, [pc, #188]	; (80037a0 <_GLOBAL__sub_I_drivers+0x118>)
+ 80036e2:	4930      	ldr	r1, [pc, #192]	; (80037a4 <_GLOBAL__sub_I_drivers+0x11c>)
+ 80036e4:	4622      	mov	r2, r4
+ 80036e6:	f7fd fee6 	bl	80014b6 <__aeabi_atexit>
+ 80036ea:	4628      	mov	r0, r5
+ 80036ec:	f7fe fe0e 	bl	800230c <_ZN3IMUC1Ev>
+ 80036f0:	4628      	mov	r0, r5
+ 80036f2:	4d2d      	ldr	r5, [pc, #180]	; (80037a8 <_GLOBAL__sub_I_drivers+0x120>)
+ 80036f4:	492d      	ldr	r1, [pc, #180]	; (80037ac <_GLOBAL__sub_I_drivers+0x124>)
+ 80036f6:	4622      	mov	r2, r4
+ 80036f8:	f7fd fedd 	bl	80014b6 <__aeabi_atexit>
+ 80036fc:	4628      	mov	r0, r5
+ 80036fe:	f7ff f9cd 	bl	8002a9c <_ZN6EEPROMC1Ev>
+ 8003702:	4628      	mov	r0, r5
+ 8003704:	4d2a      	ldr	r5, [pc, #168]	; (80037b0 <_GLOBAL__sub_I_drivers+0x128>)
+ 8003706:	492b      	ldr	r1, [pc, #172]	; (80037b4 <_GLOBAL__sub_I_drivers+0x12c>)
+ 8003708:	4622      	mov	r2, r4
+ 800370a:	f7fd fed4 	bl	80014b6 <__aeabi_atexit>
+ 800370e:	4628      	mov	r0, r5
+ 8003710:	f7fe faea 	bl	8001ce8 <_ZN3ADCC1Ev>
+ 8003714:	4628      	mov	r0, r5
+ 8003716:	4d28      	ldr	r5, [pc, #160]	; (80037b8 <_GLOBAL__sub_I_drivers+0x130>)
+ 8003718:	4928      	ldr	r1, [pc, #160]	; (80037bc <_GLOBAL__sub_I_drivers+0x134>)
+ 800371a:	4622      	mov	r2, r4
+ 800371c:	f7fd fecb 	bl	80014b6 <__aeabi_atexit>
+ 8003720:	4628      	mov	r0, r5
+ 8003722:	f7fe fbd7 	bl	8001ed4 <_ZN10LineSensorC1Ev>
+ 8003726:	4628      	mov	r0, r5
+ 8003728:	4d25      	ldr	r5, [pc, #148]	; (80037c0 <_GLOBAL__sub_I_drivers+0x138>)
+ 800372a:	4926      	ldr	r1, [pc, #152]	; (80037c4 <_GLOBAL__sub_I_drivers+0x13c>)
+ 800372c:	4622      	mov	r2, r4
+ 800372e:	f7fd fec2 	bl	80014b6 <__aeabi_atexit>
+ 8003732:	4628      	mov	r0, r5
+ 8003734:	f7ff fa7c 	bl	8002c30 <_ZN14DistanceSensorC1Ev>
+ 8003738:	4628      	mov	r0, r5
+ 800373a:	4d23      	ldr	r5, [pc, #140]	; (80037c8 <_GLOBAL__sub_I_drivers+0x140>)
+ 800373c:	4923      	ldr	r1, [pc, #140]	; (80037cc <_GLOBAL__sub_I_drivers+0x144>)
+ 800373e:	4622      	mov	r2, r4
+ 8003740:	f7fd feb9 	bl	80014b6 <__aeabi_atexit>
+ 8003744:	4628      	mov	r0, r5
+ 8003746:	f7fe ff37 	bl	80025b8 <_ZN13EncoderSensorC1Ev>
+ 800374a:	4628      	mov	r0, r5
+ 800374c:	4d20      	ldr	r5, [pc, #128]	; (80037d0 <_GLOBAL__sub_I_drivers+0x148>)
+ 800374e:	4921      	ldr	r1, [pc, #132]	; (80037d4 <_GLOBAL__sub_I_drivers+0x14c>)
+ 8003750:	4622      	mov	r2, r4
+ 8003752:	f7fd feb0 	bl	80014b6 <__aeabi_atexit>
+ 8003756:	4628      	mov	r0, r5
+ 8003758:	f7ff f8b0 	bl	80028bc <_ZN13MotorControllC1Ev>
+ 800375c:	4628      	mov	r0, r5
+ 800375e:	4d1e      	ldr	r5, [pc, #120]	; (80037d8 <_GLOBAL__sub_I_drivers+0x150>)
+ 8003760:	491e      	ldr	r1, [pc, #120]	; (80037dc <_GLOBAL__sub_I_drivers+0x154>)
+ 8003762:	4622      	mov	r2, r4
+ 8003764:	f7fd fea7 	bl	80014b6 <__aeabi_atexit>
+ 8003768:	4628      	mov	r0, r5
+ 800376a:	f7fe fa35 	bl	8001bd8 <_ZN3KeyC1Ev>
+ 800376e:	4622      	mov	r2, r4
+ 8003770:	4628      	mov	r0, r5
+ 8003772:	491b      	ldr	r1, [pc, #108]	; (80037e0 <_GLOBAL__sub_I_drivers+0x158>)
+ 8003774:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
+ 8003778:	f7fd be9d 	b.w	80014b6 <__aeabi_atexit>
+ 800377c:	2000022c 	andcs	r0, r0, ip, lsr #4
+ 8003780:	20000004 	andcs	r0, r0, r4
+ 8003784:	2000044c 	andcs	r0, r0, ip, asr #8
+ 8003788:	08002f75 	stmdaeq	r0, {r0, r2, r4, r5, r6, r8, r9, sl, fp, sp}
+ 800378c:	20000450 	andcs	r0, r0, r0, asr r4
+ 8003790:	08001759 	stmdaeq	r0, {r0, r3, r4, r6, r8, r9, sl, ip}
+ 8003794:	20000254 	andcs	r0, r0, r4, asr r2
+ 8003798:	08002e51 	stmdaeq	r0, {r0, r4, r6, r9, sl, fp, sp}
+ 800379c:	08004608 	stmdaeq	r0, {r3, r9, sl, lr}
+ 80037a0:	20000264 	andcs	r0, r0, r4, ror #4
+ 80037a4:	08002f85 	stmdaeq	r0, {r0, r2, r7, r8, r9, sl, fp, sp}
+ 80037a8:	20000234 	andcs	r0, r0, r4, lsr r2
+ 80037ac:	080022fd 	stmdaeq	r0, {r0, r2, r3, r4, r5, r6, r7, r9, sp}
+ 80037b0:	20000154 	andcs	r0, r0, r4, asr r1
+ 80037b4:	08002a8d 	stmdaeq	r0, {r0, r2, r3, r7, r9, fp, sp}
+ 80037b8:	200002c0 	andcs	r0, r0, r0, asr #5
+ 80037bc:	08001cd9 	stmdaeq	r0, {r0, r3, r4, r6, r7, sl, fp, ip}
+ 80037c0:	20000158 	andcs	r0, r0, r8, asr r1
+ 80037c4:	08001ec5 	stmdaeq	r0, {r0, r2, r6, r7, r9, sl, fp, ip}
+ 80037c8:	20000240 	andcs	r0, r0, r0, asr #4
+ 80037cc:	08002da9 	stmdaeq	r0, {r0, r3, r5, r7, r8, sl, fp, sp}
+ 80037d0:	200003b8 			; <UNDEFINED> instruction: 0x200003b8
+ 80037d4:	080025a9 	stmdaeq	r0, {r0, r3, r5, r7, r8, sl, sp}
+ 80037d8:	200002a8 	andcs	r0, r0, r8, lsr #5
+ 80037dc:	08002971 	stmdaeq	r0, {r0, r4, r5, r6, r8, fp, sp}
+ 80037e0:	08001ba1 	stmdaeq	r0, {r0, r5, r7, r8, r9, fp, ip}
 
-0800371c <_ZN10LineSearchC1Ev>:
- 800371c:	b538      	push	{r3, r4, r5, lr}
- 800371e:	4604      	mov	r4, r0
- 8003720:	4b07      	ldr	r3, [pc, #28]	; (8003740 <_ZN10LineSearchC1Ev+0x24>)
- 8003722:	f844 3b08 	str.w	r3, [r4], #8
- 8003726:	4605      	mov	r5, r0
- 8003728:	4620      	mov	r0, r4
- 800372a:	f000 fbcd 	bl	8003ec8 <_ZN16PositionControllC1Ev>
- 800372e:	4620      	mov	r0, r4
- 8003730:	4904      	ldr	r1, [pc, #16]	; (8003744 <_ZN10LineSearchC1Ev+0x28>)
- 8003732:	f000 fbf1 	bl	8003f18 <_ZN16PositionControll4initEf>
- 8003736:	2300      	movs	r3, #0
- 8003738:	f885 305c 	strb.w	r3, [r5, #92]	; 0x5c
- 800373c:	4628      	mov	r0, r5
- 800373e:	bd38      	pop	{r3, r4, r5, pc}
- 8003740:	080046b4 	stmdaeq	r0, {r2, r4, r5, r7, r9, sl, lr}
- 8003744:	3f333333 	svccc	0x00333333
+080037e4 <_ZN10LineSearchC1Ev>:
+ 80037e4:	b538      	push	{r3, r4, r5, lr}
+ 80037e6:	4604      	mov	r4, r0
+ 80037e8:	4b07      	ldr	r3, [pc, #28]	; (8003808 <_ZN10LineSearchC1Ev+0x24>)
+ 80037ea:	f844 3b08 	str.w	r3, [r4], #8
+ 80037ee:	4605      	mov	r5, r0
+ 80037f0:	4620      	mov	r0, r4
+ 80037f2:	f000 fbcd 	bl	8003f90 <_ZN16PositionControllC1Ev>
+ 80037f6:	4620      	mov	r0, r4
+ 80037f8:	4904      	ldr	r1, [pc, #16]	; (800380c <_ZN10LineSearchC1Ev+0x28>)
+ 80037fa:	f000 fbf1 	bl	8003fe0 <_ZN16PositionControll4initEf>
+ 80037fe:	2300      	movs	r3, #0
+ 8003800:	f885 305c 	strb.w	r3, [r5, #92]	; 0x5c
+ 8003804:	4628      	mov	r0, r5
+ 8003806:	bd38      	pop	{r3, r4, r5, pc}
+ 8003808:	080047a0 	stmdaeq	r0, {r5, r7, r8, r9, sl, lr}
+ 800380c:	3f333333 	svccc	0x00333333
 
-08003748 <_ZN10LineSearch22set_last_line_positionEf>:
- 8003748:	6041      	str	r1, [r0, #4]
- 800374a:	4770      	bx	lr
+08003810 <_ZN10LineSearch22set_last_line_positionEf>:
+ 8003810:	6041      	str	r1, [r0, #4]
+ 8003812:	4770      	bx	lr
 
-0800374c <_ZN10LineSearch17keep_speed_enableEv>:
- 800374c:	2301      	movs	r3, #1
- 800374e:	f880 305c 	strb.w	r3, [r0, #92]	; 0x5c
- 8003752:	4770      	bx	lr
+08003814 <_ZN10LineSearch17keep_speed_enableEv>:
+ 8003814:	2301      	movs	r3, #1
+ 8003816:	f880 305c 	strb.w	r3, [r0, #92]	; 0x5c
+ 800381a:	4770      	bx	lr
 
-08003754 <_ZN10LineSearch12process_moveEj>:
- 8003754:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
- 8003758:	4681      	mov	r9, r0
- 800375a:	4816      	ldr	r0, [pc, #88]	; (80037b4 <_ZN10LineSearch12process_moveEj+0x60>)
- 800375c:	f8df 8058 	ldr.w	r8, [pc, #88]	; 80037b8 <_ZN10LineSearch12process_moveEj+0x64>
- 8003760:	4e14      	ldr	r6, [pc, #80]	; (80037b4 <_ZN10LineSearch12process_moveEj+0x60>)
- 8003762:	460d      	mov	r5, r1
- 8003764:	f7ff fb6a 	bl	8002e3c <_ZN5Timer8get_timeEv>
- 8003768:	4405      	add	r5, r0
- 800376a:	f109 0708 	add.w	r7, r9, #8
- 800376e:	2105      	movs	r1, #5
- 8003770:	4638      	mov	r0, r7
- 8003772:	f000 fc01 	bl	8003f78 <_ZN16PositionControll7is_doneEi>
- 8003776:	4604      	mov	r4, r0
- 8003778:	b9a0      	cbnz	r0, 80037a4 <_ZN10LineSearch12process_moveEj+0x50>
- 800377a:	4640      	mov	r0, r8
- 800377c:	f7fe fcc6 	bl	800210c <_ZN10LineSensor5readyEv>
- 8003780:	2800      	cmp	r0, #0
- 8003782:	d0f4      	beq.n	800376e <_ZN10LineSearch12process_moveEj+0x1a>
- 8003784:	4630      	mov	r0, r6
- 8003786:	f7ff fb59 	bl	8002e3c <_ZN5Timer8get_timeEv>
- 800378a:	4285      	cmp	r5, r0
- 800378c:	d202      	bcs.n	8003794 <_ZN10LineSearch12process_moveEj+0x40>
- 800378e:	f898 30c0 	ldrb.w	r3, [r8, #192]	; 0xc0
- 8003792:	b95b      	cbnz	r3, 80037ac <_ZN10LineSearch12process_moveEj+0x58>
- 8003794:	4638      	mov	r0, r7
- 8003796:	f000 fc13 	bl	8003fc0 <_ZN16PositionControll7processEv>
- 800379a:	2104      	movs	r1, #4
- 800379c:	4630      	mov	r0, r6
- 800379e:	f7ff fb59 	bl	8002e54 <_ZN5Timer8delay_msEj>
- 80037a2:	e7e2      	b.n	800376a <_ZN10LineSearch12process_moveEj+0x16>
- 80037a4:	f04f 30ff 	mov.w	r0, #4294967295	; 0xffffffff
- 80037a8:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
- 80037ac:	4620      	mov	r0, r4
- 80037ae:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
- 80037b2:	bf00      	nop
- 80037b4:	20000444 	andcs	r0, r0, r4, asr #8
- 80037b8:	200002b4 			; <UNDEFINED> instruction: 0x200002b4
+0800381c <_ZN10LineSearch12process_moveEj>:
+ 800381c:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
+ 8003820:	4681      	mov	r9, r0
+ 8003822:	4816      	ldr	r0, [pc, #88]	; (800387c <_ZN10LineSearch12process_moveEj+0x60>)
+ 8003824:	f8df 8058 	ldr.w	r8, [pc, #88]	; 8003880 <_ZN10LineSearch12process_moveEj+0x64>
+ 8003828:	4e14      	ldr	r6, [pc, #80]	; (800387c <_ZN10LineSearch12process_moveEj+0x60>)
+ 800382a:	460d      	mov	r5, r1
+ 800382c:	f7ff fb46 	bl	8002ebc <_ZN5Timer8get_timeEv>
+ 8003830:	4405      	add	r5, r0
+ 8003832:	f109 0708 	add.w	r7, r9, #8
+ 8003836:	2105      	movs	r1, #5
+ 8003838:	4638      	mov	r0, r7
+ 800383a:	f000 fc01 	bl	8004040 <_ZN16PositionControll7is_doneEi>
+ 800383e:	4604      	mov	r4, r0
+ 8003840:	b9a0      	cbnz	r0, 800386c <_ZN10LineSearch12process_moveEj+0x50>
+ 8003842:	4640      	mov	r0, r8
+ 8003844:	f7fe fc62 	bl	800210c <_ZN10LineSensor5readyEv>
+ 8003848:	2800      	cmp	r0, #0
+ 800384a:	d0f4      	beq.n	8003836 <_ZN10LineSearch12process_moveEj+0x1a>
+ 800384c:	4630      	mov	r0, r6
+ 800384e:	f7ff fb35 	bl	8002ebc <_ZN5Timer8get_timeEv>
+ 8003852:	4285      	cmp	r5, r0
+ 8003854:	d202      	bcs.n	800385c <_ZN10LineSearch12process_moveEj+0x40>
+ 8003856:	f898 30c0 	ldrb.w	r3, [r8, #192]	; 0xc0
+ 800385a:	b95b      	cbnz	r3, 8003874 <_ZN10LineSearch12process_moveEj+0x58>
+ 800385c:	4638      	mov	r0, r7
+ 800385e:	f000 fc13 	bl	8004088 <_ZN16PositionControll7processEv>
+ 8003862:	2104      	movs	r1, #4
+ 8003864:	4630      	mov	r0, r6
+ 8003866:	f7ff fb35 	bl	8002ed4 <_ZN5Timer8delay_msEj>
+ 800386a:	e7e2      	b.n	8003832 <_ZN10LineSearch12process_moveEj+0x16>
+ 800386c:	f04f 30ff 	mov.w	r0, #4294967295	; 0xffffffff
+ 8003870:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
+ 8003874:	4620      	mov	r0, r4
+ 8003876:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
+ 800387a:	bf00      	nop
+ 800387c:	20000450 	andcs	r0, r0, r0, asr r4
+ 8003880:	200002c0 	andcs	r0, r0, r0, asr #5
 
-080037bc <_ZN10LineSearch4mainEv>:
- 80037bc:	b573      	push	{r0, r1, r4, r5, r6, lr}
- 80037be:	edd0 7a01 	vldr	s15, [r0, #4]
- 80037c2:	f890 305c 	ldrb.w	r3, [r0, #92]	; 0x5c
- 80037c6:	9300      	str	r3, [sp, #0]
- 80037c8:	eef5 7ac0 	vcmpe.f32	s15, #0.0
- 80037cc:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 80037d0:	4605      	mov	r5, r0
- 80037d2:	f100 0408 	add.w	r4, r0, #8
- 80037d6:	bf4b      	itete	mi
- 80037d8:	21aa      	movmi	r1, #170	; 0xaa
- 80037da:	2100      	movpl	r1, #0
- 80037dc:	2200      	movmi	r2, #0
- 80037de:	22aa      	movpl	r2, #170	; 0xaa
- 80037e0:	4620      	mov	r0, r4
- 80037e2:	2600      	movs	r6, #0
- 80037e4:	2305      	movs	r3, #5
- 80037e6:	f000 fb13 	bl	8003e10 <_ZN16PositionControll12set_positionEllib>
- 80037ea:	f885 605c 	strb.w	r6, [r5, #92]	; 0x5c
- 80037ee:	4631      	mov	r1, r6
- 80037f0:	4628      	mov	r0, r5
- 80037f2:	f7ff ffaf 	bl	8003754 <_ZN10LineSearch12process_moveEj>
- 80037f6:	2800      	cmp	r0, #0
- 80037f8:	d05d      	beq.n	80038b6 <_ZN10LineSearch4mainEv+0xfa>
- 80037fa:	edd5 7a01 	vldr	s15, [r5, #4]
- 80037fe:	9600      	str	r6, [sp, #0]
- 8003800:	eef5 7ac0 	vcmpe.f32	s15, #0.0
- 8003804:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8003808:	bf4b      	itete	mi
- 800380a:	4632      	movmi	r2, r6
- 800380c:	f06f 02a9 	mvnpl.w	r2, #169	; 0xa9
- 8003810:	f06f 01a9 	mvnmi.w	r1, #169	; 0xa9
- 8003814:	4631      	movpl	r1, r6
- 8003816:	2305      	movs	r3, #5
- 8003818:	4620      	mov	r0, r4
- 800381a:	f000 faf9 	bl	8003e10 <_ZN16PositionControll12set_positionEllib>
- 800381e:	4927      	ldr	r1, [pc, #156]	; (80038bc <_ZN10LineSearch4mainEv+0x100>)
- 8003820:	4628      	mov	r0, r5
- 8003822:	f7ff ff97 	bl	8003754 <_ZN10LineSearch12process_moveEj>
- 8003826:	4620      	mov	r0, r4
- 8003828:	f000 fc26 	bl	8004078 <_ZN16PositionControll4stopEv>
- 800382c:	edd5 7a01 	vldr	s15, [r5, #4]
- 8003830:	eef5 7ac0 	vcmpe.f32	s15, #0.0
- 8003834:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8003838:	f04f 0100 	mov.w	r1, #0
- 800383c:	bf58      	it	pl
- 800383e:	460a      	movpl	r2, r1
- 8003840:	9100      	str	r1, [sp, #0]
- 8003842:	bf4c      	ite	mi
- 8003844:	22aa      	movmi	r2, #170	; 0xaa
- 8003846:	21aa      	movpl	r1, #170	; 0xaa
- 8003848:	4620      	mov	r0, r4
- 800384a:	2305      	movs	r3, #5
- 800384c:	f000 fae0 	bl	8003e10 <_ZN16PositionControll12set_positionEllib>
- 8003850:	2196      	movs	r1, #150	; 0x96
- 8003852:	4628      	mov	r0, r5
- 8003854:	f7ff ff7e 	bl	8003754 <_ZN10LineSearch12process_moveEj>
- 8003858:	b368      	cbz	r0, 80038b6 <_ZN10LineSearch4mainEv+0xfa>
- 800385a:	edd5 7a01 	vldr	s15, [r5, #4]
- 800385e:	eef5 7ac0 	vcmpe.f32	s15, #0.0
- 8003862:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8003866:	f04f 0100 	mov.w	r1, #0
- 800386a:	bf54      	ite	pl
- 800386c:	460a      	movpl	r2, r1
- 800386e:	f06f 02a9 	mvnmi.w	r2, #169	; 0xa9
- 8003872:	9100      	str	r1, [sp, #0]
- 8003874:	f04f 0305 	mov.w	r3, #5
- 8003878:	bf58      	it	pl
- 800387a:	f06f 01a9 	mvnpl.w	r1, #169	; 0xa9
- 800387e:	4620      	mov	r0, r4
- 8003880:	f000 fac6 	bl	8003e10 <_ZN16PositionControll12set_positionEllib>
- 8003884:	490d      	ldr	r1, [pc, #52]	; (80038bc <_ZN10LineSearch4mainEv+0x100>)
- 8003886:	4628      	mov	r0, r5
- 8003888:	f7ff ff64 	bl	8003754 <_ZN10LineSearch12process_moveEj>
- 800388c:	4620      	mov	r0, r4
- 800388e:	f000 fbf3 	bl	8004078 <_ZN16PositionControll4stopEv>
- 8003892:	2255      	movs	r2, #85	; 0x55
- 8003894:	2300      	movs	r3, #0
- 8003896:	4611      	mov	r1, r2
- 8003898:	9300      	str	r3, [sp, #0]
- 800389a:	4620      	mov	r0, r4
- 800389c:	2305      	movs	r3, #5
- 800389e:	f000 fab7 	bl	8003e10 <_ZN16PositionControll12set_positionEllib>
- 80038a2:	2196      	movs	r1, #150	; 0x96
- 80038a4:	4628      	mov	r0, r5
- 80038a6:	f7ff ff55 	bl	8003754 <_ZN10LineSearch12process_moveEj>
- 80038aa:	4620      	mov	r0, r4
- 80038ac:	b002      	add	sp, #8
- 80038ae:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
- 80038b2:	f000 bbe1 	b.w	8004078 <_ZN16PositionControll4stopEv>
- 80038b6:	b002      	add	sp, #8
- 80038b8:	bd70      	pop	{r4, r5, r6, pc}
- 80038ba:	bf00      	nop
- 80038bc:	000f4240 	andeq	r4, pc, r0, asr #4
-
-080038c0 <_ZN10LineSearchD1Ev>:
- 80038c0:	b510      	push	{r4, lr}
- 80038c2:	4b04      	ldr	r3, [pc, #16]	; (80038d4 <_ZN10LineSearchD1Ev+0x14>)
- 80038c4:	4604      	mov	r4, r0
- 80038c6:	f840 3b08 	str.w	r3, [r0], #8
- 80038ca:	f000 fa91 	bl	8003df0 <_ZN16PositionControllD1Ev>
- 80038ce:	4620      	mov	r0, r4
- 80038d0:	bd10      	pop	{r4, pc}
- 80038d2:	bf00      	nop
- 80038d4:	080046b4 	stmdaeq	r0, {r2, r4, r5, r7, r9, sl, lr}
-
-080038d8 <_ZN10LineSearchD0Ev>:
- 80038d8:	b510      	push	{r4, lr}
- 80038da:	4604      	mov	r4, r0
- 80038dc:	f7ff fff0 	bl	80038c0 <_ZN10LineSearchD1Ev>
+08003884 <_ZN10LineSearch4mainEv>:
+ 8003884:	b573      	push	{r0, r1, r4, r5, r6, lr}
+ 8003886:	edd0 7a01 	vldr	s15, [r0, #4]
+ 800388a:	f890 305c 	ldrb.w	r3, [r0, #92]	; 0x5c
+ 800388e:	9300      	str	r3, [sp, #0]
+ 8003890:	eef5 7ac0 	vcmpe.f32	s15, #0.0
+ 8003894:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 8003898:	4605      	mov	r5, r0
+ 800389a:	f100 0408 	add.w	r4, r0, #8
+ 800389e:	bf4b      	itete	mi
+ 80038a0:	21aa      	movmi	r1, #170	; 0xaa
+ 80038a2:	2100      	movpl	r1, #0
+ 80038a4:	2200      	movmi	r2, #0
+ 80038a6:	22aa      	movpl	r2, #170	; 0xaa
+ 80038a8:	4620      	mov	r0, r4
+ 80038aa:	2600      	movs	r6, #0
+ 80038ac:	2305      	movs	r3, #5
+ 80038ae:	f000 fb13 	bl	8003ed8 <_ZN16PositionControll12set_positionEllib>
+ 80038b2:	f885 605c 	strb.w	r6, [r5, #92]	; 0x5c
+ 80038b6:	4631      	mov	r1, r6
+ 80038b8:	4628      	mov	r0, r5
+ 80038ba:	f7ff ffaf 	bl	800381c <_ZN10LineSearch12process_moveEj>
+ 80038be:	2800      	cmp	r0, #0
+ 80038c0:	d05d      	beq.n	800397e <_ZN10LineSearch4mainEv+0xfa>
+ 80038c2:	edd5 7a01 	vldr	s15, [r5, #4]
+ 80038c6:	9600      	str	r6, [sp, #0]
+ 80038c8:	eef5 7ac0 	vcmpe.f32	s15, #0.0
+ 80038cc:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 80038d0:	bf4b      	itete	mi
+ 80038d2:	4632      	movmi	r2, r6
+ 80038d4:	f06f 02a9 	mvnpl.w	r2, #169	; 0xa9
+ 80038d8:	f06f 01a9 	mvnmi.w	r1, #169	; 0xa9
+ 80038dc:	4631      	movpl	r1, r6
+ 80038de:	2305      	movs	r3, #5
  80038e0:	4620      	mov	r0, r4
- 80038e2:	2160      	movs	r1, #96	; 0x60
- 80038e4:	f7fd fddc 	bl	80014a0 <_ZdlPvj>
- 80038e8:	4620      	mov	r0, r4
- 80038ea:	bd10      	pop	{r4, pc}
-
-080038ec <_ZN13LinePredictorD1Ev>:
- 80038ec:	4770      	bx	lr
-
-080038ee <_ZN13LinePredictorD0Ev>:
- 80038ee:	b510      	push	{r4, lr}
- 80038f0:	2150      	movs	r1, #80	; 0x50
- 80038f2:	4604      	mov	r4, r0
- 80038f4:	f7fd fdd4 	bl	80014a0 <_ZdlPvj>
- 80038f8:	4620      	mov	r0, r4
- 80038fa:	bd10      	pop	{r4, pc}
-
-080038fc <_ZN13LinePredictorC1Ev>:
- 80038fc:	4603      	mov	r3, r0
- 80038fe:	4a07      	ldr	r2, [pc, #28]	; (800391c <_ZN13LinePredictorC1Ev+0x20>)
- 8003900:	f843 2b04 	str.w	r2, [r3], #4
- 8003904:	f100 0144 	add.w	r1, r0, #68	; 0x44
- 8003908:	2200      	movs	r2, #0
- 800390a:	f803 2b01 	strb.w	r2, [r3], #1
- 800390e:	428b      	cmp	r3, r1
- 8003910:	d1fb      	bne.n	800390a <_ZN13LinePredictorC1Ev+0xe>
- 8003912:	4b03      	ldr	r3, [pc, #12]	; (8003920 <_ZN13LinePredictorC1Ev+0x24>)
- 8003914:	6482      	str	r2, [r0, #72]	; 0x48
- 8003916:	64c3      	str	r3, [r0, #76]	; 0x4c
- 8003918:	6442      	str	r2, [r0, #68]	; 0x44
- 800391a:	4770      	bx	lr
- 800391c:	080046c4 	stmdaeq	r0, {r2, r6, r7, r9, sl, lr}
- 8003920:	c4653600 	strbtgt	r3, [r5], #-1536	; 0xfffffa00
-
-08003924 <_ZN13LinePredictor4initER13NeuralNetwork>:
- 8003924:	b510      	push	{r4, lr}
- 8003926:	1d03      	adds	r3, r0, #4
- 8003928:	f100 0444 	add.w	r4, r0, #68	; 0x44
- 800392c:	2200      	movs	r2, #0
- 800392e:	f803 2b01 	strb.w	r2, [r3], #1
- 8003932:	42a3      	cmp	r3, r4
- 8003934:	d1fb      	bne.n	800392e <_ZN13LinePredictor4initER13NeuralNetwork+0xa>
- 8003936:	4b02      	ldr	r3, [pc, #8]	; (8003940 <_ZN13LinePredictor4initER13NeuralNetwork+0x1c>)
- 8003938:	6482      	str	r2, [r0, #72]	; 0x48
- 800393a:	64c3      	str	r3, [r0, #76]	; 0x4c
- 800393c:	6441      	str	r1, [r0, #68]	; 0x44
- 800393e:	bd10      	pop	{r4, pc}
- 8003940:	c4653600 	strbtgt	r3, [r5], #-1536	; 0xfffffa00
-
-08003944 <_ZN13LinePredictor7processER5ArrayIiLj8EEli>:
- 8003944:	b570      	push	{r4, r5, r6, lr}
- 8003946:	4604      	mov	r4, r0
- 8003948:	6cc0      	ldr	r0, [r0, #76]	; 0x4c
- 800394a:	1a10      	subs	r0, r2, r0
- 800394c:	2800      	cmp	r0, #0
- 800394e:	bfb8      	it	lt
- 8003950:	4240      	neglt	r0, r0
- 8003952:	4283      	cmp	r3, r0
- 8003954:	dc4f      	bgt.n	80039f6 <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0xb2>
- 8003956:	64e2      	str	r2, [r4, #76]	; 0x4c
- 8003958:	f104 0238 	add.w	r2, r4, #56	; 0x38
+ 80038e2:	f000 faf9 	bl	8003ed8 <_ZN16PositionControll12set_positionEllib>
+ 80038e6:	4927      	ldr	r1, [pc, #156]	; (8003984 <_ZN10LineSearch4mainEv+0x100>)
+ 80038e8:	4628      	mov	r0, r5
+ 80038ea:	f7ff ff97 	bl	800381c <_ZN10LineSearch12process_moveEj>
+ 80038ee:	4620      	mov	r0, r4
+ 80038f0:	f000 fc26 	bl	8004140 <_ZN16PositionControll4stopEv>
+ 80038f4:	edd5 7a01 	vldr	s15, [r5, #4]
+ 80038f8:	eef5 7ac0 	vcmpe.f32	s15, #0.0
+ 80038fc:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 8003900:	f04f 0100 	mov.w	r1, #0
+ 8003904:	bf58      	it	pl
+ 8003906:	460a      	movpl	r2, r1
+ 8003908:	9100      	str	r1, [sp, #0]
+ 800390a:	bf4c      	ite	mi
+ 800390c:	22aa      	movmi	r2, #170	; 0xaa
+ 800390e:	21aa      	movpl	r1, #170	; 0xaa
+ 8003910:	4620      	mov	r0, r4
+ 8003912:	2305      	movs	r3, #5
+ 8003914:	f000 fae0 	bl	8003ed8 <_ZN16PositionControll12set_positionEllib>
+ 8003918:	2196      	movs	r1, #150	; 0x96
+ 800391a:	4628      	mov	r0, r5
+ 800391c:	f7ff ff7e 	bl	800381c <_ZN10LineSearch12process_moveEj>
+ 8003920:	b368      	cbz	r0, 800397e <_ZN10LineSearch4mainEv+0xfa>
+ 8003922:	edd5 7a01 	vldr	s15, [r5, #4]
+ 8003926:	eef5 7ac0 	vcmpe.f32	s15, #0.0
+ 800392a:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 800392e:	f04f 0100 	mov.w	r1, #0
+ 8003932:	bf54      	ite	pl
+ 8003934:	460a      	movpl	r2, r1
+ 8003936:	f06f 02a9 	mvnmi.w	r2, #169	; 0xa9
+ 800393a:	9100      	str	r1, [sp, #0]
+ 800393c:	f04f 0305 	mov.w	r3, #5
+ 8003940:	bf58      	it	pl
+ 8003942:	f06f 01a9 	mvnpl.w	r1, #169	; 0xa9
+ 8003946:	4620      	mov	r0, r4
+ 8003948:	f000 fac6 	bl	8003ed8 <_ZN16PositionControll12set_positionEllib>
+ 800394c:	490d      	ldr	r1, [pc, #52]	; (8003984 <_ZN10LineSearch4mainEv+0x100>)
+ 800394e:	4628      	mov	r0, r5
+ 8003950:	f7ff ff64 	bl	800381c <_ZN10LineSearch12process_moveEj>
+ 8003954:	4620      	mov	r0, r4
+ 8003956:	f000 fbf3 	bl	8004140 <_ZN16PositionControll4stopEv>
+ 800395a:	2255      	movs	r2, #85	; 0x55
  800395c:	2300      	movs	r3, #0
- 800395e:	f1a2 0008 	sub.w	r0, r2, #8
- 8003962:	18c5      	adds	r5, r0, r3
- 8003964:	f995 6004 	ldrsb.w	r6, [r5, #4]
- 8003968:	18d5      	adds	r5, r2, r3
- 800396a:	3301      	adds	r3, #1
- 800396c:	2b08      	cmp	r3, #8
- 800396e:	712e      	strb	r6, [r5, #4]
- 8003970:	d1f7      	bne.n	8003962 <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0x1e>
- 8003972:	4284      	cmp	r4, r0
- 8003974:	4602      	mov	r2, r0
- 8003976:	d1f1      	bne.n	800395c <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0x18>
- 8003978:	1d0d      	adds	r5, r1, #4
- 800397a:	4b22      	ldr	r3, [pc, #136]	; (8003a04 <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0xc0>)
- 800397c:	4a22      	ldr	r2, [pc, #136]	; (8003a08 <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0xc4>)
- 800397e:	3124      	adds	r1, #36	; 0x24
- 8003980:	4628      	mov	r0, r5
- 8003982:	f850 6b04 	ldr.w	r6, [r0], #4
- 8003986:	42b2      	cmp	r2, r6
- 8003988:	bfb8      	it	lt
- 800398a:	4632      	movlt	r2, r6
- 800398c:	42b3      	cmp	r3, r6
- 800398e:	bfa8      	it	ge
- 8003990:	4633      	movge	r3, r6
- 8003992:	4288      	cmp	r0, r1
- 8003994:	d1f5      	bne.n	8003982 <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0x3e>
- 8003996:	4293      	cmp	r3, r2
- 8003998:	da2f      	bge.n	80039fa <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0xb6>
- 800399a:	1ad3      	subs	r3, r2, r3
- 800399c:	ee07 3a90 	vmov	s15, r3
- 80039a0:	ed9f 7a1a 	vldr	s14, [pc, #104]	; 8003a0c <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0xc8>
- 80039a4:	eef8 7ae7 	vcvt.f32.s32	s15, s15
- 80039a8:	eec7 6a27 	vdiv.f32	s13, s14, s15
- 80039ac:	ee07 2a90 	vmov	s15, r2
- 80039b0:	eef8 7ae7 	vcvt.f32.s32	s15, s15
- 80039b4:	ee07 7ae6 	vmls.f32	s14, s15, s13
- 80039b8:	eef0 7a47 	vmov.f32	s15, s14
- 80039bc:	1d23      	adds	r3, r4, #4
- 80039be:	4619      	mov	r1, r3
- 80039c0:	ecb5 7a01 	vldmia	r5!, {s14}
- 80039c4:	eeb8 7ac7 	vcvt.f32.s32	s14, s14
- 80039c8:	eeb0 6a67 	vmov.f32	s12, s15
- 80039cc:	ee07 6a26 	vmla.f32	s12, s14, s13
- 80039d0:	4285      	cmp	r5, r0
- 80039d2:	eebd 7ac6 	vcvt.s32.f32	s14, s12
- 80039d6:	ee17 2a10 	vmov	r2, s14
- 80039da:	f803 2b01 	strb.w	r2, [r3], #1
- 80039de:	d1ef      	bne.n	80039c0 <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0x7c>
- 80039e0:	6c60      	ldr	r0, [r4, #68]	; 0x44
- 80039e2:	6803      	ldr	r3, [r0, #0]
- 80039e4:	689b      	ldr	r3, [r3, #8]
- 80039e6:	4798      	blx	r3
- 80039e8:	6c60      	ldr	r0, [r4, #68]	; 0x44
- 80039ea:	f7fd fc11 	bl	8001210 <_ZN13NeuralNetwork7forwardEv>
- 80039ee:	6c60      	ldr	r0, [r4, #68]	; 0x44
- 80039f0:	f7fd fc40 	bl	8001274 <_ZN13NeuralNetwork12class_resultEv>
- 80039f4:	64a0      	str	r0, [r4, #72]	; 0x48
- 80039f6:	2000      	movs	r0, #0
- 80039f8:	bd70      	pop	{r4, r5, r6, pc}
- 80039fa:	eddf 7a05 	vldr	s15, [pc, #20]	; 8003a10 <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0xcc>
- 80039fe:	eef0 6a67 	vmov.f32	s13, s15
- 8003a02:	e7db      	b.n	80039bc <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0x78>
- 8003a04:	000f4240 	andeq	r4, pc, r0, asr #4
- 8003a08:	fff0bdc0 			; <UNDEFINED> instruction: 0xfff0bdc0
- 8003a0c:	42fe0000 	rscsmi	r0, lr, #0
- 8003a10:	00000000 	andeq	r0, r0, r0
+ 800395e:	4611      	mov	r1, r2
+ 8003960:	9300      	str	r3, [sp, #0]
+ 8003962:	4620      	mov	r0, r4
+ 8003964:	2305      	movs	r3, #5
+ 8003966:	f000 fab7 	bl	8003ed8 <_ZN16PositionControll12set_positionEllib>
+ 800396a:	2196      	movs	r1, #150	; 0x96
+ 800396c:	4628      	mov	r0, r5
+ 800396e:	f7ff ff55 	bl	800381c <_ZN10LineSearch12process_moveEj>
+ 8003972:	4620      	mov	r0, r4
+ 8003974:	b002      	add	sp, #8
+ 8003976:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
+ 800397a:	f000 bbe1 	b.w	8004140 <_ZN16PositionControll4stopEv>
+ 800397e:	b002      	add	sp, #8
+ 8003980:	bd70      	pop	{r4, r5, r6, pc}
+ 8003982:	bf00      	nop
+ 8003984:	000f4240 	andeq	r4, pc, r0, asr #4
 
-08003a14 <_ZN11LineNetworkD1Ev>:
- 8003a14:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8003a16:	4604      	mov	r4, r0
- 8003a18:	4b0b      	ldr	r3, [pc, #44]	; (8003a48 <_ZN11LineNetworkD1Ev+0x34>)
- 8003a1a:	f844 3b08 	str.w	r3, [r4], #8
- 8003a1e:	2600      	movs	r6, #0
- 8003a20:	4605      	mov	r5, r0
- 8003a22:	4637      	mov	r7, r6
- 8003a24:	686b      	ldr	r3, [r5, #4]
- 8003a26:	429e      	cmp	r6, r3
- 8003a28:	d209      	bcs.n	8003a3e <_ZN11LineNetworkD1Ev+0x2a>
- 8003a2a:	f854 0b04 	ldr.w	r0, [r4], #4
- 8003a2e:	b110      	cbz	r0, 8003a36 <_ZN11LineNetworkD1Ev+0x22>
- 8003a30:	6803      	ldr	r3, [r0, #0]
- 8003a32:	685b      	ldr	r3, [r3, #4]
- 8003a34:	4798      	blx	r3
- 8003a36:	f844 7c04 	str.w	r7, [r4, #-4]
- 8003a3a:	3601      	adds	r6, #1
- 8003a3c:	e7f2      	b.n	8003a24 <_ZN11LineNetworkD1Ev+0x10>
- 8003a3e:	4628      	mov	r0, r5
- 8003a40:	f7fd fbaa 	bl	8001198 <_ZN13NeuralNetworkD1Ev>
- 8003a44:	4628      	mov	r0, r5
- 8003a46:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
- 8003a48:	08004a18 	stmdaeq	r0, {r3, r4, r9, fp, lr}
+08003988 <_ZN10LineSearchD1Ev>:
+ 8003988:	b510      	push	{r4, lr}
+ 800398a:	4b04      	ldr	r3, [pc, #16]	; (800399c <_ZN10LineSearchD1Ev+0x14>)
+ 800398c:	4604      	mov	r4, r0
+ 800398e:	f840 3b08 	str.w	r3, [r0], #8
+ 8003992:	f000 fa91 	bl	8003eb8 <_ZN16PositionControllD1Ev>
+ 8003996:	4620      	mov	r0, r4
+ 8003998:	bd10      	pop	{r4, pc}
+ 800399a:	bf00      	nop
+ 800399c:	080047a0 	stmdaeq	r0, {r5, r7, r8, r9, sl, lr}
 
-08003a4c <_ZN11LineNetworkD0Ev>:
- 8003a4c:	b510      	push	{r4, lr}
- 8003a4e:	4604      	mov	r4, r0
- 8003a50:	f7ff ffe0 	bl	8003a14 <_ZN11LineNetworkD1Ev>
- 8003a54:	4620      	mov	r0, r4
- 8003a56:	21b0      	movs	r1, #176	; 0xb0
- 8003a58:	f7fd fd22 	bl	80014a0 <_ZdlPvj>
- 8003a5c:	4620      	mov	r0, r4
- 8003a5e:	bd10      	pop	{r4, pc}
+080039a0 <_ZN10LineSearchD0Ev>:
+ 80039a0:	b510      	push	{r4, lr}
+ 80039a2:	4604      	mov	r4, r0
+ 80039a4:	f7ff fff0 	bl	8003988 <_ZN10LineSearchD1Ev>
+ 80039a8:	4620      	mov	r0, r4
+ 80039aa:	2160      	movs	r1, #96	; 0x60
+ 80039ac:	f7fd fd78 	bl	80014a0 <_ZdlPvj>
+ 80039b0:	4620      	mov	r0, r4
+ 80039b2:	bd10      	pop	{r4, pc}
 
-08003a60 <_ZN11LineNetworkC1Ev>:
- 8003a60:	e92d 43f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, lr}
- 8003a64:	4680      	mov	r8, r0
- 8003a66:	b095      	sub	sp, #84	; 0x54
- 8003a68:	f7fd fbb2 	bl	80011d0 <_ZN13NeuralNetworkC1Ev>
- 8003a6c:	4bbc      	ldr	r3, [pc, #752]	; (8003d60 <_ZN11LineNetworkC1Ev+0x300>)
- 8003a6e:	f8c8 3000 	str.w	r3, [r8]
- 8003a72:	2308      	movs	r3, #8
- 8003a74:	f8c8 3088 	str.w	r3, [r8, #136]	; 0x88
- 8003a78:	f8c8 308c 	str.w	r3, [r8, #140]	; 0x8c
- 8003a7c:	2301      	movs	r3, #1
- 8003a7e:	f8c8 3090 	str.w	r3, [r8, #144]	; 0x90
- 8003a82:	f8c8 3094 	str.w	r3, [r8, #148]	; 0x94
- 8003a86:	f8c8 3098 	str.w	r3, [r8, #152]	; 0x98
- 8003a8a:	2305      	movs	r3, #5
- 8003a8c:	f8c8 309c 	str.w	r3, [r8, #156]	; 0x9c
- 8003a90:	4bb4      	ldr	r3, [pc, #720]	; (8003d64 <_ZN11LineNetworkC1Ev+0x304>)
- 8003a92:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003a96:	4bb4      	ldr	r3, [pc, #720]	; (8003d68 <_ZN11LineNetworkC1Ev+0x308>)
- 8003a98:	ac0b      	add	r4, sp, #44	; 0x2c
- 8003a9a:	e884 0007 	stmia.w	r4, {r0, r1, r2}
- 8003a9e:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003aa2:	4bb2      	ldr	r3, [pc, #712]	; (8003d6c <_ZN11LineNetworkC1Ev+0x30c>)
- 8003aa4:	ad0e      	add	r5, sp, #56	; 0x38
- 8003aa6:	e885 0007 	stmia.w	r5, {r0, r1, r2}
- 8003aaa:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003aae:	ae11      	add	r6, sp, #68	; 0x44
- 8003ab0:	e886 0007 	stmia.w	r6, {r0, r1, r2}
- 8003ab4:	2038      	movs	r0, #56	; 0x38
- 8003ab6:	f7fd fceb 	bl	8001490 <_Znwj>
- 8003aba:	f240 135f 	movw	r3, #351	; 0x15f
- 8003abe:	9309      	str	r3, [sp, #36]	; 0x24
- 8003ac0:	f44f 731b 	mov.w	r3, #620	; 0x26c
- 8003ac4:	9308      	str	r3, [sp, #32]
- 8003ac6:	4baa      	ldr	r3, [pc, #680]	; (8003d70 <_ZN11LineNetworkC1Ev+0x310>)
- 8003ac8:	9307      	str	r3, [sp, #28]
- 8003aca:	4baa      	ldr	r3, [pc, #680]	; (8003d74 <_ZN11LineNetworkC1Ev+0x314>)
- 8003acc:	9306      	str	r3, [sp, #24]
- 8003ace:	4681      	mov	r9, r0
- 8003ad0:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
- 8003ad4:	af03      	add	r7, sp, #12
- 8003ad6:	e887 0007 	stmia.w	r7, {r0, r1, r2}
- 8003ada:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
- 8003ade:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
- 8003ae2:	4648      	mov	r0, r9
- 8003ae4:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
- 8003ae8:	f7fd fca2 	bl	8001430 <_ZN19NetConvolutionLayerC1E14sLayerGeometryS0_S0_PKaS2_ii>
- 8003aec:	4ba2      	ldr	r3, [pc, #648]	; (8003d78 <_ZN11LineNetworkC1Ev+0x318>)
- 8003aee:	f8c8 9008 	str.w	r9, [r8, #8]
- 8003af2:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003af6:	4ba1      	ldr	r3, [pc, #644]	; (8003d7c <_ZN11LineNetworkC1Ev+0x31c>)
- 8003af8:	e884 0007 	stmia.w	r4, {r0, r1, r2}
- 8003afc:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003b00:	4b9f      	ldr	r3, [pc, #636]	; (8003d80 <_ZN11LineNetworkC1Ev+0x320>)
- 8003b02:	e885 0007 	stmia.w	r5, {r0, r1, r2}
- 8003b06:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003b0a:	e886 0007 	stmia.w	r6, {r0, r1, r2}
- 8003b0e:	202c      	movs	r0, #44	; 0x2c
- 8003b10:	f7fd fcbe 	bl	8001490 <_Znwj>
- 8003b14:	4681      	mov	r9, r0
- 8003b16:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
- 8003b1a:	e887 0007 	stmia.w	r7, {r0, r1, r2}
- 8003b1e:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
- 8003b22:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
- 8003b26:	4648      	mov	r0, r9
- 8003b28:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
- 8003b2c:	f7fc ffaa 	bl	8000a84 <_ZN12NetReluLayerC1E14sLayerGeometryS0_S0_>
- 8003b30:	4b94      	ldr	r3, [pc, #592]	; (8003d84 <_ZN11LineNetworkC1Ev+0x324>)
- 8003b32:	f8c8 900c 	str.w	r9, [r8, #12]
- 8003b36:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003b3a:	4b93      	ldr	r3, [pc, #588]	; (8003d88 <_ZN11LineNetworkC1Ev+0x328>)
- 8003b3c:	e884 0007 	stmia.w	r4, {r0, r1, r2}
- 8003b40:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003b44:	4b91      	ldr	r3, [pc, #580]	; (8003d8c <_ZN11LineNetworkC1Ev+0x32c>)
- 8003b46:	e885 0007 	stmia.w	r5, {r0, r1, r2}
- 8003b4a:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003b4e:	e886 0007 	stmia.w	r6, {r0, r1, r2}
- 8003b52:	2028      	movs	r0, #40	; 0x28
- 8003b54:	f7fd fc9c 	bl	8001490 <_Znwj>
- 8003b58:	4681      	mov	r9, r0
- 8003b5a:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
- 8003b5e:	e887 0007 	stmia.w	r7, {r0, r1, r2}
- 8003b62:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
- 8003b66:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
- 8003b6a:	4648      	mov	r0, r9
- 8003b6c:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
- 8003b70:	f7fd fade 	bl	8001130 <_ZN18NetMaxPoolingLayerC1E14sLayerGeometryS0_S0_>
- 8003b74:	4b86      	ldr	r3, [pc, #536]	; (8003d90 <_ZN11LineNetworkC1Ev+0x330>)
- 8003b76:	f8c8 9010 	str.w	r9, [r8, #16]
- 8003b7a:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003b7e:	4b85      	ldr	r3, [pc, #532]	; (8003d94 <_ZN11LineNetworkC1Ev+0x334>)
- 8003b80:	e884 0007 	stmia.w	r4, {r0, r1, r2}
- 8003b84:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003b88:	4b83      	ldr	r3, [pc, #524]	; (8003d98 <_ZN11LineNetworkC1Ev+0x338>)
- 8003b8a:	e885 0007 	stmia.w	r5, {r0, r1, r2}
- 8003b8e:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003b92:	e886 0007 	stmia.w	r6, {r0, r1, r2}
- 8003b96:	2038      	movs	r0, #56	; 0x38
- 8003b98:	f7fd fc7a 	bl	8001490 <_Znwj>
- 8003b9c:	f240 1353 	movw	r3, #339	; 0x153
- 8003ba0:	9309      	str	r3, [sp, #36]	; 0x24
- 8003ba2:	f240 23d6 	movw	r3, #726	; 0x2d6
- 8003ba6:	9308      	str	r3, [sp, #32]
- 8003ba8:	4b7c      	ldr	r3, [pc, #496]	; (8003d9c <_ZN11LineNetworkC1Ev+0x33c>)
- 8003baa:	9307      	str	r3, [sp, #28]
- 8003bac:	4b7c      	ldr	r3, [pc, #496]	; (8003da0 <_ZN11LineNetworkC1Ev+0x340>)
- 8003bae:	9306      	str	r3, [sp, #24]
- 8003bb0:	4681      	mov	r9, r0
- 8003bb2:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
- 8003bb6:	e887 0007 	stmia.w	r7, {r0, r1, r2}
- 8003bba:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
- 8003bbe:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
- 8003bc2:	4648      	mov	r0, r9
- 8003bc4:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
- 8003bc8:	f7fd fa0e 	bl	8000fe8 <_ZN24NetDenseConvolutionLayerC1E14sLayerGeometryS0_S0_PKaS2_ii>
- 8003bcc:	4b75      	ldr	r3, [pc, #468]	; (8003da4 <_ZN11LineNetworkC1Ev+0x344>)
- 8003bce:	f8c8 9014 	str.w	r9, [r8, #20]
- 8003bd2:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003bd6:	4b74      	ldr	r3, [pc, #464]	; (8003da8 <_ZN11LineNetworkC1Ev+0x348>)
- 8003bd8:	e884 0007 	stmia.w	r4, {r0, r1, r2}
- 8003bdc:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003be0:	4b72      	ldr	r3, [pc, #456]	; (8003dac <_ZN11LineNetworkC1Ev+0x34c>)
- 8003be2:	e885 0007 	stmia.w	r5, {r0, r1, r2}
- 8003be6:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003bea:	e886 0007 	stmia.w	r6, {r0, r1, r2}
- 8003bee:	202c      	movs	r0, #44	; 0x2c
- 8003bf0:	f7fd fc4e 	bl	8001490 <_Znwj>
- 8003bf4:	4681      	mov	r9, r0
- 8003bf6:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
- 8003bfa:	e887 0007 	stmia.w	r7, {r0, r1, r2}
- 8003bfe:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
- 8003c02:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
- 8003c06:	4648      	mov	r0, r9
- 8003c08:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
- 8003c0c:	f7fc ff3a 	bl	8000a84 <_ZN12NetReluLayerC1E14sLayerGeometryS0_S0_>
- 8003c10:	4b67      	ldr	r3, [pc, #412]	; (8003db0 <_ZN11LineNetworkC1Ev+0x350>)
- 8003c12:	f8c8 9018 	str.w	r9, [r8, #24]
- 8003c16:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003c1a:	4b66      	ldr	r3, [pc, #408]	; (8003db4 <_ZN11LineNetworkC1Ev+0x354>)
- 8003c1c:	e884 0007 	stmia.w	r4, {r0, r1, r2}
- 8003c20:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003c24:	4b64      	ldr	r3, [pc, #400]	; (8003db8 <_ZN11LineNetworkC1Ev+0x358>)
- 8003c26:	e885 0007 	stmia.w	r5, {r0, r1, r2}
- 8003c2a:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003c2e:	e886 0007 	stmia.w	r6, {r0, r1, r2}
- 8003c32:	2038      	movs	r0, #56	; 0x38
- 8003c34:	f7fd fc2c 	bl	8001490 <_Znwj>
- 8003c38:	f240 1315 	movw	r3, #277	; 0x115
- 8003c3c:	9309      	str	r3, [sp, #36]	; 0x24
- 8003c3e:	f240 5397 	movw	r3, #1431	; 0x597
- 8003c42:	9308      	str	r3, [sp, #32]
- 8003c44:	4b5d      	ldr	r3, [pc, #372]	; (8003dbc <_ZN11LineNetworkC1Ev+0x35c>)
- 8003c46:	9307      	str	r3, [sp, #28]
- 8003c48:	4b5d      	ldr	r3, [pc, #372]	; (8003dc0 <_ZN11LineNetworkC1Ev+0x360>)
- 8003c4a:	9306      	str	r3, [sp, #24]
- 8003c4c:	4681      	mov	r9, r0
- 8003c4e:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
- 8003c52:	e887 0007 	stmia.w	r7, {r0, r1, r2}
- 8003c56:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
- 8003c5a:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
- 8003c5e:	4648      	mov	r0, r9
- 8003c60:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
- 8003c64:	f7fd f9c0 	bl	8000fe8 <_ZN24NetDenseConvolutionLayerC1E14sLayerGeometryS0_S0_PKaS2_ii>
- 8003c68:	4b56      	ldr	r3, [pc, #344]	; (8003dc4 <_ZN11LineNetworkC1Ev+0x364>)
- 8003c6a:	f8c8 901c 	str.w	r9, [r8, #28]
- 8003c6e:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003c72:	4b55      	ldr	r3, [pc, #340]	; (8003dc8 <_ZN11LineNetworkC1Ev+0x368>)
- 8003c74:	e884 0007 	stmia.w	r4, {r0, r1, r2}
- 8003c78:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003c7c:	4b53      	ldr	r3, [pc, #332]	; (8003dcc <_ZN11LineNetworkC1Ev+0x36c>)
- 8003c7e:	e885 0007 	stmia.w	r5, {r0, r1, r2}
- 8003c82:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003c86:	e886 0007 	stmia.w	r6, {r0, r1, r2}
- 8003c8a:	202c      	movs	r0, #44	; 0x2c
- 8003c8c:	f7fd fc00 	bl	8001490 <_Znwj>
- 8003c90:	4681      	mov	r9, r0
- 8003c92:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
- 8003c96:	e887 0007 	stmia.w	r7, {r0, r1, r2}
- 8003c9a:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
- 8003c9e:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
- 8003ca2:	4648      	mov	r0, r9
- 8003ca4:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
- 8003ca8:	f7fc feec 	bl	8000a84 <_ZN12NetReluLayerC1E14sLayerGeometryS0_S0_>
- 8003cac:	4b48      	ldr	r3, [pc, #288]	; (8003dd0 <_ZN11LineNetworkC1Ev+0x370>)
- 8003cae:	f8c8 9020 	str.w	r9, [r8, #32]
- 8003cb2:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003cb6:	4b47      	ldr	r3, [pc, #284]	; (8003dd4 <_ZN11LineNetworkC1Ev+0x374>)
- 8003cb8:	e884 0007 	stmia.w	r4, {r0, r1, r2}
- 8003cbc:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003cc0:	4b45      	ldr	r3, [pc, #276]	; (8003dd8 <_ZN11LineNetworkC1Ev+0x378>)
- 8003cc2:	e885 0007 	stmia.w	r5, {r0, r1, r2}
- 8003cc6:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003cca:	e886 0007 	stmia.w	r6, {r0, r1, r2}
- 8003cce:	2028      	movs	r0, #40	; 0x28
- 8003cd0:	f7fd fbde 	bl	8001490 <_Znwj>
- 8003cd4:	4681      	mov	r9, r0
- 8003cd6:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
- 8003cda:	e887 0007 	stmia.w	r7, {r0, r1, r2}
- 8003cde:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
- 8003ce2:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
- 8003ce6:	4648      	mov	r0, r9
- 8003ce8:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
- 8003cec:	f7fd fa20 	bl	8001130 <_ZN18NetMaxPoolingLayerC1E14sLayerGeometryS0_S0_>
- 8003cf0:	4b3a      	ldr	r3, [pc, #232]	; (8003ddc <_ZN11LineNetworkC1Ev+0x37c>)
- 8003cf2:	f8c8 9024 	str.w	r9, [r8, #36]	; 0x24
- 8003cf6:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003cfa:	4b39      	ldr	r3, [pc, #228]	; (8003de0 <_ZN11LineNetworkC1Ev+0x380>)
- 8003cfc:	e884 0007 	stmia.w	r4, {r0, r1, r2}
- 8003d00:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003d04:	4b37      	ldr	r3, [pc, #220]	; (8003de4 <_ZN11LineNetworkC1Ev+0x384>)
- 8003d06:	e885 0007 	stmia.w	r5, {r0, r1, r2}
- 8003d0a:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
- 8003d0e:	e886 0007 	stmia.w	r6, {r0, r1, r2}
- 8003d12:	2040      	movs	r0, #64	; 0x40
- 8003d14:	f7fd fbbc 	bl	8001490 <_Znwj>
- 8003d18:	f44f 73cb 	mov.w	r3, #406	; 0x196
- 8003d1c:	9309      	str	r3, [sp, #36]	; 0x24
- 8003d1e:	f44f 7374 	mov.w	r3, #976	; 0x3d0
- 8003d22:	9308      	str	r3, [sp, #32]
- 8003d24:	4b30      	ldr	r3, [pc, #192]	; (8003de8 <_ZN11LineNetworkC1Ev+0x388>)
- 8003d26:	9307      	str	r3, [sp, #28]
- 8003d28:	4b30      	ldr	r3, [pc, #192]	; (8003dec <_ZN11LineNetworkC1Ev+0x38c>)
- 8003d2a:	9306      	str	r3, [sp, #24]
- 8003d2c:	4681      	mov	r9, r0
- 8003d2e:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
- 8003d32:	e887 0007 	stmia.w	r7, {r0, r1, r2}
- 8003d36:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
- 8003d3a:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
- 8003d3e:	4648      	mov	r0, r9
- 8003d40:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
- 8003d44:	f7fc fe44 	bl	80009d0 <_ZN10NetFcLayerC1E14sLayerGeometryS0_S0_PKaS2_ii>
- 8003d48:	2309      	movs	r3, #9
- 8003d4a:	4640      	mov	r0, r8
- 8003d4c:	f8c8 9028 	str.w	r9, [r8, #40]	; 0x28
- 8003d50:	f8c8 3004 	str.w	r3, [r8, #4]
- 8003d54:	f7fd fac5 	bl	80012e2 <_ZN13NeuralNetwork15allocate_bufferEv>
- 8003d58:	4640      	mov	r0, r8
- 8003d5a:	b015      	add	sp, #84	; 0x54
- 8003d5c:	e8bd 83f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, pc}
- 8003d60:	08004a18 	stmdaeq	r0, {r3, r4, r9, fp, lr}
- 8003d64:	080049e0 	stmdaeq	r0, {r5, r6, r7, r8, fp, lr}
- 8003d68:	080049a4 	stmdaeq	r0, {r2, r5, r7, r8, fp, lr}
- 8003d6c:	080049b0 	stmdaeq	r0, {r4, r5, r7, r8, fp, lr}
- 8003d70:	080046cc 	stmdaeq	r0, {r2, r3, r6, r7, r9, sl, lr}
- 8003d74:	080046dd 	stmdaeq	r0, {r0, r2, r3, r4, r6, r7, r9, sl, lr}
- 8003d78:	080049b0 	stmdaeq	r0, {r4, r5, r7, r8, fp, lr}
- 8003d7c:	080049b0 	stmdaeq	r0, {r4, r5, r7, r8, fp, lr}
- 8003d80:	080049b0 	stmdaeq	r0, {r4, r5, r7, r8, fp, lr}
- 8003d84:	080049ec 	stmdaeq	r0, {r2, r3, r5, r6, r7, r8, fp, lr}
- 8003d88:	080049b0 	stmdaeq	r0, {r4, r5, r7, r8, fp, lr}
- 8003d8c:	080049bc 	stmdaeq	r0, {r2, r3, r4, r5, r7, r8, fp, lr}
- 8003d90:	080049e0 	stmdaeq	r0, {r5, r6, r7, r8, fp, lr}
- 8003d94:	080049bc 	stmdaeq	r0, {r2, r3, r4, r5, r7, r8, fp, lr}
- 8003d98:	080049c8 	stmdaeq	r0, {r3, r6, r7, r8, fp, lr}
- 8003d9c:	080046d0 	stmdaeq	r0, {r4, r6, r7, r9, sl, lr}
- 8003da0:	08004701 	stmdaeq	r0, {r0, r8, r9, sl, lr}
- 8003da4:	080049c8 	stmdaeq	r0, {r3, r6, r7, r8, fp, lr}
- 8003da8:	080049c8 	stmdaeq	r0, {r3, r6, r7, r8, fp, lr}
- 8003dac:	080049c8 	stmdaeq	r0, {r3, r6, r7, r8, fp, lr}
- 8003db0:	080049e0 	stmdaeq	r0, {r5, r6, r7, r8, fp, lr}
- 8003db4:	080049c8 	stmdaeq	r0, {r3, r6, r7, r8, fp, lr}
- 8003db8:	080049d4 	stmdaeq	r0, {r2, r4, r6, r7, r8, fp, lr}
- 8003dbc:	080046d4 	stmdaeq	r0, {r2, r4, r6, r7, r9, sl, lr}
- 8003dc0:	08004791 	stmdaeq	r0, {r0, r4, r7, r8, r9, sl, lr}
- 8003dc4:	080049d4 	stmdaeq	r0, {r2, r4, r6, r7, r8, fp, lr}
- 8003dc8:	080049d4 	stmdaeq	r0, {r2, r4, r6, r7, r8, fp, lr}
- 8003dcc:	080049d4 	stmdaeq	r0, {r2, r4, r6, r7, r8, fp, lr}
- 8003dd0:	080049ec 	stmdaeq	r0, {r2, r3, r5, r6, r7, r8, fp, lr}
- 8003dd4:	080049d4 	stmdaeq	r0, {r2, r4, r6, r7, r8, fp, lr}
- 8003dd8:	080049f8 	stmdaeq	r0, {r3, r4, r5, r6, r7, r8, fp, lr}
- 8003ddc:	080049f8 	stmdaeq	r0, {r3, r4, r5, r6, r7, r8, fp, lr}
- 8003de0:	080049f8 	stmdaeq	r0, {r3, r4, r5, r6, r7, r8, fp, lr}
- 8003de4:	08004a04 	stmdaeq	r0, {r2, r9, fp, lr}
- 8003de8:	080046d8 	stmdaeq	r0, {r3, r4, r6, r7, r9, sl, lr}
- 8003dec:	080048b1 	stmdaeq	r0, {r0, r4, r5, r7, fp, lr}
+080039b4 <_ZN13LinePredictorD1Ev>:
+ 80039b4:	4770      	bx	lr
 
-08003df0 <_ZN16PositionControllD1Ev>:
- 8003df0:	4770      	bx	lr
+080039b6 <_ZN13LinePredictorD0Ev>:
+ 80039b6:	b510      	push	{r4, lr}
+ 80039b8:	2150      	movs	r1, #80	; 0x50
+ 80039ba:	4604      	mov	r4, r0
+ 80039bc:	f7fd fd70 	bl	80014a0 <_ZdlPvj>
+ 80039c0:	4620      	mov	r0, r4
+ 80039c2:	bd10      	pop	{r4, pc}
 
-08003df2 <_ZN10IntegratorIfED1Ev>:
- 8003df2:	4770      	bx	lr
+080039c4 <_ZN13LinePredictorC1Ev>:
+ 80039c4:	4603      	mov	r3, r0
+ 80039c6:	4a07      	ldr	r2, [pc, #28]	; (80039e4 <_ZN13LinePredictorC1Ev+0x20>)
+ 80039c8:	f843 2b04 	str.w	r2, [r3], #4
+ 80039cc:	f100 0144 	add.w	r1, r0, #68	; 0x44
+ 80039d0:	2200      	movs	r2, #0
+ 80039d2:	f803 2b01 	strb.w	r2, [r3], #1
+ 80039d6:	428b      	cmp	r3, r1
+ 80039d8:	d1fb      	bne.n	80039d2 <_ZN13LinePredictorC1Ev+0xe>
+ 80039da:	4b03      	ldr	r3, [pc, #12]	; (80039e8 <_ZN13LinePredictorC1Ev+0x24>)
+ 80039dc:	6482      	str	r2, [r0, #72]	; 0x48
+ 80039de:	64c3      	str	r3, [r0, #76]	; 0x4c
+ 80039e0:	6442      	str	r2, [r0, #68]	; 0x44
+ 80039e2:	4770      	bx	lr
+ 80039e4:	080047b0 	stmdaeq	r0, {r4, r5, r7, r8, r9, sl, lr}
+ 80039e8:	c4653600 	strbtgt	r3, [r5], #-1536	; 0xfffffa00
 
-08003df4 <_ZN10IntegratorIfED0Ev>:
- 8003df4:	b510      	push	{r4, lr}
- 8003df6:	2110      	movs	r1, #16
- 8003df8:	4604      	mov	r4, r0
- 8003dfa:	f7fd fb51 	bl	80014a0 <_ZdlPvj>
- 8003dfe:	4620      	mov	r0, r4
- 8003e00:	bd10      	pop	{r4, pc}
+080039ec <_ZN13LinePredictor4initER13NeuralNetwork>:
+ 80039ec:	b510      	push	{r4, lr}
+ 80039ee:	1d03      	adds	r3, r0, #4
+ 80039f0:	f100 0444 	add.w	r4, r0, #68	; 0x44
+ 80039f4:	2200      	movs	r2, #0
+ 80039f6:	f803 2b01 	strb.w	r2, [r3], #1
+ 80039fa:	42a3      	cmp	r3, r4
+ 80039fc:	d1fb      	bne.n	80039f6 <_ZN13LinePredictor4initER13NeuralNetwork+0xa>
+ 80039fe:	4b02      	ldr	r3, [pc, #8]	; (8003a08 <_ZN13LinePredictor4initER13NeuralNetwork+0x1c>)
+ 8003a00:	6482      	str	r2, [r0, #72]	; 0x48
+ 8003a02:	64c3      	str	r3, [r0, #76]	; 0x4c
+ 8003a04:	6441      	str	r1, [r0, #68]	; 0x44
+ 8003a06:	bd10      	pop	{r4, pc}
+ 8003a08:	c4653600 	strbtgt	r3, [r5], #-1536	; 0xfffffa00
 
-08003e02 <_ZN16PositionControllD0Ev>:
- 8003e02:	b510      	push	{r4, lr}
- 8003e04:	2154      	movs	r1, #84	; 0x54
- 8003e06:	4604      	mov	r4, r0
- 8003e08:	f7fd fb4a 	bl	80014a0 <_ZdlPvj>
- 8003e0c:	4620      	mov	r0, r4
- 8003e0e:	bd10      	pop	{r4, pc}
+08003a0c <_ZN13LinePredictor7processER5ArrayIiLj8EEli>:
+ 8003a0c:	b570      	push	{r4, r5, r6, lr}
+ 8003a0e:	4604      	mov	r4, r0
+ 8003a10:	6cc0      	ldr	r0, [r0, #76]	; 0x4c
+ 8003a12:	1a10      	subs	r0, r2, r0
+ 8003a14:	2800      	cmp	r0, #0
+ 8003a16:	bfb8      	it	lt
+ 8003a18:	4240      	neglt	r0, r0
+ 8003a1a:	4283      	cmp	r3, r0
+ 8003a1c:	dc4f      	bgt.n	8003abe <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0xb2>
+ 8003a1e:	64e2      	str	r2, [r4, #76]	; 0x4c
+ 8003a20:	f104 0238 	add.w	r2, r4, #56	; 0x38
+ 8003a24:	2300      	movs	r3, #0
+ 8003a26:	f1a2 0008 	sub.w	r0, r2, #8
+ 8003a2a:	18c5      	adds	r5, r0, r3
+ 8003a2c:	f995 6004 	ldrsb.w	r6, [r5, #4]
+ 8003a30:	18d5      	adds	r5, r2, r3
+ 8003a32:	3301      	adds	r3, #1
+ 8003a34:	2b08      	cmp	r3, #8
+ 8003a36:	712e      	strb	r6, [r5, #4]
+ 8003a38:	d1f7      	bne.n	8003a2a <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0x1e>
+ 8003a3a:	4284      	cmp	r4, r0
+ 8003a3c:	4602      	mov	r2, r0
+ 8003a3e:	d1f1      	bne.n	8003a24 <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0x18>
+ 8003a40:	1d0d      	adds	r5, r1, #4
+ 8003a42:	4b22      	ldr	r3, [pc, #136]	; (8003acc <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0xc0>)
+ 8003a44:	4a22      	ldr	r2, [pc, #136]	; (8003ad0 <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0xc4>)
+ 8003a46:	3124      	adds	r1, #36	; 0x24
+ 8003a48:	4628      	mov	r0, r5
+ 8003a4a:	f850 6b04 	ldr.w	r6, [r0], #4
+ 8003a4e:	42b2      	cmp	r2, r6
+ 8003a50:	bfb8      	it	lt
+ 8003a52:	4632      	movlt	r2, r6
+ 8003a54:	42b3      	cmp	r3, r6
+ 8003a56:	bfa8      	it	ge
+ 8003a58:	4633      	movge	r3, r6
+ 8003a5a:	4288      	cmp	r0, r1
+ 8003a5c:	d1f5      	bne.n	8003a4a <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0x3e>
+ 8003a5e:	4293      	cmp	r3, r2
+ 8003a60:	da2f      	bge.n	8003ac2 <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0xb6>
+ 8003a62:	1ad3      	subs	r3, r2, r3
+ 8003a64:	ee07 3a90 	vmov	s15, r3
+ 8003a68:	ed9f 7a1a 	vldr	s14, [pc, #104]	; 8003ad4 <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0xc8>
+ 8003a6c:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+ 8003a70:	eec7 6a27 	vdiv.f32	s13, s14, s15
+ 8003a74:	ee07 2a90 	vmov	s15, r2
+ 8003a78:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+ 8003a7c:	ee07 7ae6 	vmls.f32	s14, s15, s13
+ 8003a80:	eef0 7a47 	vmov.f32	s15, s14
+ 8003a84:	1d23      	adds	r3, r4, #4
+ 8003a86:	4619      	mov	r1, r3
+ 8003a88:	ecb5 7a01 	vldmia	r5!, {s14}
+ 8003a8c:	eeb8 7ac7 	vcvt.f32.s32	s14, s14
+ 8003a90:	eeb0 6a67 	vmov.f32	s12, s15
+ 8003a94:	ee07 6a26 	vmla.f32	s12, s14, s13
+ 8003a98:	4285      	cmp	r5, r0
+ 8003a9a:	eebd 7ac6 	vcvt.s32.f32	s14, s12
+ 8003a9e:	ee17 2a10 	vmov	r2, s14
+ 8003aa2:	f803 2b01 	strb.w	r2, [r3], #1
+ 8003aa6:	d1ef      	bne.n	8003a88 <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0x7c>
+ 8003aa8:	6c60      	ldr	r0, [r4, #68]	; 0x44
+ 8003aaa:	6803      	ldr	r3, [r0, #0]
+ 8003aac:	689b      	ldr	r3, [r3, #8]
+ 8003aae:	4798      	blx	r3
+ 8003ab0:	6c60      	ldr	r0, [r4, #68]	; 0x44
+ 8003ab2:	f7fd fbad 	bl	8001210 <_ZN13NeuralNetwork7forwardEv>
+ 8003ab6:	6c60      	ldr	r0, [r4, #68]	; 0x44
+ 8003ab8:	f7fd fbdc 	bl	8001274 <_ZN13NeuralNetwork12class_resultEv>
+ 8003abc:	64a0      	str	r0, [r4, #72]	; 0x48
+ 8003abe:	2000      	movs	r0, #0
+ 8003ac0:	bd70      	pop	{r4, r5, r6, pc}
+ 8003ac2:	eddf 7a05 	vldr	s15, [pc, #20]	; 8003ad8 <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0xcc>
+ 8003ac6:	eef0 6a67 	vmov.f32	s13, s15
+ 8003aca:	e7db      	b.n	8003a84 <_ZN13LinePredictor7processER5ArrayIiLj8EEli+0x78>
+ 8003acc:	000f4240 	andeq	r4, pc, r0, asr #4
+ 8003ad0:	fff0bdc0 			; <UNDEFINED> instruction: 0xfff0bdc0
+ 8003ad4:	42fe0000 	rscsmi	r0, lr, #0
+ 8003ad8:	00000000 	andeq	r0, r0, r0
 
-08003e10 <_ZN16PositionControll12set_positionEllib>:
- 8003e10:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
- 8003e14:	ed2d 8b02 	vpush	{d8}
- 8003e18:	4604      	mov	r4, r0
- 8003e1a:	4825      	ldr	r0, [pc, #148]	; (8003eb0 <_ZN16PositionControll12set_positionEllib+0xa0>)
- 8003e1c:	f89d 8020 	ldrb.w	r8, [sp, #32]
- 8003e20:	460e      	mov	r6, r1
- 8003e22:	4617      	mov	r7, r2
- 8003e24:	461d      	mov	r5, r3
- 8003e26:	f7fe fc63 	bl	80026f0 <_ZN13EncoderSensor8get_leftEv>
- 8003e2a:	4430      	add	r0, r6
- 8003e2c:	60a0      	str	r0, [r4, #8]
- 8003e2e:	4820      	ldr	r0, [pc, #128]	; (8003eb0 <_ZN16PositionControll12set_positionEllib+0xa0>)
- 8003e30:	f7fe fc6a 	bl	8002708 <_ZN13EncoderSensor9get_rightEv>
- 8003e34:	2e00      	cmp	r6, #0
- 8003e36:	4438      	add	r0, r7
- 8003e38:	60e0      	str	r0, [r4, #12]
- 8003e3a:	6125      	str	r5, [r4, #16]
- 8003e3c:	dd2a      	ble.n	8003e94 <_ZN16PositionControll12set_positionEllib+0x84>
- 8003e3e:	eddf 7a1d 	vldr	s15, [pc, #116]	; 8003eb4 <_ZN16PositionControll12set_positionEllib+0xa4>
- 8003e42:	ed9f 8a1d 	vldr	s16, [pc, #116]	; 8003eb8 <_ZN16PositionControll12set_positionEllib+0xa8>
- 8003e46:	2f00      	cmp	r7, #0
- 8003e48:	bfd8      	it	le
- 8003e4a:	eeb0 8a67 	vmovle.f32	s16, s15
- 8003e4e:	4d1b      	ldr	r5, [pc, #108]	; (8003ebc <_ZN16PositionControll12set_positionEllib+0xac>)
- 8003e50:	4a1b      	ldr	r2, [pc, #108]	; (8003ec0 <_ZN16PositionControll12set_positionEllib+0xb0>)
- 8003e52:	ed84 8a07 	vstr	s16, [r4, #28]
- 8003e56:	2300      	movs	r3, #0
- 8003e58:	6225      	str	r5, [r4, #32]
- 8003e5a:	61a3      	str	r3, [r4, #24]
- 8003e5c:	62e2      	str	r2, [r4, #44]	; 0x2c
- 8003e5e:	6325      	str	r5, [r4, #48]	; 0x30
- 8003e60:	62a3      	str	r3, [r4, #40]	; 0x28
- 8003e62:	ed84 8a0f 	vstr	s16, [r4, #60]	; 0x3c
- 8003e66:	6425      	str	r5, [r4, #64]	; 0x40
- 8003e68:	63a3      	str	r3, [r4, #56]	; 0x38
- 8003e6a:	64e2      	str	r2, [r4, #76]	; 0x4c
- 8003e6c:	6525      	str	r5, [r4, #80]	; 0x50
- 8003e6e:	64a3      	str	r3, [r4, #72]	; 0x48
- 8003e70:	f1b8 0f00 	cmp.w	r8, #0
- 8003e74:	d00a      	beq.n	8003e8c <_ZN16PositionControll12set_positionEllib+0x7c>
- 8003e76:	42be      	cmp	r6, r7
- 8003e78:	da0f      	bge.n	8003e9a <_ZN16PositionControll12set_positionEllib+0x8a>
- 8003e7a:	2f00      	cmp	r7, #0
- 8003e7c:	dd06      	ble.n	8003e8c <_ZN16PositionControll12set_positionEllib+0x7c>
- 8003e7e:	4811      	ldr	r0, [pc, #68]	; (8003ec4 <_ZN16PositionControll12set_positionEllib+0xb4>)
- 8003e80:	f7fe fd74 	bl	800296c <_ZN13MotorControll15get_speed_rightEv>
- 8003e84:	ed84 8a0f 	vstr	s16, [r4, #60]	; 0x3c
- 8003e88:	6425      	str	r5, [r4, #64]	; 0x40
- 8003e8a:	63a0      	str	r0, [r4, #56]	; 0x38
- 8003e8c:	ecbd 8b02 	vpop	{d8}
- 8003e90:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
- 8003e94:	ed9f 8a07 	vldr	s16, [pc, #28]	; 8003eb4 <_ZN16PositionControll12set_positionEllib+0xa4>
- 8003e98:	e7d9      	b.n	8003e4e <_ZN16PositionControll12set_positionEllib+0x3e>
- 8003e9a:	ddf7      	ble.n	8003e8c <_ZN16PositionControll12set_positionEllib+0x7c>
- 8003e9c:	2e00      	cmp	r6, #0
- 8003e9e:	ddf5      	ble.n	8003e8c <_ZN16PositionControll12set_positionEllib+0x7c>
- 8003ea0:	4808      	ldr	r0, [pc, #32]	; (8003ec4 <_ZN16PositionControll12set_positionEllib+0xb4>)
- 8003ea2:	f7fe fd61 	bl	8002968 <_ZN13MotorControll14get_speed_leftEv>
- 8003ea6:	ed84 8a07 	vstr	s16, [r4, #28]
- 8003eaa:	6225      	str	r5, [r4, #32]
- 8003eac:	61a0      	str	r0, [r4, #24]
- 8003eae:	e7ed      	b.n	8003e8c <_ZN16PositionControll12set_positionEllib+0x7c>
- 8003eb0:	20000234 	andcs	r0, r0, r4, lsr r2
- 8003eb4:	3c03126f 	sfmcc	f1, 4, [r3], {111}	; 0x6f
- 8003eb8:	3b83126f 	blcc	60c887c <__text_size__+0x60c3fac>
- 8003ebc:	3c23d70a 	stccc	7, cr13, [r3], #-40	; 0xffffffd8
- 8003ec0:	3b03126f 	blcc	80c8884 <_sidata+0xc3e28>
- 8003ec4:	200003ac 	andcs	r0, r0, ip, lsr #7
+08003adc <_ZN11LineNetworkD1Ev>:
+ 8003adc:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8003ade:	4604      	mov	r4, r0
+ 8003ae0:	4b0b      	ldr	r3, [pc, #44]	; (8003b10 <_ZN11LineNetworkD1Ev+0x34>)
+ 8003ae2:	f844 3b08 	str.w	r3, [r4], #8
+ 8003ae6:	2600      	movs	r6, #0
+ 8003ae8:	4605      	mov	r5, r0
+ 8003aea:	4637      	mov	r7, r6
+ 8003aec:	686b      	ldr	r3, [r5, #4]
+ 8003aee:	429e      	cmp	r6, r3
+ 8003af0:	d209      	bcs.n	8003b06 <_ZN11LineNetworkD1Ev+0x2a>
+ 8003af2:	f854 0b04 	ldr.w	r0, [r4], #4
+ 8003af6:	b110      	cbz	r0, 8003afe <_ZN11LineNetworkD1Ev+0x22>
+ 8003af8:	6803      	ldr	r3, [r0, #0]
+ 8003afa:	685b      	ldr	r3, [r3, #4]
+ 8003afc:	4798      	blx	r3
+ 8003afe:	f844 7c04 	str.w	r7, [r4, #-4]
+ 8003b02:	3601      	adds	r6, #1
+ 8003b04:	e7f2      	b.n	8003aec <_ZN11LineNetworkD1Ev+0x10>
+ 8003b06:	4628      	mov	r0, r5
+ 8003b08:	f7fd fb46 	bl	8001198 <_ZN13NeuralNetworkD1Ev>
+ 8003b0c:	4628      	mov	r0, r5
+ 8003b0e:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+ 8003b10:	08004b04 	stmdaeq	r0, {r2, r8, r9, fp, lr}
 
-08003ec8 <_ZN16PositionControllC1Ev>:
- 8003ec8:	b513      	push	{r0, r1, r4, lr}
- 8003eca:	4b10      	ldr	r3, [pc, #64]	; (8003f0c <_ZN16PositionControllC1Ev+0x44>)
- 8003ecc:	4a10      	ldr	r2, [pc, #64]	; (8003f10 <_ZN16PositionControllC1Ev+0x48>)
- 8003ece:	6003      	str	r3, [r0, #0]
- 8003ed0:	2300      	movs	r3, #0
- 8003ed2:	6142      	str	r2, [r0, #20]
- 8003ed4:	61c3      	str	r3, [r0, #28]
- 8003ed6:	6203      	str	r3, [r0, #32]
- 8003ed8:	6183      	str	r3, [r0, #24]
- 8003eda:	6242      	str	r2, [r0, #36]	; 0x24
- 8003edc:	62c3      	str	r3, [r0, #44]	; 0x2c
- 8003ede:	6303      	str	r3, [r0, #48]	; 0x30
- 8003ee0:	6283      	str	r3, [r0, #40]	; 0x28
- 8003ee2:	6342      	str	r2, [r0, #52]	; 0x34
- 8003ee4:	63c3      	str	r3, [r0, #60]	; 0x3c
- 8003ee6:	6403      	str	r3, [r0, #64]	; 0x40
- 8003ee8:	6383      	str	r3, [r0, #56]	; 0x38
- 8003eea:	6442      	str	r2, [r0, #68]	; 0x44
- 8003eec:	64c3      	str	r3, [r0, #76]	; 0x4c
- 8003eee:	2200      	movs	r2, #0
- 8003ef0:	6503      	str	r3, [r0, #80]	; 0x50
- 8003ef2:	6483      	str	r3, [r0, #72]	; 0x48
- 8003ef4:	4b07      	ldr	r3, [pc, #28]	; (8003f14 <_ZN16PositionControllC1Ev+0x4c>)
- 8003ef6:	6102      	str	r2, [r0, #16]
- 8003ef8:	6043      	str	r3, [r0, #4]
- 8003efa:	4611      	mov	r1, r2
- 8003efc:	9200      	str	r2, [sp, #0]
- 8003efe:	2305      	movs	r3, #5
- 8003f00:	4604      	mov	r4, r0
- 8003f02:	f7ff ff85 	bl	8003e10 <_ZN16PositionControll12set_positionEllib>
- 8003f06:	4620      	mov	r0, r4
- 8003f08:	b002      	add	sp, #8
- 8003f0a:	bd10      	pop	{r4, pc}
- 8003f0c:	08004a40 	stmdaeq	r0, {r6, r9, fp, lr}
- 8003f10:	08004a30 	stmdaeq	r0, {r4, r5, r9, fp, lr}
- 8003f14:	3f333333 	svccc	0x00333333
+08003b14 <_ZN11LineNetworkD0Ev>:
+ 8003b14:	b510      	push	{r4, lr}
+ 8003b16:	4604      	mov	r4, r0
+ 8003b18:	f7ff ffe0 	bl	8003adc <_ZN11LineNetworkD1Ev>
+ 8003b1c:	4620      	mov	r0, r4
+ 8003b1e:	21b0      	movs	r1, #176	; 0xb0
+ 8003b20:	f7fd fcbe 	bl	80014a0 <_ZdlPvj>
+ 8003b24:	4620      	mov	r0, r4
+ 8003b26:	bd10      	pop	{r4, pc}
 
-08003f18 <_ZN16PositionControll4initEf>:
- 8003f18:	b507      	push	{r0, r1, r2, lr}
- 8003f1a:	2200      	movs	r2, #0
- 8003f1c:	6041      	str	r1, [r0, #4]
- 8003f1e:	6102      	str	r2, [r0, #16]
- 8003f20:	9200      	str	r2, [sp, #0]
- 8003f22:	2305      	movs	r3, #5
- 8003f24:	4611      	mov	r1, r2
- 8003f26:	f7ff ff73 	bl	8003e10 <_ZN16PositionControll12set_positionEllib>
- 8003f2a:	b003      	add	sp, #12
- 8003f2c:	f85d fb04 	ldr.w	pc, [sp], #4
+08003b28 <_ZN11LineNetworkC1Ev>:
+ 8003b28:	e92d 43f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, lr}
+ 8003b2c:	4680      	mov	r8, r0
+ 8003b2e:	b095      	sub	sp, #84	; 0x54
+ 8003b30:	f7fd fb4e 	bl	80011d0 <_ZN13NeuralNetworkC1Ev>
+ 8003b34:	4bbc      	ldr	r3, [pc, #752]	; (8003e28 <_ZN11LineNetworkC1Ev+0x300>)
+ 8003b36:	f8c8 3000 	str.w	r3, [r8]
+ 8003b3a:	2308      	movs	r3, #8
+ 8003b3c:	f8c8 3088 	str.w	r3, [r8, #136]	; 0x88
+ 8003b40:	f8c8 308c 	str.w	r3, [r8, #140]	; 0x8c
+ 8003b44:	2301      	movs	r3, #1
+ 8003b46:	f8c8 3090 	str.w	r3, [r8, #144]	; 0x90
+ 8003b4a:	f8c8 3094 	str.w	r3, [r8, #148]	; 0x94
+ 8003b4e:	f8c8 3098 	str.w	r3, [r8, #152]	; 0x98
+ 8003b52:	2305      	movs	r3, #5
+ 8003b54:	f8c8 309c 	str.w	r3, [r8, #156]	; 0x9c
+ 8003b58:	4bb4      	ldr	r3, [pc, #720]	; (8003e2c <_ZN11LineNetworkC1Ev+0x304>)
+ 8003b5a:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003b5e:	4bb4      	ldr	r3, [pc, #720]	; (8003e30 <_ZN11LineNetworkC1Ev+0x308>)
+ 8003b60:	ac0b      	add	r4, sp, #44	; 0x2c
+ 8003b62:	e884 0007 	stmia.w	r4, {r0, r1, r2}
+ 8003b66:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003b6a:	4bb2      	ldr	r3, [pc, #712]	; (8003e34 <_ZN11LineNetworkC1Ev+0x30c>)
+ 8003b6c:	ad0e      	add	r5, sp, #56	; 0x38
+ 8003b6e:	e885 0007 	stmia.w	r5, {r0, r1, r2}
+ 8003b72:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003b76:	ae11      	add	r6, sp, #68	; 0x44
+ 8003b78:	e886 0007 	stmia.w	r6, {r0, r1, r2}
+ 8003b7c:	2038      	movs	r0, #56	; 0x38
+ 8003b7e:	f7fd fc87 	bl	8001490 <_Znwj>
+ 8003b82:	f240 135f 	movw	r3, #351	; 0x15f
+ 8003b86:	9309      	str	r3, [sp, #36]	; 0x24
+ 8003b88:	f44f 731b 	mov.w	r3, #620	; 0x26c
+ 8003b8c:	9308      	str	r3, [sp, #32]
+ 8003b8e:	4baa      	ldr	r3, [pc, #680]	; (8003e38 <_ZN11LineNetworkC1Ev+0x310>)
+ 8003b90:	9307      	str	r3, [sp, #28]
+ 8003b92:	4baa      	ldr	r3, [pc, #680]	; (8003e3c <_ZN11LineNetworkC1Ev+0x314>)
+ 8003b94:	9306      	str	r3, [sp, #24]
+ 8003b96:	4681      	mov	r9, r0
+ 8003b98:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
+ 8003b9c:	af03      	add	r7, sp, #12
+ 8003b9e:	e887 0007 	stmia.w	r7, {r0, r1, r2}
+ 8003ba2:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
+ 8003ba6:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
+ 8003baa:	4648      	mov	r0, r9
+ 8003bac:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
+ 8003bb0:	f7fd fc3e 	bl	8001430 <_ZN19NetConvolutionLayerC1E14sLayerGeometryS0_S0_PKaS2_ii>
+ 8003bb4:	4ba2      	ldr	r3, [pc, #648]	; (8003e40 <_ZN11LineNetworkC1Ev+0x318>)
+ 8003bb6:	f8c8 9008 	str.w	r9, [r8, #8]
+ 8003bba:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003bbe:	4ba1      	ldr	r3, [pc, #644]	; (8003e44 <_ZN11LineNetworkC1Ev+0x31c>)
+ 8003bc0:	e884 0007 	stmia.w	r4, {r0, r1, r2}
+ 8003bc4:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003bc8:	4b9f      	ldr	r3, [pc, #636]	; (8003e48 <_ZN11LineNetworkC1Ev+0x320>)
+ 8003bca:	e885 0007 	stmia.w	r5, {r0, r1, r2}
+ 8003bce:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003bd2:	e886 0007 	stmia.w	r6, {r0, r1, r2}
+ 8003bd6:	202c      	movs	r0, #44	; 0x2c
+ 8003bd8:	f7fd fc5a 	bl	8001490 <_Znwj>
+ 8003bdc:	4681      	mov	r9, r0
+ 8003bde:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
+ 8003be2:	e887 0007 	stmia.w	r7, {r0, r1, r2}
+ 8003be6:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
+ 8003bea:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
+ 8003bee:	4648      	mov	r0, r9
+ 8003bf0:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
+ 8003bf4:	f7fc ff46 	bl	8000a84 <_ZN12NetReluLayerC1E14sLayerGeometryS0_S0_>
+ 8003bf8:	4b94      	ldr	r3, [pc, #592]	; (8003e4c <_ZN11LineNetworkC1Ev+0x324>)
+ 8003bfa:	f8c8 900c 	str.w	r9, [r8, #12]
+ 8003bfe:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003c02:	4b93      	ldr	r3, [pc, #588]	; (8003e50 <_ZN11LineNetworkC1Ev+0x328>)
+ 8003c04:	e884 0007 	stmia.w	r4, {r0, r1, r2}
+ 8003c08:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003c0c:	4b91      	ldr	r3, [pc, #580]	; (8003e54 <_ZN11LineNetworkC1Ev+0x32c>)
+ 8003c0e:	e885 0007 	stmia.w	r5, {r0, r1, r2}
+ 8003c12:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003c16:	e886 0007 	stmia.w	r6, {r0, r1, r2}
+ 8003c1a:	2028      	movs	r0, #40	; 0x28
+ 8003c1c:	f7fd fc38 	bl	8001490 <_Znwj>
+ 8003c20:	4681      	mov	r9, r0
+ 8003c22:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
+ 8003c26:	e887 0007 	stmia.w	r7, {r0, r1, r2}
+ 8003c2a:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
+ 8003c2e:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
+ 8003c32:	4648      	mov	r0, r9
+ 8003c34:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
+ 8003c38:	f7fd fa7a 	bl	8001130 <_ZN18NetMaxPoolingLayerC1E14sLayerGeometryS0_S0_>
+ 8003c3c:	4b86      	ldr	r3, [pc, #536]	; (8003e58 <_ZN11LineNetworkC1Ev+0x330>)
+ 8003c3e:	f8c8 9010 	str.w	r9, [r8, #16]
+ 8003c42:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003c46:	4b85      	ldr	r3, [pc, #532]	; (8003e5c <_ZN11LineNetworkC1Ev+0x334>)
+ 8003c48:	e884 0007 	stmia.w	r4, {r0, r1, r2}
+ 8003c4c:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003c50:	4b83      	ldr	r3, [pc, #524]	; (8003e60 <_ZN11LineNetworkC1Ev+0x338>)
+ 8003c52:	e885 0007 	stmia.w	r5, {r0, r1, r2}
+ 8003c56:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003c5a:	e886 0007 	stmia.w	r6, {r0, r1, r2}
+ 8003c5e:	2038      	movs	r0, #56	; 0x38
+ 8003c60:	f7fd fc16 	bl	8001490 <_Znwj>
+ 8003c64:	f240 1353 	movw	r3, #339	; 0x153
+ 8003c68:	9309      	str	r3, [sp, #36]	; 0x24
+ 8003c6a:	f240 23d6 	movw	r3, #726	; 0x2d6
+ 8003c6e:	9308      	str	r3, [sp, #32]
+ 8003c70:	4b7c      	ldr	r3, [pc, #496]	; (8003e64 <_ZN11LineNetworkC1Ev+0x33c>)
+ 8003c72:	9307      	str	r3, [sp, #28]
+ 8003c74:	4b7c      	ldr	r3, [pc, #496]	; (8003e68 <_ZN11LineNetworkC1Ev+0x340>)
+ 8003c76:	9306      	str	r3, [sp, #24]
+ 8003c78:	4681      	mov	r9, r0
+ 8003c7a:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
+ 8003c7e:	e887 0007 	stmia.w	r7, {r0, r1, r2}
+ 8003c82:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
+ 8003c86:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
+ 8003c8a:	4648      	mov	r0, r9
+ 8003c8c:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
+ 8003c90:	f7fd f9aa 	bl	8000fe8 <_ZN24NetDenseConvolutionLayerC1E14sLayerGeometryS0_S0_PKaS2_ii>
+ 8003c94:	4b75      	ldr	r3, [pc, #468]	; (8003e6c <_ZN11LineNetworkC1Ev+0x344>)
+ 8003c96:	f8c8 9014 	str.w	r9, [r8, #20]
+ 8003c9a:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003c9e:	4b74      	ldr	r3, [pc, #464]	; (8003e70 <_ZN11LineNetworkC1Ev+0x348>)
+ 8003ca0:	e884 0007 	stmia.w	r4, {r0, r1, r2}
+ 8003ca4:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003ca8:	4b72      	ldr	r3, [pc, #456]	; (8003e74 <_ZN11LineNetworkC1Ev+0x34c>)
+ 8003caa:	e885 0007 	stmia.w	r5, {r0, r1, r2}
+ 8003cae:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003cb2:	e886 0007 	stmia.w	r6, {r0, r1, r2}
+ 8003cb6:	202c      	movs	r0, #44	; 0x2c
+ 8003cb8:	f7fd fbea 	bl	8001490 <_Znwj>
+ 8003cbc:	4681      	mov	r9, r0
+ 8003cbe:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
+ 8003cc2:	e887 0007 	stmia.w	r7, {r0, r1, r2}
+ 8003cc6:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
+ 8003cca:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
+ 8003cce:	4648      	mov	r0, r9
+ 8003cd0:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
+ 8003cd4:	f7fc fed6 	bl	8000a84 <_ZN12NetReluLayerC1E14sLayerGeometryS0_S0_>
+ 8003cd8:	4b67      	ldr	r3, [pc, #412]	; (8003e78 <_ZN11LineNetworkC1Ev+0x350>)
+ 8003cda:	f8c8 9018 	str.w	r9, [r8, #24]
+ 8003cde:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003ce2:	4b66      	ldr	r3, [pc, #408]	; (8003e7c <_ZN11LineNetworkC1Ev+0x354>)
+ 8003ce4:	e884 0007 	stmia.w	r4, {r0, r1, r2}
+ 8003ce8:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003cec:	4b64      	ldr	r3, [pc, #400]	; (8003e80 <_ZN11LineNetworkC1Ev+0x358>)
+ 8003cee:	e885 0007 	stmia.w	r5, {r0, r1, r2}
+ 8003cf2:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003cf6:	e886 0007 	stmia.w	r6, {r0, r1, r2}
+ 8003cfa:	2038      	movs	r0, #56	; 0x38
+ 8003cfc:	f7fd fbc8 	bl	8001490 <_Znwj>
+ 8003d00:	f240 1315 	movw	r3, #277	; 0x115
+ 8003d04:	9309      	str	r3, [sp, #36]	; 0x24
+ 8003d06:	f240 5397 	movw	r3, #1431	; 0x597
+ 8003d0a:	9308      	str	r3, [sp, #32]
+ 8003d0c:	4b5d      	ldr	r3, [pc, #372]	; (8003e84 <_ZN11LineNetworkC1Ev+0x35c>)
+ 8003d0e:	9307      	str	r3, [sp, #28]
+ 8003d10:	4b5d      	ldr	r3, [pc, #372]	; (8003e88 <_ZN11LineNetworkC1Ev+0x360>)
+ 8003d12:	9306      	str	r3, [sp, #24]
+ 8003d14:	4681      	mov	r9, r0
+ 8003d16:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
+ 8003d1a:	e887 0007 	stmia.w	r7, {r0, r1, r2}
+ 8003d1e:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
+ 8003d22:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
+ 8003d26:	4648      	mov	r0, r9
+ 8003d28:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
+ 8003d2c:	f7fd f95c 	bl	8000fe8 <_ZN24NetDenseConvolutionLayerC1E14sLayerGeometryS0_S0_PKaS2_ii>
+ 8003d30:	4b56      	ldr	r3, [pc, #344]	; (8003e8c <_ZN11LineNetworkC1Ev+0x364>)
+ 8003d32:	f8c8 901c 	str.w	r9, [r8, #28]
+ 8003d36:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003d3a:	4b55      	ldr	r3, [pc, #340]	; (8003e90 <_ZN11LineNetworkC1Ev+0x368>)
+ 8003d3c:	e884 0007 	stmia.w	r4, {r0, r1, r2}
+ 8003d40:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003d44:	4b53      	ldr	r3, [pc, #332]	; (8003e94 <_ZN11LineNetworkC1Ev+0x36c>)
+ 8003d46:	e885 0007 	stmia.w	r5, {r0, r1, r2}
+ 8003d4a:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003d4e:	e886 0007 	stmia.w	r6, {r0, r1, r2}
+ 8003d52:	202c      	movs	r0, #44	; 0x2c
+ 8003d54:	f7fd fb9c 	bl	8001490 <_Znwj>
+ 8003d58:	4681      	mov	r9, r0
+ 8003d5a:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
+ 8003d5e:	e887 0007 	stmia.w	r7, {r0, r1, r2}
+ 8003d62:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
+ 8003d66:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
+ 8003d6a:	4648      	mov	r0, r9
+ 8003d6c:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
+ 8003d70:	f7fc fe88 	bl	8000a84 <_ZN12NetReluLayerC1E14sLayerGeometryS0_S0_>
+ 8003d74:	4b48      	ldr	r3, [pc, #288]	; (8003e98 <_ZN11LineNetworkC1Ev+0x370>)
+ 8003d76:	f8c8 9020 	str.w	r9, [r8, #32]
+ 8003d7a:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003d7e:	4b47      	ldr	r3, [pc, #284]	; (8003e9c <_ZN11LineNetworkC1Ev+0x374>)
+ 8003d80:	e884 0007 	stmia.w	r4, {r0, r1, r2}
+ 8003d84:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003d88:	4b45      	ldr	r3, [pc, #276]	; (8003ea0 <_ZN11LineNetworkC1Ev+0x378>)
+ 8003d8a:	e885 0007 	stmia.w	r5, {r0, r1, r2}
+ 8003d8e:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003d92:	e886 0007 	stmia.w	r6, {r0, r1, r2}
+ 8003d96:	2028      	movs	r0, #40	; 0x28
+ 8003d98:	f7fd fb7a 	bl	8001490 <_Znwj>
+ 8003d9c:	4681      	mov	r9, r0
+ 8003d9e:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
+ 8003da2:	e887 0007 	stmia.w	r7, {r0, r1, r2}
+ 8003da6:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
+ 8003daa:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
+ 8003dae:	4648      	mov	r0, r9
+ 8003db0:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
+ 8003db4:	f7fd f9bc 	bl	8001130 <_ZN18NetMaxPoolingLayerC1E14sLayerGeometryS0_S0_>
+ 8003db8:	4b3a      	ldr	r3, [pc, #232]	; (8003ea4 <_ZN11LineNetworkC1Ev+0x37c>)
+ 8003dba:	f8c8 9024 	str.w	r9, [r8, #36]	; 0x24
+ 8003dbe:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003dc2:	4b39      	ldr	r3, [pc, #228]	; (8003ea8 <_ZN11LineNetworkC1Ev+0x380>)
+ 8003dc4:	e884 0007 	stmia.w	r4, {r0, r1, r2}
+ 8003dc8:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003dcc:	4b37      	ldr	r3, [pc, #220]	; (8003eac <_ZN11LineNetworkC1Ev+0x384>)
+ 8003dce:	e885 0007 	stmia.w	r5, {r0, r1, r2}
+ 8003dd2:	e893 0007 	ldmia.w	r3, {r0, r1, r2}
+ 8003dd6:	e886 0007 	stmia.w	r6, {r0, r1, r2}
+ 8003dda:	2040      	movs	r0, #64	; 0x40
+ 8003ddc:	f7fd fb58 	bl	8001490 <_Znwj>
+ 8003de0:	f44f 73cb 	mov.w	r3, #406	; 0x196
+ 8003de4:	9309      	str	r3, [sp, #36]	; 0x24
+ 8003de6:	f44f 7374 	mov.w	r3, #976	; 0x3d0
+ 8003dea:	9308      	str	r3, [sp, #32]
+ 8003dec:	4b30      	ldr	r3, [pc, #192]	; (8003eb0 <_ZN11LineNetworkC1Ev+0x388>)
+ 8003dee:	9307      	str	r3, [sp, #28]
+ 8003df0:	4b30      	ldr	r3, [pc, #192]	; (8003eb4 <_ZN11LineNetworkC1Ev+0x38c>)
+ 8003df2:	9306      	str	r3, [sp, #24]
+ 8003df4:	4681      	mov	r9, r0
+ 8003df6:	e896 0007 	ldmia.w	r6, {r0, r1, r2}
+ 8003dfa:	e887 0007 	stmia.w	r7, {r0, r1, r2}
+ 8003dfe:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
+ 8003e02:	e88d 0007 	stmia.w	sp, {r0, r1, r2}
+ 8003e06:	4648      	mov	r0, r9
+ 8003e08:	e894 000e 	ldmia.w	r4, {r1, r2, r3}
+ 8003e0c:	f7fc fde0 	bl	80009d0 <_ZN10NetFcLayerC1E14sLayerGeometryS0_S0_PKaS2_ii>
+ 8003e10:	2309      	movs	r3, #9
+ 8003e12:	4640      	mov	r0, r8
+ 8003e14:	f8c8 9028 	str.w	r9, [r8, #40]	; 0x28
+ 8003e18:	f8c8 3004 	str.w	r3, [r8, #4]
+ 8003e1c:	f7fd fa61 	bl	80012e2 <_ZN13NeuralNetwork15allocate_bufferEv>
+ 8003e20:	4640      	mov	r0, r8
+ 8003e22:	b015      	add	sp, #84	; 0x54
+ 8003e24:	e8bd 83f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, pc}
+ 8003e28:	08004b04 	stmdaeq	r0, {r2, r8, r9, fp, lr}
+ 8003e2c:	08004acc 	stmdaeq	r0, {r2, r3, r6, r7, r9, fp, lr}
+ 8003e30:	08004a90 	stmdaeq	r0, {r4, r7, r9, fp, lr}
+ 8003e34:	08004a9c 	stmdaeq	r0, {r2, r3, r4, r7, r9, fp, lr}
+ 8003e38:	080047b8 	stmdaeq	r0, {r3, r4, r5, r7, r8, r9, sl, lr}
+ 8003e3c:	080047c9 	stmdaeq	r0, {r0, r3, r6, r7, r8, r9, sl, lr}
+ 8003e40:	08004a9c 	stmdaeq	r0, {r2, r3, r4, r7, r9, fp, lr}
+ 8003e44:	08004a9c 	stmdaeq	r0, {r2, r3, r4, r7, r9, fp, lr}
+ 8003e48:	08004a9c 	stmdaeq	r0, {r2, r3, r4, r7, r9, fp, lr}
+ 8003e4c:	08004ad8 	stmdaeq	r0, {r3, r4, r6, r7, r9, fp, lr}
+ 8003e50:	08004a9c 	stmdaeq	r0, {r2, r3, r4, r7, r9, fp, lr}
+ 8003e54:	08004aa8 	stmdaeq	r0, {r3, r5, r7, r9, fp, lr}
+ 8003e58:	08004acc 	stmdaeq	r0, {r2, r3, r6, r7, r9, fp, lr}
+ 8003e5c:	08004aa8 	stmdaeq	r0, {r3, r5, r7, r9, fp, lr}
+ 8003e60:	08004ab4 	stmdaeq	r0, {r2, r4, r5, r7, r9, fp, lr}
+ 8003e64:	080047bc 	stmdaeq	r0, {r2, r3, r4, r5, r7, r8, r9, sl, lr}
+ 8003e68:	080047ed 	stmdaeq	r0, {r0, r2, r3, r5, r6, r7, r8, r9, sl, lr}
+ 8003e6c:	08004ab4 	stmdaeq	r0, {r2, r4, r5, r7, r9, fp, lr}
+ 8003e70:	08004ab4 	stmdaeq	r0, {r2, r4, r5, r7, r9, fp, lr}
+ 8003e74:	08004ab4 	stmdaeq	r0, {r2, r4, r5, r7, r9, fp, lr}
+ 8003e78:	08004acc 	stmdaeq	r0, {r2, r3, r6, r7, r9, fp, lr}
+ 8003e7c:	08004ab4 	stmdaeq	r0, {r2, r4, r5, r7, r9, fp, lr}
+ 8003e80:	08004ac0 	stmdaeq	r0, {r6, r7, r9, fp, lr}
+ 8003e84:	080047c0 	stmdaeq	r0, {r6, r7, r8, r9, sl, lr}
+ 8003e88:	0800487d 	stmdaeq	r0, {r0, r2, r3, r4, r5, r6, fp, lr}
+ 8003e8c:	08004ac0 	stmdaeq	r0, {r6, r7, r9, fp, lr}
+ 8003e90:	08004ac0 	stmdaeq	r0, {r6, r7, r9, fp, lr}
+ 8003e94:	08004ac0 	stmdaeq	r0, {r6, r7, r9, fp, lr}
+ 8003e98:	08004ad8 	stmdaeq	r0, {r3, r4, r6, r7, r9, fp, lr}
+ 8003e9c:	08004ac0 	stmdaeq	r0, {r6, r7, r9, fp, lr}
+ 8003ea0:	08004ae4 	stmdaeq	r0, {r2, r5, r6, r7, r9, fp, lr}
+ 8003ea4:	08004ae4 	stmdaeq	r0, {r2, r5, r6, r7, r9, fp, lr}
+ 8003ea8:	08004ae4 	stmdaeq	r0, {r2, r5, r6, r7, r9, fp, lr}
+ 8003eac:	08004af0 	stmdaeq	r0, {r4, r5, r6, r7, r9, fp, lr}
+ 8003eb0:	080047c4 	stmdaeq	r0, {r2, r6, r7, r8, r9, sl, lr}
+ 8003eb4:	0800499d 	stmdaeq	r0, {r0, r2, r3, r4, r7, r8, fp, lr}
 
-08003f30 <_ZN16PositionControll12is_done_leftEi>:
- 8003f30:	b538      	push	{r3, r4, r5, lr}
- 8003f32:	6884      	ldr	r4, [r0, #8]
- 8003f34:	4806      	ldr	r0, [pc, #24]	; (8003f50 <_ZN16PositionControll12is_done_leftEi+0x20>)
- 8003f36:	460d      	mov	r5, r1
- 8003f38:	f7fe fbda 	bl	80026f0 <_ZN13EncoderSensor8get_leftEv>
- 8003f3c:	1a20      	subs	r0, r4, r0
- 8003f3e:	2800      	cmp	r0, #0
- 8003f40:	bfb8      	it	lt
- 8003f42:	4240      	neglt	r0, r0
- 8003f44:	4285      	cmp	r5, r0
- 8003f46:	bfd4      	ite	le
- 8003f48:	2000      	movle	r0, #0
- 8003f4a:	2001      	movgt	r0, #1
- 8003f4c:	bd38      	pop	{r3, r4, r5, pc}
- 8003f4e:	bf00      	nop
- 8003f50:	20000234 	andcs	r0, r0, r4, lsr r2
+08003eb8 <_ZN16PositionControllD1Ev>:
+ 8003eb8:	4770      	bx	lr
 
-08003f54 <_ZN16PositionControll13is_done_rightEi>:
- 8003f54:	b538      	push	{r3, r4, r5, lr}
- 8003f56:	68c4      	ldr	r4, [r0, #12]
- 8003f58:	4806      	ldr	r0, [pc, #24]	; (8003f74 <_ZN16PositionControll13is_done_rightEi+0x20>)
- 8003f5a:	460d      	mov	r5, r1
- 8003f5c:	f7fe fbd4 	bl	8002708 <_ZN13EncoderSensor9get_rightEv>
- 8003f60:	1a20      	subs	r0, r4, r0
- 8003f62:	2800      	cmp	r0, #0
- 8003f64:	bfb8      	it	lt
- 8003f66:	4240      	neglt	r0, r0
- 8003f68:	4285      	cmp	r5, r0
- 8003f6a:	bfd4      	ite	le
- 8003f6c:	2000      	movle	r0, #0
- 8003f6e:	2001      	movgt	r0, #1
- 8003f70:	bd38      	pop	{r3, r4, r5, pc}
- 8003f72:	bf00      	nop
- 8003f74:	20000234 	andcs	r0, r0, r4, lsr r2
+08003eba <_ZN10IntegratorIfED1Ev>:
+ 8003eba:	4770      	bx	lr
 
-08003f78 <_ZN16PositionControll7is_doneEi>:
- 8003f78:	b538      	push	{r3, r4, r5, lr}
- 8003f7a:	4604      	mov	r4, r0
- 8003f7c:	460d      	mov	r5, r1
- 8003f7e:	f7ff ffd7 	bl	8003f30 <_ZN16PositionControll12is_done_leftEi>
- 8003f82:	b128      	cbz	r0, 8003f90 <_ZN16PositionControll7is_doneEi+0x18>
- 8003f84:	4629      	mov	r1, r5
- 8003f86:	4620      	mov	r0, r4
- 8003f88:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
- 8003f8c:	f7ff bfe2 	b.w	8003f54 <_ZN16PositionControll13is_done_rightEi>
- 8003f90:	bd38      	pop	{r3, r4, r5, pc}
+08003ebc <_ZN10IntegratorIfED0Ev>:
+ 8003ebc:	b510      	push	{r4, lr}
+ 8003ebe:	2110      	movs	r1, #16
+ 8003ec0:	4604      	mov	r4, r0
+ 8003ec2:	f7fd faed 	bl	80014a0 <_ZdlPvj>
+ 8003ec6:	4620      	mov	r0, r4
+ 8003ec8:	bd10      	pop	{r4, pc}
 
-08003f92 <_ZN10IntegratorIfE7processEf>:
- 8003f92:	edd0 7a01 	vldr	s15, [r0, #4]
- 8003f96:	ee07 1a10 	vmov	s14, r1
- 8003f9a:	eef4 7ac7 	vcmpe.f32	s15, s14
- 8003f9e:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8003fa2:	d507      	bpl.n	8003fb4 <_ZN10IntegratorIfE7processEf+0x22>
- 8003fa4:	ed90 7a02 	vldr	s14, [r0, #8]
- 8003fa8:	ee77 7a27 	vadd.f32	s15, s14, s15
- 8003fac:	edc0 7a01 	vstr	s15, [r0, #4]
- 8003fb0:	6840      	ldr	r0, [r0, #4]
- 8003fb2:	4770      	bx	lr
- 8003fb4:	ddfc      	ble.n	8003fb0 <_ZN10IntegratorIfE7processEf+0x1e>
- 8003fb6:	ed90 7a03 	vldr	s14, [r0, #12]
- 8003fba:	ee77 7ac7 	vsub.f32	s15, s15, s14
- 8003fbe:	e7f5      	b.n	8003fac <_ZN10IntegratorIfE7processEf+0x1a>
+08003eca <_ZN16PositionControllD0Ev>:
+ 8003eca:	b510      	push	{r4, lr}
+ 8003ecc:	2154      	movs	r1, #84	; 0x54
+ 8003ece:	4604      	mov	r4, r0
+ 8003ed0:	f7fd fae6 	bl	80014a0 <_ZdlPvj>
+ 8003ed4:	4620      	mov	r0, r4
+ 8003ed6:	bd10      	pop	{r4, pc}
 
-08003fc0 <_ZN16PositionControll7processEv>:
- 8003fc0:	b538      	push	{r3, r4, r5, lr}
- 8003fc2:	6885      	ldr	r5, [r0, #8]
- 8003fc4:	ed2d 8b02 	vpush	{d8}
+08003ed8 <_ZN16PositionControll12set_positionEllib>:
+ 8003ed8:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+ 8003edc:	ed2d 8b02 	vpush	{d8}
+ 8003ee0:	4604      	mov	r4, r0
+ 8003ee2:	4825      	ldr	r0, [pc, #148]	; (8003f78 <_ZN16PositionControll12set_positionEllib+0xa0>)
+ 8003ee4:	f89d 8020 	ldrb.w	r8, [sp, #32]
+ 8003ee8:	460e      	mov	r6, r1
+ 8003eea:	4617      	mov	r7, r2
+ 8003eec:	461d      	mov	r5, r3
+ 8003eee:	f7fe fbff 	bl	80026f0 <_ZN13EncoderSensor8get_leftEv>
+ 8003ef2:	4430      	add	r0, r6
+ 8003ef4:	60a0      	str	r0, [r4, #8]
+ 8003ef6:	4820      	ldr	r0, [pc, #128]	; (8003f78 <_ZN16PositionControll12set_positionEllib+0xa0>)
+ 8003ef8:	f7fe fc06 	bl	8002708 <_ZN13EncoderSensor9get_rightEv>
+ 8003efc:	2e00      	cmp	r6, #0
+ 8003efe:	4438      	add	r0, r7
+ 8003f00:	60e0      	str	r0, [r4, #12]
+ 8003f02:	6125      	str	r5, [r4, #16]
+ 8003f04:	dd2a      	ble.n	8003f5c <_ZN16PositionControll12set_positionEllib+0x84>
+ 8003f06:	eddf 7a1d 	vldr	s15, [pc, #116]	; 8003f7c <_ZN16PositionControll12set_positionEllib+0xa4>
+ 8003f0a:	ed9f 8a1d 	vldr	s16, [pc, #116]	; 8003f80 <_ZN16PositionControll12set_positionEllib+0xa8>
+ 8003f0e:	2f00      	cmp	r7, #0
+ 8003f10:	bfd8      	it	le
+ 8003f12:	eeb0 8a67 	vmovle.f32	s16, s15
+ 8003f16:	4d1b      	ldr	r5, [pc, #108]	; (8003f84 <_ZN16PositionControll12set_positionEllib+0xac>)
+ 8003f18:	4a1b      	ldr	r2, [pc, #108]	; (8003f88 <_ZN16PositionControll12set_positionEllib+0xb0>)
+ 8003f1a:	ed84 8a07 	vstr	s16, [r4, #28]
+ 8003f1e:	2300      	movs	r3, #0
+ 8003f20:	6225      	str	r5, [r4, #32]
+ 8003f22:	61a3      	str	r3, [r4, #24]
+ 8003f24:	62e2      	str	r2, [r4, #44]	; 0x2c
+ 8003f26:	6325      	str	r5, [r4, #48]	; 0x30
+ 8003f28:	62a3      	str	r3, [r4, #40]	; 0x28
+ 8003f2a:	ed84 8a0f 	vstr	s16, [r4, #60]	; 0x3c
+ 8003f2e:	6425      	str	r5, [r4, #64]	; 0x40
+ 8003f30:	63a3      	str	r3, [r4, #56]	; 0x38
+ 8003f32:	64e2      	str	r2, [r4, #76]	; 0x4c
+ 8003f34:	6525      	str	r5, [r4, #80]	; 0x50
+ 8003f36:	64a3      	str	r3, [r4, #72]	; 0x48
+ 8003f38:	f1b8 0f00 	cmp.w	r8, #0
+ 8003f3c:	d00a      	beq.n	8003f54 <_ZN16PositionControll12set_positionEllib+0x7c>
+ 8003f3e:	42be      	cmp	r6, r7
+ 8003f40:	da0f      	bge.n	8003f62 <_ZN16PositionControll12set_positionEllib+0x8a>
+ 8003f42:	2f00      	cmp	r7, #0
+ 8003f44:	dd06      	ble.n	8003f54 <_ZN16PositionControll12set_positionEllib+0x7c>
+ 8003f46:	4811      	ldr	r0, [pc, #68]	; (8003f8c <_ZN16PositionControll12set_positionEllib+0xb4>)
+ 8003f48:	f7fe fd10 	bl	800296c <_ZN13MotorControll15get_speed_rightEv>
+ 8003f4c:	ed84 8a0f 	vstr	s16, [r4, #60]	; 0x3c
+ 8003f50:	6425      	str	r5, [r4, #64]	; 0x40
+ 8003f52:	63a0      	str	r0, [r4, #56]	; 0x38
+ 8003f54:	ecbd 8b02 	vpop	{d8}
+ 8003f58:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+ 8003f5c:	ed9f 8a07 	vldr	s16, [pc, #28]	; 8003f7c <_ZN16PositionControll12set_positionEllib+0xa4>
+ 8003f60:	e7d9      	b.n	8003f16 <_ZN16PositionControll12set_positionEllib+0x3e>
+ 8003f62:	ddf7      	ble.n	8003f54 <_ZN16PositionControll12set_positionEllib+0x7c>
+ 8003f64:	2e00      	cmp	r6, #0
+ 8003f66:	ddf5      	ble.n	8003f54 <_ZN16PositionControll12set_positionEllib+0x7c>
+ 8003f68:	4808      	ldr	r0, [pc, #32]	; (8003f8c <_ZN16PositionControll12set_positionEllib+0xb4>)
+ 8003f6a:	f7fe fcfd 	bl	8002968 <_ZN13MotorControll14get_speed_leftEv>
+ 8003f6e:	ed84 8a07 	vstr	s16, [r4, #28]
+ 8003f72:	6225      	str	r5, [r4, #32]
+ 8003f74:	61a0      	str	r0, [r4, #24]
+ 8003f76:	e7ed      	b.n	8003f54 <_ZN16PositionControll12set_positionEllib+0x7c>
+ 8003f78:	20000240 	andcs	r0, r0, r0, asr #4
+ 8003f7c:	3c03126f 	sfmcc	f1, 4, [r3], {111}	; 0x6f
+ 8003f80:	3b83126f 	blcc	60c8944 <__text_size__+0x60c3f88>
+ 8003f84:	3c23d70a 	stccc	7, cr13, [r3], #-40	; 0xffffffd8
+ 8003f88:	3b03126f 	blcc	80c894c <_sidata+0xc3e04>
+ 8003f8c:	200003b8 			; <UNDEFINED> instruction: 0x200003b8
+
+08003f90 <_ZN16PositionControllC1Ev>:
+ 8003f90:	b513      	push	{r0, r1, r4, lr}
+ 8003f92:	4b10      	ldr	r3, [pc, #64]	; (8003fd4 <_ZN16PositionControllC1Ev+0x44>)
+ 8003f94:	4a10      	ldr	r2, [pc, #64]	; (8003fd8 <_ZN16PositionControllC1Ev+0x48>)
+ 8003f96:	6003      	str	r3, [r0, #0]
+ 8003f98:	2300      	movs	r3, #0
+ 8003f9a:	6142      	str	r2, [r0, #20]
+ 8003f9c:	61c3      	str	r3, [r0, #28]
+ 8003f9e:	6203      	str	r3, [r0, #32]
+ 8003fa0:	6183      	str	r3, [r0, #24]
+ 8003fa2:	6242      	str	r2, [r0, #36]	; 0x24
+ 8003fa4:	62c3      	str	r3, [r0, #44]	; 0x2c
+ 8003fa6:	6303      	str	r3, [r0, #48]	; 0x30
+ 8003fa8:	6283      	str	r3, [r0, #40]	; 0x28
+ 8003faa:	6342      	str	r2, [r0, #52]	; 0x34
+ 8003fac:	63c3      	str	r3, [r0, #60]	; 0x3c
+ 8003fae:	6403      	str	r3, [r0, #64]	; 0x40
+ 8003fb0:	6383      	str	r3, [r0, #56]	; 0x38
+ 8003fb2:	6442      	str	r2, [r0, #68]	; 0x44
+ 8003fb4:	64c3      	str	r3, [r0, #76]	; 0x4c
+ 8003fb6:	2200      	movs	r2, #0
+ 8003fb8:	6503      	str	r3, [r0, #80]	; 0x50
+ 8003fba:	6483      	str	r3, [r0, #72]	; 0x48
+ 8003fbc:	4b07      	ldr	r3, [pc, #28]	; (8003fdc <_ZN16PositionControllC1Ev+0x4c>)
+ 8003fbe:	6102      	str	r2, [r0, #16]
+ 8003fc0:	6043      	str	r3, [r0, #4]
+ 8003fc2:	4611      	mov	r1, r2
+ 8003fc4:	9200      	str	r2, [sp, #0]
+ 8003fc6:	2305      	movs	r3, #5
  8003fc8:	4604      	mov	r4, r0
- 8003fca:	4828      	ldr	r0, [pc, #160]	; (800406c <_ZN16PositionControll7processEv+0xac>)
- 8003fcc:	f7fe fb90 	bl	80026f0 <_ZN13EncoderSensor8get_leftEv>
- 8003fd0:	4285      	cmp	r5, r0
- 8003fd2:	dd25      	ble.n	8004020 <_ZN16PositionControll7processEv+0x60>
- 8003fd4:	6861      	ldr	r1, [r4, #4]
- 8003fd6:	f104 0014 	add.w	r0, r4, #20
- 8003fda:	f7ff ffda 	bl	8003f92 <_ZN10IntegratorIfE7processEf>
- 8003fde:	ed94 8a06 	vldr	s16, [r4, #24]
- 8003fe2:	4822      	ldr	r0, [pc, #136]	; (800406c <_ZN16PositionControll7processEv+0xac>)
- 8003fe4:	68e5      	ldr	r5, [r4, #12]
- 8003fe6:	f7fe fb8f 	bl	8002708 <_ZN13EncoderSensor9get_rightEv>
- 8003fea:	4285      	cmp	r5, r0
- 8003fec:	dd2b      	ble.n	8004046 <_ZN16PositionControll7processEv+0x86>
- 8003fee:	6861      	ldr	r1, [r4, #4]
- 8003ff0:	f104 0034 	add.w	r0, r4, #52	; 0x34
- 8003ff4:	f7ff ffcd 	bl	8003f92 <_ZN10IntegratorIfE7processEf>
- 8003ff8:	edd4 7a0e 	vldr	s15, [r4, #56]	; 0x38
- 8003ffc:	481c      	ldr	r0, [pc, #112]	; (8004070 <_ZN16PositionControll7processEv+0xb0>)
- 8003ffe:	ee17 1a90 	vmov	r1, s15
- 8004002:	f7fe fcaf 	bl	8002964 <_ZN13MotorControll15set_right_speedEf>
- 8004006:	ee18 1a10 	vmov	r1, s16
- 800400a:	4819      	ldr	r0, [pc, #100]	; (8004070 <_ZN16PositionControll7processEv+0xb0>)
- 800400c:	f7fe fca8 	bl	8002960 <_ZN13MotorControll14set_left_speedEf>
- 8004010:	ecbd 8b02 	vpop	{d8}
- 8004014:	6921      	ldr	r1, [r4, #16]
- 8004016:	4620      	mov	r0, r4
- 8004018:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
- 800401c:	f7ff bfac 	b.w	8003f78 <_ZN16PositionControll7is_doneEi>
- 8004020:	4812      	ldr	r0, [pc, #72]	; (800406c <_ZN16PositionControll7processEv+0xac>)
- 8004022:	68a5      	ldr	r5, [r4, #8]
- 8004024:	f7fe fb64 	bl	80026f0 <_ZN13EncoderSensor8get_leftEv>
- 8004028:	4285      	cmp	r5, r0
- 800402a:	da09      	bge.n	8004040 <_ZN16PositionControll7processEv+0x80>
- 800402c:	6861      	ldr	r1, [r4, #4]
- 800402e:	f104 0024 	add.w	r0, r4, #36	; 0x24
- 8004032:	f7ff ffae 	bl	8003f92 <_ZN10IntegratorIfE7processEf>
- 8004036:	ed94 8a0a 	vldr	s16, [r4, #40]	; 0x28
- 800403a:	eeb1 8a48 	vneg.f32	s16, s16
- 800403e:	e7d0      	b.n	8003fe2 <_ZN16PositionControll7processEv+0x22>
- 8004040:	ed9f 8a0c 	vldr	s16, [pc, #48]	; 8004074 <_ZN16PositionControll7processEv+0xb4>
- 8004044:	e7cd      	b.n	8003fe2 <_ZN16PositionControll7processEv+0x22>
- 8004046:	4809      	ldr	r0, [pc, #36]	; (800406c <_ZN16PositionControll7processEv+0xac>)
- 8004048:	68e5      	ldr	r5, [r4, #12]
- 800404a:	f7fe fb5d 	bl	8002708 <_ZN13EncoderSensor9get_rightEv>
- 800404e:	4285      	cmp	r5, r0
- 8004050:	da09      	bge.n	8004066 <_ZN16PositionControll7processEv+0xa6>
- 8004052:	6861      	ldr	r1, [r4, #4]
- 8004054:	f104 0044 	add.w	r0, r4, #68	; 0x44
- 8004058:	f7ff ff9b 	bl	8003f92 <_ZN10IntegratorIfE7processEf>
- 800405c:	edd4 7a12 	vldr	s15, [r4, #72]	; 0x48
- 8004060:	eef1 7a67 	vneg.f32	s15, s15
- 8004064:	e7ca      	b.n	8003ffc <_ZN16PositionControll7processEv+0x3c>
- 8004066:	eddf 7a03 	vldr	s15, [pc, #12]	; 8004074 <_ZN16PositionControll7processEv+0xb4>
- 800406a:	e7c7      	b.n	8003ffc <_ZN16PositionControll7processEv+0x3c>
- 800406c:	20000234 	andcs	r0, r0, r4, lsr r2
- 8004070:	200003ac 	andcs	r0, r0, ip, lsr #7
- 8004074:	00000000 	andeq	r0, r0, r0
+ 8003fca:	f7ff ff85 	bl	8003ed8 <_ZN16PositionControll12set_positionEllib>
+ 8003fce:	4620      	mov	r0, r4
+ 8003fd0:	b002      	add	sp, #8
+ 8003fd2:	bd10      	pop	{r4, pc}
+ 8003fd4:	08004b2c 	stmdaeq	r0, {r2, r3, r5, r8, r9, fp, lr}
+ 8003fd8:	08004b1c 	stmdaeq	r0, {r2, r3, r4, r8, r9, fp, lr}
+ 8003fdc:	3f333333 	svccc	0x00333333
 
-08004078 <_ZN16PositionControll4stopEv>:
- 8004078:	b538      	push	{r3, r4, r5, lr}
- 800407a:	ed2d 8b04 	vpush	{d8-d9}
- 800407e:	ed9f 9a2a 	vldr	s18, [pc, #168]	; 8004128 <_ZN16PositionControll4stopEv+0xb0>
- 8004082:	4d2a      	ldr	r5, [pc, #168]	; (800412c <_ZN16PositionControll4stopEv+0xb4>)
- 8004084:	4604      	mov	r4, r0
- 8004086:	eef0 9a49 	vmov.f32	s19, s18
- 800408a:	4628      	mov	r0, r5
- 800408c:	f7fe fc6c 	bl	8002968 <_ZN13MotorControll14get_speed_leftEv>
- 8004090:	ee07 0a90 	vmov	s15, r0
- 8004094:	eef5 7ac0 	vcmpe.f32	s15, #0.0
- 8004098:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 800409c:	bf48      	it	mi
- 800409e:	eef1 7a67 	vnegmi.f32	s15, s15
- 80040a2:	eef4 7ac9 	vcmpe.f32	s15, s18
- 80040a6:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 80040aa:	dd20      	ble.n	80040ee <_ZN16PositionControll4stopEv+0x76>
- 80040ac:	2100      	movs	r1, #0
- 80040ae:	f104 0044 	add.w	r0, r4, #68	; 0x44
- 80040b2:	f7ff ff6e 	bl	8003f92 <_ZN10IntegratorIfE7processEf>
- 80040b6:	edd4 8a12 	vldr	s17, [r4, #72]	; 0x48
- 80040ba:	2100      	movs	r1, #0
- 80040bc:	f104 0024 	add.w	r0, r4, #36	; 0x24
- 80040c0:	f7ff ff67 	bl	8003f92 <_ZN10IntegratorIfE7processEf>
- 80040c4:	ed94 8a0a 	vldr	s16, [r4, #40]	; 0x28
- 80040c8:	eef1 8a68 	vneg.f32	s17, s17
- 80040cc:	ee18 1a90 	vmov	r1, s17
- 80040d0:	4628      	mov	r0, r5
- 80040d2:	eeb1 8a48 	vneg.f32	s16, s16
- 80040d6:	f7fe fc45 	bl	8002964 <_ZN13MotorControll15set_right_speedEf>
- 80040da:	ee18 1a10 	vmov	r1, s16
- 80040de:	4628      	mov	r0, r5
- 80040e0:	f7fe fc3e 	bl	8002960 <_ZN13MotorControll14set_left_speedEf>
- 80040e4:	2104      	movs	r1, #4
- 80040e6:	4812      	ldr	r0, [pc, #72]	; (8004130 <_ZN16PositionControll4stopEv+0xb8>)
- 80040e8:	f7fe feb4 	bl	8002e54 <_ZN5Timer8delay_msEj>
- 80040ec:	e7cd      	b.n	800408a <_ZN16PositionControll4stopEv+0x12>
- 80040ee:	4628      	mov	r0, r5
- 80040f0:	f7fe fc3c 	bl	800296c <_ZN13MotorControll15get_speed_rightEv>
- 80040f4:	ee07 0a90 	vmov	s15, r0
- 80040f8:	eef5 7ac0 	vcmpe.f32	s15, #0.0
- 80040fc:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8004100:	bf48      	it	mi
- 8004102:	eef1 7a67 	vnegmi.f32	s15, s15
- 8004106:	eef4 7ae9 	vcmpe.f32	s15, s19
- 800410a:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 800410e:	dccd      	bgt.n	80040ac <_ZN16PositionControll4stopEv+0x34>
- 8004110:	2100      	movs	r1, #0
- 8004112:	4806      	ldr	r0, [pc, #24]	; (800412c <_ZN16PositionControll4stopEv+0xb4>)
- 8004114:	f7fe fc26 	bl	8002964 <_ZN13MotorControll15set_right_speedEf>
- 8004118:	ecbd 8b04 	vpop	{d8-d9}
- 800411c:	2100      	movs	r1, #0
- 800411e:	4803      	ldr	r0, [pc, #12]	; (800412c <_ZN16PositionControll4stopEv+0xb4>)
- 8004120:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
- 8004124:	f7fe bc1c 	b.w	8002960 <_ZN13MotorControll14set_left_speedEf>
- 8004128:	3c23d70a 	stccc	7, cr13, [r3], #-40	; 0xffffffd8
- 800412c:	200003ac 	andcs	r0, r0, ip, lsr #7
- 8004130:	20000444 	andcs	r0, r0, r4, asr #8
+08003fe0 <_ZN16PositionControll4initEf>:
+ 8003fe0:	b507      	push	{r0, r1, r2, lr}
+ 8003fe2:	2200      	movs	r2, #0
+ 8003fe4:	6041      	str	r1, [r0, #4]
+ 8003fe6:	6102      	str	r2, [r0, #16]
+ 8003fe8:	9200      	str	r2, [sp, #0]
+ 8003fea:	2305      	movs	r3, #5
+ 8003fec:	4611      	mov	r1, r2
+ 8003fee:	f7ff ff73 	bl	8003ed8 <_ZN16PositionControll12set_positionEllib>
+ 8003ff2:	b003      	add	sp, #12
+ 8003ff4:	f85d fb04 	ldr.w	pc, [sp], #4
 
-08004134 <_ZN10BrickAvoidC1Ev>:
- 8004134:	b538      	push	{r3, r4, r5, lr}
- 8004136:	4604      	mov	r4, r0
- 8004138:	4b06      	ldr	r3, [pc, #24]	; (8004154 <_ZN10BrickAvoidC1Ev+0x20>)
- 800413a:	f844 3b04 	str.w	r3, [r4], #4
- 800413e:	4605      	mov	r5, r0
- 8004140:	4620      	mov	r0, r4
- 8004142:	f7ff fec1 	bl	8003ec8 <_ZN16PositionControllC1Ev>
- 8004146:	4620      	mov	r0, r4
- 8004148:	4903      	ldr	r1, [pc, #12]	; (8004158 <_ZN10BrickAvoidC1Ev+0x24>)
- 800414a:	f7ff fee5 	bl	8003f18 <_ZN16PositionControll4initEf>
- 800414e:	4628      	mov	r0, r5
- 8004150:	bd38      	pop	{r3, r4, r5, pc}
- 8004152:	bf00      	nop
- 8004154:	08004a50 	stmdaeq	r0, {r4, r6, r9, fp, lr}
- 8004158:	3f333333 	svccc	0x00333333
+08003ff8 <_ZN16PositionControll12is_done_leftEi>:
+ 8003ff8:	b538      	push	{r3, r4, r5, lr}
+ 8003ffa:	6884      	ldr	r4, [r0, #8]
+ 8003ffc:	4806      	ldr	r0, [pc, #24]	; (8004018 <_ZN16PositionControll12is_done_leftEi+0x20>)
+ 8003ffe:	460d      	mov	r5, r1
+ 8004000:	f7fe fb76 	bl	80026f0 <_ZN13EncoderSensor8get_leftEv>
+ 8004004:	1a20      	subs	r0, r4, r0
+ 8004006:	2800      	cmp	r0, #0
+ 8004008:	bfb8      	it	lt
+ 800400a:	4240      	neglt	r0, r0
+ 800400c:	4285      	cmp	r5, r0
+ 800400e:	bfd4      	ite	le
+ 8004010:	2000      	movle	r0, #0
+ 8004012:	2001      	movgt	r0, #1
+ 8004014:	bd38      	pop	{r3, r4, r5, pc}
+ 8004016:	bf00      	nop
+ 8004018:	20000240 	andcs	r0, r0, r0, asr #4
 
-0800415c <_ZN10BrickAvoid12process_moveEll>:
- 800415c:	b537      	push	{r0, r1, r2, r4, r5, lr}
- 800415e:	2300      	movs	r3, #0
- 8004160:	1d04      	adds	r4, r0, #4
- 8004162:	9300      	str	r3, [sp, #0]
- 8004164:	4620      	mov	r0, r4
- 8004166:	2305      	movs	r3, #5
- 8004168:	f7ff fe52 	bl	8003e10 <_ZN16PositionControll12set_positionEllib>
- 800416c:	4d09      	ldr	r5, [pc, #36]	; (8004194 <_ZN10BrickAvoid12process_moveEll+0x38>)
- 800416e:	2105      	movs	r1, #5
- 8004170:	4620      	mov	r0, r4
- 8004172:	f7ff ff01 	bl	8003f78 <_ZN16PositionControll7is_doneEi>
- 8004176:	b938      	cbnz	r0, 8004188 <_ZN10BrickAvoid12process_moveEll+0x2c>
- 8004178:	4620      	mov	r0, r4
- 800417a:	f7ff ff21 	bl	8003fc0 <_ZN16PositionControll7processEv>
- 800417e:	2104      	movs	r1, #4
- 8004180:	4628      	mov	r0, r5
- 8004182:	f7fe fe67 	bl	8002e54 <_ZN5Timer8delay_msEj>
- 8004186:	e7f2      	b.n	800416e <_ZN10BrickAvoid12process_moveEll+0x12>
- 8004188:	4620      	mov	r0, r4
- 800418a:	b003      	add	sp, #12
- 800418c:	e8bd 4030 	ldmia.w	sp!, {r4, r5, lr}
- 8004190:	f7ff bf72 	b.w	8004078 <_ZN16PositionControll4stopEv>
- 8004194:	20000444 	andcs	r0, r0, r4, asr #8
+0800401c <_ZN16PositionControll13is_done_rightEi>:
+ 800401c:	b538      	push	{r3, r4, r5, lr}
+ 800401e:	68c4      	ldr	r4, [r0, #12]
+ 8004020:	4806      	ldr	r0, [pc, #24]	; (800403c <_ZN16PositionControll13is_done_rightEi+0x20>)
+ 8004022:	460d      	mov	r5, r1
+ 8004024:	f7fe fb70 	bl	8002708 <_ZN13EncoderSensor9get_rightEv>
+ 8004028:	1a20      	subs	r0, r4, r0
+ 800402a:	2800      	cmp	r0, #0
+ 800402c:	bfb8      	it	lt
+ 800402e:	4240      	neglt	r0, r0
+ 8004030:	4285      	cmp	r5, r0
+ 8004032:	bfd4      	ite	le
+ 8004034:	2000      	movle	r0, #0
+ 8004036:	2001      	movgt	r0, #1
+ 8004038:	bd38      	pop	{r3, r4, r5, pc}
+ 800403a:	bf00      	nop
+ 800403c:	20000240 	andcs	r0, r0, r0, asr #4
 
-08004198 <_ZN10BrickAvoidD1Ev>:
- 8004198:	b510      	push	{r4, lr}
- 800419a:	4b04      	ldr	r3, [pc, #16]	; (80041ac <_ZN10BrickAvoidD1Ev+0x14>)
- 800419c:	4604      	mov	r4, r0
- 800419e:	f840 3b04 	str.w	r3, [r0], #4
- 80041a2:	f7ff fe25 	bl	8003df0 <_ZN16PositionControllD1Ev>
- 80041a6:	4620      	mov	r0, r4
- 80041a8:	bd10      	pop	{r4, pc}
- 80041aa:	bf00      	nop
- 80041ac:	08004a50 	stmdaeq	r0, {r4, r6, r9, fp, lr}
+08004040 <_ZN16PositionControll7is_doneEi>:
+ 8004040:	b538      	push	{r3, r4, r5, lr}
+ 8004042:	4604      	mov	r4, r0
+ 8004044:	460d      	mov	r5, r1
+ 8004046:	f7ff ffd7 	bl	8003ff8 <_ZN16PositionControll12is_done_leftEi>
+ 800404a:	b128      	cbz	r0, 8004058 <_ZN16PositionControll7is_doneEi+0x18>
+ 800404c:	4629      	mov	r1, r5
+ 800404e:	4620      	mov	r0, r4
+ 8004050:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
+ 8004054:	f7ff bfe2 	b.w	800401c <_ZN16PositionControll13is_done_rightEi>
+ 8004058:	bd38      	pop	{r3, r4, r5, pc}
 
-080041b0 <_ZN10BrickAvoidD0Ev>:
- 80041b0:	b510      	push	{r4, lr}
- 80041b2:	4604      	mov	r4, r0
- 80041b4:	f7ff fff0 	bl	8004198 <_ZN10BrickAvoidD1Ev>
- 80041b8:	4620      	mov	r0, r4
- 80041ba:	2158      	movs	r1, #88	; 0x58
- 80041bc:	f7fd f970 	bl	80014a0 <_ZdlPvj>
- 80041c0:	4620      	mov	r0, r4
- 80041c2:	bd10      	pop	{r4, pc}
+0800405a <_ZN10IntegratorIfE7processEf>:
+ 800405a:	edd0 7a01 	vldr	s15, [r0, #4]
+ 800405e:	ee07 1a10 	vmov	s14, r1
+ 8004062:	eef4 7ac7 	vcmpe.f32	s15, s14
+ 8004066:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 800406a:	d507      	bpl.n	800407c <_ZN10IntegratorIfE7processEf+0x22>
+ 800406c:	ed90 7a02 	vldr	s14, [r0, #8]
+ 8004070:	ee77 7a27 	vadd.f32	s15, s14, s15
+ 8004074:	edc0 7a01 	vstr	s15, [r0, #4]
+ 8004078:	6840      	ldr	r0, [r0, #4]
+ 800407a:	4770      	bx	lr
+ 800407c:	ddfc      	ble.n	8004078 <_ZN10IntegratorIfE7processEf+0x1e>
+ 800407e:	ed90 7a03 	vldr	s14, [r0, #12]
+ 8004082:	ee77 7ac7 	vsub.f32	s15, s15, s14
+ 8004086:	e7f5      	b.n	8004074 <_ZN10IntegratorIfE7processEf+0x1a>
 
-080041c4 <_ZN10BrickAvoid5avoidEi>:
- 80041c4:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
- 80041c8:	ed2d 8b04 	vpush	{d8-d9}
- 80041cc:	b08e      	sub	sp, #56	; 0x38
- 80041ce:	f04f 537e 	mov.w	r3, #1065353216	; 0x3f800000
- 80041d2:	9300      	str	r3, [sp, #0]
- 80041d4:	2300      	movs	r3, #0
- 80041d6:	461a      	mov	r2, r3
- 80041d8:	4605      	mov	r5, r0
- 80041da:	460c      	mov	r4, r1
- 80041dc:	a803      	add	r0, sp, #12
- 80041de:	4619      	mov	r1, r3
- 80041e0:	f7fd f9ea 	bl	80015b8 <_ZN3PIDC1Effff>
- 80041e4:	4e44      	ldr	r6, [pc, #272]	; (80042f8 <_ZN10BrickAvoid5avoidEi+0x134>)
- 80041e6:	4b45      	ldr	r3, [pc, #276]	; (80042fc <_ZN10BrickAvoid5avoidEi+0x138>)
- 80041e8:	9300      	str	r3, [sp, #0]
- 80041ea:	2200      	movs	r2, #0
- 80041ec:	4b44      	ldr	r3, [pc, #272]	; (8004300 <_ZN10BrickAvoid5avoidEi+0x13c>)
- 80041ee:	4945      	ldr	r1, [pc, #276]	; (8004304 <_ZN10BrickAvoid5avoidEi+0x140>)
- 80041f0:	a803      	add	r0, sp, #12
- 80041f2:	f7fd f9c9 	bl	8001588 <_ZN3PID4initEffff>
- 80041f6:	68f1      	ldr	r1, [r6, #12]
- 80041f8:	a803      	add	r0, sp, #12
- 80041fa:	f7fd fa29 	bl	8001650 <_ZN3PID5resetEf>
- 80041fe:	f06f 0215 	mvn.w	r2, #21
- 8004202:	4611      	mov	r1, r2
- 8004204:	4628      	mov	r0, r5
- 8004206:	f7ff ffa9 	bl	800415c <_ZN10BrickAvoid12process_moveEll>
- 800420a:	2c01      	cmp	r4, #1
- 800420c:	d15e      	bne.n	80042cc <_ZN10BrickAvoid5avoidEi+0x108>
- 800420e:	2258      	movs	r2, #88	; 0x58
- 8004210:	2100      	movs	r1, #0
- 8004212:	4628      	mov	r0, r5
- 8004214:	f7ff ffa2 	bl	800415c <_ZN10BrickAvoid12process_moveEll>
- 8004218:	eddf 8a3b 	vldr	s17, [pc, #236]	; 8004308 <_ZN10BrickAvoid5avoidEi+0x144>
- 800421c:	f8df 80d8 	ldr.w	r8, [pc, #216]	; 80042f8 <_ZN10BrickAvoid5avoidEi+0x134>
- 8004220:	eddf 9a3a 	vldr	s19, [pc, #232]	; 800430c <_ZN10BrickAvoid5avoidEi+0x148>
- 8004224:	4f3a      	ldr	r7, [pc, #232]	; (8004310 <_ZN10BrickAvoid5avoidEi+0x14c>)
- 8004226:	4640      	mov	r0, r8
- 8004228:	f7fe fd76 	bl	8002d18 <_ZN14DistanceSensor5readyEv>
- 800422c:	2800      	cmp	r0, #0
- 800422e:	d0fa      	beq.n	8004226 <_ZN10BrickAvoid5avoidEi+0x62>
- 8004230:	2c01      	cmp	r4, #1
- 8004232:	d150      	bne.n	80042d6 <_ZN10BrickAvoid5avoidEi+0x112>
- 8004234:	edd6 7a03 	vldr	s15, [r6, #12]
- 8004238:	ed9f 8a36 	vldr	s16, [pc, #216]	; 8004314 <_ZN10BrickAvoid5avoidEi+0x150>
- 800423c:	ee38 8a67 	vsub.f32	s16, s16, s15
- 8004240:	ee18 1a10 	vmov	r1, s16
- 8004244:	a803      	add	r0, sp, #12
- 8004246:	f7fd fa0b 	bl	8001660 <_ZN3PID7processEf>
- 800424a:	ed9f 7a33 	vldr	s14, [pc, #204]	; 8004318 <_ZN10BrickAvoid5avoidEi+0x154>
- 800424e:	eef4 8ac7 	vcmpe.f32	s17, s14
- 8004252:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8004256:	bf4a      	itet	mi
- 8004258:	ed9f 7a30 	vldrmi	s14, [pc, #192]	; 800431c <_ZN10BrickAvoid5avoidEi+0x158>
- 800425c:	eef0 8a47 	vmovpl.f32	s17, s14
- 8004260:	ee78 8a87 	vaddmi.f32	s17, s17, s14
- 8004264:	ee07 0a90 	vmov	s15, r0
- 8004268:	ed9f 7a2d 	vldr	s14, [pc, #180]	; 8004320 <_ZN10BrickAvoid5avoidEi+0x15c>
- 800426c:	eef4 7ac7 	vcmpe.f32	s15, s14
- 8004270:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8004274:	d438      	bmi.n	80042e8 <_ZN10BrickAvoid5avoidEi+0x124>
- 8004276:	ed9f 7a2b 	vldr	s14, [pc, #172]	; 8004324 <_ZN10BrickAvoid5avoidEi+0x160>
- 800427a:	eef4 7a47 	vcmp.f32	s15, s14
- 800427e:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8004282:	bfc8      	it	gt
- 8004284:	eef0 7a47 	vmovgt.f32	s15, s14
- 8004288:	ee38 9ae7 	vsub.f32	s18, s17, s15
- 800428c:	ee78 7aa7 	vadd.f32	s15, s17, s15
- 8004290:	4638      	mov	r0, r7
- 8004292:	ee17 1a90 	vmov	r1, s15
- 8004296:	f7fe fb65 	bl	8002964 <_ZN13MotorControll15set_right_speedEf>
- 800429a:	ee19 1a10 	vmov	r1, s18
- 800429e:	4638      	mov	r0, r7
- 80042a0:	f7fe fb5e 	bl	8002960 <_ZN13MotorControll14set_left_speedEf>
- 80042a4:	4b20      	ldr	r3, [pc, #128]	; (8004328 <_ZN10BrickAvoid5avoidEi+0x164>)
- 80042a6:	f893 30c0 	ldrb.w	r3, [r3, #192]	; 0xc0
- 80042aa:	2b00      	cmp	r3, #0
- 80042ac:	d0bb      	beq.n	8004226 <_ZN10BrickAvoid5avoidEi+0x62>
- 80042ae:	2c01      	cmp	r4, #1
- 80042b0:	d11d      	bne.n	80042ee <_ZN10BrickAvoid5avoidEi+0x12a>
- 80042b2:	224f      	movs	r2, #79	; 0x4f
- 80042b4:	2100      	movs	r1, #0
- 80042b6:	4628      	mov	r0, r5
- 80042b8:	f7ff ff50 	bl	800415c <_ZN10BrickAvoid12process_moveEll>
- 80042bc:	a803      	add	r0, sp, #12
- 80042be:	f7fd f95b 	bl	8001578 <_ZN3PIDD1Ev>
- 80042c2:	b00e      	add	sp, #56	; 0x38
- 80042c4:	ecbd 8b04 	vpop	{d8-d9}
- 80042c8:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
- 80042cc:	1c62      	adds	r2, r4, #1
- 80042ce:	d1a3      	bne.n	8004218 <_ZN10BrickAvoid5avoidEi+0x54>
- 80042d0:	2200      	movs	r2, #0
- 80042d2:	2158      	movs	r1, #88	; 0x58
- 80042d4:	e79d      	b.n	8004212 <_ZN10BrickAvoid5avoidEi+0x4e>
- 80042d6:	1c63      	adds	r3, r4, #1
- 80042d8:	bf02      	ittt	eq
- 80042da:	ed96 8a01 	vldreq	s16, [r6, #4]
- 80042de:	ee39 8ac8 	vsubeq.f32	s16, s19, s16
- 80042e2:	eeb1 8a48 	vnegeq.f32	s16, s16
- 80042e6:	e7ab      	b.n	8004240 <_ZN10BrickAvoid5avoidEi+0x7c>
- 80042e8:	eef0 7a47 	vmov.f32	s15, s14
- 80042ec:	e7cc      	b.n	8004288 <_ZN10BrickAvoid5avoidEi+0xc4>
- 80042ee:	3401      	adds	r4, #1
- 80042f0:	d1e4      	bne.n	80042bc <_ZN10BrickAvoid5avoidEi+0xf8>
- 80042f2:	2200      	movs	r2, #0
- 80042f4:	214f      	movs	r1, #79	; 0x4f
- 80042f6:	e7de      	b.n	80042b6 <_ZN10BrickAvoid5avoidEi+0xf2>
- 80042f8:	20000158 	andcs	r0, r0, r8, asr r1
- 80042fc:	41200000 			; <UNDEFINED> instruction: 0x41200000
- 8004300:	3e99999a 			; <UNDEFINED> instruction: 0x3e99999a
- 8004304:	3f19999a 	svccc	0x0019999a
- 8004308:	00000000 	andeq	r0, r0, r0
- 800430c:	3f63d70a 	svccc	0x0063d70a
- 8004310:	200003ac 	andcs	r0, r0, ip, lsr #7
- 8004314:	3f6b851f 	svccc	0x006b851f
- 8004318:	3e800000 	cdpcc	0, 8, cr0, cr0, cr0, {0}
- 800431c:	3c23d70a 	stccc	7, cr13, [r3], #-40	; 0xffffffd8
- 8004320:	be99999a 			; <UNDEFINED> instruction: 0xbe99999a
- 8004324:	3e99999a 			; <UNDEFINED> instruction: 0x3e99999a
- 8004328:	200002b4 			; <UNDEFINED> instruction: 0x200002b4
+08004088 <_ZN16PositionControll7processEv>:
+ 8004088:	b538      	push	{r3, r4, r5, lr}
+ 800408a:	6885      	ldr	r5, [r0, #8]
+ 800408c:	ed2d 8b02 	vpush	{d8}
+ 8004090:	4604      	mov	r4, r0
+ 8004092:	4828      	ldr	r0, [pc, #160]	; (8004134 <_ZN16PositionControll7processEv+0xac>)
+ 8004094:	f7fe fb2c 	bl	80026f0 <_ZN13EncoderSensor8get_leftEv>
+ 8004098:	4285      	cmp	r5, r0
+ 800409a:	dd25      	ble.n	80040e8 <_ZN16PositionControll7processEv+0x60>
+ 800409c:	6861      	ldr	r1, [r4, #4]
+ 800409e:	f104 0014 	add.w	r0, r4, #20
+ 80040a2:	f7ff ffda 	bl	800405a <_ZN10IntegratorIfE7processEf>
+ 80040a6:	ed94 8a06 	vldr	s16, [r4, #24]
+ 80040aa:	4822      	ldr	r0, [pc, #136]	; (8004134 <_ZN16PositionControll7processEv+0xac>)
+ 80040ac:	68e5      	ldr	r5, [r4, #12]
+ 80040ae:	f7fe fb2b 	bl	8002708 <_ZN13EncoderSensor9get_rightEv>
+ 80040b2:	4285      	cmp	r5, r0
+ 80040b4:	dd2b      	ble.n	800410e <_ZN16PositionControll7processEv+0x86>
+ 80040b6:	6861      	ldr	r1, [r4, #4]
+ 80040b8:	f104 0034 	add.w	r0, r4, #52	; 0x34
+ 80040bc:	f7ff ffcd 	bl	800405a <_ZN10IntegratorIfE7processEf>
+ 80040c0:	edd4 7a0e 	vldr	s15, [r4, #56]	; 0x38
+ 80040c4:	481c      	ldr	r0, [pc, #112]	; (8004138 <_ZN16PositionControll7processEv+0xb0>)
+ 80040c6:	ee17 1a90 	vmov	r1, s15
+ 80040ca:	f7fe fc4b 	bl	8002964 <_ZN13MotorControll15set_right_speedEf>
+ 80040ce:	ee18 1a10 	vmov	r1, s16
+ 80040d2:	4819      	ldr	r0, [pc, #100]	; (8004138 <_ZN16PositionControll7processEv+0xb0>)
+ 80040d4:	f7fe fc44 	bl	8002960 <_ZN13MotorControll14set_left_speedEf>
+ 80040d8:	ecbd 8b02 	vpop	{d8}
+ 80040dc:	6921      	ldr	r1, [r4, #16]
+ 80040de:	4620      	mov	r0, r4
+ 80040e0:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
+ 80040e4:	f7ff bfac 	b.w	8004040 <_ZN16PositionControll7is_doneEi>
+ 80040e8:	4812      	ldr	r0, [pc, #72]	; (8004134 <_ZN16PositionControll7processEv+0xac>)
+ 80040ea:	68a5      	ldr	r5, [r4, #8]
+ 80040ec:	f7fe fb00 	bl	80026f0 <_ZN13EncoderSensor8get_leftEv>
+ 80040f0:	4285      	cmp	r5, r0
+ 80040f2:	da09      	bge.n	8004108 <_ZN16PositionControll7processEv+0x80>
+ 80040f4:	6861      	ldr	r1, [r4, #4]
+ 80040f6:	f104 0024 	add.w	r0, r4, #36	; 0x24
+ 80040fa:	f7ff ffae 	bl	800405a <_ZN10IntegratorIfE7processEf>
+ 80040fe:	ed94 8a0a 	vldr	s16, [r4, #40]	; 0x28
+ 8004102:	eeb1 8a48 	vneg.f32	s16, s16
+ 8004106:	e7d0      	b.n	80040aa <_ZN16PositionControll7processEv+0x22>
+ 8004108:	ed9f 8a0c 	vldr	s16, [pc, #48]	; 800413c <_ZN16PositionControll7processEv+0xb4>
+ 800410c:	e7cd      	b.n	80040aa <_ZN16PositionControll7processEv+0x22>
+ 800410e:	4809      	ldr	r0, [pc, #36]	; (8004134 <_ZN16PositionControll7processEv+0xac>)
+ 8004110:	68e5      	ldr	r5, [r4, #12]
+ 8004112:	f7fe faf9 	bl	8002708 <_ZN13EncoderSensor9get_rightEv>
+ 8004116:	4285      	cmp	r5, r0
+ 8004118:	da09      	bge.n	800412e <_ZN16PositionControll7processEv+0xa6>
+ 800411a:	6861      	ldr	r1, [r4, #4]
+ 800411c:	f104 0044 	add.w	r0, r4, #68	; 0x44
+ 8004120:	f7ff ff9b 	bl	800405a <_ZN10IntegratorIfE7processEf>
+ 8004124:	edd4 7a12 	vldr	s15, [r4, #72]	; 0x48
+ 8004128:	eef1 7a67 	vneg.f32	s15, s15
+ 800412c:	e7ca      	b.n	80040c4 <_ZN16PositionControll7processEv+0x3c>
+ 800412e:	eddf 7a03 	vldr	s15, [pc, #12]	; 800413c <_ZN16PositionControll7processEv+0xb4>
+ 8004132:	e7c7      	b.n	80040c4 <_ZN16PositionControll7processEv+0x3c>
+ 8004134:	20000240 	andcs	r0, r0, r0, asr #4
+ 8004138:	200003b8 			; <UNDEFINED> instruction: 0x200003b8
+ 800413c:	00000000 	andeq	r0, r0, r0
 
-0800432c <_ZTV5ArrayIiLj8EE>:
- 800432c:	00000000 	andeq	r0, r0, r0
- 8004330:	00000000 	andeq	r0, r0, r0
- 8004334:	08000493 	stmdaeq	r0, {r0, r1, r4, r7, sl}
- 8004338:	080004a3 	stmdaeq	r0, {r0, r1, r5, r7, sl}
+08004140 <_ZN16PositionControll4stopEv>:
+ 8004140:	b538      	push	{r3, r4, r5, lr}
+ 8004142:	ed2d 8b04 	vpush	{d8-d9}
+ 8004146:	ed9f 9a2a 	vldr	s18, [pc, #168]	; 80041f0 <_ZN16PositionControll4stopEv+0xb0>
+ 800414a:	4d2a      	ldr	r5, [pc, #168]	; (80041f4 <_ZN16PositionControll4stopEv+0xb4>)
+ 800414c:	4604      	mov	r4, r0
+ 800414e:	eef0 9a49 	vmov.f32	s19, s18
+ 8004152:	4628      	mov	r0, r5
+ 8004154:	f7fe fc08 	bl	8002968 <_ZN13MotorControll14get_speed_leftEv>
+ 8004158:	ee07 0a90 	vmov	s15, r0
+ 800415c:	eef5 7ac0 	vcmpe.f32	s15, #0.0
+ 8004160:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 8004164:	bf48      	it	mi
+ 8004166:	eef1 7a67 	vnegmi.f32	s15, s15
+ 800416a:	eef4 7ac9 	vcmpe.f32	s15, s18
+ 800416e:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 8004172:	dd20      	ble.n	80041b6 <_ZN16PositionControll4stopEv+0x76>
+ 8004174:	2100      	movs	r1, #0
+ 8004176:	f104 0044 	add.w	r0, r4, #68	; 0x44
+ 800417a:	f7ff ff6e 	bl	800405a <_ZN10IntegratorIfE7processEf>
+ 800417e:	edd4 8a12 	vldr	s17, [r4, #72]	; 0x48
+ 8004182:	2100      	movs	r1, #0
+ 8004184:	f104 0024 	add.w	r0, r4, #36	; 0x24
+ 8004188:	f7ff ff67 	bl	800405a <_ZN10IntegratorIfE7processEf>
+ 800418c:	ed94 8a0a 	vldr	s16, [r4, #40]	; 0x28
+ 8004190:	eef1 8a68 	vneg.f32	s17, s17
+ 8004194:	ee18 1a90 	vmov	r1, s17
+ 8004198:	4628      	mov	r0, r5
+ 800419a:	eeb1 8a48 	vneg.f32	s16, s16
+ 800419e:	f7fe fbe1 	bl	8002964 <_ZN13MotorControll15set_right_speedEf>
+ 80041a2:	ee18 1a10 	vmov	r1, s16
+ 80041a6:	4628      	mov	r0, r5
+ 80041a8:	f7fe fbda 	bl	8002960 <_ZN13MotorControll14set_left_speedEf>
+ 80041ac:	2104      	movs	r1, #4
+ 80041ae:	4812      	ldr	r0, [pc, #72]	; (80041f8 <_ZN16PositionControll4stopEv+0xb8>)
+ 80041b0:	f7fe fe90 	bl	8002ed4 <_ZN5Timer8delay_msEj>
+ 80041b4:	e7cd      	b.n	8004152 <_ZN16PositionControll4stopEv+0x12>
+ 80041b6:	4628      	mov	r0, r5
+ 80041b8:	f7fe fbd8 	bl	800296c <_ZN13MotorControll15get_speed_rightEv>
+ 80041bc:	ee07 0a90 	vmov	s15, r0
+ 80041c0:	eef5 7ac0 	vcmpe.f32	s15, #0.0
+ 80041c4:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 80041c8:	bf48      	it	mi
+ 80041ca:	eef1 7a67 	vnegmi.f32	s15, s15
+ 80041ce:	eef4 7ae9 	vcmpe.f32	s15, s19
+ 80041d2:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 80041d6:	dccd      	bgt.n	8004174 <_ZN16PositionControll4stopEv+0x34>
+ 80041d8:	2100      	movs	r1, #0
+ 80041da:	4806      	ldr	r0, [pc, #24]	; (80041f4 <_ZN16PositionControll4stopEv+0xb4>)
+ 80041dc:	f7fe fbc2 	bl	8002964 <_ZN13MotorControll15set_right_speedEf>
+ 80041e0:	ecbd 8b04 	vpop	{d8-d9}
+ 80041e4:	2100      	movs	r1, #0
+ 80041e6:	4803      	ldr	r0, [pc, #12]	; (80041f4 <_ZN16PositionControll4stopEv+0xb4>)
+ 80041e8:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
+ 80041ec:	f7fe bbb8 	b.w	8002960 <_ZN13MotorControll14set_left_speedEf>
+ 80041f0:	3c23d70a 	stccc	7, cr13, [r3], #-40	; 0xffffffd8
+ 80041f4:	200003b8 			; <UNDEFINED> instruction: 0x200003b8
+ 80041f8:	20000450 	andcs	r0, r0, r0, asr r4
 
-0800433c <_ZTV9SpeedRampIfE>:
- 800433c:	00000000 	andeq	r0, r0, r0
- 8004340:	00000000 	andeq	r0, r0, r0
- 8004344:	08000491 	stmdaeq	r0, {r0, r4, r7, sl}
- 8004348:	08000495 	stmdaeq	r0, {r0, r2, r4, r7, sl}
+080041fc <_ZN10BrickAvoidC1Ev>:
+ 80041fc:	b538      	push	{r3, r4, r5, lr}
+ 80041fe:	4604      	mov	r4, r0
+ 8004200:	4b06      	ldr	r3, [pc, #24]	; (800421c <_ZN10BrickAvoidC1Ev+0x20>)
+ 8004202:	f844 3b04 	str.w	r3, [r4], #4
+ 8004206:	4605      	mov	r5, r0
+ 8004208:	4620      	mov	r0, r4
+ 800420a:	f7ff fec1 	bl	8003f90 <_ZN16PositionControllC1Ev>
+ 800420e:	4620      	mov	r0, r4
+ 8004210:	4903      	ldr	r1, [pc, #12]	; (8004220 <_ZN10BrickAvoidC1Ev+0x24>)
+ 8004212:	f7ff fee5 	bl	8003fe0 <_ZN16PositionControll4initEf>
+ 8004216:	4628      	mov	r0, r5
+ 8004218:	bd38      	pop	{r3, r4, r5, pc}
+ 800421a:	bf00      	nop
+ 800421c:	08004b3c 	stmdaeq	r0, {r2, r3, r4, r5, r8, r9, fp, lr}
+ 8004220:	3f333333 	svccc	0x00333333
 
-0800434c <_ZTV5Robot>:
- 800434c:	00000000 	andeq	r0, r0, r0
- 8004350:	00000000 	andeq	r0, r0, r0
- 8004354:	08000829 	stmdaeq	r0, {r0, r3, r5, fp}
- 8004358:	08000869 	stmdaeq	r0, {r0, r3, r5, r6, fp}
+08004224 <_ZN10BrickAvoid12process_moveEll>:
+ 8004224:	b537      	push	{r0, r1, r2, r4, r5, lr}
+ 8004226:	2300      	movs	r3, #0
+ 8004228:	1d04      	adds	r4, r0, #4
+ 800422a:	9300      	str	r3, [sp, #0]
+ 800422c:	4620      	mov	r0, r4
+ 800422e:	2305      	movs	r3, #5
+ 8004230:	f7ff fe52 	bl	8003ed8 <_ZN16PositionControll12set_positionEllib>
+ 8004234:	4d09      	ldr	r5, [pc, #36]	; (800425c <_ZN10BrickAvoid12process_moveEll+0x38>)
+ 8004236:	2105      	movs	r1, #5
+ 8004238:	4620      	mov	r0, r4
+ 800423a:	f7ff ff01 	bl	8004040 <_ZN16PositionControll7is_doneEi>
+ 800423e:	b938      	cbnz	r0, 8004250 <_ZN10BrickAvoid12process_moveEll+0x2c>
+ 8004240:	4620      	mov	r0, r4
+ 8004242:	f7ff ff21 	bl	8004088 <_ZN16PositionControll7processEv>
+ 8004246:	2104      	movs	r1, #4
+ 8004248:	4628      	mov	r0, r5
+ 800424a:	f7fe fe43 	bl	8002ed4 <_ZN5Timer8delay_msEj>
+ 800424e:	e7f2      	b.n	8004236 <_ZN10BrickAvoid12process_moveEll+0x12>
+ 8004250:	4620      	mov	r0, r4
+ 8004252:	b003      	add	sp, #12
+ 8004254:	e8bd 4030 	ldmia.w	sp!, {r4, r5, lr}
+ 8004258:	f7ff bf72 	b.w	8004140 <_ZN16PositionControll4stopEv>
+ 800425c:	20000450 	andcs	r0, r0, r0, asr r4
 
-0800435c <_ZTV13I2C_Interface>:
- 800435c:	00000000 	andeq	r0, r0, r0
- 8004360:	00000000 	andeq	r0, r0, r0
- 8004364:	08000891 	stmdaeq	r0, {r0, r4, r7, fp}
- 8004368:	08000893 	stmdaeq	r0, {r0, r1, r4, r7, fp}
- 800436c:	0800087f 	stmdaeq	r0, {r0, r1, r2, r3, r4, r5, r6, fp}
- 8004370:	08000881 	stmdaeq	r0, {r0, r7, fp}
- 8004374:	08000883 	stmdaeq	r0, {r0, r1, r7, fp}
- 8004378:	08000889 	stmdaeq	r0, {r0, r3, r7, fp}
- 800437c:	0800088d 	stmdaeq	r0, {r0, r2, r3, r7, fp}
+08004260 <_ZN10BrickAvoidD1Ev>:
+ 8004260:	b510      	push	{r4, lr}
+ 8004262:	4b04      	ldr	r3, [pc, #16]	; (8004274 <_ZN10BrickAvoidD1Ev+0x14>)
+ 8004264:	4604      	mov	r4, r0
+ 8004266:	f840 3b04 	str.w	r3, [r0], #4
+ 800426a:	f7ff fe25 	bl	8003eb8 <_ZN16PositionControllD1Ev>
+ 800426e:	4620      	mov	r0, r4
+ 8004270:	bd10      	pop	{r4, pc}
+ 8004272:	bf00      	nop
+ 8004274:	08004b3c 	stmdaeq	r0, {r2, r3, r4, r5, r8, r9, fp, lr}
 
-08004380 <_ZTV10NetFcLayer>:
- 8004380:	00000000 	andeq	r0, r0, r0
- 8004384:	00000000 	andeq	r0, r0, r0
- 8004388:	08000949 	stmdaeq	r0, {r0, r3, r6, r8, fp}
- 800438c:	0800095d 	stmdaeq	r0, {r0, r2, r3, r4, r6, r8, fp}
- 8004390:	08000971 	stmdaeq	r0, {r0, r4, r5, r6, r8, fp}
+08004278 <_ZN10BrickAvoidD0Ev>:
+ 8004278:	b510      	push	{r4, lr}
+ 800427a:	4604      	mov	r4, r0
+ 800427c:	f7ff fff0 	bl	8004260 <_ZN10BrickAvoidD1Ev>
+ 8004280:	4620      	mov	r0, r4
+ 8004282:	2158      	movs	r1, #88	; 0x58
+ 8004284:	f7fd f90c 	bl	80014a0 <_ZdlPvj>
+ 8004288:	4620      	mov	r0, r4
+ 800428a:	bd10      	pop	{r4, pc}
 
-08004394 <_ZTV12NetReluLayer>:
- 8004394:	00000000 	andeq	r0, r0, r0
- 8004398:	00000000 	andeq	r0, r0, r0
- 800439c:	08000a5d 	stmdaeq	r0, {r0, r2, r3, r4, r6, r9, fp}
- 80043a0:	08000a71 	stmdaeq	r0, {r0, r4, r5, r6, r9, fp}
- 80043a4:	08000a39 	stmdaeq	r0, {r0, r3, r4, r5, r9, fp}
-
-080043a8 <_ZTV24NetDenseConvolutionLayer>:
- 80043a8:	00000000 	andeq	r0, r0, r0
- 80043ac:	00000000 	andeq	r0, r0, r0
- 80043b0:	08000f61 	stmdaeq	r0, {r0, r5, r6, r8, r9, sl, fp}
- 80043b4:	08000f75 	stmdaeq	r0, {r0, r2, r4, r5, r6, r8, r9, sl, fp}
- 80043b8:	08000f89 	stmdaeq	r0, {r0, r3, r7, r8, r9, sl, fp}
-
-080043bc <_ZTV18NetMaxPoolingLayer>:
- 80043bc:	00000000 	andeq	r0, r0, r0
- 80043c0:	00000000 	andeq	r0, r0, r0
- 80043c4:	08001039 	stmdaeq	r0, {r0, r3, r4, r5, ip}
- 80043c8:	0800104d 	stmdaeq	r0, {r0, r2, r3, r6, ip}
- 80043cc:	08001115 	stmdaeq	r0, {r0, r2, r4, r8, ip}
-
-080043d0 <_ZTV13NeuralNetwork>:
+0800428c <_ZN10BrickAvoid5avoidEi>:
+ 800428c:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+ 8004290:	ed2d 8b04 	vpush	{d8-d9}
+ 8004294:	b08e      	sub	sp, #56	; 0x38
+ 8004296:	f04f 537e 	mov.w	r3, #1065353216	; 0x3f800000
+ 800429a:	9300      	str	r3, [sp, #0]
+ 800429c:	2300      	movs	r3, #0
+ 800429e:	461a      	mov	r2, r3
+ 80042a0:	4605      	mov	r5, r0
+ 80042a2:	460c      	mov	r4, r1
+ 80042a4:	a803      	add	r0, sp, #12
+ 80042a6:	4619      	mov	r1, r3
+ 80042a8:	f7fd f986 	bl	80015b8 <_ZN3PIDC1Effff>
+ 80042ac:	4e44      	ldr	r6, [pc, #272]	; (80043c0 <_ZN10BrickAvoid5avoidEi+0x134>)
+ 80042ae:	4b45      	ldr	r3, [pc, #276]	; (80043c4 <_ZN10BrickAvoid5avoidEi+0x138>)
+ 80042b0:	9300      	str	r3, [sp, #0]
+ 80042b2:	2200      	movs	r2, #0
+ 80042b4:	4b44      	ldr	r3, [pc, #272]	; (80043c8 <_ZN10BrickAvoid5avoidEi+0x13c>)
+ 80042b6:	4945      	ldr	r1, [pc, #276]	; (80043cc <_ZN10BrickAvoid5avoidEi+0x140>)
+ 80042b8:	a803      	add	r0, sp, #12
+ 80042ba:	f7fd f965 	bl	8001588 <_ZN3PID4initEffff>
+ 80042be:	68f1      	ldr	r1, [r6, #12]
+ 80042c0:	a803      	add	r0, sp, #12
+ 80042c2:	f7fd f9c5 	bl	8001650 <_ZN3PID5resetEf>
+ 80042c6:	f06f 0215 	mvn.w	r2, #21
+ 80042ca:	4611      	mov	r1, r2
+ 80042cc:	4628      	mov	r0, r5
+ 80042ce:	f7ff ffa9 	bl	8004224 <_ZN10BrickAvoid12process_moveEll>
+ 80042d2:	2c01      	cmp	r4, #1
+ 80042d4:	d15e      	bne.n	8004394 <_ZN10BrickAvoid5avoidEi+0x108>
+ 80042d6:	2258      	movs	r2, #88	; 0x58
+ 80042d8:	2100      	movs	r1, #0
+ 80042da:	4628      	mov	r0, r5
+ 80042dc:	f7ff ffa2 	bl	8004224 <_ZN10BrickAvoid12process_moveEll>
+ 80042e0:	eddf 8a3b 	vldr	s17, [pc, #236]	; 80043d0 <_ZN10BrickAvoid5avoidEi+0x144>
+ 80042e4:	f8df 80d8 	ldr.w	r8, [pc, #216]	; 80043c0 <_ZN10BrickAvoid5avoidEi+0x134>
+ 80042e8:	eddf 9a3a 	vldr	s19, [pc, #232]	; 80043d4 <_ZN10BrickAvoid5avoidEi+0x148>
+ 80042ec:	4f3a      	ldr	r7, [pc, #232]	; (80043d8 <_ZN10BrickAvoid5avoidEi+0x14c>)
+ 80042ee:	4640      	mov	r0, r8
+ 80042f0:	f7fe fd52 	bl	8002d98 <_ZN14DistanceSensor5readyEv>
+ 80042f4:	2800      	cmp	r0, #0
+ 80042f6:	d0fa      	beq.n	80042ee <_ZN10BrickAvoid5avoidEi+0x62>
+ 80042f8:	2c01      	cmp	r4, #1
+ 80042fa:	d150      	bne.n	800439e <_ZN10BrickAvoid5avoidEi+0x112>
+ 80042fc:	edd6 7a03 	vldr	s15, [r6, #12]
+ 8004300:	ed9f 8a36 	vldr	s16, [pc, #216]	; 80043dc <_ZN10BrickAvoid5avoidEi+0x150>
+ 8004304:	ee38 8a67 	vsub.f32	s16, s16, s15
+ 8004308:	ee18 1a10 	vmov	r1, s16
+ 800430c:	a803      	add	r0, sp, #12
+ 800430e:	f7fd f9a7 	bl	8001660 <_ZN3PID7processEf>
+ 8004312:	ed9f 7a33 	vldr	s14, [pc, #204]	; 80043e0 <_ZN10BrickAvoid5avoidEi+0x154>
+ 8004316:	eef4 8ac7 	vcmpe.f32	s17, s14
+ 800431a:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 800431e:	bf4a      	itet	mi
+ 8004320:	ed9f 7a30 	vldrmi	s14, [pc, #192]	; 80043e4 <_ZN10BrickAvoid5avoidEi+0x158>
+ 8004324:	eef0 8a47 	vmovpl.f32	s17, s14
+ 8004328:	ee78 8a87 	vaddmi.f32	s17, s17, s14
+ 800432c:	ee07 0a90 	vmov	s15, r0
+ 8004330:	ed9f 7a2d 	vldr	s14, [pc, #180]	; 80043e8 <_ZN10BrickAvoid5avoidEi+0x15c>
+ 8004334:	eef4 7ac7 	vcmpe.f32	s15, s14
+ 8004338:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 800433c:	d438      	bmi.n	80043b0 <_ZN10BrickAvoid5avoidEi+0x124>
+ 800433e:	ed9f 7a2b 	vldr	s14, [pc, #172]	; 80043ec <_ZN10BrickAvoid5avoidEi+0x160>
+ 8004342:	eef4 7a47 	vcmp.f32	s15, s14
+ 8004346:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 800434a:	bfc8      	it	gt
+ 800434c:	eef0 7a47 	vmovgt.f32	s15, s14
+ 8004350:	ee38 9ae7 	vsub.f32	s18, s17, s15
+ 8004354:	ee78 7aa7 	vadd.f32	s15, s17, s15
+ 8004358:	4638      	mov	r0, r7
+ 800435a:	ee17 1a90 	vmov	r1, s15
+ 800435e:	f7fe fb01 	bl	8002964 <_ZN13MotorControll15set_right_speedEf>
+ 8004362:	ee19 1a10 	vmov	r1, s18
+ 8004366:	4638      	mov	r0, r7
+ 8004368:	f7fe fafa 	bl	8002960 <_ZN13MotorControll14set_left_speedEf>
+ 800436c:	4b20      	ldr	r3, [pc, #128]	; (80043f0 <_ZN10BrickAvoid5avoidEi+0x164>)
+ 800436e:	f893 30c0 	ldrb.w	r3, [r3, #192]	; 0xc0
+ 8004372:	2b00      	cmp	r3, #0
+ 8004374:	d0bb      	beq.n	80042ee <_ZN10BrickAvoid5avoidEi+0x62>
+ 8004376:	2c01      	cmp	r4, #1
+ 8004378:	d11d      	bne.n	80043b6 <_ZN10BrickAvoid5avoidEi+0x12a>
+ 800437a:	224f      	movs	r2, #79	; 0x4f
+ 800437c:	2100      	movs	r1, #0
+ 800437e:	4628      	mov	r0, r5
+ 8004380:	f7ff ff50 	bl	8004224 <_ZN10BrickAvoid12process_moveEll>
+ 8004384:	a803      	add	r0, sp, #12
+ 8004386:	f7fd f8f7 	bl	8001578 <_ZN3PIDD1Ev>
+ 800438a:	b00e      	add	sp, #56	; 0x38
+ 800438c:	ecbd 8b04 	vpop	{d8-d9}
+ 8004390:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+ 8004394:	1c62      	adds	r2, r4, #1
+ 8004396:	d1a3      	bne.n	80042e0 <_ZN10BrickAvoid5avoidEi+0x54>
+ 8004398:	2200      	movs	r2, #0
+ 800439a:	2158      	movs	r1, #88	; 0x58
+ 800439c:	e79d      	b.n	80042da <_ZN10BrickAvoid5avoidEi+0x4e>
+ 800439e:	1c63      	adds	r3, r4, #1
+ 80043a0:	bf02      	ittt	eq
+ 80043a2:	ed96 8a01 	vldreq	s16, [r6, #4]
+ 80043a6:	ee39 8ac8 	vsubeq.f32	s16, s19, s16
+ 80043aa:	eeb1 8a48 	vnegeq.f32	s16, s16
+ 80043ae:	e7ab      	b.n	8004308 <_ZN10BrickAvoid5avoidEi+0x7c>
+ 80043b0:	eef0 7a47 	vmov.f32	s15, s14
+ 80043b4:	e7cc      	b.n	8004350 <_ZN10BrickAvoid5avoidEi+0xc4>
+ 80043b6:	3401      	adds	r4, #1
+ 80043b8:	d1e4      	bne.n	8004384 <_ZN10BrickAvoid5avoidEi+0xf8>
+ 80043ba:	2200      	movs	r2, #0
+ 80043bc:	214f      	movs	r1, #79	; 0x4f
+ 80043be:	e7de      	b.n	800437e <_ZN10BrickAvoid5avoidEi+0xf2>
+ 80043c0:	20000158 	andcs	r0, r0, r8, asr r1
+ 80043c4:	41200000 			; <UNDEFINED> instruction: 0x41200000
+ 80043c8:	3e99999a 			; <UNDEFINED> instruction: 0x3e99999a
+ 80043cc:	3f19999a 	svccc	0x0019999a
  80043d0:	00000000 	andeq	r0, r0, r0
- 80043d4:	00000000 	andeq	r0, r0, r0
- 80043d8:	08001199 	stmdaeq	r0, {r0, r3, r4, r7, r8, ip}
- 80043dc:	080011bd 	stmdaeq	r0, {r0, r2, r3, r4, r5, r7, r8, ip}
- 80043e0:	08001171 	stmdaeq	r0, {r0, r4, r5, r6, r8, ip}
- 80043e4:	080012e3 	stmdaeq	r0, {r0, r1, r5, r6, r7, r9, ip}
+ 80043d4:	3f63d70a 	svccc	0x0063d70a
+ 80043d8:	200003b8 			; <UNDEFINED> instruction: 0x200003b8
+ 80043dc:	3f6b851f 	svccc	0x006b851f
+ 80043e0:	3e800000 	cdpcc	0, 8, cr0, cr0, cr0, {0}
+ 80043e4:	3c23d70a 	stccc	7, cr13, [r3], #-40	; 0xffffffd8
+ 80043e8:	be99999a 			; <UNDEFINED> instruction: 0xbe99999a
+ 80043ec:	3e99999a 			; <UNDEFINED> instruction: 0x3e99999a
+ 80043f0:	200002c0 	andcs	r0, r0, r0, asr #5
 
-080043e8 <_ZTV12NetworkLayer>:
- 80043e8:	00000000 	andeq	r0, r0, r0
- 80043ec:	00000000 	andeq	r0, r0, r0
- 80043f0:	0800139d 	stmdaeq	r0, {r0, r2, r3, r4, r7, r8, r9, ip}
- 80043f4:	080013a1 	stmdaeq	r0, {r0, r5, r7, r8, r9, ip}
- 80043f8:	0800139f 	stmdaeq	r0, {r0, r1, r2, r3, r4, r7, r8, r9, ip}
+080043f4 <_ZTV5ArrayIiLj8EE>:
+ 80043f4:	00000000 	andeq	r0, r0, r0
+ 80043f8:	00000000 	andeq	r0, r0, r0
+ 80043fc:	08000493 	stmdaeq	r0, {r0, r1, r4, r7, sl}
+ 8004400:	080004a3 	stmdaeq	r0, {r0, r1, r5, r7, sl}
 
-080043fc <_ZTV19NetConvolutionLayer>:
- 80043fc:	00000000 	andeq	r0, r0, r0
- 8004400:	00000000 	andeq	r0, r0, r0
- 8004404:	080013d1 	stmdaeq	r0, {r0, r4, r6, r7, r8, r9, ip}
- 8004408:	080013e5 	stmdaeq	r0, {r0, r2, r5, r6, r7, r8, r9, ip}
- 800440c:	080013f9 	stmdaeq	r0, {r0, r3, r4, r5, r6, r7, r8, r9, ip}
+08004404 <_ZTV9SpeedRampIfE>:
+ 8004404:	00000000 	andeq	r0, r0, r0
+ 8004408:	00000000 	andeq	r0, r0, r0
+ 800440c:	08000491 	stmdaeq	r0, {r0, r4, r7, sl}
+ 8004410:	08000495 	stmdaeq	r0, {r0, r2, r4, r7, sl}
 
-08004410 <_ZTV6Filter>:
- 8004410:	00000000 	andeq	r0, r0, r0
+08004414 <_ZTV5Robot>:
  8004414:	00000000 	andeq	r0, r0, r0
- 8004418:	080014bb 	stmdaeq	r0, {r0, r1, r3, r4, r5, r7, sl, ip}
- 800441c:	080014bd 	stmdaeq	r0, {r0, r2, r3, r4, r5, r7, sl, ip}
+ 8004418:	00000000 	andeq	r0, r0, r0
+ 800441c:	08000829 	stmdaeq	r0, {r0, r3, r5, fp}
+ 8004420:	08000869 	stmdaeq	r0, {r0, r3, r5, r6, fp}
 
-08004420 <_ZTV3PID>:
- 8004420:	00000000 	andeq	r0, r0, r0
+08004424 <_ZTV13I2C_Interface>:
  8004424:	00000000 	andeq	r0, r0, r0
- 8004428:	08001579 	stmdaeq	r0, {r0, r3, r4, r5, r6, r8, sl, ip}
- 800442c:	0800157b 	stmdaeq	r0, {r0, r1, r3, r4, r5, r6, r8, sl, ip}
+ 8004428:	00000000 	andeq	r0, r0, r0
+ 800442c:	08000891 	stmdaeq	r0, {r0, r4, r7, fp}
+ 8004430:	08000893 	stmdaeq	r0, {r0, r1, r4, r7, fp}
+ 8004434:	0800087f 	stmdaeq	r0, {r0, r1, r2, r3, r4, r5, r6, fp}
+ 8004438:	08000881 	stmdaeq	r0, {r0, r7, fp}
+ 800443c:	08000883 	stmdaeq	r0, {r0, r1, r7, fp}
+ 8004440:	08000889 	stmdaeq	r0, {r0, r3, r7, fp}
+ 8004444:	0800088d 	stmdaeq	r0, {r0, r2, r3, r7, fp}
 
-08004430 <_ZTV14BrickDetection>:
- 8004430:	00000000 	andeq	r0, r0, r0
- 8004434:	00000000 	andeq	r0, r0, r0
- 8004438:	080016a9 	stmdaeq	r0, {r0, r3, r5, r7, r9, sl, ip}
- 800443c:	080016ab 	stmdaeq	r0, {r0, r1, r3, r5, r7, r9, sl, ip}
+08004448 <_ZTV10NetFcLayer>:
+ 8004448:	00000000 	andeq	r0, r0, r0
+ 800444c:	00000000 	andeq	r0, r0, r0
+ 8004450:	08000949 	stmdaeq	r0, {r0, r3, r6, r8, fp}
+ 8004454:	0800095d 	stmdaeq	r0, {r0, r2, r3, r4, r6, r8, fp}
+ 8004458:	08000971 	stmdaeq	r0, {r0, r4, r5, r6, r8, fp}
 
-08004440 <_ZTV8Terminal>:
- 8004440:	00000000 	andeq	r0, r0, r0
- 8004444:	00000000 	andeq	r0, r0, r0
- 8004448:	08001759 	stmdaeq	r0, {r0, r3, r4, r6, r8, r9, sl, ip}
- 800444c:	0800176d 	stmdaeq	r0, {r0, r2, r3, r5, r6, r8, r9, sl, ip}
-
-08004450 <_ZTV5Motor>:
- 8004450:	00000000 	andeq	r0, r0, r0
- 8004454:	00000000 	andeq	r0, r0, r0
- 8004458:	080018dd 	stmdaeq	r0, {r0, r2, r3, r4, r6, r7, fp, ip}
- 800445c:	080018df 	stmdaeq	r0, {r0, r1, r2, r3, r4, r6, r7, fp, ip}
-
-08004460 <_ZTV3Key>:
+0800445c <_ZTV12NetReluLayer>:
+ 800445c:	00000000 	andeq	r0, r0, r0
  8004460:	00000000 	andeq	r0, r0, r0
- 8004464:	00000000 	andeq	r0, r0, r0
- 8004468:	08001ba1 	stmdaeq	r0, {r0, r5, r7, r8, r9, fp, ip}
- 800446c:	08001ba3 	stmdaeq	r0, {r0, r1, r5, r7, r8, r9, fp, ip}
- 8004470:	08001bb1 	stmdaeq	r0, {r0, r4, r5, r7, r8, r9, fp, ip}
+ 8004464:	08000a5d 	stmdaeq	r0, {r0, r2, r3, r4, r6, r9, fp}
+ 8004468:	08000a71 	stmdaeq	r0, {r0, r4, r5, r6, r9, fp}
+ 800446c:	08000a39 	stmdaeq	r0, {r0, r3, r4, r5, r9, fp}
 
-08004474 <CSWTCH.10>:
- 8004474:	01040302 	tsteq	r4, r2, lsl #6
- 8004478:	0c040302 	stceq	3, cr0, [r4], {2}
- 800447c:	00000601 	andeq	r0, r0, r1, lsl #12
+08004470 <_ZTV24NetDenseConvolutionLayer>:
+ 8004470:	00000000 	andeq	r0, r0, r0
+ 8004474:	00000000 	andeq	r0, r0, r0
+ 8004478:	08000f61 	stmdaeq	r0, {r0, r5, r6, r8, r9, sl, fp}
+ 800447c:	08000f75 	stmdaeq	r0, {r0, r2, r4, r5, r6, r8, r9, sl, fp}
+ 8004480:	08000f89 	stmdaeq	r0, {r0, r3, r7, r8, r9, sl, fp}
 
-08004480 <CSWTCH.9>:
- 8004480:	50000000 	andpl	r0, r0, r0
- 8004484:	50000000 	andpl	r0, r0, r0
- 8004488:	50000000 	andpl	r0, r0, r0
- 800448c:	50000100 	andpl	r0, r0, r0, lsl #2
- 8004490:	50000100 	andpl	r0, r0, r0, lsl #2
- 8004494:	50000100 	andpl	r0, r0, r0, lsl #2
- 8004498:	50000100 	andpl	r0, r0, r0, lsl #2
- 800449c:	50000400 	andpl	r0, r0, r0, lsl #8
- 80044a0:	50000400 	andpl	r0, r0, r0, lsl #8
- 80044a4:	50000000 	andpl	r0, r0, r0
+08004484 <_ZTV18NetMaxPoolingLayer>:
+ 8004484:	00000000 	andeq	r0, r0, r0
+ 8004488:	00000000 	andeq	r0, r0, r0
+ 800448c:	08001039 	stmdaeq	r0, {r0, r3, r4, r5, ip}
+ 8004490:	0800104d 	stmdaeq	r0, {r0, r2, r3, r6, ip}
+ 8004494:	08001115 	stmdaeq	r0, {r0, r2, r4, r8, ip}
 
-080044a8 <_ZTV3ADC>:
- 80044a8:	00000000 	andeq	r0, r0, r0
- 80044ac:	00000000 	andeq	r0, r0, r0
- 80044b0:	08001cd9 	stmdaeq	r0, {r0, r3, r4, r6, r7, sl, fp, ip}
- 80044b4:	08001cdb 	stmdaeq	r0, {r0, r1, r3, r4, r6, r7, sl, fp, ip}
+08004498 <_ZTV13NeuralNetwork>:
+ 8004498:	00000000 	andeq	r0, r0, r0
+ 800449c:	00000000 	andeq	r0, r0, r0
+ 80044a0:	08001199 	stmdaeq	r0, {r0, r3, r4, r7, r8, ip}
+ 80044a4:	080011bd 	stmdaeq	r0, {r0, r2, r3, r4, r5, r7, r8, ip}
+ 80044a8:	08001171 	stmdaeq	r0, {r0, r4, r5, r6, r8, ip}
+ 80044ac:	080012e3 	stmdaeq	r0, {r0, r1, r5, r6, r7, r9, ip}
 
-080044b8 <_ZTV10LineSensor>:
- 80044b8:	00000000 	andeq	r0, r0, r0
- 80044bc:	00000000 	andeq	r0, r0, r0
- 80044c0:	08001ec5 	stmdaeq	r0, {r0, r2, r6, r7, r9, sl, fp, ip}
- 80044c4:	08001ec7 	stmdaeq	r0, {r0, r1, r2, r6, r7, r9, sl, fp, ip}
- 80044c8:	080021ed 	stmdaeq	r0, {r0, r2, r3, r5, r6, r7, r8, sp}
+080044b0 <_ZTV12NetworkLayer>:
+ 80044b0:	00000000 	andeq	r0, r0, r0
+ 80044b4:	00000000 	andeq	r0, r0, r0
+ 80044b8:	0800139d 	stmdaeq	r0, {r0, r2, r3, r4, r7, r8, r9, ip}
+ 80044bc:	080013a1 	stmdaeq	r0, {r0, r5, r7, r8, r9, ip}
+ 80044c0:	0800139f 	stmdaeq	r0, {r0, r1, r2, r3, r4, r7, r8, r9, ip}
 
-080044cc <_ZTV3IMU>:
- 80044cc:	00000000 	andeq	r0, r0, r0
- 80044d0:	00000000 	andeq	r0, r0, r0
- 80044d4:	080022fd 	stmdaeq	r0, {r0, r2, r3, r4, r5, r6, r7, r9, sp}
- 80044d8:	080022ff 	stmdaeq	r0, {r0, r1, r2, r3, r4, r5, r6, r7, r9, sp}
- 80044dc:	08002495 	stmdaeq	r0, {r0, r2, r4, r7, sl, sp}
+080044c4 <_ZTV19NetConvolutionLayer>:
+ 80044c4:	00000000 	andeq	r0, r0, r0
+ 80044c8:	00000000 	andeq	r0, r0, r0
+ 80044cc:	080013d1 	stmdaeq	r0, {r0, r4, r6, r7, r8, r9, ip}
+ 80044d0:	080013e5 	stmdaeq	r0, {r0, r2, r5, r6, r7, r8, r9, ip}
+ 80044d4:	080013f9 	stmdaeq	r0, {r0, r3, r4, r5, r6, r7, r8, r9, ip}
 
-080044e0 <_ZTV13EncoderSensor>:
- 80044e0:	00000000 	andeq	r0, r0, r0
- 80044e4:	00000000 	andeq	r0, r0, r0
- 80044e8:	080025a9 	stmdaeq	r0, {r0, r3, r5, r7, r8, sl, sp}
- 80044ec:	080025ab 	stmdaeq	r0, {r0, r1, r3, r5, r7, r8, sl, sp}
+080044d8 <_ZTV6Filter>:
+ 80044d8:	00000000 	andeq	r0, r0, r0
+ 80044dc:	00000000 	andeq	r0, r0, r0
+ 80044e0:	080014bb 	stmdaeq	r0, {r0, r1, r3, r4, r5, r7, sl, ip}
+ 80044e4:	080014bd 	stmdaeq	r0, {r0, r2, r3, r4, r5, r7, sl, ip}
 
-080044f0 <_ZTV13MotorControll>:
- 80044f0:	00000000 	andeq	r0, r0, r0
- 80044f4:	00000000 	andeq	r0, r0, r0
- 80044f8:	08002971 	stmdaeq	r0, {r0, r4, r5, r6, r8, fp, sp}
- 80044fc:	08002999 	stmdaeq	r0, {r0, r3, r4, r7, r8, fp, sp}
- 8004500:	080027c9 	stmdaeq	r0, {r0, r3, r6, r7, r8, r9, sl, sp}
+080044e8 <_ZTV3PID>:
+ 80044e8:	00000000 	andeq	r0, r0, r0
+ 80044ec:	00000000 	andeq	r0, r0, r0
+ 80044f0:	08001579 	stmdaeq	r0, {r0, r3, r4, r5, r6, r8, sl, ip}
+ 80044f4:	0800157b 	stmdaeq	r0, {r0, r1, r3, r4, r5, r6, r8, sl, ip}
 
-08004504 <_ZTV5Usart>:
- 8004504:	00000000 	andeq	r0, r0, r0
+080044f8 <_ZTV14BrickDetection>:
+ 80044f8:	00000000 	andeq	r0, r0, r0
+ 80044fc:	00000000 	andeq	r0, r0, r0
+ 8004500:	080016a9 	stmdaeq	r0, {r0, r3, r5, r7, r9, sl, ip}
+ 8004504:	080016ab 	stmdaeq	r0, {r0, r1, r3, r5, r7, r9, sl, ip}
+
+08004508 <_ZTV8Terminal>:
  8004508:	00000000 	andeq	r0, r0, r0
- 800450c:	080029ad 	stmdaeq	r0, {r0, r2, r3, r5, r7, r8, fp, sp}
- 8004510:	080029af 	stmdaeq	r0, {r0, r1, r2, r3, r5, r7, r8, fp, sp}
+ 800450c:	00000000 	andeq	r0, r0, r0
+ 8004510:	08001759 	stmdaeq	r0, {r0, r3, r4, r6, r8, r9, sl, ip}
+ 8004514:	0800176d 	stmdaeq	r0, {r0, r2, r3, r5, r6, r8, r9, sl, ip}
 
-08004514 <_ZTV14DistanceSensor>:
- 8004514:	00000000 	andeq	r0, r0, r0
+08004518 <_ZTV5Motor>:
  8004518:	00000000 	andeq	r0, r0, r0
- 800451c:	08002d29 	stmdaeq	r0, {r0, r3, r5, r8, sl, fp, sp}
- 8004520:	08002d51 	stmdaeq	r0, {r0, r4, r6, r8, sl, fp, sp}
- 8004524:	08002a8d 	stmdaeq	r0, {r0, r2, r3, r7, r9, fp, sp}
+ 800451c:	00000000 	andeq	r0, r0, r0
+ 8004520:	080018dd 	stmdaeq	r0, {r0, r2, r3, r4, r6, r7, fp, ip}
+ 8004524:	080018df 	stmdaeq	r0, {r0, r1, r2, r3, r4, r6, r7, fp, ip}
 
-08004528 <_ZTV4TI2CILh1ELh7ELh6ELh10ELh1EE>:
+08004528 <_ZTV3Key>:
  8004528:	00000000 	andeq	r0, r0, r0
  800452c:	00000000 	andeq	r0, r0, r0
- 8004530:	08002f05 	stmdaeq	r0, {r0, r2, r8, r9, sl, fp, sp}
- 8004534:	08002f19 	stmdaeq	r0, {r0, r3, r4, r8, r9, sl, fp, sp}
- 8004538:	08003453 	stmdaeq	r0, {r0, r1, r4, r6, sl, ip, sp}
- 800453c:	0800340d 	stmdaeq	r0, {r0, r2, r3, sl, ip, sp}
- 8004540:	08003255 	stmdaeq	r0, {r0, r2, r4, r6, r9, ip, sp}
- 8004544:	08003543 	stmdaeq	r0, {r0, r1, r6, r8, sl, ip, sp}
- 8004548:	08003499 	stmdaeq	r0, {r0, r3, r4, r7, sl, ip, sp}
- 800454c:	74736509 	ldrbtvc	r6, [r3], #-1289	; 0xfffffaf7
- 8004550:	756d695f 	strbvc	r6, [sp, #-2399]!	; 0xfffff6a1
- 8004554:	6e65735f 	mcrvs	3, 3, r7, cr5, cr15, {2}
- 8004558:	0a726f73 	beq	9ca032c <_sidata+0x1c9b8d0>
- 800455c:	203a2000 	eorscs	r2, sl, r0
- 8004560:	65740a00 	ldrbvs	r0, [r4, #-2560]!	; 0xfffff600
- 8004564:	645f7473 	ldrbvs	r7, [pc], #-1139	; 800456c <_ZTV4TI2CILh1ELh7ELh6ELh10ELh1EE+0x44>
- 8004568:	61747369 	cmnvs	r4, r9, ror #6
- 800456c:	5f65636e 	svcpl	0x0065636e
- 8004570:	736e6573 	cmnvc	lr, #482344960	; 0x1cc00000
- 8004574:	000a726f 	andeq	r7, sl, pc, ror #4
- 8004578:	230a0a0a 	movwcs	r0, #43530	; 0xaa0a
- 800457c:	23232323 			; <UNDEFINED> instruction: 0x23232323
- 8004580:	000a0a0a 	andeq	r0, sl, sl, lsl #20
- 8004584:	6d726574 	cfldr64vs	mvdx6, [r2, #-464]!	; 0xfffffe30
- 8004588:	6c616e69 	stclvs	14, cr6, [r1], #-420	; 0xfffffe5c
- 800458c:	696e6920 	stmdbvs	lr!, {r5, r8, fp, sp, lr}^
- 8004590:	6f642074 	svcvs	0x00642074
- 8004594:	000a656e 	andeq	r6, sl, lr, ror #10
- 8004598:	206d656d 	rsbcs	r6, sp, sp, ror #10
- 800459c:	74696e69 	strbtvc	r6, [r9], #-3689	; 0xfffff197
- 80045a0:	6e6f6420 	cdpvs	4, 6, cr6, cr15, cr0, {1}
- 80045a4:	68202c65 	stmdavs	r0!, {r0, r2, r5, r6, sl, fp, sp}
- 80045a8:	20706165 	rsbscs	r6, r0, r5, ror #2
- 80045ac:	72617473 	rsbvc	r7, r1, #1929379840	; 0x73000000
- 80045b0:	74612074 	strbtvc	r2, [r1], #-116	; 0xffffff8c
- 80045b4:	69740020 	ldmdbvs	r4!, {r5}^
- 80045b8:	2072656d 	rsbscs	r6, r2, sp, ror #10
- 80045bc:	74696e69 	strbtvc	r6, [r9], #-3689	; 0xfffff197
- 80045c0:	6e6f6420 	cdpvs	4, 6, cr6, cr15, cr0, {1}
- 80045c4:	64000a65 	strvs	r0, [r0], #-2661	; 0xfffff59b
- 80045c8:	79616c65 	stmdbvc	r1!, {r0, r2, r5, r6, sl, fp, sp, lr}^
- 80045cc:	30303220 	eorscc	r3, r0, r0, lsr #4
- 80045d0:	20736d20 	rsbscs	r6, r3, r0, lsr #26
- 80045d4:	63326900 	teqvs	r2, #0, 18
- 80045d8:	696e6920 	stmdbvs	lr!, {r5, r8, fp, sp, lr}^
- 80045dc:	6f642074 	svcvs	0x00642074
- 80045e0:	000a656e 	andeq	r6, sl, lr, ror #10
- 80045e4:	20756d69 	rsbscs	r6, r5, r9, ror #26
- 80045e8:	74696e69 	strbtvc	r6, [r9], #-3689	; 0xfffff197
- 80045ec:	6e6f6420 	cdpvs	4, 6, cr6, cr15, cr0, {1}
- 80045f0:	69772065 	ldmdbvs	r7!, {r0, r2, r5, r6, sp}^
- 80045f4:	00206874 	eoreq	r6, r0, r4, ror r8
- 80045f8:	20636461 	rsbcs	r6, r3, r1, ror #8
- 80045fc:	74696e69 	strbtvc	r6, [r9], #-3689	; 0xfffff197
- 8004600:	6e6f6420 	cdpvs	4, 6, cr6, cr15, cr0, {1}
- 8004604:	6c000a65 			; <UNDEFINED> instruction: 0x6c000a65
- 8004608:	20656e69 	rsbcs	r6, r5, r9, ror #28
- 800460c:	736e6573 	cmnvc	lr, #482344960	; 0x1cc00000
- 8004610:	6920726f 	stmdbvs	r0!, {r0, r1, r2, r3, r5, r6, r9, ip, sp, lr}
- 8004614:	2074696e 	rsbscs	r6, r4, lr, ror #18
- 8004618:	656e6f64 	strbvs	r6, [lr, #-3940]!	; 0xfffff09c
- 800461c:	6964000a 	stmdbvs	r4!, {r1, r3}^
- 8004620:	6e617473 	mcrvs	4, 3, r7, cr1, cr3, {3}
- 8004624:	73206563 			; <UNDEFINED> instruction: 0x73206563
- 8004628:	6f736e65 	svcvs	0x00736e65
- 800462c:	6e692072 	mcrvs	0, 3, r2, cr9, cr2, {3}
- 8004630:	64207469 	strtvs	r7, [r0], #-1129	; 0xfffffb97
- 8004634:	0a656e6f 	beq	995fff8 <_sidata+0x195b59c>
- 8004638:	636e6500 	cmnvs	lr, #0, 10
- 800463c:	7265646f 	rsbvc	r6, r5, #1862270976	; 0x6f000000
- 8004640:	6e657320 	cdpvs	3, 6, cr7, cr5, cr0, {1}
- 8004644:	20726f73 	rsbscs	r6, r2, r3, ror pc
- 8004648:	74696e69 	strbtvc	r6, [r9], #-3689	; 0xfffff197
- 800464c:	6e6f6420 	cdpvs	4, 6, cr6, cr15, cr0, {1}
- 8004650:	6d000a65 	vstrvs	s0, [r0, #-404]	; 0xfffffe6c
- 8004654:	726f746f 	rsbvc	r7, pc, #1862270976	; 0x6f000000
- 8004658:	6e6f6320 	cdpvs	3, 6, cr6, cr15, cr0, {1}
- 800465c:	6c6f7274 	sfmvs	f7, 2, [pc], #-464	; 8004494 <CSWTCH.9+0x14>
- 8004660:	6e69206c 	cdpvs	0, 6, cr2, cr9, cr12, {3}
- 8004664:	64207469 	strtvs	r7, [r0], #-1129	; 0xfffffb97
- 8004668:	0a656e6f 	beq	996002c <_sidata+0x195b5d0>
- 800466c:	79656b00 	stmdbvc	r5!, {r8, r9, fp, sp, lr}^
- 8004670:	696e6920 	stmdbvs	lr!, {r5, r8, fp, sp, lr}^
- 8004674:	6f642074 	svcvs	0x00642074
- 8004678:	000a656e 	andeq	r6, sl, lr, ror #10
- 800467c:	74737973 	ldrbtvc	r7, [r3], #-2419	; 0xfffff68d
- 8004680:	69206d65 	stmdbvs	r0!, {r0, r2, r5, r6, r8, sl, fp, sp, lr}
- 8004684:	2074696e 	rsbscs	r6, r4, lr, ror #18
- 8004688:	656e6f64 	strbvs	r6, [lr, #-3940]!	; 0xfffff09c
- 800468c:	7274000a 	rsbsvc	r0, r4, #10
- 8004690:	66006575 			; <UNDEFINED> instruction: 0x66006575
- 8004694:	65736c61 	ldrbvs	r6, [r3, #-3169]!	; 0xfffff39f
- 8004698:	00000000 	andeq	r0, r0, r0
+ 8004530:	08001ba1 	stmdaeq	r0, {r0, r5, r7, r8, r9, fp, ip}
+ 8004534:	08001ba3 	stmdaeq	r0, {r0, r1, r5, r7, r8, r9, fp, ip}
+ 8004538:	08001bb1 	stmdaeq	r0, {r0, r4, r5, r7, r8, r9, fp, ip}
 
-0800469c <_ZTV7Drivers>:
- 800469c:	00000000 	andeq	r0, r0, r0
- 80046a0:	00000000 	andeq	r0, r0, r0
- 80046a4:	08002ef5 	stmdaeq	r0, {r0, r2, r4, r5, r6, r7, r9, sl, fp, sp}
- 80046a8:	08002ef7 	stmdaeq	r0, {r0, r1, r2, r4, r5, r6, r7, r9, sl, fp, sp}
+0800453c <CSWTCH.10>:
+ 800453c:	01040302 	tsteq	r4, r2, lsl #6
+ 8004540:	0c040302 	stceq	3, cr0, [r4], {2}
+ 8004544:	00000601 	andeq	r0, r0, r1, lsl #12
 
-080046ac <_ZTV10LineSearch>:
- 80046ac:	00000000 	andeq	r0, r0, r0
- 80046b0:	00000000 	andeq	r0, r0, r0
- 80046b4:	080038c1 	stmdaeq	r0, {r0, r6, r7, fp, ip, sp}
- 80046b8:	080038d9 	stmdaeq	r0, {r0, r3, r4, r6, r7, fp, ip, sp}
+08004548 <CSWTCH.9>:
+ 8004548:	50000000 	andpl	r0, r0, r0
+ 800454c:	50000000 	andpl	r0, r0, r0
+ 8004550:	50000000 	andpl	r0, r0, r0
+ 8004554:	50000100 	andpl	r0, r0, r0, lsl #2
+ 8004558:	50000100 	andpl	r0, r0, r0, lsl #2
+ 800455c:	50000100 	andpl	r0, r0, r0, lsl #2
+ 8004560:	50000100 	andpl	r0, r0, r0, lsl #2
+ 8004564:	50000400 	andpl	r0, r0, r0, lsl #8
+ 8004568:	50000400 	andpl	r0, r0, r0, lsl #8
+ 800456c:	50000000 	andpl	r0, r0, r0
 
-080046bc <_ZTV13LinePredictor>:
- 80046bc:	00000000 	andeq	r0, r0, r0
- 80046c0:	00000000 	andeq	r0, r0, r0
- 80046c4:	080038ed 	stmdaeq	r0, {r0, r2, r3, r5, r6, r7, fp, ip, sp}
- 80046c8:	080038ef 	stmdaeq	r0, {r0, r1, r2, r3, r5, r6, r7, fp, ip, sp}
+08004570 <_ZTV3ADC>:
+ 8004570:	00000000 	andeq	r0, r0, r0
+ 8004574:	00000000 	andeq	r0, r0, r0
+ 8004578:	08001cd9 	stmdaeq	r0, {r0, r3, r4, r6, r7, sl, fp, ip}
+ 800457c:	08001cdb 	stmdaeq	r0, {r0, r1, r3, r4, r6, r7, sl, fp, ip}
 
-080046cc <_ZL12layer_0_bias>:
- 80046cc:	d9f67ff4 	ldmible	r6!, {r2, r4, r5, r6, r7, r8, r9, sl, fp, ip, sp, lr}^
+08004580 <_ZTV10LineSensor>:
+ 8004580:	00000000 	andeq	r0, r0, r0
+ 8004584:	00000000 	andeq	r0, r0, r0
+ 8004588:	08001ec5 	stmdaeq	r0, {r0, r2, r6, r7, r9, sl, fp, ip}
+ 800458c:	08001ec7 	stmdaeq	r0, {r0, r1, r2, r6, r7, r9, sl, fp, ip}
+ 8004590:	080021ed 	stmdaeq	r0, {r0, r2, r3, r5, r6, r7, r8, sp}
 
-080046d0 <_ZL12layer_3_bias>:
- 80046d0:	7fd94800 	svcvc	0x00d94800
+08004594 <_ZTV3IMU>:
+ 8004594:	00000000 	andeq	r0, r0, r0
+ 8004598:	00000000 	andeq	r0, r0, r0
+ 800459c:	080022fd 	stmdaeq	r0, {r0, r2, r3, r4, r5, r6, r7, r9, sp}
+ 80045a0:	080022ff 	stmdaeq	r0, {r0, r1, r2, r3, r4, r5, r6, r7, r9, sp}
+ 80045a4:	08002495 	stmdaeq	r0, {r0, r2, r4, r7, sl, sp}
 
-080046d4 <_ZL12layer_5_bias>:
- 80046d4:	3c7e4e7f 	ldclcc	14, cr4, [lr], #-508	; 0xfffffe04
+080045a8 <_ZTV13EncoderSensor>:
+ 80045a8:	00000000 	andeq	r0, r0, r0
+ 80045ac:	00000000 	andeq	r0, r0, r0
+ 80045b0:	080025a9 	stmdaeq	r0, {r0, r3, r5, r7, r8, sl, sp}
+ 80045b4:	080025ab 	stmdaeq	r0, {r0, r1, r3, r5, r7, r8, sl, sp}
 
-080046d8 <_ZL12layer_8_bias>:
- 80046d8:	22117f58 	andscs	r7, r1, #88, 30	; 0x160
- 80046dc:	467f2730 			; <UNDEFINED> instruction: 0x467f2730
+080045b8 <_ZTV13MotorControll>:
+ 80045b8:	00000000 	andeq	r0, r0, r0
+ 80045bc:	00000000 	andeq	r0, r0, r0
+ 80045c0:	08002971 	stmdaeq	r0, {r0, r4, r5, r6, r8, fp, sp}
+ 80045c4:	08002999 	stmdaeq	r0, {r0, r3, r4, r7, r8, fp, sp}
+ 80045c8:	080027c9 	stmdaeq	r0, {r0, r3, r6, r7, r8, r9, sl, sp}
 
-080046dd <_ZL15layer_0_weights>:
- 80046dd:	26467f27 	strbcs	r7, [r6], -r7, lsr #30
- 80046e1:	ebf80121 	bl	7e04b6d <__text_size__+0x7e0029d>
- 80046e5:	7dc8b4e7 	cfstrdvc	mvd11, [r8, #924]	; 0x39c
- 80046e9:	1d17f2ed 	lfmne	f7, 1, [r7, #-948]	; 0xfffffc4c
- 80046ed:	de41ea04 	vmlale.f32	s29, s2, s8
- 80046f1:	020010e1 	andeq	r1, r0, #225	; 0xe1
- 80046f5:	ad0b10ed 	stcge	0, cr1, [fp, #-948]	; 0xfffffc4c
- 80046f9:	0ef25c55 	mrceq	12, 7, r5, cr2, cr5, {2}
- 80046fd:	d6ef02e5 	strbtle	r0, [pc], r5, ror #5
+080045cc <_ZTV5Usart>:
+ 80045cc:	00000000 	andeq	r0, r0, r0
+ 80045d0:	00000000 	andeq	r0, r0, r0
+ 80045d4:	080029ad 	stmdaeq	r0, {r0, r2, r3, r5, r7, r8, fp, sp}
+ 80045d8:	080029af 	stmdaeq	r0, {r0, r1, r2, r3, r5, r7, r8, fp, sp}
 
-08004701 <_ZL15layer_3_weights>:
- 8004701:	f7fcfafb 			; <UNDEFINED> instruction: 0xf7fcfafb
- 8004705:	0200f700 	andeq	pc, r0, #0, 14
- 8004709:	00000000 	andeq	r0, r0, r0
- 800470d:	00000000 	andeq	r0, r0, r0
- 8004711:	feff02ef 	cdp2	2, 15, cr0, cr15, cr15, {7}
- 8004715:	060dfe0f 	streq	pc, [sp], -pc, lsl #28
- 8004719:	0cfaf808 	ldcleq	8, cr15, [sl], #32
- 800471d:	f4edfcf9 	vld1.<illegal width 64>	{d31[]-d32[]}, [sp :64], r9
- 8004721:	0ffa01f1 	svceq	0x00fa01f1
- 8004725:	f711d00b 			; <UNDEFINED> instruction: 0xf711d00b
- 8004729:	09170105 	ldmdbeq	r7, {r0, r2, r8}
- 800472d:	263e97f1 			; <UNDEFINED> instruction: 0x263e97f1
- 8004731:	1812e009 	ldmdane	r2, {r0, r3, sp, lr, pc}
- 8004735:	0a36ff1a 	beq	8dc43a5 <_sidata+0xdbf949>
- 8004739:	15f820ee 	ldrbne	r2, [r8, #238]!	; 0xee
- 800473d:	b70c15e4 	strlt	r1, [ip, -r4, ror #11]
- 8004741:	f40132b6 	vst1.32	{d3-d6}, [r1 :256], r6
- 8004745:	fe160c0a 	cdp2	12, 1, cr0, cr6, cr10, {0}
- 8004749:	0400c518 	streq	ip, [r0], #-1304	; 0xfffffae8
- 800474d:	0a0023fe 	beq	800d74d <_sidata+0x8cf1>
- 8004751:	78d52dfc 	ldmvc	r5, {r2, r3, r4, r5, r6, r7, r8, sl, fp, sp}^
- 8004755:	00000510 	andeq	r0, r0, r0, lsl r5
- 8004759:	2407ff17 	strcs	pc, [r7], #-3863	; 0xfffff0e9
- 800475d:	f204dfb4 	vrecps.f32	d13, d20, d20
- 8004761:	12f801fe 	rscsne	r0, r8, #-2147483585	; 0x8000003f
- 8004765:	04126b2c 	ldreq	r6, [r2], #-2860	; 0xfffff4d4
- 8004769:	1403eaf0 	strne	lr, [r3], #-2800	; 0xfffff510
- 800476d:	1bc8f330 	blne	7241435 <__text_size__+0x723cb65>
- 8004771:	fdf8f5fc 	ldc2l	5, cr15, [r8, #1008]!	; 0x3f0
- 8004775:	c7d9d014 	bfigt	sp, r4, #0, #26
- 8004779:	fd060e0a 	stc2	14, cr0, [r6, #-40]	; 0xffffffd8
- 800477d:	16130e15 			; <UNDEFINED> instruction: 0x16130e15
- 8004781:	0eef13c4 	cdpeq	3, 14, cr1, cr15, cr4, {6}
- 8004785:	cf17ede3 	svcgt	0x0017ede3
- 8004789:	0fff8134 	svceq	0x00ff8134
- 800478d:	17200618 			; <UNDEFINED> instruction: 0x17200618
+080045dc <_ZTV6EEPROM>:
+ 80045dc:	00000000 	andeq	r0, r0, r0
+ 80045e0:	00000000 	andeq	r0, r0, r0
+ 80045e4:	08002a8d 	stmdaeq	r0, {r0, r2, r3, r7, r9, fp, sp}
+ 80045e8:	08002a8f 	stmdaeq	r0, {r0, r1, r2, r3, r7, r9, fp, sp}
 
-08004791 <_ZL15layer_5_weights>:
- 8004791:	fe00ff00 	cdp2	15, 0, cr15, cr0, cr0, {0}
- 8004795:	00fe0200 	rscseq	r0, lr, r0, lsl #4
- 8004799:	1235e800 	eorsne	lr, r5, #0, 16
- 800479d:	fff508da 			; <UNDEFINED> instruction: 0xfff508da
- 80047a1:	01e2effc 	strdeq	lr, [r2, #252]!	; 0xfc
- 80047a5:	00e00df3 	strdeq	r0, [r0], #211	; 0xd3	; <UNPREDICTABLE>
- 80047a9:	e0fa0efb 	ldrsht	r0, [sl], #235	; 0xeb
- 80047ad:	13dce810 	bicsne	lr, ip, #16, 16	; 0x100000
- 80047b1:	ff0d0600 			; <UNDEFINED> instruction: 0xff0d0600
- 80047b5:	06fb0000 	ldrbteq	r0, [fp], r0
- 80047b9:	0000fffe 	strdeq	pc, [r0], -lr
- 80047bd:	e818dd05 	ldmda	r8, {r0, r2, r8, sl, fp, ip, lr, pc}
- 80047c1:	00fc000b 	rscseq	r0, ip, fp
- 80047c5:	fcf50002 	ldc2l	0, cr0, [r5], #8
- 80047c9:	05030207 	streq	r0, [r3, #-519]	; 0xfffffdf9
- 80047cd:	f9fe01f8 			; <UNDEFINED> instruction: 0xf9fe01f8
- 80047d1:	0906d0f3 	stmdbeq	r6, {r0, r1, r4, r5, r6, r7, ip, lr, pc}
- 80047d5:	f5000500 			; <UNDEFINED> instruction: 0xf5000500
- 80047d9:	01000000 	mrseq	r0, (UNDEF: 0)
- 80047dd:	00020000 	andeq	r0, r2, r0
- 80047e1:	cf23fe00 	svcgt	0x0023fe00
- 80047e5:	f8e60eed 			; <UNDEFINED> instruction: 0xf8e60eed
- 80047e9:	e007ebfa 	strd	lr, [r7], -sl
- 80047ed:	05f2000f 	ldrbeq	r0, [r2, #15]!
- 80047f1:	000d00fc 	strdeq	r0, [sp], -ip
- 80047f5:	e9fb1cc3 	ldmib	fp!, {r0, r1, r6, r7, sl, fp, ip}^
- 80047f9:	f5021103 			; <UNDEFINED> instruction: 0xf5021103
- 80047fd:	011003ef 	tsteq	r0, pc, ror #7
- 8004801:	02030000 	andeq	r0, r3, #0
- 8004805:	110fe3fb 	strdne	lr, [pc, -fp]
- 8004809:	0100ff00 	tsteq	r0, r0, lsl #30	; <UNPREDICTABLE>
- 800480d:	d8f9fc07 	ldmle	r9!, {r0, r1, r2, sl, fp, ip, sp, lr, pc}^
- 8004811:	000701ff 	strdeq	r0, [r7], -pc	; <UNPREDICTABLE>
- 8004815:	e8ff0305 	ldm	pc!, {r0, r2, r8, r9}^	; <UNPREDICTABLE>
- 8004819:	041000f8 	ldreq	r0, [r0], #-248	; 0xffffff08
- 800481d:	fd0005fb 	stc2	5, cr0, [r0, #-1004]	; 0xfffffc14
- 8004821:	00000000 	andeq	r0, r0, r0
- 8004825:	00000000 	andeq	r0, r0, r0
- 8004829:	d3f81300 	mvnsle	r1, #0, 6
- 800482d:	f404ec05 			; <UNDEFINED> instruction: 0xf404ec05
- 8004831:	d5ec00f8 	strble	r0, [ip, #248]!	; 0xf8
- 8004835:	fcdcf30c 	ldc2l	3, cr15, [ip], {12}
- 8004839:	e2f5fbf2 	rscs	pc, r5, #247808	; 0x3c800
- 800483d:	00f11814 	rscseq	r1, r1, r4, lsl r8
- 8004841:	0000f805 	andeq	pc, r0, r5, lsl #16
- 8004845:	fd010c00 	stc2	12, cr0, [r1, #-0]
- 8004849:	fd000000 	stc2	0, cr0, [r0, #-0]
- 800484d:	e00a1cfd 	strd	r1, [sl], -sp
- 8004851:	01070300 	mrseq	r0, SP_und
- 8004855:	fbe40000 	blx	790485f <__text_size__+0x78fff8f>
- 8004859:	fd0004f4 	stc2	4, cr0, [r0, #-976]	; 0xfffffc30
- 800485d:	2000f502 	andcs	pc, r0, r2, lsl #10
- 8004861:	03fe01f8 	mvnseq	r0, #248, 2	; 0x3e
- 8004865:	0702f416 	smuadeq	r2, r6, r4
- 8004869:	00ff0000 	rscseq	r0, pc, r0
- 800486d:	00ff0000 	rscseq	r0, pc, r0
- 8004871:	cc1ee700 	ldcgt	7, cr14, [lr], {-0}
- 8004875:	09fe070a 	ldmibeq	lr!, {r1, r3, r8, r9, sl}^
- 8004879:	2700faf3 			; <UNDEFINED> instruction: 0x2700faf3
- 800487d:	fc000881 	stc2	8, cr0, [r0], {129}	; 0x81
- 8004881:	da070306 	ble	81c54a1 <_sidata+0x1c0a45>
- 8004885:	010c0990 			; <UNDEFINED> instruction: 0x010c0990
- 8004889:	03131203 	tsteq	r3, #805306368	; 0x30000000
- 800488d:	00020000 	andeq	r0, r2, r0
- 8004891:	0007f901 	andeq	pc, r7, r1, lsl #18
- 8004895:	fc0dd900 	stc2	9, cr13, [sp], {-0}	; <UNPREDICTABLE>
- 8004899:	fd010009 	stc2	0, cr0, [r1, #-36]	; 0xffffffdc
- 800489d:	00e50b06 	rsceq	r0, r5, r6, lsl #22
- 80048a1:	02f90001 	rscseq	r0, r9, #1
- 80048a5:	d9f6fdf6 	ldmible	r6!, {r1, r2, r4, r5, r6, r7, r8, sl, fp, ip, sp, lr, pc}^
- 80048a9:	0af7edeb 	beq	7e0005d <__text_size__+0x7dfb78d>
- 80048ad:	00fb07f7 	ldrshteq	r0, [fp], #119	; 0x77
+080045ec <_ZTV14DistanceSensor>:
+ 80045ec:	00000000 	andeq	r0, r0, r0
+ 80045f0:	00000000 	andeq	r0, r0, r0
+ 80045f4:	08002da9 	stmdaeq	r0, {r0, r3, r5, r7, r8, sl, fp, sp}
+ 80045f8:	08002dd1 	stmdaeq	r0, {r0, r4, r6, r7, r8, sl, fp, sp}
+ 80045fc:	08002b0d 	stmdaeq	r0, {r0, r2, r3, r8, r9, fp, sp}
 
-080048b1 <_ZL15layer_8_weights>:
- 80048b1:	f418d340 			; <UNDEFINED> instruction: 0xf418d340
- 80048b5:	efedcde0 	svc	0x00edcde0
- 80048b9:	f5f5e5cb 			; <UNDEFINED> instruction: 0xf5f5e5cb
- 80048bd:	e0fb0734 	rscs	r0, fp, r4, lsr r7
- 80048c1:	00fffefc 	ldrshteq	pc, [pc], #236	; <UNPREDICTABLE>
- 80048c5:	00090016 	andeq	r0, r9, r6, lsl r0
- 80048c9:	f200f600 	vmax.s8	d15, d0, d0
- 80048cd:	07160230 			; <UNDEFINED> instruction: 0x07160230
- 80048d1:	ff00fe01 			; <UNDEFINED> instruction: 0xff00fe01
- 80048d5:	fdfffcfd 	ldc2l	12, cr15, [pc, #1012]!	; 8004cd0 <_sidata+0x274>
- 80048d9:	0409011c 	streq	r0, [r9], #-284	; 0xfffffee4
- 80048dd:	f6fbf0e2 			; <UNDEFINED> instruction: 0xf6fbf0e2
- 80048e1:	11f34098 			; <UNDEFINED> instruction: 0x11f34098
- 80048e5:	d7eed3dc 	ubfxle	sp, ip, #7, #15
- 80048e9:	f4fbe82e 			; <UNDEFINED> instruction: 0xf4fbe82e
- 80048ed:	eeedfab7 			; <UNDEFINED> instruction: 0xeeedfab7
- 80048f1:	0207050b 	andeq	r0, r7, #46137344	; 0x2c00000
- 80048f5:	02f206e6 	rscseq	r0, r2, #241172480	; 0xe600000
- 80048f9:	01fd0109 	mvnseq	r0, r9, lsl #2
- 80048fd:	0f050f02 	svceq	0x00050f02
- 8004901:	ff00ff00 			; <UNDEFINED> instruction: 0xff00ff00
- 8004905:	0003fd08 	andeq	pc, r3, r8, lsl #26
- 8004909:	04020c17 	streq	r0, [r2], #-3095	; 0xfffff3e9
- 800490d:	fa03f224 	blx	81011a5 <_sidata+0xfc749>
- 8004911:	03f7ea5e 	mvnseq	lr, #385024	; 0x5e000
- 8004915:	1b2f472a 	blne	8bd65c5 <_sidata+0xbd1b69>
- 8004919:	131f2134 	tstne	pc, #52, 2
- 800491d:	ecc9fd18 	stcl	13, cr15, [r9], {24}
- 8004921:	f6f90402 			; <UNDEFINED> instruction: 0xf6f90402
- 8004925:	f606fbfb 			; <UNDEFINED> instruction: 0xf606fbfb
- 8004929:	00fe06e6 	rscseq	r0, lr, r6, ror #13
- 800492d:	f2f40feb 	vext.8	q8, q10, <illegal reg q13.5>, #15
- 8004931:	00000000 	andeq	r0, r0, r0
- 8004935:	fe00fe00 	cdp2	14, 0, cr15, cr0, cr0, {0}
- 8004939:	fef8ffe7 	cdp2	15, 15, cr15, cr8, cr7, {7}
- 800493d:	06060201 	streq	r0, [r6], -r1, lsl #4
- 8004941:	f4fc31e0 			; <UNDEFINED> instruction: 0xf4fc31e0
- 8004945:	fb00de0a 	blx	803c177 <_sidata+0x3771b>
- 8004949:	0cfa28d6 	ldcleq	8, cr2, [sl], #856	; 0x358
- 800494d:	de7f0400 	cdple	4, 7, cr0, cr15, cr0, {0}
- 8004951:	010400fc 	strdeq	r0, [r4, -ip]
- 8004955:	0101f205 	tsteq	r1, r5, lsl #4	; <UNPREDICTABLE>
- 8004959:	0005f80c 	andeq	pc, r5, ip, lsl #16
- 800495d:	ff0000fb 			; <UNDEFINED> instruction: 0xff0000fb
- 8004961:	00000000 	andeq	r0, r0, r0
- 8004965:	000004ff 	strdeq	r0, [r0], -pc	; <UNPREDICTABLE>
- 8004969:	06fffcf4 			; <UNDEFINED> instruction: 0x06fffcf4
- 800496d:	03ff0cf5 	mvnseq	r0, #62720	; 0xf500
- 8004971:	0801d1e5 	stmdaeq	r1, {r0, r2, r5, r6, r7, r8, ip, lr, pc}
- 8004975:	27f63f0d 	ldrbcs	r3, [r6, sp, lsl #30]!
- 8004979:	fbfce8f6 	blx	7f3ed5b <__text_size__+0x7f3a48b>
- 800497d:	5fd00002 	svcpl	0x00d00002
- 8004981:	f9050801 			; <UNDEFINED> instruction: 0xf9050801
- 8004985:	06000c03 	streq	r0, [r0], -r3, lsl #24
- 8004989:	0f000d03 	svceq	0x00000d03
- 800498d:	f1efe2e6 			; <UNDEFINED> instruction: 0xf1efe2e6
- 8004991:	00000200 	andeq	r0, r0, r0, lsl #4
- 8004995:	06ff07ff 			; <UNDEFINED> instruction: 0x06ff07ff
- 8004999:	f201f6ee 	vmax.s8	<illegal reg q7.5>, <illegal reg q8.5>, q15
- 800499d:	07fc1109 	ldrbeq	r1, [ip, r9, lsl #2]!
- 80049a1:	08000000 	stmdaeq	r0, {}	; <UNPREDICTABLE>
+08004600 <_ZTV4TI2CILh1ELh7ELh6ELh10ELh1EE>:
+ 8004600:	00000000 	andeq	r0, r0, r0
+ 8004604:	00000000 	andeq	r0, r0, r0
+ 8004608:	08002f85 	stmdaeq	r0, {r0, r2, r7, r8, r9, sl, fp, sp}
+ 800460c:	08002f99 	stmdaeq	r0, {r0, r3, r4, r7, r8, r9, sl, fp, sp}
+ 8004610:	08003503 	stmdaeq	r0, {r0, r1, r8, sl, ip, sp}
+ 8004614:	080034bd 	stmdaeq	r0, {r0, r2, r3, r4, r5, r7, sl, ip, sp}
+ 8004618:	080032d5 	stmdaeq	r0, {r0, r2, r4, r6, r7, r9, ip, sp}
+ 800461c:	080035f3 	stmdaeq	r0, {r0, r1, r4, r5, r6, r7, r8, sl, ip, sp}
+ 8004620:	08003549 	stmdaeq	r0, {r0, r3, r6, r8, sl, ip, sp}
+ 8004624:	74736509 	ldrbtvc	r6, [r3], #-1289	; 0xfffffaf7
+ 8004628:	756d695f 	strbvc	r6, [sp, #-2399]!	; 0xfffff6a1
+ 800462c:	6e65735f 	mcrvs	3, 3, r7, cr5, cr15, {2}
+ 8004630:	0a726f73 	beq	9ca0404 <_sidata+0x1c9b8bc>
+ 8004634:	203a2000 	eorscs	r2, sl, r0
+ 8004638:	65740a00 	ldrbvs	r0, [r4, #-2560]!	; 0xfffff600
+ 800463c:	645f7473 	ldrbvs	r7, [pc], #-1139	; 8004644 <_ZTV4TI2CILh1ELh7ELh6ELh10ELh1EE+0x44>
+ 8004640:	61747369 	cmnvs	r4, r9, ror #6
+ 8004644:	5f65636e 	svcpl	0x0065636e
+ 8004648:	736e6573 	cmnvc	lr, #482344960	; 0x1cc00000
+ 800464c:	000a726f 	andeq	r7, sl, pc, ror #4
+ 8004650:	230a0a0a 	movwcs	r0, #43530	; 0xaa0a
+ 8004654:	23232323 			; <UNDEFINED> instruction: 0x23232323
+ 8004658:	000a0a0a 	andeq	r0, sl, sl, lsl #20
+ 800465c:	6d726574 	cfldr64vs	mvdx6, [r2, #-464]!	; 0xfffffe30
+ 8004660:	6c616e69 	stclvs	14, cr6, [r1], #-420	; 0xfffffe5c
+ 8004664:	696e6920 	stmdbvs	lr!, {r5, r8, fp, sp, lr}^
+ 8004668:	6f642074 	svcvs	0x00642074
+ 800466c:	000a656e 	andeq	r6, sl, lr, ror #10
+ 8004670:	206d656d 	rsbcs	r6, sp, sp, ror #10
+ 8004674:	74696e69 	strbtvc	r6, [r9], #-3689	; 0xfffff197
+ 8004678:	6e6f6420 	cdpvs	4, 6, cr6, cr15, cr0, {1}
+ 800467c:	68202c65 	stmdavs	r0!, {r0, r2, r5, r6, sl, fp, sp}
+ 8004680:	20706165 	rsbscs	r6, r0, r5, ror #2
+ 8004684:	72617473 	rsbvc	r7, r1, #1929379840	; 0x73000000
+ 8004688:	74612074 	strbtvc	r2, [r1], #-116	; 0xffffff8c
+ 800468c:	69740020 	ldmdbvs	r4!, {r5}^
+ 8004690:	2072656d 	rsbscs	r6, r2, sp, ror #10
+ 8004694:	74696e69 	strbtvc	r6, [r9], #-3689	; 0xfffff197
+ 8004698:	6e6f6420 	cdpvs	4, 6, cr6, cr15, cr0, {1}
+ 800469c:	64000a65 	strvs	r0, [r0], #-2661	; 0xfffff59b
+ 80046a0:	79616c65 	stmdbvc	r1!, {r0, r2, r5, r6, sl, fp, sp, lr}^
+ 80046a4:	30303220 	eorscc	r3, r0, r0, lsr #4
+ 80046a8:	20736d20 	rsbscs	r6, r3, r0, lsr #26
+ 80046ac:	63326900 	teqvs	r2, #0, 18
+ 80046b0:	696e6920 	stmdbvs	lr!, {r5, r8, fp, sp, lr}^
+ 80046b4:	6f642074 	svcvs	0x00642074
+ 80046b8:	000a656e 	andeq	r6, sl, lr, ror #10
+ 80046bc:	20756d69 	rsbscs	r6, r5, r9, ror #26
+ 80046c0:	74696e69 	strbtvc	r6, [r9], #-3689	; 0xfffff197
+ 80046c4:	6e6f6420 	cdpvs	4, 6, cr6, cr15, cr0, {1}
+ 80046c8:	69772065 	ldmdbvs	r7!, {r0, r2, r5, r6, sp}^
+ 80046cc:	00206874 	eoreq	r6, r0, r4, ror r8
+ 80046d0:	72706565 	rsbsvc	r6, r0, #423624704	; 0x19400000
+ 80046d4:	69206d6f 	stmdbvs	r0!, {r0, r1, r2, r3, r5, r6, r8, sl, fp, sp, lr}
+ 80046d8:	2074696e 	rsbscs	r6, r4, lr, ror #18
+ 80046dc:	656e6f64 	strbvs	r6, [lr, #-3940]!	; 0xfffff09c
+ 80046e0:	74697720 	strbtvc	r7, [r9], #-1824	; 0xfffff8e0
+ 80046e4:	61002068 	tstvs	r0, r8, rrx
+ 80046e8:	69206364 	stmdbvs	r0!, {r2, r5, r6, r8, r9, sp, lr}
+ 80046ec:	2074696e 	rsbscs	r6, r4, lr, ror #18
+ 80046f0:	656e6f64 	strbvs	r6, [lr, #-3940]!	; 0xfffff09c
+ 80046f4:	696c000a 	stmdbvs	ip!, {r1, r3}^
+ 80046f8:	7320656e 			; <UNDEFINED> instruction: 0x7320656e
+ 80046fc:	6f736e65 	svcvs	0x00736e65
+ 8004700:	6e692072 	mcrvs	0, 3, r2, cr9, cr2, {3}
+ 8004704:	64207469 	strtvs	r7, [r0], #-1129	; 0xfffffb97
+ 8004708:	0a656e6f 	beq	99600cc <_sidata+0x195b584>
+ 800470c:	73696400 	cmnvc	r9, #0, 8
+ 8004710:	636e6174 	cmnvs	lr, #116, 2
+ 8004714:	65732065 	ldrbvs	r2, [r3, #-101]!	; 0xffffff9b
+ 8004718:	726f736e 	rsbvc	r7, pc, #-1207959551	; 0xb8000001
+ 800471c:	696e6920 	stmdbvs	lr!, {r5, r8, fp, sp, lr}^
+ 8004720:	6f642074 	svcvs	0x00642074
+ 8004724:	000a656e 	andeq	r6, sl, lr, ror #10
+ 8004728:	6f636e65 	svcvs	0x00636e65
+ 800472c:	20726564 	rsbscs	r6, r2, r4, ror #10
+ 8004730:	736e6573 	cmnvc	lr, #482344960	; 0x1cc00000
+ 8004734:	6920726f 	stmdbvs	r0!, {r0, r1, r2, r3, r5, r6, r9, ip, sp, lr}
+ 8004738:	2074696e 	rsbscs	r6, r4, lr, ror #18
+ 800473c:	656e6f64 	strbvs	r6, [lr, #-3940]!	; 0xfffff09c
+ 8004740:	6f6d000a 	svcvs	0x006d000a
+ 8004744:	20726f74 	rsbscs	r6, r2, r4, ror pc
+ 8004748:	746e6f63 	strbtvc	r6, [lr], #-3939	; 0xfffff09d
+ 800474c:	6c6c6f72 	stclvs	15, cr6, [ip], #-456	; 0xfffffe38
+ 8004750:	696e6920 	stmdbvs	lr!, {r5, r8, fp, sp, lr}^
+ 8004754:	6f642074 	svcvs	0x00642074
+ 8004758:	000a656e 	andeq	r6, sl, lr, ror #10
+ 800475c:	2079656b 	rsbscs	r6, r9, fp, ror #10
+ 8004760:	74696e69 	strbtvc	r6, [r9], #-3689	; 0xfffff197
+ 8004764:	6e6f6420 	cdpvs	4, 6, cr6, cr15, cr0, {1}
+ 8004768:	73000a65 	movwvc	r0, #2661	; 0xa65
+ 800476c:	65747379 	ldrbvs	r7, [r4, #-889]!	; 0xfffffc87
+ 8004770:	6e69206d 	cdpvs	0, 6, cr2, cr9, cr13, {3}
+ 8004774:	64207469 	strtvs	r7, [r0], #-1129	; 0xfffffb97
+ 8004778:	0a656e6f 	beq	996013c <_sidata+0x195b5f4>
+ 800477c:	75727400 	ldrbvc	r7, [r2, #-1024]!	; 0xfffffc00
+ 8004780:	61660065 	cmnvs	r6, r5, rrx
+ 8004784:	0065736c 	rsbeq	r7, r5, ip, ror #6
 
-080049a4 <_ZL22layer_0_input_geometry>:
- 80049a4:	00000008 	andeq	r0, r0, r8
- 80049a8:	00000008 	andeq	r0, r0, r8
- 80049ac:	00000001 	andeq	r0, r0, r1
+08004788 <_ZTV7Drivers>:
+ 8004788:	00000000 	andeq	r0, r0, r0
+ 800478c:	00000000 	andeq	r0, r0, r0
+ 8004790:	08002f75 	stmdaeq	r0, {r0, r2, r4, r5, r6, r8, r9, sl, fp, sp}
+ 8004794:	08002f77 	stmdaeq	r0, {r0, r1, r2, r4, r5, r6, r8, r9, sl, fp, sp}
 
-080049b0 <_ZL22layer_1_input_geometry>:
- 80049b0:	00000008 	andeq	r0, r0, r8
- 80049b4:	00000008 	andeq	r0, r0, r8
- 80049b8:	00000004 	andeq	r0, r0, r4
+08004798 <_ZTV10LineSearch>:
+ 8004798:	00000000 	andeq	r0, r0, r0
+ 800479c:	00000000 	andeq	r0, r0, r0
+ 80047a0:	08003989 	stmdaeq	r0, {r0, r3, r7, r8, fp, ip, sp}
+ 80047a4:	080039a1 	stmdaeq	r0, {r0, r5, r7, r8, fp, ip, sp}
 
-080049bc <_ZL22layer_3_input_geometry>:
- 80049bc:	00000004 	andeq	r0, r0, r4
- 80049c0:	00000004 	andeq	r0, r0, r4
- 80049c4:	00000004 	andeq	r0, r0, r4
+080047a8 <_ZTV13LinePredictor>:
+ 80047a8:	00000000 	andeq	r0, r0, r0
+ 80047ac:	00000000 	andeq	r0, r0, r0
+ 80047b0:	080039b5 	stmdaeq	r0, {r0, r2, r4, r5, r7, r8, fp, ip, sp}
+ 80047b4:	080039b7 	stmdaeq	r0, {r0, r1, r2, r4, r5, r7, r8, fp, ip, sp}
 
-080049c8 <_ZL22layer_4_input_geometry>:
- 80049c8:	00000004 	andeq	r0, r0, r4
- 80049cc:	00000004 	andeq	r0, r0, r4
- 80049d0:	00000008 	andeq	r0, r0, r8
+080047b8 <_ZL12layer_0_bias>:
+ 80047b8:	d9f67ff4 	ldmible	r6!, {r2, r4, r5, r6, r7, r8, r9, sl, fp, ip, sp, lr}^
 
-080049d4 <_ZL22layer_6_input_geometry>:
- 80049d4:	00000004 	andeq	r0, r0, r4
- 80049d8:	00000004 	andeq	r0, r0, r4
- 80049dc:	0000000c 	andeq	r0, r0, ip
+080047bc <_ZL12layer_3_bias>:
+ 80047bc:	7fd94800 	svcvc	0x00d94800
 
-080049e0 <_ZL23layer_0_kernel_geometry>:
- 80049e0:	00000003 	andeq	r0, r0, r3
- 80049e4:	00000003 	andeq	r0, r0, r3
- 80049e8:	00000004 	andeq	r0, r0, r4
+080047c0 <_ZL12layer_5_bias>:
+ 80047c0:	3c7e4e7f 	ldclcc	14, cr4, [lr], #-508	; 0xfffffe04
 
-080049ec <_ZL23layer_2_kernel_geometry>:
- 80049ec:	00000002 	andeq	r0, r0, r2
- 80049f0:	00000002 	andeq	r0, r0, r2
- 80049f4:	00000001 	andeq	r0, r0, r1
+080047c4 <_ZL12layer_8_bias>:
+ 80047c4:	22117f58 	andscs	r7, r1, #88, 30	; 0x160
+ 80047c8:	467f2730 			; <UNDEFINED> instruction: 0x467f2730
 
-080049f8 <_ZL22layer_8_input_geometry>:
- 80049f8:	00000002 	andeq	r0, r0, r2
- 80049fc:	00000002 	andeq	r0, r0, r2
- 8004a00:	0000000c 	andeq	r0, r0, ip
+080047c9 <_ZL15layer_0_weights>:
+ 80047c9:	26467f27 	strbcs	r7, [r6], -r7, lsr #30
+ 80047cd:	ebf80121 	bl	7e04c59 <__text_size__+0x7e0029d>
+ 80047d1:	7dc8b4e7 	cfstrdvc	mvd11, [r8, #924]	; 0x39c
+ 80047d5:	1d17f2ed 	lfmne	f7, 1, [r7, #-948]	; 0xfffffc4c
+ 80047d9:	de41ea04 	vmlale.f32	s29, s2, s8
+ 80047dd:	020010e1 	andeq	r1, r0, #225	; 0xe1
+ 80047e1:	ad0b10ed 	stcge	0, cr1, [fp, #-948]	; 0xfffffc4c
+ 80047e5:	0ef25c55 	mrceq	12, 7, r5, cr2, cr5, {2}
+ 80047e9:	d6ef02e5 	strbtle	r0, [pc], r5, ror #5
 
-08004a04 <_ZL23layer_8_output_geometry>:
- 8004a04:	00000001 	andeq	r0, r0, r1
- 8004a08:	00000001 	andeq	r0, r0, r1
- 8004a0c:	00000005 	andeq	r0, r0, r5
+080047ed <_ZL15layer_3_weights>:
+ 80047ed:	f7fcfafb 			; <UNDEFINED> instruction: 0xf7fcfafb
+ 80047f1:	0200f700 	andeq	pc, r0, #0, 14
+ 80047f5:	00000000 	andeq	r0, r0, r0
+ 80047f9:	00000000 	andeq	r0, r0, r0
+ 80047fd:	feff02ef 	cdp2	2, 15, cr0, cr15, cr15, {7}
+ 8004801:	060dfe0f 	streq	pc, [sp], -pc, lsl #28
+ 8004805:	0cfaf808 	ldcleq	8, cr15, [sl], #32
+ 8004809:	f4edfcf9 	vld1.<illegal width 64>	{d31[]-d32[]}, [sp :64], r9
+ 800480d:	0ffa01f1 	svceq	0x00fa01f1
+ 8004811:	f711d00b 			; <UNDEFINED> instruction: 0xf711d00b
+ 8004815:	09170105 	ldmdbeq	r7, {r0, r2, r8}
+ 8004819:	263e97f1 			; <UNDEFINED> instruction: 0x263e97f1
+ 800481d:	1812e009 	ldmdane	r2, {r0, r3, sp, lr, pc}
+ 8004821:	0a36ff1a 	beq	8dc4491 <_sidata+0xdbf949>
+ 8004825:	15f820ee 	ldrbne	r2, [r8, #238]!	; 0xee
+ 8004829:	b70c15e4 	strlt	r1, [ip, -r4, ror #11]
+ 800482d:	f40132b6 	vst1.32	{d3-d6}, [r1 :256], r6
+ 8004831:	fe160c0a 	cdp2	12, 1, cr0, cr6, cr10, {0}
+ 8004835:	0400c518 	streq	ip, [r0], #-1304	; 0xfffffae8
+ 8004839:	0a0023fe 	beq	800d839 <_sidata+0x8cf1>
+ 800483d:	78d52dfc 	ldmvc	r5, {r2, r3, r4, r5, r6, r7, r8, sl, fp, sp}^
+ 8004841:	00000510 	andeq	r0, r0, r0, lsl r5
+ 8004845:	2407ff17 	strcs	pc, [r7], #-3863	; 0xfffff0e9
+ 8004849:	f204dfb4 	vrecps.f32	d13, d20, d20
+ 800484d:	12f801fe 	rscsne	r0, r8, #-2147483585	; 0x8000003f
+ 8004851:	04126b2c 	ldreq	r6, [r2], #-2860	; 0xfffff4d4
+ 8004855:	1403eaf0 	strne	lr, [r3], #-2800	; 0xfffff510
+ 8004859:	1bc8f330 	blne	7241521 <__text_size__+0x723cb65>
+ 800485d:	fdf8f5fc 	ldc2l	5, cr15, [r8, #1008]!	; 0x3f0
+ 8004861:	c7d9d014 	bfigt	sp, r4, #0, #26
+ 8004865:	fd060e0a 	stc2	14, cr0, [r6, #-40]	; 0xffffffd8
+ 8004869:	16130e15 			; <UNDEFINED> instruction: 0x16130e15
+ 800486d:	0eef13c4 	cdpeq	3, 14, cr1, cr15, cr4, {6}
+ 8004871:	cf17ede3 	svcgt	0x0017ede3
+ 8004875:	0fff8134 	svceq	0x00ff8134
+ 8004879:	17200618 			; <UNDEFINED> instruction: 0x17200618
 
-08004a10 <_ZTV11LineNetwork>:
- 8004a10:	00000000 	andeq	r0, r0, r0
- 8004a14:	00000000 	andeq	r0, r0, r0
- 8004a18:	08003a15 	stmdaeq	r0, {r0, r2, r4, r9, fp, ip, sp}
- 8004a1c:	08003a4d 	stmdaeq	r0, {r0, r2, r3, r6, r9, fp, ip, sp}
- 8004a20:	08001171 	stmdaeq	r0, {r0, r4, r5, r6, r8, ip}
- 8004a24:	080012e3 	stmdaeq	r0, {r0, r1, r5, r6, r7, r9, ip}
+0800487d <_ZL15layer_5_weights>:
+ 800487d:	fe00ff00 	cdp2	15, 0, cr15, cr0, cr0, {0}
+ 8004881:	00fe0200 	rscseq	r0, lr, r0, lsl #4
+ 8004885:	1235e800 	eorsne	lr, r5, #0, 16
+ 8004889:	fff508da 			; <UNDEFINED> instruction: 0xfff508da
+ 800488d:	01e2effc 	strdeq	lr, [r2, #252]!	; 0xfc
+ 8004891:	00e00df3 	strdeq	r0, [r0], #211	; 0xd3	; <UNPREDICTABLE>
+ 8004895:	e0fa0efb 	ldrsht	r0, [sl], #235	; 0xeb
+ 8004899:	13dce810 	bicsne	lr, ip, #16, 16	; 0x100000
+ 800489d:	ff0d0600 			; <UNDEFINED> instruction: 0xff0d0600
+ 80048a1:	06fb0000 	ldrbteq	r0, [fp], r0
+ 80048a5:	0000fffe 	strdeq	pc, [r0], -lr
+ 80048a9:	e818dd05 	ldmda	r8, {r0, r2, r8, sl, fp, ip, lr, pc}
+ 80048ad:	00fc000b 	rscseq	r0, ip, fp
+ 80048b1:	fcf50002 	ldc2l	0, cr0, [r5], #8
+ 80048b5:	05030207 	streq	r0, [r3, #-519]	; 0xfffffdf9
+ 80048b9:	f9fe01f8 			; <UNDEFINED> instruction: 0xf9fe01f8
+ 80048bd:	0906d0f3 	stmdbeq	r6, {r0, r1, r4, r5, r6, r7, ip, lr, pc}
+ 80048c1:	f5000500 			; <UNDEFINED> instruction: 0xf5000500
+ 80048c5:	01000000 	mrseq	r0, (UNDEF: 0)
+ 80048c9:	00020000 	andeq	r0, r2, r0
+ 80048cd:	cf23fe00 	svcgt	0x0023fe00
+ 80048d1:	f8e60eed 			; <UNDEFINED> instruction: 0xf8e60eed
+ 80048d5:	e007ebfa 	strd	lr, [r7], -sl
+ 80048d9:	05f2000f 	ldrbeq	r0, [r2, #15]!
+ 80048dd:	000d00fc 	strdeq	r0, [sp], -ip
+ 80048e1:	e9fb1cc3 	ldmib	fp!, {r0, r1, r6, r7, sl, fp, ip}^
+ 80048e5:	f5021103 			; <UNDEFINED> instruction: 0xf5021103
+ 80048e9:	011003ef 	tsteq	r0, pc, ror #7
+ 80048ed:	02030000 	andeq	r0, r3, #0
+ 80048f1:	110fe3fb 	strdne	lr, [pc, -fp]
+ 80048f5:	0100ff00 	tsteq	r0, r0, lsl #30	; <UNPREDICTABLE>
+ 80048f9:	d8f9fc07 	ldmle	r9!, {r0, r1, r2, sl, fp, ip, sp, lr, pc}^
+ 80048fd:	000701ff 	strdeq	r0, [r7], -pc	; <UNPREDICTABLE>
+ 8004901:	e8ff0305 	ldm	pc!, {r0, r2, r8, r9}^	; <UNPREDICTABLE>
+ 8004905:	041000f8 	ldreq	r0, [r0], #-248	; 0xffffff08
+ 8004909:	fd0005fb 	stc2	5, cr0, [r0, #-1004]	; 0xfffffc14
+ 800490d:	00000000 	andeq	r0, r0, r0
+ 8004911:	00000000 	andeq	r0, r0, r0
+ 8004915:	d3f81300 	mvnsle	r1, #0, 6
+ 8004919:	f404ec05 			; <UNDEFINED> instruction: 0xf404ec05
+ 800491d:	d5ec00f8 	strble	r0, [ip, #248]!	; 0xf8
+ 8004921:	fcdcf30c 	ldc2l	3, cr15, [ip], {12}
+ 8004925:	e2f5fbf2 	rscs	pc, r5, #247808	; 0x3c800
+ 8004929:	00f11814 	rscseq	r1, r1, r4, lsl r8
+ 800492d:	0000f805 	andeq	pc, r0, r5, lsl #16
+ 8004931:	fd010c00 	stc2	12, cr0, [r1, #-0]
+ 8004935:	fd000000 	stc2	0, cr0, [r0, #-0]
+ 8004939:	e00a1cfd 	strd	r1, [sl], -sp
+ 800493d:	01070300 	mrseq	r0, SP_und
+ 8004941:	fbe40000 	blx	790494b <__text_size__+0x78fff8f>
+ 8004945:	fd0004f4 	stc2	4, cr0, [r0, #-976]	; 0xfffffc30
+ 8004949:	2000f502 	andcs	pc, r0, r2, lsl #10
+ 800494d:	03fe01f8 	mvnseq	r0, #248, 2	; 0x3e
+ 8004951:	0702f416 	smuadeq	r2, r6, r4
+ 8004955:	00ff0000 	rscseq	r0, pc, r0
+ 8004959:	00ff0000 	rscseq	r0, pc, r0
+ 800495d:	cc1ee700 	ldcgt	7, cr14, [lr], {-0}
+ 8004961:	09fe070a 	ldmibeq	lr!, {r1, r3, r8, r9, sl}^
+ 8004965:	2700faf3 			; <UNDEFINED> instruction: 0x2700faf3
+ 8004969:	fc000881 	stc2	8, cr0, [r0], {129}	; 0x81
+ 800496d:	da070306 	ble	81c558d <_sidata+0x1c0a45>
+ 8004971:	010c0990 			; <UNDEFINED> instruction: 0x010c0990
+ 8004975:	03131203 	tsteq	r3, #805306368	; 0x30000000
+ 8004979:	00020000 	andeq	r0, r2, r0
+ 800497d:	0007f901 	andeq	pc, r7, r1, lsl #18
+ 8004981:	fc0dd900 	stc2	9, cr13, [sp], {-0}	; <UNPREDICTABLE>
+ 8004985:	fd010009 	stc2	0, cr0, [r1, #-36]	; 0xffffffdc
+ 8004989:	00e50b06 	rsceq	r0, r5, r6, lsl #22
+ 800498d:	02f90001 	rscseq	r0, r9, #1
+ 8004991:	d9f6fdf6 	ldmible	r6!, {r1, r2, r4, r5, r6, r7, r8, sl, fp, ip, sp, lr, pc}^
+ 8004995:	0af7edeb 	beq	7e00149 <__text_size__+0x7dfb78d>
+ 8004999:	00fb07f7 	ldrshteq	r0, [fp], #119	; 0x77
 
-08004a28 <_ZTV10IntegratorIfE>:
- 8004a28:	00000000 	andeq	r0, r0, r0
- 8004a2c:	00000000 	andeq	r0, r0, r0
- 8004a30:	08003df3 	stmdaeq	r0, {r0, r1, r4, r5, r6, r7, r8, sl, fp, ip, sp}
- 8004a34:	08003df5 	stmdaeq	r0, {r0, r2, r4, r5, r6, r7, r8, sl, fp, ip, sp}
+0800499d <_ZL15layer_8_weights>:
+ 800499d:	f418d340 			; <UNDEFINED> instruction: 0xf418d340
+ 80049a1:	efedcde0 	svc	0x00edcde0
+ 80049a5:	f5f5e5cb 			; <UNDEFINED> instruction: 0xf5f5e5cb
+ 80049a9:	e0fb0734 	rscs	r0, fp, r4, lsr r7
+ 80049ad:	00fffefc 	ldrshteq	pc, [pc], #236	; <UNPREDICTABLE>
+ 80049b1:	00090016 	andeq	r0, r9, r6, lsl r0
+ 80049b5:	f200f600 	vmax.s8	d15, d0, d0
+ 80049b9:	07160230 			; <UNDEFINED> instruction: 0x07160230
+ 80049bd:	ff00fe01 			; <UNDEFINED> instruction: 0xff00fe01
+ 80049c1:	fdfffcfd 	ldc2l	12, cr15, [pc, #1012]!	; 8004dbc <_sidata+0x274>
+ 80049c5:	0409011c 	streq	r0, [r9], #-284	; 0xfffffee4
+ 80049c9:	f6fbf0e2 			; <UNDEFINED> instruction: 0xf6fbf0e2
+ 80049cd:	11f34098 			; <UNDEFINED> instruction: 0x11f34098
+ 80049d1:	d7eed3dc 	ubfxle	sp, ip, #7, #15
+ 80049d5:	f4fbe82e 			; <UNDEFINED> instruction: 0xf4fbe82e
+ 80049d9:	eeedfab7 			; <UNDEFINED> instruction: 0xeeedfab7
+ 80049dd:	0207050b 	andeq	r0, r7, #46137344	; 0x2c00000
+ 80049e1:	02f206e6 	rscseq	r0, r2, #241172480	; 0xe600000
+ 80049e5:	01fd0109 	mvnseq	r0, r9, lsl #2
+ 80049e9:	0f050f02 	svceq	0x00050f02
+ 80049ed:	ff00ff00 			; <UNDEFINED> instruction: 0xff00ff00
+ 80049f1:	0003fd08 	andeq	pc, r3, r8, lsl #26
+ 80049f5:	04020c17 	streq	r0, [r2], #-3095	; 0xfffff3e9
+ 80049f9:	fa03f224 	blx	8101291 <_sidata+0xfc749>
+ 80049fd:	03f7ea5e 	mvnseq	lr, #385024	; 0x5e000
+ 8004a01:	1b2f472a 	blne	8bd66b1 <_sidata+0xbd1b69>
+ 8004a05:	131f2134 	tstne	pc, #52, 2
+ 8004a09:	ecc9fd18 	stcl	13, cr15, [r9], {24}
+ 8004a0d:	f6f90402 			; <UNDEFINED> instruction: 0xf6f90402
+ 8004a11:	f606fbfb 			; <UNDEFINED> instruction: 0xf606fbfb
+ 8004a15:	00fe06e6 	rscseq	r0, lr, r6, ror #13
+ 8004a19:	f2f40feb 	vext.8	q8, q10, <illegal reg q13.5>, #15
+ 8004a1d:	00000000 	andeq	r0, r0, r0
+ 8004a21:	fe00fe00 	cdp2	14, 0, cr15, cr0, cr0, {0}
+ 8004a25:	fef8ffe7 	cdp2	15, 15, cr15, cr8, cr7, {7}
+ 8004a29:	06060201 	streq	r0, [r6], -r1, lsl #4
+ 8004a2d:	f4fc31e0 			; <UNDEFINED> instruction: 0xf4fc31e0
+ 8004a31:	fb00de0a 	blx	803c263 <_sidata+0x3771b>
+ 8004a35:	0cfa28d6 	ldcleq	8, cr2, [sl], #856	; 0x358
+ 8004a39:	de7f0400 	cdple	4, 7, cr0, cr15, cr0, {0}
+ 8004a3d:	010400fc 	strdeq	r0, [r4, -ip]
+ 8004a41:	0101f205 	tsteq	r1, r5, lsl #4	; <UNPREDICTABLE>
+ 8004a45:	0005f80c 	andeq	pc, r5, ip, lsl #16
+ 8004a49:	ff0000fb 			; <UNDEFINED> instruction: 0xff0000fb
+ 8004a4d:	00000000 	andeq	r0, r0, r0
+ 8004a51:	000004ff 	strdeq	r0, [r0], -pc	; <UNPREDICTABLE>
+ 8004a55:	06fffcf4 			; <UNDEFINED> instruction: 0x06fffcf4
+ 8004a59:	03ff0cf5 	mvnseq	r0, #62720	; 0xf500
+ 8004a5d:	0801d1e5 	stmdaeq	r1, {r0, r2, r5, r6, r7, r8, ip, lr, pc}
+ 8004a61:	27f63f0d 	ldrbcs	r3, [r6, sp, lsl #30]!
+ 8004a65:	fbfce8f6 	blx	7f3ee47 <__text_size__+0x7f3a48b>
+ 8004a69:	5fd00002 	svcpl	0x00d00002
+ 8004a6d:	f9050801 			; <UNDEFINED> instruction: 0xf9050801
+ 8004a71:	06000c03 	streq	r0, [r0], -r3, lsl #24
+ 8004a75:	0f000d03 	svceq	0x00000d03
+ 8004a79:	f1efe2e6 			; <UNDEFINED> instruction: 0xf1efe2e6
+ 8004a7d:	00000200 	andeq	r0, r0, r0, lsl #4
+ 8004a81:	06ff07ff 			; <UNDEFINED> instruction: 0x06ff07ff
+ 8004a85:	f201f6ee 	vmax.s8	<illegal reg q7.5>, <illegal reg q8.5>, q15
+ 8004a89:	07fc1109 	ldrbeq	r1, [ip, r9, lsl #2]!
+ 8004a8d:	08000000 	stmdaeq	r0, {}	; <UNPREDICTABLE>
 
-08004a38 <_ZTV16PositionControll>:
- 8004a38:	00000000 	andeq	r0, r0, r0
- 8004a3c:	00000000 	andeq	r0, r0, r0
- 8004a40:	08003df1 	stmdaeq	r0, {r0, r4, r5, r6, r7, r8, sl, fp, ip, sp}
- 8004a44:	08003e03 	stmdaeq	r0, {r0, r1, r9, sl, fp, ip, sp}
+08004a90 <_ZL22layer_0_input_geometry>:
+ 8004a90:	00000008 	andeq	r0, r0, r8
+ 8004a94:	00000008 	andeq	r0, r0, r8
+ 8004a98:	00000001 	andeq	r0, r0, r1
 
-08004a48 <_ZTV10BrickAvoid>:
- 8004a48:	00000000 	andeq	r0, r0, r0
- 8004a4c:	00000000 	andeq	r0, r0, r0
- 8004a50:	08004199 	stmdaeq	r0, {r0, r3, r4, r7, r8, lr}
- 8004a54:	080041b1 	stmdaeq	r0, {r0, r4, r5, r7, r8, lr}
+08004a9c <_ZL22layer_1_input_geometry>:
+ 8004a9c:	00000008 	andeq	r0, r0, r8
+ 8004aa0:	00000008 	andeq	r0, r0, r8
+ 8004aa4:	00000004 	andeq	r0, r0, r4
+
+08004aa8 <_ZL22layer_3_input_geometry>:
+ 8004aa8:	00000004 	andeq	r0, r0, r4
+ 8004aac:	00000004 	andeq	r0, r0, r4
+ 8004ab0:	00000004 	andeq	r0, r0, r4
+
+08004ab4 <_ZL22layer_4_input_geometry>:
+ 8004ab4:	00000004 	andeq	r0, r0, r4
+ 8004ab8:	00000004 	andeq	r0, r0, r4
+ 8004abc:	00000008 	andeq	r0, r0, r8
+
+08004ac0 <_ZL22layer_6_input_geometry>:
+ 8004ac0:	00000004 	andeq	r0, r0, r4
+ 8004ac4:	00000004 	andeq	r0, r0, r4
+ 8004ac8:	0000000c 	andeq	r0, r0, ip
+
+08004acc <_ZL23layer_0_kernel_geometry>:
+ 8004acc:	00000003 	andeq	r0, r0, r3
+ 8004ad0:	00000003 	andeq	r0, r0, r3
+ 8004ad4:	00000004 	andeq	r0, r0, r4
+
+08004ad8 <_ZL23layer_2_kernel_geometry>:
+ 8004ad8:	00000002 	andeq	r0, r0, r2
+ 8004adc:	00000002 	andeq	r0, r0, r2
+ 8004ae0:	00000001 	andeq	r0, r0, r1
+
+08004ae4 <_ZL22layer_8_input_geometry>:
+ 8004ae4:	00000002 	andeq	r0, r0, r2
+ 8004ae8:	00000002 	andeq	r0, r0, r2
+ 8004aec:	0000000c 	andeq	r0, r0, ip
+
+08004af0 <_ZL23layer_8_output_geometry>:
+ 8004af0:	00000001 	andeq	r0, r0, r1
+ 8004af4:	00000001 	andeq	r0, r0, r1
+ 8004af8:	00000005 	andeq	r0, r0, r5
+
+08004afc <_ZTV11LineNetwork>:
+ 8004afc:	00000000 	andeq	r0, r0, r0
+ 8004b00:	00000000 	andeq	r0, r0, r0
+ 8004b04:	08003add 	stmdaeq	r0, {r0, r2, r3, r4, r6, r7, r9, fp, ip, sp}
+ 8004b08:	08003b15 	stmdaeq	r0, {r0, r2, r4, r8, r9, fp, ip, sp}
+ 8004b0c:	08001171 	stmdaeq	r0, {r0, r4, r5, r6, r8, ip}
+ 8004b10:	080012e3 	stmdaeq	r0, {r0, r1, r5, r6, r7, r9, ip}
+
+08004b14 <_ZTV10IntegratorIfE>:
+ 8004b14:	00000000 	andeq	r0, r0, r0
+ 8004b18:	00000000 	andeq	r0, r0, r0
+ 8004b1c:	08003ebb 	stmdaeq	r0, {r0, r1, r3, r4, r5, r7, r9, sl, fp, ip, sp}
+ 8004b20:	08003ebd 	stmdaeq	r0, {r0, r2, r3, r4, r5, r7, r9, sl, fp, ip, sp}
+
+08004b24 <_ZTV16PositionControll>:
+ 8004b24:	00000000 	andeq	r0, r0, r0
+ 8004b28:	00000000 	andeq	r0, r0, r0
+ 8004b2c:	08003eb9 	stmdaeq	r0, {r0, r3, r4, r5, r7, r9, sl, fp, ip, sp}
+ 8004b30:	08003ecb 	stmdaeq	r0, {r0, r1, r3, r6, r7, r9, sl, fp, ip, sp}
+
+08004b34 <_ZTV10BrickAvoid>:
+ 8004b34:	00000000 	andeq	r0, r0, r0
+ 8004b38:	00000000 	andeq	r0, r0, r0
+ 8004b3c:	08004261 	stmdaeq	r0, {r0, r5, r6, r9, lr}
+ 8004b40:	08004279 	stmdaeq	r0, {r0, r3, r4, r5, r6, r9, lr}
 
 Disassembly of section .init_array:
 
-08004a58 <__init_array_start>:
- 8004a58:	080035d9 	stmdaeq	r0, {r0, r3, r4, r6, r7, r8, sl, ip, sp}
+08004b44 <__init_array_start>:
+ 8004b44:	08003689 	stmdaeq	r0, {r0, r3, r7, r9, sl, ip, sp}
 
 Disassembly of section .bss:
 
@@ -7557,23 +7664,25 @@ Disassembly of section .bss:
 2000022c:	00000000 	andeq	r0, r0, r0
 20000230:	00000000 	andeq	r0, r0, r0
 
-20000234 <encoder_sensor>:
+20000234 <eeprom>:
 20000234:	00000000 	andeq	r0, r0, r0
 20000238:	00000000 	andeq	r0, r0, r0
 2000023c:	00000000 	andeq	r0, r0, r0
+
+20000240 <encoder_sensor>:
 20000240:	00000000 	andeq	r0, r0, r0
 20000244:	00000000 	andeq	r0, r0, r0
-
-20000248 <i2c>:
 20000248:	00000000 	andeq	r0, r0, r0
 2000024c:	00000000 	andeq	r0, r0, r0
 20000250:	00000000 	andeq	r0, r0, r0
-20000254:	00000000 	andeq	r0, r0, r0
 
-20000258 <imu_sensor>:
+20000254 <i2c>:
+20000254:	00000000 	andeq	r0, r0, r0
 20000258:	00000000 	andeq	r0, r0, r0
 2000025c:	00000000 	andeq	r0, r0, r0
 20000260:	00000000 	andeq	r0, r0, r0
+
+20000264 <imu_sensor>:
 20000264:	00000000 	andeq	r0, r0, r0
 20000268:	00000000 	andeq	r0, r0, r0
 2000026c:	00000000 	andeq	r0, r0, r0
@@ -7588,19 +7697,19 @@ Disassembly of section .bss:
 20000290:	00000000 	andeq	r0, r0, r0
 20000294:	00000000 	andeq	r0, r0, r0
 20000298:	00000000 	andeq	r0, r0, r0
-
-2000029c <key>:
 2000029c:	00000000 	andeq	r0, r0, r0
 200002a0:	00000000 	andeq	r0, r0, r0
 200002a4:	00000000 	andeq	r0, r0, r0
+
+200002a8 <key>:
 200002a8:	00000000 	andeq	r0, r0, r0
 200002ac:	00000000 	andeq	r0, r0, r0
 200002b0:	00000000 	andeq	r0, r0, r0
-
-200002b4 <line_sensor>:
 200002b4:	00000000 	andeq	r0, r0, r0
 200002b8:	00000000 	andeq	r0, r0, r0
 200002bc:	00000000 	andeq	r0, r0, r0
+
+200002c0 <line_sensor>:
 200002c0:	00000000 	andeq	r0, r0, r0
 200002c4:	00000000 	andeq	r0, r0, r0
 200002c8:	00000000 	andeq	r0, r0, r0
@@ -7660,11 +7769,11 @@ Disassembly of section .bss:
 200003a0:	00000000 	andeq	r0, r0, r0
 200003a4:	00000000 	andeq	r0, r0, r0
 200003a8:	00000000 	andeq	r0, r0, r0
-
-200003ac <motor_controll>:
 200003ac:	00000000 	andeq	r0, r0, r0
 200003b0:	00000000 	andeq	r0, r0, r0
 200003b4:	00000000 	andeq	r0, r0, r0
+
+200003b8 <motor_controll>:
 200003b8:	00000000 	andeq	r0, r0, r0
 200003bc:	00000000 	andeq	r0, r0, r0
 200003c0:	00000000 	andeq	r0, r0, r0
@@ -7699,17 +7808,20 @@ Disassembly of section .bss:
 20000434:	00000000 	andeq	r0, r0, r0
 20000438:	00000000 	andeq	r0, r0, r0
 2000043c:	00000000 	andeq	r0, r0, r0
-
-20000440 <terminal>:
 20000440:	00000000 	andeq	r0, r0, r0
-
-20000444 <timer>:
 20000444:	00000000 	andeq	r0, r0, r0
+20000448:	00000000 	andeq	r0, r0, r0
+
+2000044c <terminal>:
+2000044c:	00000000 	andeq	r0, r0, r0
+
+20000450 <timer>:
+20000450:	00000000 	andeq	r0, r0, r0
 
 Disassembly of section .comment:
 
 00000000 <.comment>:
-   0:	3a434347 	bcc	10d0d24 <__text_size__+0x10cc454>
+   0:	3a434347 	bcc	10d0d24 <__text_size__+0x10cc368>
    4:	35312820 	ldrcc	r2, [r1, #-2080]!	; 0xfffff7e0
    8:	332e363a 			; <UNDEFINED> instruction: 0x332e363a
    c:	732b312e 			; <UNDEFINED> instruction: 0x732b312e
@@ -7738,7 +7850,7 @@ Disassembly of section .ARM.attributes:
   20:	12020a02 	andne	r0, r2, #8192	; 0x2000
   24:	15011404 	strne	r1, [r1, #-1028]	; 0xfffffbfc
   28:	18031701 	stmdane	r3, {r0, r8, r9, sl, ip}
-  2c:	1a011901 	bne	46438 <__text_size__+0x41b68>
+  2c:	1a011901 	bne	46438 <__text_size__+0x41a7c>
   30:	22041e01 	andcs	r1, r4, #1, 28
   34:	Address 0x0000000000000034 is out of bounds.
 

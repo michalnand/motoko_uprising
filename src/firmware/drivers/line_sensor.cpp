@@ -19,85 +19,84 @@ LineSensor::~LineSensor()
 
 int LineSensor::init()
 {
-  int init_res = 0;
+    int init_res = 0;
 
-  sensor_led = 0;
-  timer.delay_ms(100);
+    sensor_led = 0;
+    timer.delay_ms(100);
 
-  for (unsigned int i = 0; i < adc_calibration.size(); i++)
-    adc_calibration[i] = adc.read(i);
+    for (unsigned int i = 0; i < adc_calibration.size(); i++)
+        adc_calibration[i] = adc.read(i);
 
-  sensor_led = 1;
-  timer.delay_ms(100);
+    sensor_led = 1;
+    timer.delay_ms(100);
 
-  for (unsigned int i = 0; i < adc_calibration_k.size(); i++)
-    adc_calibration_k[i] =  adc.read(i) - adc_calibration[i];
+    for (unsigned int i = 0; i < adc_calibration_k.size(); i++)
+        adc_calibration_k[i] =  adc.read(i) - adc_calibration[i];
 
+    for (unsigned int i = 0; i < adc_result.size(); i++)
+        adc_result[i] = 0;
 
-  for (unsigned int i = 0; i < adc_result.size(); i++)
-    adc_result[i] = 0;
+    int step   = LINE_SENSOR_STEP;
 
-  int step   = LINE_SENSOR_STEP;
+    weights[0] = -4*step;
+    weights[1] = -3*step;
+    weights[2] = -2*step;
+    weights[3] = -1*step;
+    weights[4] =  1*step;
+    weights[5] =  2*step;
+    weights[6] =  3*step;
+    weights[7] =  4*step;
 
-  weights[0] = -4*step;
-  weights[1] = -3*step;
-  weights[2] = -2*step;
-  weights[3] = -1*step;
-  weights[4] =  1*step;
-  weights[5] =  2*step;
-  weights[6] =  3*step;
-  weights[7] =  4*step;
+    threshold = LINE_SENSOR_THRESHOLD;
 
-  threshold = LINE_SENSOR_THRESHOLD;
+    result.on_line    = false;
+    result.line_type  = LINE_TYPE_SINGLE;
+    result.left_line_position     = 0;
+    result.right_line_position    = 0;
+    result.spot_line_position     = 0;
 
-  result.on_line    = false;
-  result.line_type  = LINE_TYPE_SINGLE;
-  result.left_line_position     = 0;
-  result.right_line_position    = 0;
-  result.spot_line_position     = 0;
+    result.on_line_count  = 0;
+    result.max_left_idx   = 0;
+    result.max_right_idx  = 0;
 
-  result.on_line_count  = 0;
-  result.max_left_idx   = 0;
-  result.max_right_idx  = 0;
+    result_tmp = result;
 
-  result_tmp = result;
+    m_ready = false;
 
-  m_ready = false;
-
-  timer.add_task(this, LINE_SENSOR_DT, false);
-  return init_res;
+    timer.add_task(this, LINE_SENSOR_DT, false);
+    return init_res;
 }
 
 bool LineSensor::ready()
 {
-  bool res = m_ready;
+    bool res = m_ready;
 
-  __disable_irq();
-  if (res)
-    m_ready = false;
-  __enable_irq();
+    __disable_irq();
+    if (res)
+        m_ready = false;
+    __enable_irq();
 
-  return res;
+    return res;
 }
 
 int LineSensor::get_max()
 {
-  return 4*LINE_SENSOR_STEP;
+    return 4*LINE_SENSOR_STEP;
 }
 
 int LineSensor::get_min()
 {
-  return -get_max();
+    return -get_max();
 }
 
 void LineSensor::on()
 {
-  sensor_led = 1;
+    sensor_led = 1;
 }
 
 void LineSensor::off()
 {
-  sensor_led = 0;
+    sensor_led = 0;
 }
 
 void LineSensor::main()
@@ -324,13 +323,13 @@ int LineSensor::find_spot_pos()
     {
         return result;
     }
-
+ 
     /*
     if (continuos_count >= LINE_SENSOR_COUNT/2)
     {
         return result;
     }
     */
-    
+
     return -1;
 }
