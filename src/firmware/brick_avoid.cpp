@@ -64,7 +64,7 @@ void BrickAvoid::avoid(int side)
             {
                 distance = distance_sensor.result.left;
                 //error    = -(3.7 - distance);
-                error    = -(0.89 - distance);
+                error    = -(0.92 - distance); //0.89
             }
 
             //compute steering using PID

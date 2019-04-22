@@ -5,7 +5,7 @@
 
 DistanceSensor::DistanceSensor()
 {
-  front_ir_led = 0;
+    front_ir_led = 0;
 }
 
 DistanceSensor::~DistanceSensor()
@@ -46,7 +46,7 @@ int DistanceSensor::init()
     right_distance_filter.set_coefs(0.0, -r*r, b, 0.0, -b);
 
 
-    timer.add_task(this, 5, false);
+    timer.add_task(this, DISTANCE_DT, false);
 
     m_ready = false;
 
@@ -130,12 +130,12 @@ void DistanceSensor::main()
     result.left     = 1.0 - left_distance_filter.get_absolute();
     result.right    = 1.0 - right_distance_filter.get_absolute();
 
-    if (result.front < 0.7)
+    if (result.front < DISTANCE_WARNING)
         result.front_obstacle_warning = true;
     else
         result.front_obstacle_warning = false;
 
-    if (result.front < 0.64)
+    if (result.front < DISTANCE_OBSTACLE)
         result.front_obstacle = true;
     else
         result.front_obstacle = false;

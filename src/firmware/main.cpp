@@ -27,7 +27,7 @@ void brick_avoid_test()
             //compute distance error
             float distance = distance_sensor.result.right;
 
-            float error    = 0.9 - distance;
+            float error    = 0.92 - distance;
 
             //compute steering using PID
             float steering  = steering_pid.process(error);
@@ -35,7 +35,7 @@ void brick_avoid_test()
 
             float steering_saturated = saturate(steering, -steering_max, steering_max);
 
-            terminal << distance << " " << steering << " " << saturate(distance, -2.0, 2.0) << "\n";
+            //terminal << distance << " " << steering << " " << saturate(distance, -2.0, 2.0) << "\n";
 
             //compute outputs for motors
             float speed_right = steering_saturated + speed;
@@ -58,14 +58,14 @@ int main()
     //brick_avoid_test();
     //drivers.test_imu_sensor();
     //drivers.test_line_sensor();
-    drivers.test_distance_sensor();
+    //drivers.test_distance_sensor();
     //drivers.test_encoder_sensor();
     //drivers.test_motor_speed_feedback();
 
 
     //diagnostic();
 
-    //brick_avoid_test();
+    brick_avoid_test();
 
     Robot robot;
     robot.main();
