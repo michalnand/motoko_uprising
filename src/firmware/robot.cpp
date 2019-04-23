@@ -79,6 +79,9 @@ void Robot::main()
                     spot_move();
 
                     speed_ramp.set_speed(0);
+
+                    float line_position = line_sensor.result.right_line_position*1.0/line_sensor.get_max();
+                    steering_pid.reset(line_position);
                 }
                 else
                     line_following();
@@ -178,9 +181,10 @@ void Robot::allign_to_line(unsigned int cycles)
 
 void Robot::spot_move()
 {
-    int line_position = line_sensor.result.spot_line_position;
+    //int line_position = line_sensor.result.spot_line_position;
+    int line_position = line_sensor.result.right_line_position;
 
-    
+
     motor_controll.set_left_speed(0);
     motor_controll.set_right_speed(0);
 
