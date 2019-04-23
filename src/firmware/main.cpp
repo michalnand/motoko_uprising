@@ -65,7 +65,7 @@ int main()
 
     //diagnostic();
 
-    brick_avoid_test();
+    //brick_avoid_test();
 
     Robot robot;
     robot.main();

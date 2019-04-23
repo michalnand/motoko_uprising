@@ -1,0 +1,7 @@
+#ifndef _ROBOT_TYPE_H_
+#define _ROBOT_TYPE_H_
+
+#define ROBOT_TYPE_MOTOKO_UPRINSING_1  1
+//#define ROBOT_TYPE_MOTOKO_UPRINSING_2  1
+
+#endif
