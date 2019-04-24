@@ -13,6 +13,8 @@
 
 #include <brick_detection.h>
 
+#include <line_mapping.h>
+
 class Robot
 {
     public:
@@ -20,11 +22,15 @@ class Robot
         virtual ~Robot();
 
         void main();
+        void mapping_enable();
+        void mapping_disable();
 
     private:
         void line_following();
         void allign_to_line(unsigned int cycles);
         void spot_move();
+
+
 
     private:
         PID steering_pid;
@@ -38,6 +44,11 @@ class Robot
         SpeedRamp<float> speed_ramp;
 
         BrickDetection brick_detection;
+
+        LineMapping line_mapping;
+
+        int mapping_distance_next;
+        bool mapping_enabled;
 };
 
 

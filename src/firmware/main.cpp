@@ -3,7 +3,6 @@
 #include <robot.h>
 #include <diagnostic.h>
 
-
 void brick_avoid_test()
 {
     int right_angle_distance = WHEEL_CIRCUMFERENCE;
@@ -53,7 +52,7 @@ void brick_avoid_test()
 int main()
 {
     drivers.init();
-    key.read();
+    auto res = key.read();
 
     //brick_avoid_test();
     //drivers.test_imu_sensor();
@@ -67,6 +66,14 @@ int main()
 
     //brick_avoid_test();
 
+
+
     Robot robot;
+
+    if (res == 1)
+        robot.mapping_enable();
+    else
+        robot.mapping_disable();
+
     robot.main();
 }

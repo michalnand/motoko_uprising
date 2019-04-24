@@ -3,6 +3,8 @@
 
 Robot::Robot()
 {
+    mapping_enabled = false;
+
     //initialize steering PD controll
     steering_pid.init(STEERING_PID_KP, STEERING_PID_KI, STEERING_PID_KD, STEERING_PID_LIMIT);
 
@@ -38,6 +40,11 @@ Robot::Robot()
     */
 
     brick_detection.init(brick_detection_pattern, ignore_distance);
+
+
+    mapping_distance_next = 0;
+    line_mapping.init();
+    line_mapping.print();
 }
 
 Robot::~Robot()
@@ -84,8 +91,9 @@ void Robot::main()
                     steering_pid.reset(line_position);
                 }
                 else
+                {
                     line_following();
-
+                }
             }
             else
             {
@@ -147,6 +155,13 @@ void Robot::line_following()
 
     //set last line position for lost line search
     line_search.set_last_line_position(line_position);
+
+    if (mapping_enabled)
+    if (mapping_distance_next >= encoder_sensor.get_distance())
+    {
+        line_mapping.add(encoder_sensor.get_distance(), line_predictor.get_result());
+        mapping_distance_next+= 100;
+    }
 }
 
 void Robot::allign_to_line(unsigned int cycles)
@@ -210,4 +225,14 @@ void Robot::spot_move()
 
     motor_controll.set_left_speed(0);
     motor_controll.set_right_speed(0);
+}
+
+void Robot::mapping_enable()
+{
+    mapping_enabled = true;
+}
+
+void Robot::mapping_disable()
+{
+    mapping_enabled = false;
 }
