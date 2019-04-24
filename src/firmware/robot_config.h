@@ -19,11 +19,13 @@
 #define LINE_FOLLOWING_SPEED_MAX                    ((float)0.8)
 
 
-#define LINE_SEARCH_TURN_DISTANCE                   ((int)190)
+#define LINE_SEARCH_TURN_DISTANCE                   ((int)210)
 #define LINE_SEARCH_MAX_SPEED                       ((float)0.7)
 
 
 #define BRICK_AVOID_MAX_SPEED                       ((float)0.7)
+#define BRICK_AVOID_TURN_BACK_DISTANCE              ((int)33)
+#define BRICK_AVOID_IGNORE_DISTANCE                 ((int)200)
 
 #endif
 
@@ -43,11 +45,13 @@
 #define LINE_FOLLOWING_SPEED_MAX                    ((float)0.7)
 
 
-#define LINE_SEARCH_TURN_DISTANCE                   ((int)230)
+#define LINE_SEARCH_TURN_DISTANCE                   ((int)250)
 #define LINE_SEARCH_MAX_SPEED                       ((float)0.7)
 
 
 #define BRICK_AVOID_MAX_SPEED                       ((float)0.7)
+#define BRICK_AVOID_TURN_BACK_DISTANCE              ((int)33)
+#define BRICK_AVOID_IGNORE_DISTANCE                 ((int)200)
 
 #endif
 

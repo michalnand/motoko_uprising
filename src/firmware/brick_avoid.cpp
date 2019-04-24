@@ -33,7 +33,7 @@ void BrickAvoid::avoid(int side)
 
     speed_ramp.init(0.01);
 
-    process_move(-right_angle_distance/4, -right_angle_distance/4);
+    process_move(-BRICK_AVOID_TURN_BACK_DISTANCE, -BRICK_AVOID_TURN_BACK_DISTANCE);
 
     if (side == BRICK_AVOID_SIDE_LEFT)
     {
@@ -46,7 +46,8 @@ void BrickAvoid::avoid(int side)
     }
 
 
-
+    int ignore_distance = encoder_sensor.get_distance() + BRICK_AVOID_IGNORE_DISTANCE;
+    
     while (1)
     {
         if (distance_sensor.ready())
@@ -84,7 +85,7 @@ void BrickAvoid::avoid(int side)
             motor_controll.set_right_speed(speed_right);
             motor_controll.set_left_speed(speed_left);
 
-
+            if (encoder_sensor.get_distance() > ignore_distance)
             if (line_sensor.result.on_line)
                 break;
         }
