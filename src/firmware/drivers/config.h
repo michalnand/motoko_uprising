@@ -65,8 +65,8 @@
 
 //distance sensor parameters
 #define DISTANCE_DT             ((unsigned int)5)
-#define DISTANCE_WARNING        ((float)0.85)        //for motoko 2
-#define DISTANCE_OBSTACLE       ((float)0.82)
+#define DISTANCE_WARNING        ((float)0.85)    
+#define DISTANCE_OBSTACLE       ((float)0.78)
 
 //imu dt in ms
 #define IMU_DT                  ((unsigned int)10)

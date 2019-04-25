@@ -133,17 +133,23 @@ void Robot::line_following()
 
 
     if (fast_run_enabled)
-    if (fast_run_max_distance < encoder_sensor.get_distance())
     {
-        speed_limit = LINE_FOLLOWING_SPEED_MAX;
+        if (fast_run_max_distance < encoder_sensor.get_distance())
+        {
+            speed_limit = LINE_FOLLOWING_SPEED_MAX;
 
-        int map_a = line_mapping.get_closest(encoder_sensor.get_distance());
-        int map_b = line_mapping.get_closest(encoder_sensor.get_distance() + LINE_MAPPING_STEP);
+            int map_a = line_mapping.get_closest(encoder_sensor.get_distance());
+            int map_b = line_mapping.get_closest(encoder_sensor.get_distance() + LINE_MAPPING_STEP);
 
 
-        if ((map_a == 0)||(map_a == 4)||
-            (map_b == 0)||(map_b == 4))
-            speed_limit = LINE_FOLLOWING_SPEED_MIN;
+            if ((map_a == 0)||(map_a == 4)||
+                (map_b == 0)||(map_b == 4))
+                speed_limit = LINE_FOLLOWING_SPEED_MIN;
+        }
+        else
+        {
+            fast_run_disable(); 
+        }
     }
 
     if (line_sensor.result.line_type == LINE_TYPE_SPOT)
@@ -245,7 +251,7 @@ void Robot::spot_move()
 
     motor_controll.set_left_speed(0);
     motor_controll.set_right_speed(0);
-} 
+}
 
 void Robot::mapping_enable()
 {
@@ -260,9 +266,11 @@ void Robot::mapping_disable()
 void Robot::fast_run_enable()
 {
     fast_run_enabled = true;
+    speed_ramp.init(LINE_FOLLOWING_FAST_RUN_SPEED_RAMP_RISE);
 }
 
 void Robot::fast_run_disable()
 {
     fast_run_enabled = false;
+    speed_ramp.init(LINE_FOLLOWING_SPEED_RAMP_RISE);
 }

@@ -47,7 +47,7 @@ void BrickAvoid::avoid(int side)
 
 
     int ignore_distance = encoder_sensor.get_distance() + BRICK_AVOID_IGNORE_DISTANCE;
-    
+
     while (1)
     {
         if (distance_sensor.ready())
@@ -57,15 +57,13 @@ void BrickAvoid::avoid(int side)
             if (side == BRICK_AVOID_SIDE_LEFT)
             {
                 distance = distance_sensor.result.right;
-                //error    = 3.8 - distance;
-                error    = 0.92 - distance;
+                error    = BRICK_AVOID_RIGHT_DISTANCE - distance;
             }
 
             if (side == BRICK_AVOID_SIDE_RIGHT)
             {
                 distance = distance_sensor.result.left;
-                //error    = -(3.7 - distance);
-                error    = -(0.92 - distance); //0.89
+                error    = -(BRICK_AVOID_LEFT_DISTANCE - distance);
             }
 
             //compute steering using PID
