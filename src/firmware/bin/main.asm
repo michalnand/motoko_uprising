@@ -529,7 +529,7 @@ Disassembly of section .text:
  8000594:	41200000 			; <UNDEFINED> instruction: 0x41200000
  8000598:	3fe66666 	svccc	0x00e66666
  800059c:	3e99999a 			; <UNDEFINED> instruction: 0x3e99999a
- 80005a0:	3ac49ba6 	bcc	7127440 <__text_size__+0x71227cc>
+ 80005a0:	3b03126f 	blcc	80c4f64 <_sidata+0xc0164>
  80005a4:	08004660 	stmdaeq	r0, {r5, r6, r9, sl, lr}
 
 080005a8 <_ZN5Robot14line_followingEv>:
@@ -656,14 +656,14 @@ Disassembly of section .text:
  800072a:	bf00      	nop
  800072c:	20000240 	andcs	r0, r0, r0, asr #4
  8000730:	2000033c 	andcs	r0, r0, ip, lsr r3
- 8000734:	3f0ccccd 	svccc	0x000ccccd
+ 8000734:	3f19999a 	svccc	0x0019999a
  8000738:	00000000 	andeq	r0, r0, r0
- 800073c:	3f333333 	svccc	0x00333333
+ 800073c:	3f4ccccd 	svccc	0x004ccccd
  8000740:	3ecccccd 	cdpcc	12, 12, cr12, cr12, cr13, {6}
  8000744:	200002c0 	andcs	r0, r0, r0, asr #5
  8000748:	20000158 	andcs	r0, r0, r8, asr r1
  800074c:	200003b8 			; <UNDEFINED> instruction: 0x200003b8
- 8000750:	3ac49ba6 	bcc	71275f0 <__text_size__+0x712297c>
+ 8000750:	3b03126f 	blcc	80c5114 <_sidata+0xc0314>
 
 08000754 <_ZN5Robot14allign_to_lineEj>:
  8000754:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
@@ -4945,7 +4945,7 @@ Disassembly of section .text:
  8002f4c:	39800000 	stmibcc	r0, {}	; <UNPREDICTABLE>
  8002f50:	3f800000 	svccc	0x00800000
  8002f54:	3f59999a 	svccc	0x0059999a
- 8002f58:	3f47ae14 	svccc	0x0047ae14
+ 8002f58:	3f333333 	svccc	0x00333333
 
 08002f5c <_ZN14DistanceSensorC1Ev>:
  8002f5c:	492f      	ldr	r1, [pc, #188]	; (800301c <_ZN14DistanceSensorC1Ev+0xc0>)
@@ -6131,10 +6131,10 @@ Disassembly of section .text:
  8003aec:	4605      	mov	r5, r0
  8003aee:	f100 0408 	add.w	r4, r0, #8
  8003af2:	bf4b      	itete	mi
- 8003af4:	21fa      	movmi	r1, #250	; 0xfa
+ 8003af4:	21d2      	movmi	r1, #210	; 0xd2
  8003af6:	2100      	movpl	r1, #0
  8003af8:	2200      	movmi	r2, #0
- 8003afa:	22fa      	movpl	r2, #250	; 0xfa
+ 8003afa:	22e6      	movpl	r2, #230	; 0xe6
  8003afc:	4620      	mov	r0, r4
  8003afe:	2600      	movs	r6, #0
  8003b00:	2305      	movs	r3, #5
@@ -6151,8 +6151,8 @@ Disassembly of section .text:
  8003b20:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
  8003b24:	bf4b      	itete	mi
  8003b26:	4632      	movmi	r2, r6
- 8003b28:	f06f 02f9 	mvnpl.w	r2, #249	; 0xf9
- 8003b2c:	f06f 01f9 	mvnmi.w	r1, #249	; 0xf9
+ 8003b28:	f06f 02e5 	mvnpl.w	r2, #229	; 0xe5
+ 8003b2c:	f06f 01d1 	mvnmi.w	r1, #209	; 0xd1
  8003b30:	4631      	movpl	r1, r6
  8003b32:	2305      	movs	r3, #5
  8003b34:	4620      	mov	r0, r4
@@ -6170,8 +6170,8 @@ Disassembly of section .text:
  8003b5a:	460a      	movpl	r2, r1
  8003b5c:	9100      	str	r1, [sp, #0]
  8003b5e:	bf4c      	ite	mi
- 8003b60:	22fa      	movmi	r2, #250	; 0xfa
- 8003b62:	21fa      	movpl	r1, #250	; 0xfa
+ 8003b60:	22e6      	movmi	r2, #230	; 0xe6
+ 8003b62:	21d2      	movpl	r1, #210	; 0xd2
  8003b64:	4620      	mov	r0, r4
  8003b66:	2305      	movs	r3, #5
  8003b68:	f000 fae0 	bl	800412c <_ZN16PositionControll12set_positionEllib>
@@ -6185,11 +6185,11 @@ Disassembly of section .text:
  8003b82:	f04f 0100 	mov.w	r1, #0
  8003b86:	bf54      	ite	pl
  8003b88:	460a      	movpl	r2, r1
- 8003b8a:	f06f 02f9 	mvnmi.w	r2, #249	; 0xf9
+ 8003b8a:	f06f 02e5 	mvnmi.w	r2, #229	; 0xe5
  8003b8e:	9100      	str	r1, [sp, #0]
  8003b90:	f04f 0305 	mov.w	r3, #5
  8003b94:	bf58      	it	pl
- 8003b96:	f06f 01f9 	mvnpl.w	r1, #249	; 0xf9
+ 8003b96:	f06f 01d1 	mvnpl.w	r1, #209	; 0xd1
  8003b9a:	4620      	mov	r0, r4
  8003b9c:	f000 fac6 	bl	800412c <_ZN16PositionControll12set_positionEllib>
  8003ba0:	490d      	ldr	r1, [pc, #52]	; (8003bd8 <_ZN10LineSearch4mainEv+0x100>)
@@ -6197,7 +6197,7 @@ Disassembly of section .text:
  8003ba4:	f7ff ff64 	bl	8003a70 <_ZN10LineSearch12process_moveEj>
  8003ba8:	4620      	mov	r0, r4
  8003baa:	f000 fbf3 	bl	8004394 <_ZN16PositionControll4stopEv>
- 8003bae:	227d      	movs	r2, #125	; 0x7d
+ 8003bae:	22d2      	movs	r2, #210	; 0xd2
  8003bb0:	2300      	movs	r3, #0
  8003bb2:	4611      	mov	r1, r2
  8003bb4:	9300      	str	r3, [sp, #0]
@@ -7085,7 +7085,7 @@ Disassembly of section .text:
  8004512:	68f1      	ldr	r1, [r6, #12]
  8004514:	a803      	add	r0, sp, #12
  8004516:	f7fd f917 	bl	8001748 <_ZN3PID5resetEf>
- 800451a:	f06f 0225 	mvn.w	r2, #37	; 0x25
+ 800451a:	f06f 0220 	mvn.w	r2, #32
  800451e:	4611      	mov	r1, r2
  8004520:	4628      	mov	r0, r5
  8004522:	f7ff ffa9 	bl	8004478 <_ZN10BrickAvoid12process_moveEll>

@@ -20,7 +20,9 @@
 #define LINE_FOLLOWING_SPEED_MAX                    ((float)0.8)
 
 
-#define LINE_SEARCH_TURN_DISTANCE                   ((int)210)
+#define LINE_SEARCH_TURN_DISTANCE_RIGHT             ((int)210)
+#define LINE_SEARCH_TURN_DISTANCE_LEFT              ((int)230)
+#define LINE_SEARCH_TURN_DISTANCE_FORWARD           ((int)210)
 #define LINE_SEARCH_MAX_SPEED                       ((float)0.7)
 
 
@@ -52,10 +54,12 @@
 #define LINE_FOLLOWING_FAST_RUN_SPEED_RAMP_RISE     ((float)0.005)
 
 #define LINE_FOLLOWING_SPEED_MIN                    ((float)0.4)
-#define LINE_FOLLOWING_SPEED_MAX                    ((float)0.7)
+#define LINE_FOLLOWING_SPEED_MAX                    ((float)0.6)
 
 
-#define LINE_SEARCH_TURN_DISTANCE                   ((int)250)
+#define LINE_SEARCH_TURN_DISTANCE_RIGHT             ((int)210)
+#define LINE_SEARCH_TURN_DISTANCE_LEFT              ((int)230)
+#define LINE_SEARCH_TURN_DISTANCE_FORWARD           ((int)210)
 #define LINE_SEARCH_MAX_SPEED                       ((float)0.7)
 
 

@@ -31,12 +31,10 @@ void LineSearch::keep_speed_disable()
 
 void LineSearch::main()
 {
-    int  turn_distance = LINE_SEARCH_TURN_DISTANCE;
-
     if (last_line_position < 0.0)
-        position_control.set_position(turn_distance, 0, POSITION_CONTROLL_DEFAULT_DISTANCE_LIMIT, keep_speed);
+        position_control.set_position(LINE_SEARCH_TURN_DISTANCE_RIGHT, 0, POSITION_CONTROLL_DEFAULT_DISTANCE_LIMIT, keep_speed);
     else
-        position_control.set_position(0, turn_distance, POSITION_CONTROLL_DEFAULT_DISTANCE_LIMIT, keep_speed);
+        position_control.set_position(0, LINE_SEARCH_TURN_DISTANCE_LEFT, POSITION_CONTROLL_DEFAULT_DISTANCE_LIMIT, keep_speed);
 
     keep_speed = false;
 
@@ -44,31 +42,31 @@ void LineSearch::main()
         return;
 
     if (last_line_position < 0.0)
-        position_control.set_position(-turn_distance, 0);
+        position_control.set_position(-LINE_SEARCH_TURN_DISTANCE_RIGHT, 0);
     else
-        position_control.set_position(0, -turn_distance);
+        position_control.set_position(0, -LINE_SEARCH_TURN_DISTANCE_LEFT);
 
     process_move(1000000);
     position_control.stop();
 
 
     if (last_line_position < 0.0)
-        position_control.set_position(0, turn_distance);
+        position_control.set_position(0, LINE_SEARCH_TURN_DISTANCE_LEFT);
     else
-        position_control.set_position(turn_distance, 0);
+        position_control.set_position(LINE_SEARCH_TURN_DISTANCE_RIGHT, 0);
 
     if (process_move(150) == 0)
         return;
 
     if (last_line_position < 0.0)
-        position_control.set_position(0, -turn_distance);
+        position_control.set_position(0, -LINE_SEARCH_TURN_DISTANCE_LEFT);
     else
-        position_control.set_position(-turn_distance, 0);
+        position_control.set_position(-LINE_SEARCH_TURN_DISTANCE_RIGHT, 0);
 
     process_move(1000000);
     position_control.stop();
 
-    position_control.set_position(turn_distance/2, turn_distance/2);
+    position_control.set_position(LINE_SEARCH_TURN_DISTANCE_FORWARD, LINE_SEARCH_TURN_DISTANCE_FORWARD);
     process_move(150);
 
     position_control.stop();
