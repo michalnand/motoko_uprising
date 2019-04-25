@@ -141,7 +141,7 @@ void LineSensor::main()
     int right_line  = find_right_line_pos();
     int center_line = find_center_line_pos();
 
-
+ 
 
     if (spot_line != -1)
     {
@@ -319,11 +319,11 @@ int LineSensor::find_spot_pos()
     }
 
 
-    if (count > (LINE_SENSOR_COUNT - 1))
+    if (count > (LINE_SENSOR_COUNT - 2))
     {
         return result;
     }
- 
+
     /*
     if (continuos_count >= LINE_SENSOR_COUNT/2)
     {

@@ -24,7 +24,8 @@ class Robot
         void main();
         void mapping_enable();
         void mapping_disable();
-
+        void fast_run_enable();
+        void fast_run_disable();
     private:
         void line_following();
         void allign_to_line(unsigned int cycles);
@@ -47,8 +48,8 @@ class Robot
 
         LineMapping line_mapping;
 
-        int mapping_distance_next;
-        bool mapping_enabled;
+        int mapping_distance_next, fast_run_max_distance;
+        bool mapping_enabled, fast_run_enabled;
 };
 
 

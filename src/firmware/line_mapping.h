@@ -30,6 +30,8 @@ class LineMapping
         void load();
         void print();
 
+        int get_closest(int position);
+
     private:
         unsigned int item_ptr, address;
         Array<sLineMapItem, LINE_BUFFER_SIZE> buffer;

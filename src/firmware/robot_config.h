@@ -27,6 +27,10 @@
 #define BRICK_AVOID_TURN_BACK_DISTANCE              ((int)33)
 #define BRICK_AVOID_IGNORE_DISTANCE                 ((int)200)
 
+#define LINE_MAPPING_STEP                           ((int)100)
+#define FAST_RUN_MAX_DISTANCE                       ((int)2000)
+
+
 #endif
 
 
@@ -52,6 +56,9 @@
 #define BRICK_AVOID_MAX_SPEED                       ((float)0.7)
 #define BRICK_AVOID_TURN_BACK_DISTANCE              ((int)33)
 #define BRICK_AVOID_IGNORE_DISTANCE                 ((int)200)
+
+#define LINE_MAPPING_STEP                           ((int)100)
+#define FAST_RUN_MAX_DISTANCE                       ((int)2000)
 
 #endif
 

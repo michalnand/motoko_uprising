@@ -3,7 +3,8 @@
 
 Robot::Robot()
 {
-    mapping_enabled = false;
+    mapping_enabled  = false;
+    fast_run_enabled = false;
 
     //initialize steering PD controll
     steering_pid.init(STEERING_PID_KP, STEERING_PID_KI, STEERING_PID_KD, STEERING_PID_LIMIT);
@@ -45,6 +46,8 @@ Robot::Robot()
     mapping_distance_next = 0;
     line_mapping.init();
     line_mapping.print();
+
+    fast_run_max_distance = FAST_RUN_MAX_DISTANCE;
 }
 
 Robot::~Robot()
@@ -118,13 +121,29 @@ void Robot::line_following()
     line_predictor.process(line_sensor.adc_result, encoder_sensor.get_distance());
 
     //set correct speed limit
-    float speed_limit = 0.0;
+    float speed_limit = LINE_FOLLOWING_SPEED_MIN;
+
     switch (line_predictor.get_result())
     {
       case   2: speed_limit = LINE_FOLLOWING_SPEED_MAX; break;
       case   1:
       case   3: speed_limit = (LINE_FOLLOWING_SPEED_MAX + LINE_FOLLOWING_SPEED_MIN)/2.0; break;
       default : speed_limit = LINE_FOLLOWING_SPEED_MIN; break;
+    }
+
+
+    if (fast_run_enabled)
+    if (fast_run_max_distance < encoder_sensor.get_distance())
+    {
+        speed_limit = LINE_FOLLOWING_SPEED_MAX;
+
+        int map_a = line_mapping.get_closest(encoder_sensor.get_distance());
+        int map_b = line_mapping.get_closest(encoder_sensor.get_distance() + LINE_MAPPING_STEP);
+
+
+        if ((map_a == 0)||(map_a == 4)||
+            (map_b == 0)||(map_b == 4))
+            speed_limit = LINE_FOLLOWING_SPEED_MIN;
     }
 
     if (line_sensor.result.line_type == LINE_TYPE_SPOT)
@@ -157,10 +176,11 @@ void Robot::line_following()
     line_search.set_last_line_position(line_position);
 
     if (mapping_enabled)
-    if (mapping_distance_next >= encoder_sensor.get_distance())
+    if (encoder_sensor.get_distance() >= mapping_distance_next)
     {
         line_mapping.add(encoder_sensor.get_distance(), line_predictor.get_result());
-        mapping_distance_next+= 100;
+        //terminal << "map add " << encoder_sensor.get_distance() << " " << line_predictor.get_result() << "\n";
+        mapping_distance_next+= LINE_MAPPING_STEP;
     }
 }
 
@@ -225,7 +245,7 @@ void Robot::spot_move()
 
     motor_controll.set_left_speed(0);
     motor_controll.set_right_speed(0);
-}
+} 
 
 void Robot::mapping_enable()
 {
@@ -235,4 +255,14 @@ void Robot::mapping_enable()
 void Robot::mapping_disable()
 {
     mapping_enabled = false;
+}
+
+void Robot::fast_run_enable()
+{
+    fast_run_enabled = true;
+}
+
+void Robot::fast_run_disable()
+{
+    fast_run_enabled = false;
 }

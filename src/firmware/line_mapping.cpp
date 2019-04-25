@@ -19,11 +19,12 @@ void LineMapping::init()
     init_item.value     = 0;
 
     this->buffer.fill(init_item);
+    this->map.fill(init_item);
 
     this->item_ptr  = 0;
     this->address   = 0;
 
-    //load();
+    load();
 }
 
 
@@ -46,7 +47,7 @@ int LineMapping::add(sLineMapItem item)
 
     if (this->item_ptr > map.size())
         return -1;
-        
+
     if ((this->item_ptr%buffer.size()) == 0)
     {
         unsigned char *ch_ptr = (unsigned char*)(&(this->buffer[0]));
@@ -57,6 +58,27 @@ int LineMapping::add(sLineMapItem item)
     }
 
     return 0;
+}
+
+int LineMapping::get_closest(int position)
+{
+    unsigned int idx = 0;
+    int dist_min = 0;
+
+    for (unsigned int i = 0; i < map.size(); i++)
+    {
+        int dist = map[i].position - position;
+        if (dist < 0)
+            dist = -dist;
+
+        if (dist < dist_min)
+        {
+            dist_min = dist;
+            idx = i;
+        }
+    }
+
+    return map[idx].value;
 }
 
 void LineMapping::load()

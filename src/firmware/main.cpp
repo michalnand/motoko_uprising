@@ -73,7 +73,7 @@ int main()
     if (res == 1)
         robot.mapping_enable();
     else
-        robot.mapping_disable();
+        robot.fast_run_enable();
 
     robot.main();
 }
