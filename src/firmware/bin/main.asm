@@ -529,7 +529,7 @@ Disassembly of section .text:
  8000594:	41200000 			; <UNDEFINED> instruction: 0x41200000
  8000598:	3fe66666 	svccc	0x00e66666
  800059c:	3e99999a 			; <UNDEFINED> instruction: 0x3e99999a
- 80005a0:	3b03126f 	blcc	80c4f64 <_sidata+0xc0164>
+ 80005a0:	3ac49ba6 	bcc	7127440 <__text_size__+0x71227cc>
  80005a4:	08004660 	stmdaeq	r0, {r5, r6, r9, sl, lr}
 
 080005a8 <_ZN5Robot14line_followingEv>:
@@ -656,14 +656,14 @@ Disassembly of section .text:
  800072a:	bf00      	nop
  800072c:	20000240 	andcs	r0, r0, r0, asr #4
  8000730:	2000033c 	andcs	r0, r0, ip, lsr r3
- 8000734:	3f19999a 	svccc	0x0019999a
+ 8000734:	3f000000 	svccc	0x00000000
  8000738:	00000000 	andeq	r0, r0, r0
- 800073c:	3f4ccccd 	svccc	0x004ccccd
+ 800073c:	3f19999a 	svccc	0x0019999a
  8000740:	3ecccccd 	cdpcc	12, 12, cr12, cr12, cr13, {6}
  8000744:	200002c0 	andcs	r0, r0, r0, asr #5
  8000748:	20000158 	andcs	r0, r0, r8, asr r1
  800074c:	200003b8 			; <UNDEFINED> instruction: 0x200003b8
- 8000750:	3b03126f 	blcc	80c5114 <_sidata+0xc0314>
+ 8000750:	3ac49ba6 	bcc	71275f0 <__text_size__+0x712297c>
 
 08000754 <_ZN5Robot14allign_to_lineEj>:
  8000754:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
@@ -4945,7 +4945,7 @@ Disassembly of section .text:
  8002f4c:	39800000 	stmibcc	r0, {}	; <UNPREDICTABLE>
  8002f50:	3f800000 	svccc	0x00800000
  8002f54:	3f59999a 	svccc	0x0059999a
- 8002f58:	3f333333 	svccc	0x00333333
+ 8002f58:	3f47ae14 	svccc	0x0047ae14
 
 08002f5c <_ZN14DistanceSensorC1Ev>:
  8002f5c:	492f      	ldr	r1, [pc, #188]	; (800301c <_ZN14DistanceSensorC1Ev+0xc0>)
@@ -7085,7 +7085,7 @@ Disassembly of section .text:
  8004512:	68f1      	ldr	r1, [r6, #12]
  8004514:	a803      	add	r0, sp, #12
  8004516:	f7fd f917 	bl	8001748 <_ZN3PID5resetEf>
- 800451a:	f06f 0220 	mvn.w	r2, #32
+ 800451a:	f06f 0225 	mvn.w	r2, #37	; 0x25
  800451e:	4611      	mov	r1, r2
  8004520:	4628      	mov	r0, r5
  8004522:	f7ff ffa9 	bl	8004478 <_ZN10BrickAvoid12process_moveEll>
