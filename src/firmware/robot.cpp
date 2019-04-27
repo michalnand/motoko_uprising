@@ -20,18 +20,17 @@ Robot::Robot()
 
 
     brick_detection_pattern[0] = 0;
+    brick_detection_pattern[0] = BRICK_AVOID_SIDE_RIGHT;
     brick_detection_pattern[1] = BRICK_AVOID_SIDE_LEFT;
-    brick_detection_pattern[2] = BRICK_AVOID_SIDE_RIGHT;
     brick_detection_pattern[3] = 0;
     brick_detection_pattern[4] = 0;
     brick_detection_pattern[5] = 0;
     brick_detection_pattern[6] = 0;
     brick_detection_pattern[7] = 0;
 
-
     /*
-    brick_detection_pattern[0] = BRICK_AVOID_SIDE_LEFT;
-    brick_detection_pattern[1] = BRICK_AVOID_SIDE_RIGHT;
+    brick_detection_pattern[0] = BRICK_AVOID_SIDE_RIGHT;
+    brick_detection_pattern[1] = BRICK_AVOID_SIDE_LEFT;
     brick_detection_pattern[2] = 0;
     brick_detection_pattern[3] = 0;
     brick_detection_pattern[4] = 0;
@@ -39,7 +38,6 @@ Robot::Robot()
     brick_detection_pattern[6] = 0;
     brick_detection_pattern[7] = 0;
     */
-
     brick_detection.init(brick_detection_pattern, ignore_distance);
 
 
@@ -48,6 +46,7 @@ Robot::Robot()
     line_mapping.print();
 
     fast_run_max_distance = FAST_RUN_MAX_DISTANCE;
+    bridge_active = false;
 }
 
 Robot::~Robot()
@@ -62,7 +61,6 @@ void Robot::main()
     while (1)
     {
         if (distance_sensor.ready() && brick_detection.process(distance_sensor.result) != 0)
-        //if (distance_sensor.ready() && distance_sensor.result.front_obstacle)
         {
             allign_to_line(50);
 
@@ -76,8 +74,7 @@ void Robot::main()
             motor_controll.set_right_speed(0);
             speed_ramp.set_speed(0.0);
 
-            float line_position = line_sensor.result.right_line_position*1.0/line_sensor.get_max();
-            steering_pid.reset(line_position);
+            steering_pid.reset(line_sensor.result.center_line_position);
         }
         else
         if (line_sensor.ready())
@@ -90,8 +87,7 @@ void Robot::main()
 
                     speed_ramp.set_speed(0);
 
-                    float line_position = line_sensor.result.right_line_position*1.0/line_sensor.get_max();
-                    steering_pid.reset(line_position);
+                    steering_pid.reset(line_sensor.result.center_line_position);
                 }
                 else
                 {
@@ -107,8 +103,7 @@ void Robot::main()
                 motor_controll.set_right_speed(0);
                 speed_ramp.set_speed(0);
 
-                float line_position = line_sensor.result.right_line_position*1.0/line_sensor.get_max();
-                steering_pid.reset(line_position);
+                steering_pid.reset(line_sensor.result.center_line_position);
             }
         }
     }
@@ -131,6 +126,9 @@ void Robot::line_following()
       default : speed_limit = LINE_FOLLOWING_SPEED_MIN; break;
     }
 
+    if (imu_sensor.is_bridge() == true)
+        speed_limit = LINE_FOLLOWING_SPEED_MIN;
+
 
     if (fast_run_enabled)
     {
@@ -148,7 +146,7 @@ void Robot::line_following()
         }
         else
         {
-            fast_run_disable(); 
+            fast_run_disable();
         }
     }
 
@@ -163,8 +161,9 @@ void Robot::line_following()
     //compute next speed, using ramp and speed limit for this curve
     float speed = speed_ramp.process(speed_limit);
 
-    //compute line possition and of center error
-    float line_position = line_sensor.result.right_line_position*1.0/line_sensor.get_max();
+    //get line position and compute error
+    float line_position = line_sensor.result.center_line_position;
+
     float error         = 0.0 - line_position;
 
     //compute steering using PID
@@ -197,7 +196,7 @@ void Robot::allign_to_line(unsigned int cycles)
         if (line_sensor.ready())
         {
             //compute line possition and of center error
-            float line_position = line_sensor.result.right_line_position*1.0/line_sensor.get_max();
+            float line_position = line_sensor.result.center_line_position;
             float error         = 0.0 - line_position;
 
             float steering = steering_pid.process(error, line_position);
@@ -222,8 +221,7 @@ void Robot::allign_to_line(unsigned int cycles)
 
 void Robot::spot_move()
 {
-    //int line_position = line_sensor.result.spot_line_position;
-    int line_position = line_sensor.result.right_line_position;
+    int line_position = line_sensor.result.center_line_position;
 
 
     motor_controll.set_left_speed(0);

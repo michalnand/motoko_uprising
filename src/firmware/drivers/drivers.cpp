@@ -8,7 +8,7 @@ TI2C<TGPIOB, 7, 6, 10>    i2c;
 IMU                       imu_sensor;
 EEPROM                    eeprom;
 ADC                       adc;
-LineSensor                line_sensor;
+LineSensorNew             line_sensor;
 DistanceSensor            distance_sensor;
 EncoderSensor             encoder_sensor;
 MotorControll             motor_controll;
@@ -145,6 +145,7 @@ void Drivers::test_line_sensor(int count)
 
         terminal << line_sensor.result.on_line << " ";
         terminal << line_sensor.result.line_type << " ";
+        terminal << line_sensor.result.center_line_position << " ";
         terminal << line_sensor.result.left_line_position << " ";
         terminal << line_sensor.result.right_line_position << " ";
 

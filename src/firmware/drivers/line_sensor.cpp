@@ -54,6 +54,8 @@ int LineSensor::init()
     result.left_line_position     = 0;
     result.right_line_position    = 0;
     result.spot_line_position     = 0;
+    result.full_line_position     = 0;
+    result.center_line_position   = 0;
 
     result.on_line_count  = 0;
     result.max_left_idx   = 0;
@@ -141,7 +143,7 @@ void LineSensor::main()
     int right_line  = find_right_line_pos();
     int center_line = find_center_line_pos();
 
- 
+
 
     if (spot_line != -1)
     {
@@ -157,6 +159,10 @@ void LineSensor::main()
         result_tmp.right_line_position  = result_tmp.left_line_position;
         result_tmp.on_line              = true;
     }
+
+
+    result_tmp.full_line_position = integrate_full();
+    result_tmp.center_line_position = integrate_center();
 
   /*
   //check if robot on line
@@ -227,6 +233,40 @@ int LineSensor::integrate(unsigned int center)
     int_result = int_result/sum;
     return int_result;
 }
+
+
+
+
+int LineSensor::integrate_full()
+{
+    int sum = 0;
+    int int_result = 0;
+
+    for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
+    {
+        int_result+= weights[i]*adc_result[i];
+        sum+= adc_result[i];
+    }
+
+    int_result = int_result/(sum + 1);
+    return int_result;
+}
+
+
+int LineSensor::integrate_center()
+{
+    int sum = 0;
+    int int_result = 0;
+
+    int_result+= weights[3]*adc_result[3];
+    sum+= adc_result[3];
+    int_result+= weights[4]*adc_result[4];
+    sum+= adc_result[4];
+
+    int_result = int_result/(sum + 1);
+    return int_result;
+}
+
 
 int LineSensor::find_left_line_pos()
 {

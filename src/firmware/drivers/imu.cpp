@@ -118,8 +118,10 @@ void IMU::init(I2C_Interface &i2c_)
     i2c->write_reg(LSM6DS0_ADDRESS, LSM6DS0_XG_CTRL_REG5_XL, LSM6DS0_XL_XEN_ENABLE|LSM6DS0_XL_YEN_ENABLE|LSM6DS0_XL_ZEN_ENABLE);
 
     delay_loops(10000);
-
     read();
+
+    m_bridge = false;
+    bridge_filter = 0.0;
 
     samples = 0;
     int32_t calibration_iterations = 1000;
@@ -211,6 +213,15 @@ void IMU::read(bool calibration)
   acceleration.y = y;
   acceleration.z = z;
 
+  float k = 0.8;
+  bridge_filter = k*bridge_filter + (1.0 - k)*imu_sensor.acceleration.x;
+
+    if ((bridge_filter > 3000)||(bridge_filter < -3000))
+        m_bridge = true;
+    else
+        m_bridge = false;
+
+
   m_ready = true;
 }
 
@@ -241,4 +252,9 @@ void IMU::delay_loops(uint32_t loops)
 {
   while (loops--)
     __asm("nop");
+}
+
+bool IMU::is_bridge()
+{
+    return m_bridge;
 }

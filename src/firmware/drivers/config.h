@@ -16,9 +16,10 @@
 #ifdef ROBOT_TYPE_MOTOKO_UPRINSING_1
 
 //line sensor parameters
-#define LINE_SENSOR_THRESHOLD   ((int)250)
+//#define LINE_SENSOR_THRESHOLD   ((int)300)
+#define LINE_SENSOR_THRESHOLD   ((int)600)
 #define LINE_SENSOR_DT          ((unsigned int)4)
-#define LINE_SENSOR_STEP        ((int)64)
+#define LINE_SENSOR_STEP        ((int)128)
 
 
 //distance sensor parameters
@@ -58,15 +59,16 @@
 #ifdef ROBOT_TYPE_MOTOKO_UPRINSING_2
 
 //line sensor parameters
-#define LINE_SENSOR_THRESHOLD   ((int)250)
+//#define LINE_SENSOR_THRESHOLD   ((int)300)
+#define LINE_SENSOR_THRESHOLD   ((int)500)
 #define LINE_SENSOR_DT          ((unsigned int)4)
 #define LINE_SENSOR_STEP        ((int)64)
 
 
 //distance sensor parameters
 #define DISTANCE_DT             ((unsigned int)5)
-#define DISTANCE_WARNING        ((float)0.85)    
-#define DISTANCE_OBSTACLE       ((float)0.78)
+#define DISTANCE_WARNING        ((float)0.85)
+#define DISTANCE_OBSTACLE       ((float)0.7)
 
 //imu dt in ms
 #define IMU_DT                  ((unsigned int)10)

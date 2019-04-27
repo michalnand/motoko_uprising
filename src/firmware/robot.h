@@ -50,6 +50,7 @@ class Robot
 
         int mapping_distance_next, fast_run_max_distance;
         bool mapping_enabled, fast_run_enabled;
+        bool bridge_active;
 };
 
 

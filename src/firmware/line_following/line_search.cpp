@@ -67,7 +67,7 @@ void LineSearch::main()
     position_control.stop();
 
     position_control.set_position(LINE_SEARCH_TURN_DISTANCE_FORWARD, LINE_SEARCH_TURN_DISTANCE_FORWARD);
-    process_move(150);
+    process_move(400);
 
     position_control.stop();
 }

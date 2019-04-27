@@ -27,6 +27,10 @@ class IMU: public Thread
 
     bool m_ready;
 
+    bool m_bridge;
+    float bridge_filter;
+
+
   private:
     I2C_Interface *i2c;
 
@@ -40,6 +44,8 @@ class IMU: public Thread
     void main();
     bool present();
     bool ready();
+
+    bool is_bridge();
 
   private:
     void delay_loops(uint32_t loops);
