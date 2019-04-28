@@ -16,6 +16,8 @@ void LineMapping::init()
     sLineMapItem init_item;
 
     init_item.position  = 0;
+    init_item.position_left  = 0;
+    init_item.position_right  = 0;
     init_item.value     = 0;
 
     this->buffer.fill(init_item);
@@ -29,10 +31,12 @@ void LineMapping::init()
 
 
 
-int LineMapping::add(int position, int value)
+int LineMapping::add(int position_left, int position_right, int value)
 {
     sLineMapItem item;
-    item.position  = position;
+    item.position  = (position_left + position_right)/2;
+    item.position_left   = position_left;
+    item.position_right  = position_right;
     item.value     = value;
 
     return add(item);
@@ -41,6 +45,10 @@ int LineMapping::add(int position, int value)
 
 int LineMapping::add(sLineMapItem item)
 {
+    item.position/= 10;
+    item.position_left/= 10;
+    item.position_right/= 10;
+
     buffer[item_ptr%buffer.size()] = item;
 
     this->item_ptr++;
@@ -62,6 +70,8 @@ int LineMapping::add(sLineMapItem item)
 
 int LineMapping::get_closest(int position)
 {
+    position/= 10;
+
     unsigned int idx = 0;
     int dist_min = 0;
 
@@ -106,7 +116,31 @@ void LineMapping::print()
     terminal << "LINE_MAP_SIZE " << LINE_MAP_SIZE << "\n";
 
     for (unsigned int i = 0; i < map.size(); i++)
-        terminal << i << " " << map[i].position << " " << map[i].value << "\n";
+        terminal << i << " " << map[i].position << " " << map[i].position_left << " " << map[i].position_right << " " << map[i].value << "\n";
 
     terminal<< "\n\n";
+}
+
+void LineMapping::print_json()
+{
+    terminal << "\n\n{\n";
+
+    terminal << "\"item_size\" : " << sizeof(sLineMapItem) << ",\n";
+    terminal << "\"line_buffer_size\" : " << LINE_BUFFER_SIZE << ",\n";
+    terminal << "\"line_map_size\" : " << LINE_MAP_SIZE << ",\n";
+    terminal << "\"map\" : [";
+
+    for (unsigned int i = 0; i < map.size(); i++)
+    {
+        terminal << "[" << i << ", " << map[i].position << ", " << map[i].position_left << ", " << map[i].position_right << ", " << map[i].value << "]";
+        if (i < map.size()-1)
+            terminal << ",\n";
+        else
+            terminal << "\n";
+    }
+
+
+    terminal << "]\n";
+
+    terminal << "}\n\n";
 }

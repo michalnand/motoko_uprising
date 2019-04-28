@@ -55,18 +55,6 @@ int main()
     drivers.init();
     auto res = key.read();
 
-/*
-    while (1)
-    {
-        if (line_sensor.ready())
-        {
-            line_sensor.print();
-        }
-
-        timer.delay_ms(100);
-    }
-*/
-
     //brick_avoid_test();
     //drivers.test_imu_sensor();
     //drivers.test_line_sensor();
@@ -74,8 +62,7 @@ int main()
     //drivers.test_encoder_sensor();
     //drivers.test_motor_speed_feedback();
 
-
-    diagnostic();
+    //diagnostic();
 
     //brick_avoid_test();
 
@@ -83,6 +70,8 @@ int main()
 
     Robot robot;
 
+    robot.print_map();
+    
     if (res == 1)
         robot.mapping_enable();
     else

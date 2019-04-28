@@ -26,11 +26,13 @@ class Robot
         void mapping_disable();
         void fast_run_enable();
         void fast_run_disable();
+
+        void print_map();
+
     private:
         void line_following();
         void allign_to_line(unsigned int cycles);
         void spot_move();
-
 
 
     private:

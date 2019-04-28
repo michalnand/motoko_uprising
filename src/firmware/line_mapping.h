@@ -8,7 +8,8 @@
 
 struct sLineMapItem
 {
-    int position, value;
+    int16_t position, position_left, position_right;
+    int16_t value;
 };
 
 #define LINE_BUFFER_SIZE    ((unsigned int)(64/sizeof(sLineMapItem)))
@@ -24,11 +25,12 @@ class LineMapping
 
         void init();
 
-        int add(int position, int value);
+        int add(int position_left, int position_right, int value);
         int add(sLineMapItem item);
 
         void load();
         void print();
+        void print_json();
 
         int get_closest(int position);
 

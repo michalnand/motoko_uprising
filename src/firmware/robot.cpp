@@ -126,9 +126,6 @@ void Robot::line_following()
       default : speed_limit = LINE_FOLLOWING_SPEED_MIN; break;
     }
 
-    if (imu_sensor.is_bridge() == true)
-        speed_limit = LINE_FOLLOWING_SPEED_MIN;
-
 
     if (fast_run_enabled)
     {
@@ -163,6 +160,7 @@ void Robot::line_following()
 
     //get line position and compute error
     float line_position = line_sensor.result.center_line_position;
+    //float line_position = line_sensor.result.right_line_position;
 
     float error         = 0.0 - line_position;
 
@@ -183,7 +181,7 @@ void Robot::line_following()
     if (mapping_enabled)
     if (encoder_sensor.get_distance() >= mapping_distance_next)
     {
-        line_mapping.add(encoder_sensor.get_distance(), line_predictor.get_result());
+        line_mapping.add(encoder_sensor.get_left(), encoder_sensor.get_right(), line_predictor.get_result());
         //terminal << "map add " << encoder_sensor.get_distance() << " " << line_predictor.get_result() << "\n";
         mapping_distance_next+= LINE_MAPPING_STEP;
     }
@@ -271,4 +269,9 @@ void Robot::fast_run_disable()
 {
     fast_run_enabled = false;
     speed_ramp.init(LINE_FOLLOWING_SPEED_RAMP_RISE);
+}
+
+void Robot::print_map()
+{
+    line_mapping.print_json();
 }
