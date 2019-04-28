@@ -154,9 +154,16 @@ void LineSensorNew::line_filter()
             center_line_idx = i;
         }
 
+    unsigned int on_line_count = 0;
+    for (unsigned int i = 0; i < adc_result.size(); i++)
+        if (adc_result[i] > threshold)
+            on_line_count++;
+
+
     if (average > 500)
     {
         result.line_type = LINE_TYPE_SPOT;
+        result.on_line_count = on_line_count;
         result.on_line = true;
     }
     else
@@ -168,6 +175,7 @@ void LineSensorNew::line_filter()
         result.center_line_position = k*integrate(center_line_idx);
         result.left_line_position   = k*integrate(center_line_idx + 1);
         result.right_line_position  = k*integrate(center_line_idx - 1);
+        result.on_line_count = on_line_count;
         result.on_line = true;
     }
 }

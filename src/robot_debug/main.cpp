@@ -3,36 +3,47 @@
 
 #include <opengl_gui/gl_gui.h>
 #include <libs/serial_port.h>
-#include <libs/numbers_parser.h>
+#include <libs/json_parser.h>
 #include <robot_debug.h>
+
+#include <chrono>
+#include <thread>
 
 int main()
 {
-  GLGUI gui("gui.json");
+    SerialPort sp("/dev/ttyUSB0");
 
-  SerialPort sp("/dev/ttyUSB0");
-  NumbersParser parser;
+    //JsonConfig json("result.json");
 
-  RobotDebug debug;
+    GLGUI gui("gui.json");
 
-  gui.main();
 
-  while (1)
-  {
-    if (sp.is_char())
+    JsonParser parser;
+
+    RobotDebug debug;
+
+    gui.main();
+
+    while (1)
     {
-      parser.add(sp.get_char());
 
-      if (parser.updated())
-      {
-        auto result = parser.get();
+        if (sp.is_char())
+        {
+            parser.add(sp.get_char());
 
-        debug.update(gui, result);
-      }
+            if (parser.updated())
+            {
+                auto result = parser.get();
+                debug.update(gui, result);
+            }
+        }
+
+
+    //    debug.update(gui, json.result);
+
+    //    std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
-  }
 
-  std::cout << "program done\n";
-
-  return 0;
+    std::cout << "program done\n";
+    return 0;
 }

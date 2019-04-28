@@ -51,6 +51,7 @@ class GLVisualisation
     void paint_cuboid(float width, float height, float depth);
 
     void paint_circle(float size, unsigned int steps = 12);
+    void paint_circle_arc(float size, float arc_length, float offset, unsigned int steps = 12);
     void paint_sphere(float size, unsigned int steps = 12);
 
     void print(float x, float y, float z, std::string string, bool small_font = false);

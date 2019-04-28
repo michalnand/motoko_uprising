@@ -259,7 +259,7 @@ void GLVisualisation::paint_cuboid(float width, float height, float depth)
   glBegin(GL_QUADS);                // Begin drawing the color cube with 6 quads
         // Top face (y = 1.0f)
         // Define vertices in counter-clockwise (CCW) order with normal pointing out
-        // 
+        //
         glVertex3f( w, h, -d);
         glVertex3f(-w, h, -d);
         glVertex3f(-w, h,  d);
@@ -311,6 +311,24 @@ void GLVisualisation::paint_circle(float size, unsigned int steps)
  			glVertex3f(size*cos(i), size*sin(i), 0.0);
 
 	glEnd();
+}
+
+
+void GLVisualisation::paint_circle_arc(float size, float arc_length, float offset, unsigned int steps)
+{
+  float pi = 3.141592654;
+
+  float begin = -arc_length/2.0 + offset;
+  float end = arc_length/2.0 + offset;
+  float step = pi/steps;
+
+    glBegin(GL_POLYGON);
+        glVertex3f(0.0, 0.0, 0.0);
+	for(float i = begin; i < end; i+= step)
+ 			glVertex3f(size*cos(i), size*sin(i), 0.0);
+
+	glEnd();
+
 }
 
 void GLVisualisation::paint_sphere(float size, unsigned int steps)

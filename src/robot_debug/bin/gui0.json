@@ -35,7 +35,7 @@
     "widgets" : [
                   {
                     "type"           : "bar frame",
-                    "position"       : [-1.2, 0.75, 0.0],
+                    "position"       : [-1.2, 0.8, 0.0],
                     "color"          : [0.5, 1.0, 0.0],
                     "font color"     : [1.0, 1.0, 1.0],
                     "bar color"     : [0.8, 0.8, 0.8],
@@ -43,7 +43,7 @@
                     "font size" : "big",
 
                     "width"     : 1.9,
-                    "height"    : 0.7,
+                    "height"    : 0.6,
 
                     "filled"    : false,
                     "frame width" : 0.01,
@@ -59,31 +59,94 @@
                   },
 
 
+
                   {
-                    "type"              : "text frame",
-                    "position"          : [0.4, 0.75, 0.0],
-                    "color"             : [0.5, 1.0, 0.0],
+                    "type"              : "model frame",
+                    "position"          : [1.55, 0.6, 0.0],
+                    "color"             : [0.2, 0.2, 0.2],
                     "font color"        : [1.0, 1.0, 1.0],
-                    "console color"     : [1.0, 1.0, 1.0],
+                    "console color"     : [1.0, 0.0, 0.0],
 
                     "font size" : "big",
 
                     "width"     : 1.0,
-                    "height"    : 0.7,
+                    "height"    : 1.0,
 
-                    "filled"    : false,
+                    "filled"    : true,
                     "frame width" : 0.01,
-                    "label"     : "LINE POSITION",
+                    "label"     : "IMU",
+
+                    "obj_file_name" : "./robot_model/model.obj",
+                    "mtl_file_name" : "./robot_model/model.mtl",
+
+                    "scale"  :         0.006,
+                    "rotate" :         [0.0, 0.0, -90.0],
+                    "shift"  :         [-0.2, 0.0, 0.4],
 
                     "variable"  : {
-                                    "name"  : "line position",
-                                    "value" : "on_line = 0\nline_type = 0\non_line_count = 0\ncenter_line_position = 0\nleft_line_position = 0\nright_line_position = 0\naverage = 0"
+                                    "name"  : "imu angles",
+                                    "value" : [0.0, 0.0, 0.0]
                                   }
                   },
 
+
+                  {
+                    "type"              : "model frame",
+                    "position"          : [1.55, -0.7, 0.0],
+                    "color"             : [0.2, 0.2, 0.2],
+                    "font color"        : [1.0, 1.0, 1.0],
+                    "console color"     : [1.0, 0.0, 0.0],
+
+                    "font size" : "big",
+
+                    "width"     : 1.0,
+                    "height"    : 1.0,
+
+                    "filled"    : true,
+                    "frame width" : 0.01,
+                    "label"     : "distance sensors",
+
+                    "obj_file_name" : "./robot_model/model.obj",
+                    "mtl_file_name" : "./robot_model/model.mtl",
+
+                    "scale"  :         0.006,
+                    "rotate" :         [0.0, 0.0, -90.0],
+                    "shift"  :         [-0.2, 0.0, 0.4],
+
+                    "variable"  : {
+                                    "name"  : "imu angles",
+                                    "value" : [0.0, 0.0, 0.0]
+                                  }
+                  },
+
+
                   {
                     "type"              : "text frame",
-                    "position"          : [1.55, 0.75, 0.0],
+                    "position"          : [0.0, -0.8, 0.0],
+                    "color"             : [0.2, 0.2, 0.2],
+                    "font color"        : [1.0, 1.0, 1.0],
+                    "console color"     : [1.0, 1.0, 1.0],
+
+                    "font size" : "big",
+
+                    "width"     : 4.3,
+                    "height"    : 0.8,
+
+                    "filled"    : false,
+                    "frame width" : 0.01,
+                    "label"     : "CONSOLE",
+
+                    "variable"  : {
+                                    "name"  : "console output",
+                                    "value" : "some default text value ... \nline 2\nline 3\nline 4\nline 5\nline 6\nline 7\nline 8\nline 9\nline 10\n"
+                                  }
+                  },
+
+
+
+                  {
+                    "type"              : "text frame",
+                    "position"          : [0.4, 0.8, 0.0],
                     "color"             : [0.5, 1.0, 0.0],
                     "font color"        : [1.0, 1.0, 1.0],
                     "console color"     : [1.0, 1.0, 1.0],
@@ -91,7 +154,7 @@
                     "font size" : "big",
 
                     "width"     : 1.0,
-                    "height"    : 0.7,
+                    "height"    : 0.6,
 
                     "filled"    : false,
                     "frame width" : 0.01,
@@ -104,96 +167,9 @@
                   },
 
 
-
-                  {
-                    "type"              : "model frame",
-                    "position"          : [-1.2, -0.5, 0.0],
-                    "color"             : [0.2, 0.2, 0.2],
-                    "font color"        : [1.0, 1.0, 1.0],
-                    "console color"     : [1.0, 0.0, 0.0],
-
-                    "font size" : "big",
-
-                    "width"     : 1.9,
-                    "height"    : 1.4,
-
-                    "filled"    : true,
-                    "frame width" : 0.01,
-                    "label"     : "MAP",
-
-                    "obj_file_name" : "./robot_model/modelA.obj",
-                    "mtl_file_name" : "./robot_model/modelA.mtl",
-
-                    "scale"  :         0.006,
-                    "rotate" :         [0.0, 0.0, -90.0],
-                    "shift"  :         [0.0, 0.0, 0.0],
-
-                    "variable"  : {
-                                    "name"  : "angles",
-                                    "value" : [0.0, 0.0, 0.0]
-                                  }
-                  },
-
-
-
-
-                  {
-                    "type"              : "distance sensors",
-                    "position"          : [0.3, -0.25, 0.0],
-                    "color"             : [0.2, 0.2, 0.2],
-                    "font color"        : [1.0, 1.0, 1.0],
-                    "console color"     : [1.0, 0.0, 0.0],
-
-                    "font size" : "big",
-
-                    "width"     : 0.9,
-                    "height"    : 0.9,
-
-                    "filled"    : true,
-                    "frame width" : 0.01,
-                    "label"     : "DISTANCE SENSORS",
-
-                    "variable"  : {
-                                    "name"  : "distance sensors",
-                                    "value" : [0.0, 0.0, 0.0]
-                                  }
-                  },
-
-
-                  {
-                    "type"              : "model frame",
-                    "position"          : [1.5, -0.25, 0.0],
-                    "color"             : [0.2, 0.2, 0.2],
-                    "font color"        : [1.0, 1.0, 1.0],
-                    "console color"     : [1.0, 0.0, 0.0],
-
-                    "font size" : "big",
-
-                    "width"     : 0.9,
-                    "height"    : 0.9,
-
-                    "filled"    : true,
-                    "frame width" : 0.01,
-                    "label"     : "IMU SENSORS",
-
-                    "obj_file_name" : "./robot_model/model.obj",
-                    "mtl_file_name" : "./robot_model/model.mtl",
-
-                    "scale"  :         0.004,
-                    "rotate" :         [0.0, 0.0, -90.0],
-                    "shift"  :         [-0.2, 0.1, 0.5],
-
-                    "variable"  : {
-                                    "name"  : "imu angles",
-                                    "value" : [0.0, 0.0, 0.0]
-                                  }
-                  },
-
-
-
                   {
                     "type"              : "cnn frame",
-                    "position"          : [0.9, -1.05, 0.0],
+                    "position"          : [-0.65, 0.05, 0.0],
                     "color"             : [0.2, 0.2, 0.2],
                     "font color"        : [1.0, 1.0, 1.0],
                     "console color"     : [1.0, 1.0, 1.0],
@@ -201,8 +177,8 @@
 
                     "font size" : "big",
 
-                    "width"     : 2.1,
-                    "height"    : 0.3,
+                    "width"     : 3.0,
+                    "height"    : 0.6,
 
                     "filled"    : true,
                     "frame width" : 0.01,

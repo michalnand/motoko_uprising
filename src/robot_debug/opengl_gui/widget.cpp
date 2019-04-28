@@ -8,10 +8,11 @@
 #include "widget_model_frame.h"
 #include "widget_bar_frame.h"
 #include "widget_cnn_frame.h"
+#include "widget_distance_sensor.h"
 
 Widget::Widget()
 {
- 
+
 }
 
 Widget::Widget(GLVisualisation &visualisation_, Variables &variables_, LoadTextures &textures_, Json::Value &params_)
@@ -66,6 +67,9 @@ void Widget::init(GLVisualisation &visualisation_, Variables &variables_, LoadTe
     else
     if (type == "cnn frame")
       widgets.push_back(new WidgetCNNFrame(visualisation_, variables_, textures_, params_["widgets"][i]));
+    else
+    if (type == "distance sensors")
+      widgets.push_back(new WidgetDistanceSensor(visualisation_, variables_, textures_, params_["widgets"][i]));
     else
       widgets.push_back(new Widget(visualisation_, variables_, textures_, params_["widgets"][i]));
   }

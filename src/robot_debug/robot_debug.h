@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 #include <opengl_gui/gl_gui.h>
-
+#include <json_config.h>
 
 class RobotDebug
 {
@@ -15,7 +15,7 @@ class RobotDebug
     RobotDebug();
     ~RobotDebug();
 
-    void update(GLGUI &gui, std::vector<float> &values);
+    void update(GLGUI &gui, Json::Value &json);
     std::string get_rounded(float value, unsigned int precision);
 
 
