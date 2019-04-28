@@ -8,12 +8,12 @@
 
 struct sLineMapItem
 {
-    int16_t position, position_left, position_right;
-    int16_t value;
+    unsigned char position;
+    unsigned char value;
 };
 
 #define LINE_BUFFER_SIZE    ((unsigned int)(64/sizeof(sLineMapItem)))
-#define LINE_MAP_SIZE       ((unsigned int)LINE_BUFFER_SIZE*40)
+#define LINE_MAP_SIZE       ((unsigned int)LINE_BUFFER_SIZE*100)
 
 
 
@@ -25,7 +25,7 @@ class LineMapping
 
         void init();
 
-        int add(int position_left, int position_right, int value);
+        int add(unsigned char position, unsigned char value);
         int add(sLineMapItem item);
 
         void load();

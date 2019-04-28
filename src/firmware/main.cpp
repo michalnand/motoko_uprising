@@ -70,8 +70,6 @@ int main()
 
     Robot robot;
 
-    robot.print_map();
-    
     if (res == 1)
         robot.mapping_enable();
     else

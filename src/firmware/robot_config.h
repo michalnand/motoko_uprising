@@ -34,7 +34,7 @@
 #define BRICK_AVOID_LEFT_DISTANCE                   ((float)0.92)
 
 
-#define LINE_MAPPING_STEP                           ((int)100)
+#define LINE_MAPPING_STEP                           ((int)20)
 #define FAST_RUN_MAX_DISTANCE                       ((int)2000)
 
 

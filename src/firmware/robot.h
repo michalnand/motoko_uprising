@@ -51,6 +51,7 @@ class Robot
         LineMapping line_mapping;
 
         int mapping_distance_next, fast_run_max_distance;
+        int mapping_distance_prev;
         bool mapping_enabled, fast_run_enabled;
         bool bridge_active;
 };

@@ -42,8 +42,9 @@ Robot::Robot()
 
 
     mapping_distance_next = 0;
+    mapping_distance_prev = 0;
     line_mapping.init();
-    line_mapping.print();
+    line_mapping.print_json();
 
     fast_run_max_distance = FAST_RUN_MAX_DISTANCE;
     bridge_active = false;
@@ -179,11 +180,30 @@ void Robot::line_following()
     line_search.set_last_line_position(line_position);
 
     if (mapping_enabled)
-    if (encoder_sensor.get_distance() >= mapping_distance_next)
     {
-        line_mapping.add(encoder_sensor.get_left(), encoder_sensor.get_right(), line_predictor.get_result());
-        //terminal << "map add " << encoder_sensor.get_distance() << " " << line_predictor.get_result() << "\n";
-        mapping_distance_next+= LINE_MAPPING_STEP;
+        unsigned int line_type = line_predictor.get_result();
+        int mapping_distance_now = encoder_sensor.get_distance();
+
+        if (mapping_distance_now >= mapping_distance_next)
+        {
+            int dist_dif = mapping_distance_now - mapping_distance_prev;
+            mapping_distance_prev = mapping_distance_now;
+
+            if (dist_dif > 255)
+                dist_dif = 255;
+            if (dist_dif < 0)
+                dist_dif = 0;
+
+            int line_position_ = (line_position + 1.0)*100;
+            if (line_position_ > 255)
+                line_position_ = 255;
+            if (line_position_ < 0)
+                line_position_ = 0;
+
+            line_mapping.add(dist_dif, line_position_);
+
+            mapping_distance_next+= LINE_MAPPING_STEP;
+        }
     }
 }
 
