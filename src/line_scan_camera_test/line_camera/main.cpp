@@ -17,10 +17,29 @@ int main()
         timer.wait();
         line_position.read();
 
-        for (unsigned int i = 0; i < line_position.pixels.size(); i+=4)
-            terminal << (int)line_position.pixels[i] << " ";
+        terminal << "#JSON\n";
 
-        terminal << "\n\n\n";
+        terminal << "{\n";
+        terminal << "\"line_camera\": {\n";
+
+        terminal << "\"pixels\": [\n";
+        for (unsigned int i = 0; i < line_position.pixels.size(); i++)
+        {
+            terminal << (int)line_position.pixels[i];
+            if (i < line_position.pixels.size()-1)
+                terminal << ", ";
+            else
+                terminal << " ";
+        }
+
+        terminal << "]\n";
+        terminal << "}\n";
+        terminal << "}\n";
+
+        terminal << "#END\n";
+
+
+        terminal << "\n\n";
   }
 
   return 0;
