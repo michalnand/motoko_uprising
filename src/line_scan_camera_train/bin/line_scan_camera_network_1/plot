@@ -1,0 +1,9 @@
+gnuplot plot_script
+
+cd result_training
+gnuplot plot_script
+cd ..
+
+cd result_testing
+gnuplot plot_script
+cd ..

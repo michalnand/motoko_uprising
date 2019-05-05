@@ -1,0 +1,299 @@
+{
+	"hyperparameters" : 
+	{
+		"dropout" : 0.05000000074505806,
+		"init_weight_range" : 0,
+		"lambda1" : 1.0000000116860974e-07,
+		"lambda2" : 1.0000000116860974e-07,
+		"learning_rate" : 0.00050000002374872565,
+		"minibatch_size" : 32
+	},
+	"input_geometry" : 
+	[
+		128,
+		1,
+		1
+	],
+	"layers" : 
+	[
+		{
+			"geometry" : 
+			[
+				3,
+				1,
+				4
+			],
+			"input_geometry" : 
+			[
+				128,
+				1,
+				1
+			],
+			"output_geometry" : 
+			[
+				128,
+				1,
+				4
+			],
+			"type" : "convolution",
+			"weights_file_name" : "line_scan_camera_network_0/trained/layer_0"
+		},
+		{
+			"input_geometry" : 
+			[
+				128,
+				1,
+				4
+			],
+			"output_geometry" : 
+			[
+				128,
+				1,
+				4
+			],
+			"type" : "relu",
+			"weights_file_name" : "line_scan_camera_network_0/trained/layer_1"
+		},
+		{
+			"geometry" : 
+			[
+				2,
+				1,
+				1
+			],
+			"input_geometry" : 
+			[
+				128,
+				1,
+				4
+			],
+			"output_geometry" : 
+			[
+				64,
+				1,
+				4
+			],
+			"type" : "max pooling",
+			"weights_file_name" : "line_scan_camera_network_0/trained/layer_2"
+		},
+		{
+			"geometry" : 
+			[
+				3,
+				1,
+				4
+			],
+			"input_geometry" : 
+			[
+				64,
+				1,
+				4
+			],
+			"output_geometry" : 
+			[
+				64,
+				1,
+				4
+			],
+			"type" : "convolution",
+			"weights_file_name" : "line_scan_camera_network_0/trained/layer_3"
+		},
+		{
+			"input_geometry" : 
+			[
+				64,
+				1,
+				4
+			],
+			"output_geometry" : 
+			[
+				64,
+				1,
+				4
+			],
+			"type" : "relu",
+			"weights_file_name" : "line_scan_camera_network_0/trained/layer_4"
+		},
+		{
+			"geometry" : 
+			[
+				2,
+				1,
+				1
+			],
+			"input_geometry" : 
+			[
+				64,
+				1,
+				4
+			],
+			"output_geometry" : 
+			[
+				32,
+				1,
+				4
+			],
+			"type" : "max pooling",
+			"weights_file_name" : "line_scan_camera_network_0/trained/layer_5"
+		},
+		{
+			"geometry" : 
+			[
+				3,
+				1,
+				8
+			],
+			"input_geometry" : 
+			[
+				32,
+				1,
+				4
+			],
+			"output_geometry" : 
+			[
+				32,
+				1,
+				8
+			],
+			"type" : "convolution",
+			"weights_file_name" : "line_scan_camera_network_0/trained/layer_6"
+		},
+		{
+			"input_geometry" : 
+			[
+				32,
+				1,
+				8
+			],
+			"output_geometry" : 
+			[
+				32,
+				1,
+				8
+			],
+			"type" : "relu",
+			"weights_file_name" : "line_scan_camera_network_0/trained/layer_7"
+		},
+		{
+			"geometry" : 
+			[
+				2,
+				1,
+				1
+			],
+			"input_geometry" : 
+			[
+				32,
+				1,
+				8
+			],
+			"output_geometry" : 
+			[
+				16,
+				1,
+				8
+			],
+			"type" : "max pooling",
+			"weights_file_name" : "line_scan_camera_network_0/trained/layer_8"
+		},
+		{
+			"geometry" : 
+			[
+				3,
+				1,
+				8
+			],
+			"input_geometry" : 
+			[
+				16,
+				1,
+				8
+			],
+			"output_geometry" : 
+			[
+				16,
+				1,
+				8
+			],
+			"type" : "convolution",
+			"weights_file_name" : "line_scan_camera_network_0/trained/layer_9"
+		},
+		{
+			"input_geometry" : 
+			[
+				16,
+				1,
+				8
+			],
+			"output_geometry" : 
+			[
+				16,
+				1,
+				8
+			],
+			"type" : "relu",
+			"weights_file_name" : "line_scan_camera_network_0/trained/layer_10"
+		},
+		{
+			"geometry" : 
+			[
+				2,
+				1,
+				1
+			],
+			"input_geometry" : 
+			[
+				16,
+				1,
+				8
+			],
+			"output_geometry" : 
+			[
+				8,
+				1,
+				8
+			],
+			"type" : "max pooling",
+			"weights_file_name" : "line_scan_camera_network_0/trained/layer_11"
+		},
+		{
+			"input_geometry" : 
+			[
+				8,
+				1,
+				8
+			],
+			"output_geometry" : 
+			[
+				8,
+				1,
+				8
+			],
+			"type" : "dropout",
+			"weights_file_name" : "line_scan_camera_network_0/trained/layer_12"
+		},
+		{
+			"input_geometry" : 
+			[
+				8,
+				1,
+				8
+			],
+			"output_geometry" : 
+			[
+				1,
+				1,
+				1
+			],
+			"type" : "output",
+			"weights_file_name" : "line_scan_camera_network_0/trained/layer_13"
+		}
+	],
+	"network_log_file_name" : "line_scan_camera_network_0/network.log",
+	"output_geometry" : 
+	[
+		1,
+		1,
+		1
+	]
+}
