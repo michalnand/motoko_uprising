@@ -17,7 +17,8 @@
 
 //line sensor parameters
 //#define LINE_SENSOR_THRESHOLD   ((int)300)
-#define LINE_SENSOR_THRESHOLD   ((int)500)
+#define LINE_SENSOR_THRESHOLD   ((int)400)
+//#define LINE_SENSOR_THRESHOLD   ((int)500)
 #define LINE_SENSOR_DT          ((unsigned int)4)
 #define LINE_SENSOR_STEP        ((int)128)
 
@@ -60,15 +61,16 @@
 
 //line sensor parameters
 //#define LINE_SENSOR_THRESHOLD   ((int)300)
-#define LINE_SENSOR_THRESHOLD   ((int)500)
+#define LINE_SENSOR_THRESHOLD   ((int)400)
+//#define LINE_SENSOR_THRESHOLD   ((int)500)
 #define LINE_SENSOR_DT          ((unsigned int)4)
 #define LINE_SENSOR_STEP        ((int)64)
 
 
 //distance sensor parameters
 #define DISTANCE_DT             ((unsigned int)5)
-#define DISTANCE_WARNING        ((float)0.85)
-#define DISTANCE_OBSTACLE       ((float)0.7)
+#define DISTANCE_WARNING        ((float)0.7)
+#define DISTANCE_OBSTACLE       ((float)0.65)
 
 //imu dt in ms
 #define IMU_DT                  ((unsigned int)10)

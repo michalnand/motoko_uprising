@@ -19,32 +19,22 @@ Robot::Robot()
     Array<int, MAX_OBSTACLES_COUNT> brick_detection_pattern;
 
 
-    brick_detection_pattern[0] = 0;
-    brick_detection_pattern[0] = BRICK_AVOID_SIDE_RIGHT;
-    brick_detection_pattern[1] = BRICK_AVOID_SIDE_LEFT;
+    brick_detection_pattern[0] = BRICK_AVOID_SIDE_LEFT;
+    brick_detection_pattern[1] = BRICK_AVOID_SIDE_RIGHT;
     brick_detection_pattern[3] = 0;
     brick_detection_pattern[4] = 0;
     brick_detection_pattern[5] = 0;
     brick_detection_pattern[6] = 0;
     brick_detection_pattern[7] = 0;
 
-    /*
-    brick_detection_pattern[0] = BRICK_AVOID_SIDE_RIGHT;
-    brick_detection_pattern[1] = BRICK_AVOID_SIDE_LEFT;
-    brick_detection_pattern[2] = 0;
-    brick_detection_pattern[3] = 0;
-    brick_detection_pattern[4] = 0;
-    brick_detection_pattern[5] = 0;
-    brick_detection_pattern[6] = 0;
-    brick_detection_pattern[7] = 0;
-    */
+
     brick_detection.init(brick_detection_pattern, ignore_distance);
 
 
     mapping_distance_next = 0;
     mapping_distance_prev = 0;
     line_mapping.init();
-    line_mapping.print_json();
+    //line_mapping.print_json();
 
     fast_run_max_distance = FAST_RUN_MAX_DISTANCE;
     bridge_active = false;
@@ -158,10 +148,10 @@ void Robot::line_following()
 
     //compute next speed, using ramp and speed limit for this curve
     float speed = speed_ramp.process(speed_limit);
-
+ 
     //get line position and compute error
-    float line_position = line_sensor.result.center_line_position;
-    //float line_position = line_sensor.result.right_line_position;
+    //float line_position = line_sensor.result.center_line_position;
+    float line_position = line_sensor.result.right_line_position;
 
     float error         = 0.0 - line_position;
 

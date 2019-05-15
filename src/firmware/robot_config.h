@@ -10,7 +10,7 @@
 
 #define STEERING_PID_KP                             ((float)0.3)
 #define STEERING_PID_KI                             ((float)0.0)
-#define STEERING_PID_KD                             ((float)1.8)
+#define STEERING_PID_KD                             ((float)1.3)
 #define STEERING_PID_LIMIT                          ((float)10.0)
 
 #define LINE_FOLLOWING_SPEED_RAMP_RISE              ((float)0.002)
