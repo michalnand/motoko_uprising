@@ -27,17 +27,7 @@ set ylabel "relative count"
 set output 'error_summary_relative.png'
 plot 'h_error_summary.log' using 2:4 notitle with boxes linecolor rgb "red" lw 2
 
-
-set ylabel "count"
-set output 'error_all.png'
-plot 'h_error_0.log' using 2:3 title "x" with boxes linecolor rgb "red" lw 2
-
-set ylabel "relative count"
-set output 'error_relative.png'
-plot 'h_error_0.log' using 2:4 title "x" with boxes linecolor rgb "red" lw 2
-
-
-set xrange [-1:1]
+set xrange [0:1]
 set xlabel "value"
 set ylabel "relative count"
 set output 'required_resulted_summary.png'

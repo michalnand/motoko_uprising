@@ -1,6 +1,6 @@
 initializing
-training size    : 93546
-testing size     : 10438
+training size    : 93658
+testing size     : 10326
 epoch count      : 5
 sub epoch size   : 5
 
@@ -12,300 +12,308 @@ training
 
 
 epoch [0 0] from [5 5]
-training time per iterations 1.465444[ms]
-testing on 10438 items
+training time per iterations 1.442956[ms]
+testing on 10326 items
 testing done
-average error 0.029740
-min error     0.000000
-max error     1.229157
+average error 0.008221
+standard deviation 0.178347
+1sigma interval : -0.170126, 0.186568
+2sigma interval : -0.348472, 0.364915
+3sigma interval : -0.526819, 0.543261
 saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.029740
+best net saved to line_scan_camera_network_1/trained/, with error = 0.008221, std = 0.178347
 
 
 
 epoch [0 1] from [5 5]
-training time per iterations 1.604041[ms]
-testing on 10438 items
+training time per iterations 1.521275[ms]
+testing on 10326 items
 testing done
-average error 0.024272
-min error     0.000000
-max error     1.208318
+average error 0.003577
+standard deviation 0.163301
+1sigma interval : -0.159725, 0.166878
+2sigma interval : -0.323026, 0.330179
+3sigma interval : -0.486327, 0.493480
 saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.024272
+best net saved to line_scan_camera_network_1/trained/, with error = 0.003577, std = 0.163301
 
 
 
 epoch [0 2] from [5 5]
-training time per iterations 1.946817[ms]
-testing on 10438 items
+training time per iterations 1.562383[ms]
+testing on 10326 items
 testing done
-average error 0.021921
-min error     0.000000
-max error     1.192580
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.021921
+average error -0.004612
+standard deviation 0.156412
+1sigma interval : -0.161025, 0.151800
+2sigma interval : -0.317437, 0.308212
+3sigma interval : -0.473849, 0.464625
 
 
 
 epoch [0 3] from [5 5]
-training time per iterations 1.664921[ms]
-testing on 10438 items
+training time per iterations 1.862047[ms]
+testing on 10326 items
 testing done
-average error 0.020513
-min error     0.000000
-max error     1.157805
+average error -0.000260
+standard deviation 0.152792
+1sigma interval : -0.153052, 0.152532
+2sigma interval : -0.305845, 0.305325
+3sigma interval : -0.458637, 0.458117
 saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.020513
+best net saved to line_scan_camera_network_1/trained/, with error = -0.000260, std = 0.152792
 
 
 
 epoch [0 4] from [5 5]
-training time per iterations 1.884120[ms]
-testing on 10438 items
+training time per iterations 1.875234[ms]
+testing on 10326 items
 testing done
-average error 0.019334
-min error     0.000000
-max error     1.190839
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.019334
+average error 0.001495
+standard deviation 0.148571
+1sigma interval : -0.147077, 0.150066
+2sigma interval : -0.295648, 0.298637
+3sigma interval : -0.444219, 0.447208
 
 
 
 epoch [1 0] from [5 5]
-training time per iterations 1.895291[ms]
-testing on 10438 items
+training time per iterations 1.474080[ms]
+testing on 10326 items
 testing done
-average error 0.018195
-min error     0.000000
-max error     1.214189
+average error 0.000188
+standard deviation 0.145444
+1sigma interval : -0.145256, 0.145632
+2sigma interval : -0.290701, 0.291076
+3sigma interval : -0.436145, 0.436520
 saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.018195
+best net saved to line_scan_camera_network_1/trained/, with error = 0.000188, std = 0.145444
 
 
 
 epoch [1 1] from [5 5]
-training time per iterations 2.181143[ms]
-testing on 10438 items
+training time per iterations 1.571139[ms]
+testing on 10326 items
 testing done
-average error 0.017459
-min error     0.000000
-max error     1.209281
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.017459
+average error -0.000480
+standard deviation 0.143914
+1sigma interval : -0.144394, 0.143434
+2sigma interval : -0.288308, 0.287348
+3sigma interval : -0.432222, 0.431262
 
 
 
 epoch [1 2] from [5 5]
-training time per iterations 1.783954[ms]
-testing on 10438 items
+training time per iterations 1.505899[ms]
+testing on 10326 items
 testing done
-average error 0.017337
-min error     0.000000
-max error     1.182712
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.017337
+average error -0.005184
+standard deviation 0.140927
+1sigma interval : -0.146111, 0.135744
+2sigma interval : -0.287038, 0.276671
+3sigma interval : -0.427966, 0.417599
 
 
 
 epoch [1 3] from [5 5]
-training time per iterations 1.734887[ms]
-testing on 10438 items
+training time per iterations 1.425551[ms]
+testing on 10326 items
 testing done
-average error 0.016742
-min error     0.000000
-max error     1.215346
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.016742
+average error 0.001628
+standard deviation 0.137836
+1sigma interval : -0.136209, 0.139464
+2sigma interval : -0.274045, 0.277300
+3sigma interval : -0.411882, 0.415137
 
 
 
 epoch [1 4] from [5 5]
-training time per iterations 1.636699[ms]
-testing on 10438 items
+training time per iterations 1.381026[ms]
+testing on 10326 items
 testing done
-average error 0.016542
-min error     0.000000
-max error     1.186795
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.016542
+average error 0.011432
+standard deviation 0.136338
+1sigma interval : -0.124906, 0.147770
+2sigma interval : -0.261245, 0.284109
+3sigma interval : -0.397583, 0.420447
 
 
 
 epoch [2 0] from [5 5]
-training time per iterations 1.466674[ms]
-testing on 10438 items
+training time per iterations 1.382788[ms]
+testing on 10326 items
 testing done
-average error 0.016211
-min error     0.000000
-max error     1.201642
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.016211
+average error -0.004541
+standard deviation 0.136032
+1sigma interval : -0.140573, 0.131491
+2sigma interval : -0.276604, 0.267523
+3sigma interval : -0.412636, 0.403554
 
 
 
 epoch [2 1] from [5 5]
-training time per iterations 1.706986[ms]
-testing on 10438 items
+training time per iterations 1.382307[ms]
+testing on 10326 items
 testing done
-average error 0.016046
-min error     0.000000
-max error     1.220788
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.016046
+average error -0.000350
+standard deviation 0.133591
+1sigma interval : -0.133941, 0.133241
+2sigma interval : -0.267531, 0.266831
+3sigma interval : -0.401122, 0.400422
 
 
 
 epoch [2 2] from [5 5]
-training time per iterations 1.750174[ms]
-testing on 10438 items
+training time per iterations 1.383322[ms]
+testing on 10326 items
 testing done
-average error 0.015839
-min error     0.000000
-max error     1.246581
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.015839
+average error 0.000817
+standard deviation 0.131570
+1sigma interval : -0.130754, 0.132387
+2sigma interval : -0.262324, 0.263957
+3sigma interval : -0.393894, 0.395527
 
 
 
 epoch [2 3] from [5 5]
-training time per iterations 1.599925[ms]
-testing on 10438 items
+training time per iterations 1.380813[ms]
+testing on 10326 items
 testing done
-average error 0.015787
-min error     0.000000
-max error     1.228600
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.015787
+average error -0.004830
+standard deviation 0.130268
+1sigma interval : -0.135098, 0.125437
+2sigma interval : -0.265365, 0.255705
+3sigma interval : -0.395633, 0.385972
 
 
 
 epoch [2 4] from [5 5]
-training time per iterations 1.503929[ms]
-testing on 10438 items
+training time per iterations 1.383695[ms]
+testing on 10326 items
 testing done
-average error 0.015538
-min error     0.000000
-max error     1.250997
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.015538
+average error 0.003025
+standard deviation 0.129613
+1sigma interval : -0.126589, 0.132638
+2sigma interval : -0.256202, 0.262251
+3sigma interval : -0.385815, 0.391864
 
 
 
 epoch [3 0] from [5 5]
-training time per iterations 2.019135[ms]
-testing on 10438 items
+training time per iterations 1.378570[ms]
+testing on 10326 items
 testing done
-average error 0.015394
-min error     0.000000
-max error     1.223853
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.015394
+average error 0.000455
+standard deviation 0.127776
+1sigma interval : -0.127321, 0.128232
+2sigma interval : -0.255097, 0.256008
+3sigma interval : -0.382874, 0.383784
 
 
 
 epoch [3 1] from [5 5]
-training time per iterations 1.985301[ms]
-testing on 10438 items
+training time per iterations 1.378357[ms]
+testing on 10326 items
 testing done
-average error 0.015260
-min error     0.000000
-max error     1.221262
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.015260
+average error -0.002229
+standard deviation 0.126447
+1sigma interval : -0.128676, 0.124218
+2sigma interval : -0.255123, 0.250665
+3sigma interval : -0.381570, 0.377112
 
 
 
 epoch [3 2] from [5 5]
-training time per iterations 1.459672[ms]
-testing on 10438 items
+training time per iterations 1.386739[ms]
+testing on 10326 items
 testing done
-average error 0.015119
-min error     0.000000
-max error     1.226966
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.015119
+average error 0.006915
+standard deviation 0.125331
+1sigma interval : -0.118416, 0.132246
+2sigma interval : -0.243748, 0.257577
+3sigma interval : -0.369079, 0.382908
 
 
 
 epoch [3 3] from [5 5]
-training time per iterations 1.380672[ms]
-testing on 10438 items
+training time per iterations 1.506006[ms]
+testing on 10326 items
 testing done
-average error 0.015115
-min error     0.000000
-max error     1.224932
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.015115
+average error -0.001349
+standard deviation 0.126037
+1sigma interval : -0.127385, 0.124688
+2sigma interval : -0.253422, 0.250724
+3sigma interval : -0.379459, 0.376761
 
 
 
 epoch [3 4] from [5 5]
-training time per iterations 1.277567[ms]
-testing on 10438 items
+training time per iterations 1.425338[ms]
+testing on 10326 items
 testing done
-average error 0.015012
-min error     0.000000
-max error     1.203720
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.015012
+average error 0.000787
+standard deviation 0.123559
+1sigma interval : -0.122772, 0.124346
+2sigma interval : -0.246330, 0.247905
+3sigma interval : -0.369889, 0.371464
 
 
 
 epoch [4 0] from [5 5]
-training time per iterations 1.533968[ms]
-testing on 10438 items
+training time per iterations 1.521916[ms]
+testing on 10326 items
 testing done
-average error 0.014894
-min error     0.000000
-max error     1.240234
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.014894
+average error -0.006230
+standard deviation 0.122390
+1sigma interval : -0.128620, 0.116160
+2sigma interval : -0.251011, 0.238550
+3sigma interval : -0.373401, 0.360941
 
 
 
 epoch [4 1] from [5 5]
-training time per iterations 1.535678[ms]
-testing on 10438 items
+training time per iterations 1.457851[ms]
+testing on 10326 items
 testing done
-average error 0.014825
-min error     0.000000
-max error     1.237091
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.014825
+average error -0.001302
+standard deviation 0.121846
+1sigma interval : -0.123148, 0.120544
+2sigma interval : -0.244993, 0.242390
+3sigma interval : -0.366839, 0.364236
 
 
 
 epoch [4 2] from [5 5]
-training time per iterations 1.507243[ms]
-testing on 10438 items
+training time per iterations 1.710800[ms]
+testing on 10326 items
 testing done
-average error 0.014735
-min error     0.000000
-max error     1.202227
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.014735
+average error 0.003450
+standard deviation 0.120719
+1sigma interval : -0.117269, 0.124169
+2sigma interval : -0.237987, 0.244888
+3sigma interval : -0.358706, 0.365606
 
 
 
 epoch [4 3] from [5 5]
-training time per iterations 1.497889[ms]
-testing on 10438 items
+training time per iterations 1.986493[ms]
+testing on 10326 items
 testing done
-average error 0.014667
-min error     0.000000
-max error     1.207624
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.014667
+average error -0.003091
+standard deviation 0.121405
+1sigma interval : -0.124496, 0.118313
+2sigma interval : -0.245900, 0.239718
+3sigma interval : -0.367305, 0.361123
 
 
 
 epoch [4 4] from [5 5]
-training time per iterations 1.496713[ms]
-testing on 10438 items
+training time per iterations 1.739523[ms]
+testing on 10326 items
 testing done
-average error 0.014561
-min error     0.000000
-max error     1.178638
-saving best net
-best net saved to line_scan_camera_network_1/trained/, with error 0.014561
+average error -0.003663
+standard deviation 0.119442
+1sigma interval : -0.123104, 0.115779
+2sigma interval : -0.242546, 0.235221
+3sigma interval : -0.361988, 0.354663
 training done

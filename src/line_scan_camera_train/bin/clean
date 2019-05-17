@@ -5,11 +5,3 @@ cd ..
 cd line_network_1
 ./clean
 cd ..
-
-cd line_network_2
-./clean
-cd ..
-
-cd line_network_3
-./clean
-cd ..
