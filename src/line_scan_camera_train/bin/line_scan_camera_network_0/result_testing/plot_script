@@ -23,6 +23,10 @@ set ylabel "count"
 set output 'error_summary.png'
 plot 'h_error_summary.log' using 2:3 notitle with boxes linecolor rgb "red" lw 2
 
+set ylabel "count"
+set output 'error_summary_euclidean.png'
+plot 'h_error_summary_euclidean.log' using 2:3 notitle with boxes linecolor rgb "red" lw 2
+
 set ylabel "relative count"
 set output 'error_summary_relative.png'
 plot 'h_error_summary.log' using 2:4 notitle with boxes linecolor rgb "red" lw 2

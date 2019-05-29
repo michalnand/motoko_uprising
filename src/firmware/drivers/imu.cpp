@@ -174,6 +174,10 @@ void IMU::read(bool calibration)
   z = ((int16_t)i2c->read(1)) << 8;
   z|= ((int16_t)i2c->read(0)) << 0;
 
+  x = (x/8)*8;
+  y = (y/8)*8;
+  z = (z/8)*8;
+
   i2c->stop();
 
   if (calibration)
@@ -189,7 +193,7 @@ void IMU::read(bool calibration)
 
   angle.x+= 2*(angular_rate.x/25);
   angle.y+= 2*(angular_rate.y/25);
-  angle.z+= 2*(angular_rate.z/25);
+  angle.z+= 2*(angular_rate.z/25); 
 
   i2c->start();
   i2c->write(LSM6DS0_ADDRESS);
