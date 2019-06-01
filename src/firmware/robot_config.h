@@ -10,16 +10,17 @@
     #define STEERING_PID_KD                             ((float)1.3)
     #define STEERING_PID_LIMIT                          ((float)10.0)
 
-    #define LINE_FOLLOWING_SPEED_RAMP_RISE              ((float)0.003)
+    #define LINE_FOLLOWING_SPEED_RAMP_RISE              ((float)0.002)
     #define LINE_FOLLOWING_FAST_RUN_SPEED_RAMP_RISE     ((float)0.005)
 
     #define LINE_FOLLOWING_SPEED_MIN                    ((float)0.4)
-    #define LINE_FOLLOWING_SPEED_MAX                    ((float)0.95)
+    #define LINE_FOLLOWING_SPEED_MAX                    ((float)0.78)
 
-    #define LINE_SEARCH_TURN_DISTANCE_RIGHT             ((int)190)
+    #define LINE_SEARCH_TURN_DISTANCE_RIGHT             ((int)160)
     #define LINE_SEARCH_TURN_DISTANCE_LEFT              ((int)190)
-    #define LINE_SEARCH_TURN_DISTANCE_FORWARD           ((int)200)
+    #define LINE_SEARCH_TURN_DISTANCE_FORWARD           ((int)185)
     #define LINE_SEARCH_MAX_SPEED                       ((float)0.7)
+    #define LINE_SEARCH_ONE_SIDE                        ((bool)false)
 
     #define BRICK_AVOID_MAX_SPEED                       ((float)0.7)
     #define BRICK_AVOID_TURN_BACK_DISTANCE              ((int)33)
@@ -41,16 +42,18 @@
     #define STEERING_PID_KD                             ((float)1.2)
     #define STEERING_PID_LIMIT                          ((float)10.0)
 
-    #define LINE_FOLLOWING_SPEED_RAMP_RISE              ((float)0.002)
+    #define LINE_FOLLOWING_SPEED_RAMP_RISE              ((float)0.004)
     #define LINE_FOLLOWING_FAST_RUN_SPEED_RAMP_RISE     ((float)0.005)
 
     #define LINE_FOLLOWING_SPEED_MIN                    ((float)0.4)
-    #define LINE_FOLLOWING_SPEED_MAX                    ((float)0.8)
- 
-    #define LINE_SEARCH_TURN_DISTANCE_RIGHT             ((int)190)
-    #define LINE_SEARCH_TURN_DISTANCE_LEFT              ((int)190)
-    #define LINE_SEARCH_TURN_DISTANCE_FORWARD           ((int)150)
+    #define LINE_FOLLOWING_SPEED_MAX                    ((float)1.0)
+
+    #define LINE_SEARCH_TURN_DISTANCE_RIGHT             ((int)230)
+    #define LINE_SEARCH_TURN_DISTANCE_LEFT              ((int)260)
+    #define LINE_SEARCH_TURN_DISTANCE_FORWARD           ((int)180)
     #define LINE_SEARCH_MAX_SPEED                       ((float)0.7)
+    #define LINE_SEARCH_ONE_SIDE                        ((bool)false)
+
 
     #define BRICK_AVOID_MAX_SPEED                       ((float)0.7)
     #define BRICK_AVOID_TURN_BACK_DISTANCE              ((int)38)
@@ -61,6 +64,7 @@
 
     #define LINE_MAPPING_STEP                           ((int)100)
     #define FAST_RUN_MAX_DISTANCE                       ((int)2000)
+
 
 #endif
 

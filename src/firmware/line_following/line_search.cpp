@@ -49,25 +49,27 @@ void LineSearch::main()
     process_move(1000000);
     position_control.stop();
 
+    if (LINE_SEARCH_ONE_SIDE == false)
+    {
+        if (last_line_position < 0.0)
+            position_control.set_position(0, LINE_SEARCH_TURN_DISTANCE_LEFT);
+        else
+            position_control.set_position(LINE_SEARCH_TURN_DISTANCE_RIGHT, 0);
 
-    if (last_line_position < 0.0)
-        position_control.set_position(0, LINE_SEARCH_TURN_DISTANCE_LEFT);
-    else
-        position_control.set_position(LINE_SEARCH_TURN_DISTANCE_RIGHT, 0);
+        if (process_move(80) == 0)
+            return;
 
-    if (process_move(150) == 0)
-        return;
+        if (last_line_position < 0.0)
+            position_control.set_position(0, -LINE_SEARCH_TURN_DISTANCE_LEFT);
+        else
+            position_control.set_position(-LINE_SEARCH_TURN_DISTANCE_RIGHT, 0);
 
-    if (last_line_position < 0.0)
-        position_control.set_position(0, -LINE_SEARCH_TURN_DISTANCE_LEFT);
-    else
-        position_control.set_position(-LINE_SEARCH_TURN_DISTANCE_RIGHT, 0);
-
-    process_move(1000000);
-    position_control.stop();
+        process_move(1000000);
+        position_control.stop();
+    }
 
     position_control.set_position(LINE_SEARCH_TURN_DISTANCE_FORWARD, LINE_SEARCH_TURN_DISTANCE_FORWARD);
-    process_move(400);
+    process_move(80);
 
     position_control.stop();
 }
