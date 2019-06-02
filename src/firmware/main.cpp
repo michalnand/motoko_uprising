@@ -4,7 +4,7 @@
 
 #include <diagnostic.h>
 
-int main()
+int main() 
 {
     drivers.init();
     auto res = key.read();

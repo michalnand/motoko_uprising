@@ -88,11 +88,13 @@ void Robot::main()
             else
             {
                 line_search.keep_speed_enable();
-                line_search.main();
 
-                motor_controll.set_left_speed(0);
-                motor_controll.set_right_speed(0);
-                speed_ramp.set_speed(0);
+                if (line_search.main() != LINE_FOUND_IMMEDIATELY)
+                {
+                    motor_controll.set_left_speed(0);
+                    motor_controll.set_right_speed(0);
+                    speed_ramp.set_speed(0);
+                }
 
                 steering_pid.reset(line_sensor.result.center_line_position);
             }
@@ -148,10 +150,10 @@ void Robot::line_following()
 
     //compute next speed, using ramp and speed limit for this curve
     float speed = speed_ramp.process(speed_limit);
- 
+
     //get line position and compute error
-    //float line_position = line_sensor.result.center_line_position;
-    float line_position = line_sensor.result.right_line_position;
+    float line_position = line_sensor.result.center_line_position;
+    //float line_position = line_sensor.result.right_line_position;
 
     float error         = 0.0 - line_position;
 

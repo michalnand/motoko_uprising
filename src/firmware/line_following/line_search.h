@@ -4,6 +4,10 @@
 
 #include <position_control.h>
 
+#define LINE_FOUND_IMMEDIATELY ((int)0)
+#define LINE_FOUND             ((int)1)
+#define LINE_NO_FOUND          ((int)2)
+
 class LineSearch
 {
     public:
@@ -15,7 +19,7 @@ class LineSearch
 
 
         void set_last_line_position(float last_line_position);
-        void main();
+        int main();
 
         float get_speed();
 

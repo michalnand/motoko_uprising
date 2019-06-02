@@ -25,8 +25,11 @@
 
 //distance sensor parameters
 #define DISTANCE_DT             ((unsigned int)5)
+//#define DISTANCE_WARNING        ((float)0.85)
+//#define DISTANCE_OBSTACLE       ((float)0.7)
 #define DISTANCE_WARNING        ((float)0.85)
-#define DISTANCE_OBSTACLE       ((float)0.7)
+#define DISTANCE_OBSTACLE       ((float)0.82)
+
 
 //imu dt in ms
 #define IMU_DT                  ((unsigned int)10)
@@ -69,8 +72,10 @@
 
 //distance sensor parameters
 #define DISTANCE_DT             ((unsigned int)5)
-#define DISTANCE_WARNING        ((float)0.7)
-#define DISTANCE_OBSTACLE       ((float)0.65)
+//#define DISTANCE_WARNING        ((float)0.7)
+//#define DISTANCE_OBSTACLE       ((float)0.65)
+#define DISTANCE_WARNING        ((float)0.8)
+#define DISTANCE_OBSTACLE       ((float)0.75)
 
 //imu dt in ms
 #define IMU_DT                  ((unsigned int)10)

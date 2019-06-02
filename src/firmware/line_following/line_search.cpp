@@ -29,8 +29,17 @@ void LineSearch::keep_speed_disable()
     keep_speed = false;
 }
 
-void LineSearch::main()
+int LineSearch::main()
 {
+    if (abs(last_line_position) < 0.6)
+    {
+        position_control.set_position(LINE_SEARCH_TURN_DISTANCE_FORWARD, LINE_SEARCH_TURN_DISTANCE_FORWARD);
+        process_move(80);
+        position_control.stop();
+    }
+
+
+
     if (last_line_position < 0.0)
         position_control.set_position(LINE_SEARCH_TURN_DISTANCE_RIGHT, 0, POSITION_CONTROLL_DEFAULT_DISTANCE_LIMIT, keep_speed);
     else
@@ -39,13 +48,17 @@ void LineSearch::main()
     keep_speed = false;
 
     if (process_move(0) == 0)
-        return;
+        return LINE_FOUND_IMMEDIATELY;
 
     if (last_line_position < 0.0)
-        position_control.set_position(-LINE_SEARCH_TURN_DISTANCE_RIGHT, 0);
+        position_control.set_position(-LINE_SEARCH_TURN_DISTANCE_BACK_RIGHT, 0);
     else
-        position_control.set_position(0, -LINE_SEARCH_TURN_DISTANCE_LEFT);
+        position_control.set_position(0, -LINE_SEARCH_TURN_DISTANCE_BACK_LEFT);
 
+    process_move(1000000);
+    position_control.stop();
+
+    position_control.set_position(LINE_SEARCH_TURN_DISTANCE_FORWARD/4, LINE_SEARCH_TURN_DISTANCE_FORWARD/4);
     process_move(1000000);
     position_control.stop();
 
@@ -57,12 +70,12 @@ void LineSearch::main()
             position_control.set_position(LINE_SEARCH_TURN_DISTANCE_RIGHT, 0);
 
         if (process_move(80) == 0)
-            return;
+            return LINE_FOUND;
 
         if (last_line_position < 0.0)
-            position_control.set_position(0, -LINE_SEARCH_TURN_DISTANCE_LEFT);
+            position_control.set_position(0, -LINE_SEARCH_TURN_DISTANCE_BACK_LEFT);
         else
-            position_control.set_position(-LINE_SEARCH_TURN_DISTANCE_RIGHT, 0);
+            position_control.set_position(-LINE_SEARCH_TURN_DISTANCE_BACK_RIGHT, 0);
 
         process_move(1000000);
         position_control.stop();
@@ -72,6 +85,8 @@ void LineSearch::main()
     process_move(80);
 
     position_control.stop();
+
+    return LINE_NO_FOUND;
 }
 
 float LineSearch::get_speed()
