@@ -53,6 +53,8 @@
 <layer number="57" name="tCAD" color="7" fill="1" visible="no" active="no"/>
 <layer number="59" name="tCarbon" color="7" fill="1" visible="no" active="no"/>
 <layer number="60" name="bCarbon" color="7" fill="1" visible="no" active="no"/>
+<layer number="88" name="SimResults" color="9" fill="1" visible="yes" active="yes"/>
+<layer number="89" name="SimProbes" color="9" fill="1" visible="yes" active="yes"/>
 <layer number="90" name="Modules" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
@@ -77,6 +79,8 @@
 <layer number="111" name="LPC17xx" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="112" name="tSilk" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="113" name="ReferenceLS" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="114" name="Badge_Outline" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="115" name="ReferenceISLANDS" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="116" name="Patch_BOT" color="9" fill="4" visible="yes" active="yes"/>
 <layer number="118" name="Rect_Pads" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="121" name="_tsilk" color="7" fill="1" visible="yes" active="yes"/>
@@ -19232,6 +19236,143 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </deviceset>
 </devicesets>
 </library>
+<library name="SparkFun-Sensors">
+<description>&lt;h3&gt;SparkFun Sensors&lt;/h3&gt;
+This library contains sensors- accelerometers, gyros, compasses, magnetometers, light sensors, imagers, temp sensors, etc.
+&lt;br&gt;
+&lt;br&gt;
+We've spent an enormous amount of time creating and checking these footprints and parts, but it is &lt;b&gt; the end user's responsibility&lt;/b&gt; to ensure correctness and suitablity for a given componet or application.
+&lt;br&gt;
+&lt;br&gt;If you enjoy using this library, please buy one of our products at &lt;a href=" www.sparkfun.com"&gt;SparkFun.com&lt;/a&gt;.
+&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Licensing:&lt;/b&gt; Creative Commons ShareAlike 4.0 International - https://creativecommons.org/licenses/by-sa/4.0/
+&lt;br&gt;
+&lt;br&gt;
+You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
+<packages>
+<package name="VL53L1X">
+<description>&lt;h3&gt;LGA-12 - 12 pin LGA package for the V53L1x&lt;/h3&gt;
+&lt;p&gt;Specifications:
+&lt;ul&gt;&lt;li&gt;Pin count: 12&lt;/li&gt;
+&lt;li&gt;Pin pitch: .8 mm&lt;/li&gt;
+&lt;li&gt;Area: 4.8 mm x 2.4 mm&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=https://www.mouser.com/datasheet/2/389/en.DM00452094-1315090.pdf&gt;Datasheet referenced for footprint&lt;/a&gt;&lt;/p&gt;
+&lt;/ul&gt;&lt;/p&gt;</description>
+<wire x1="2.45" y1="1.25" x2="2.45" y2="-1.25" width="0.127" layer="51"/>
+<wire x1="2.45" y1="-1.25" x2="0.35" y2="-1.25" width="0.127" layer="51"/>
+<wire x1="0.35" y1="-1.25" x2="-0.35" y2="-1.25" width="0.127" layer="51"/>
+<wire x1="-0.35" y1="-1.25" x2="-2.45" y2="-1.25" width="0.127" layer="51"/>
+<wire x1="-2.45" y1="-1.25" x2="-2.45" y2="1.25" width="0.127" layer="51"/>
+<wire x1="-2.45" y1="1.25" x2="-0.35" y2="1.25" width="0.127" layer="51"/>
+<text x="-2.45" y="1.75" size="0.508" layer="25" font="vector">&gt;Name</text>
+<text x="-2.45" y="-2.25" size="0.508" layer="27" font="vector">&gt;Value</text>
+<circle x="1.6" y="-1.8" radius="0.14141875" width="0" layer="21"/>
+<wire x1="-0.35" y1="1.25" x2="0.35" y2="1.25" width="0.127" layer="51"/>
+<wire x1="0.35" y1="1.25" x2="2.45" y2="1.25" width="0.127" layer="51"/>
+<wire x1="2.1" y1="1.5" x2="2.7" y2="1.5" width="0.1778" layer="21"/>
+<wire x1="2.7" y1="1.5" x2="2.7" y2="0.5" width="0.1778" layer="21"/>
+<wire x1="2.7" y1="-0.5" x2="2.7" y2="-1.5" width="0.1778" layer="21"/>
+<wire x1="2.7" y1="-1.5" x2="2.1" y2="-1.5" width="0.1778" layer="21"/>
+<wire x1="-2.1" y1="-1.5" x2="-2.7" y2="-1.5" width="0.1778" layer="21"/>
+<wire x1="-2.7" y1="-1.5" x2="-2.7" y2="-0.5" width="0.1778" layer="21"/>
+<wire x1="-2.7" y1="0.5" x2="-2.7" y2="1.5" width="0.1778" layer="21"/>
+<wire x1="-2.7" y1="1.5" x2="-2.1" y2="1.5" width="0.1778" layer="21"/>
+<smd name="1" x="1.6" y="-1" dx="0.9" dy="0.5" layer="1" rot="R90" cream="no"/>
+<smd name="2" x="0.8" y="-1" dx="0.9" dy="0.5" layer="1" rot="R90" cream="no"/>
+<smd name="3" x="0" y="-1" dx="0.9" dy="0.5" layer="1" rot="R90" cream="no"/>
+<smd name="4" x="-0.8" y="-1" dx="0.9" dy="0.5" layer="1" rot="R90" cream="no"/>
+<smd name="5" x="-1.6" y="-1" dx="0.9" dy="0.5" layer="1" rot="R90" cream="no"/>
+<smd name="6" x="-2.05" y="0" dx="1.4" dy="0.5" layer="1" rot="R180" cream="no"/>
+<smd name="7" x="-1.6" y="1" dx="0.9" dy="0.5" layer="1" rot="R270" cream="no"/>
+<smd name="8" x="-0.8" y="1" dx="0.9" dy="0.5" layer="1" rot="R270" cream="no"/>
+<smd name="9" x="0" y="1" dx="0.9" dy="0.5" layer="1" rot="R270" cream="no"/>
+<smd name="10" x="0.8" y="1" dx="0.9" dy="0.5" layer="1" rot="R270" cream="no"/>
+<smd name="11" x="1.6" y="1" dx="0.9" dy="0.5" layer="1" rot="R270" cream="no"/>
+<smd name="12" x="2.05" y="0" dx="1.4" dy="0.5" layer="1" cream="no"/>
+<rectangle x1="1.35" y1="-0.25" x2="1.85" y2="0.25" layer="48"/>
+<rectangle x1="-0.25" y1="-1.05" x2="0.25" y2="-0.55" layer="48"/>
+<rectangle x1="0.55" y1="-1.05" x2="1.05" y2="-0.55" layer="48"/>
+<rectangle x1="1.35" y1="-1.05" x2="1.85" y2="-0.55" layer="48"/>
+<rectangle x1="-1.05" y1="-1.05" x2="-0.55" y2="-0.55" layer="48"/>
+<rectangle x1="-1.85" y1="-1.05" x2="-1.35" y2="-0.55" layer="48"/>
+<rectangle x1="-1.85" y1="-0.25" x2="-1.35" y2="0.25" layer="48"/>
+<rectangle x1="-1.85" y1="0.55" x2="-1.35" y2="1.05" layer="48"/>
+<rectangle x1="-1.05" y1="0.55" x2="-0.55" y2="1.05" layer="48"/>
+<rectangle x1="-0.25" y1="0.55" x2="0.25" y2="1.05" layer="48"/>
+<rectangle x1="0.55" y1="0.55" x2="1.05" y2="1.05" layer="48"/>
+<rectangle x1="1.35" y1="0.55" x2="1.85" y2="1.05" layer="48"/>
+<rectangle x1="1.35" y1="-0.8" x2="1.93" y2="-0.55" layer="1"/>
+<rectangle x1="1.25" y1="-0.9" x2="2" y2="-0.45" layer="29"/>
+<rectangle x1="-1.85" y1="-1.15" x2="-1.35" y2="-0.55" layer="31"/>
+<rectangle x1="-1.05" y1="-1.15" x2="-0.55" y2="-0.55" layer="31"/>
+<rectangle x1="-0.25" y1="-1.15" x2="0.25" y2="-0.55" layer="31"/>
+<rectangle x1="0.55" y1="-1.15" x2="1.05" y2="-0.55" layer="31"/>
+<rectangle x1="1.35" y1="-1.15" x2="1.85" y2="-0.55" layer="31"/>
+<rectangle x1="1.4" y1="-0.3" x2="1.9" y2="0.3" layer="31" rot="R90"/>
+<rectangle x1="1.35" y1="0.55" x2="1.85" y2="1.15" layer="31" rot="R180"/>
+<rectangle x1="0.55" y1="0.55" x2="1.05" y2="1.15" layer="31" rot="R180"/>
+<rectangle x1="-0.25" y1="0.55" x2="0.25" y2="1.15" layer="31" rot="R180"/>
+<rectangle x1="-1.05" y1="0.55" x2="-0.55" y2="1.15" layer="31" rot="R180"/>
+<rectangle x1="-1.85" y1="0.55" x2="-1.35" y2="1.15" layer="31" rot="R180"/>
+<rectangle x1="-1.9" y1="-0.3" x2="-1.4" y2="0.3" layer="31" rot="R270"/>
+<wire x1="0.35" y1="-1.25" x2="0.35" y2="-0.5" width="0.127" layer="51"/>
+<wire x1="0.35" y1="-0.5" x2="-0.35" y2="-0.5" width="0.127" layer="51"/>
+<wire x1="-0.35" y1="-0.5" x2="-0.35" y2="-1.25" width="0.127" layer="51"/>
+<wire x1="0.35" y1="0.85" x2="0.35" y2="1.25" width="0.127" layer="51"/>
+<wire x1="-0.35" y1="0.85" x2="-0.35" y2="1.25" width="0.127" layer="51"/>
+<wire x1="0.35" y1="0.85" x2="-0.35" y2="0.85" width="0.127" layer="51" curve="-188.171234"/>
+<circle x="-1.5" y="0" radius="0.425" width="0.05" layer="49"/>
+<circle x="1.5" y="0" radius="0.35" width="0.05" layer="49"/>
+<wire x1="0.4" y1="1.5" x2="-0.4" y2="1.5" width="0.127" layer="21" curve="180"/>
+</package>
+</packages>
+<symbols>
+<symbol name="VL53L1X">
+<description>&lt;h3&gt;STMicroelectronics VL53L1X - 400 cm IR Laser ToF Sensor&lt;/h3&gt;
+&lt;p&gt;VL53L1X is a state-of-the-art ToF laser-ranging sensor, enhancing the ST FlightSense product family. It is the fastest miniature ToF sensor currently on the market with accurate ranging up to 4 m and fast ranging frequency (up to 50 Hz). Housed in a miniature and reflowable package, it integrates a single photon avalanche diode (SPAD) receiving array, a 940 nm invisible laser Class 1 emitter, physical infrared filters, and optics to achieve the best ranging performance in various ambient lighting conditions with a range of cover window options.&lt;/p&gt;</description>
+<wire x1="7.62" y1="7.62" x2="7.62" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="7.62" y1="-5.08" x2="-7.62" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-7.62" y1="-5.08" x2="-7.62" y2="7.62" width="0.254" layer="94"/>
+<wire x1="-7.62" y1="7.62" x2="7.62" y2="7.62" width="0.254" layer="94"/>
+<pin name="GND" x="-10.16" y="-2.54" length="short"/>
+<pin name="VCC" x="-10.16" y="5.08" length="short"/>
+<pin name="SDA" x="10.16" y="2.54" length="short" rot="R180"/>
+<pin name="SCL" x="10.16" y="0" length="short" rot="R180"/>
+<pin name="!SHUT" x="10.16" y="5.08" length="short" rot="R180"/>
+<pin name="!INT" x="10.16" y="-2.54" length="short" rot="R180"/>
+<text x="-7.62" y="8.382" size="1.778" layer="95">&gt;Name</text>
+<text x="-7.62" y="-7.62" size="1.778" layer="96">&gt;Value</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="VL53L1X" prefix="U">
+<description>&lt;h3&gt;STMicroelectronics VL53L1X - 400 cm IR Laser ToF Sensor&lt;/h3&gt;
+&lt;p&gt;VL53L1X is a state-of-the-art ToF laser-ranging sensor, enhancing the ST FlightSense product family. It is the fastest miniature ToF sensor currently on the market with accurate ranging up to 4 m and fast ranging frequency (up to 50 Hz). Housed in a miniature and reflowable package, it integrates a single photon avalanche diode (SPAD) receiving array, a 940 nm invisible laser Class 1 emitter, physical infrared filters, and optics to achieve the best ranging performance in various ambient lighting conditions with a range of cover window options.&lt;/p&gt;</description>
+<gates>
+<gate name="U1" symbol="VL53L1X" x="0" y="0"/>
+</gates>
+<devices>
+<device name="SMD" package="VL53L1X">
+<connects>
+<connect gate="U1" pin="!INT" pad="7"/>
+<connect gate="U1" pin="!SHUT" pad="5"/>
+<connect gate="U1" pin="GND" pad="2 3 4 6 12"/>
+<connect gate="U1" pin="SCL" pad="10"/>
+<connect gate="U1" pin="SDA" pad="9"/>
+<connect gate="U1" pin="VCC" pad="1 11"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="IC-13960" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -19452,10 +19593,16 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="+3V44" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND58" library="supply1" deviceset="GND" device=""/>
 <part name="GND59" library="supply1" deviceset="GND" device=""/>
-<part name="LED13" library="my_parts" deviceset="LED" device="5MM"/>
+<part name="IR_S_RIGHT" library="my_parts" deviceset="LED" device="5MM"/>
 <part name="IR_S_LEFT" library="my_parts" deviceset="LED" device="5MM"/>
-<part name="LED15" library="my_parts" deviceset="LED" device="5MM"/>
-<part name="LED16" library="my_parts" deviceset="LED" device="5MM"/>
+<part name="IR_RIGHT" library="my_parts" deviceset="LED" device="5MM"/>
+<part name="IR_LEFT" library="my_parts" deviceset="LED" device="5MM"/>
+<part name="LASER" library="con-lstb" deviceset="MA04-1" device=""/>
+<part name="GND60" library="supply1" deviceset="GND" device=""/>
+<part name="+3V45" library="supply1" deviceset="+3V3" device=""/>
+<part name="U1" library="SparkFun-Sensors" deviceset="VL53L1X" device="SMD"/>
+<part name="LASER1" library="con-lstb" deviceset="MA04-1" device=""/>
+<part name="C17" library="resistor" deviceset="C-EU" device="C1206" value="10uF"/>
 </parts>
 <sheets>
 <sheet>
@@ -19673,10 +19820,16 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="+3V44" gate="G$1" x="299.72" y="20.32" rot="MR90"/>
 <instance part="GND58" gate="1" x="299.72" y="15.24" rot="R90"/>
 <instance part="GND59" gate="1" x="139.7" y="88.9"/>
-<instance part="LED13" gate="G$1" x="290.83" y="175.26" rot="R180"/>
+<instance part="IR_S_RIGHT" gate="G$1" x="290.83" y="175.26" rot="R180"/>
 <instance part="IR_S_LEFT" gate="G$1" x="325.12" y="175.26" rot="R180"/>
-<instance part="LED15" gate="G$1" x="300.99" y="179.07"/>
-<instance part="LED16" gate="G$1" x="335.28" y="180.34"/>
+<instance part="IR_RIGHT" gate="G$1" x="300.99" y="179.07"/>
+<instance part="IR_LEFT" gate="G$1" x="335.28" y="180.34"/>
+<instance part="LASER" gate="1" x="491.49" y="77.47" rot="R180"/>
+<instance part="GND60" gate="1" x="469.9" y="77.47" rot="R270"/>
+<instance part="+3V45" gate="G$1" x="474.98" y="69.85" rot="R180"/>
+<instance part="U1" gate="U1" x="541.02" y="80.01"/>
+<instance part="LASER1" gate="1" x="499.11" y="77.47" rot="MR180"/>
+<instance part="C17" gate="G$1" x="523.24" y="82.55"/>
 </instances>
 <busses>
 </busses>
@@ -20032,7 +20185,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <segment>
 <pinref part="GND31" gate="1" pin="GND"/>
 <wire x1="290.83" y1="163.83" x2="290.83" y2="172.72" width="0.1524" layer="91"/>
-<pinref part="LED13" gate="G$1" pin="A"/>
+<pinref part="IR_S_RIGHT" gate="G$1" pin="A"/>
 </segment>
 <segment>
 <pinref part="GND42" gate="1" pin="GND"/>
@@ -20049,6 +20202,11 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="GND59" gate="1" pin="GND"/>
 <wire x1="144.78" y1="93.98" x2="139.7" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="139.7" y1="93.98" x2="139.7" y2="91.44" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="LASER" gate="1" pin="3"/>
+<wire x1="483.87" y1="77.47" x2="472.44" y2="77.47" width="0.1524" layer="91"/>
+<pinref part="GND60" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="VCC" class="0">
@@ -20365,6 +20523,12 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="TP1" gate="G$1" pin="TP"/>
 <wire x1="297.18" y1="20.32" x2="294.64" y2="20.32" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="LASER" gate="1" pin="4"/>
+<wire x1="483.87" y1="74.93" x2="474.98" y2="74.93" width="0.1524" layer="91"/>
+<pinref part="+3V45" gate="G$1" pin="+3V3"/>
+<wire x1="474.98" y1="74.93" x2="474.98" y2="72.39" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="SCL" class="0">
 <segment>
@@ -20395,6 +20559,11 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <wire x1="294.64" y1="10.16" x2="299.72" y2="10.16" width="0.1524" layer="91"/>
 <label x="302.26" y="10.16" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="LASER" gate="1" pin="2"/>
+<wire x1="483.87" y1="80.01" x2="476.25" y2="80.01" width="0.1524" layer="91"/>
+<label x="476.25" y="81.28" size="1.778" layer="95" rot="R180"/>
+</segment>
 </net>
 <net name="SDA" class="0">
 <segment>
@@ -20424,6 +20593,11 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="TP4" gate="G$1" pin="TP"/>
 <wire x1="294.64" y1="5.08" x2="299.72" y2="5.08" width="0.1524" layer="91"/>
 <label x="302.26" y="5.08" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="LASER" gate="1" pin="1"/>
+<wire x1="483.87" y1="82.55" x2="476.25" y2="82.55" width="0.1524" layer="91"/>
+<label x="476.25" y="83.82" size="1.778" layer="95" rot="R180"/>
 </segment>
 </net>
 <net name="N$23" class="0">
@@ -20616,22 +20790,6 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="U4" gate="B" pin="PB4"/>
 <wire x1="241.3" y1="111.76" x2="228.6" y2="111.76" width="0.1524" layer="91"/>
 <label x="226.06" y="111.76" size="1.778" layer="95" rot="R180"/>
-</segment>
-</net>
-<net name="IR_CONTROLL" class="0">
-<segment>
-<pinref part="U4" gate="B" pin="PA8"/>
-<wire x1="276.86" y1="106.68" x2="284.48" y2="106.68" width="0.1524" layer="91"/>
-<label x="289.56" y="106.68" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="Q2" gate="G$1" pin="G"/>
-<pinref part="R3" gate="G$1" pin="2"/>
-<wire x1="30.48" y1="121.92" x2="27.94" y2="121.92" width="0.1524" layer="91"/>
-<wire x1="27.94" y1="121.92" x2="27.94" y2="116.84" width="0.1524" layer="91"/>
-<wire x1="27.94" y1="121.92" x2="17.78" y2="121.92" width="0.1524" layer="91"/>
-<junction x="27.94" y="121.92"/>
-<label x="12.7" y="124.46" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="BOOT" class="0">
@@ -20966,11 +21124,6 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <wire x1="243.84" y1="172.72" x2="243.84" y2="165.1" width="0.1524" layer="91"/>
 <label x="243.84" y="162.56" size="1.778" layer="95" rot="R270"/>
 </segment>
-<segment>
-<pinref part="Q2" gate="G$1" pin="D"/>
-<wire x1="35.56" y1="129.54" x2="35.56" y2="134.62" width="0.1524" layer="91"/>
-<label x="40.64" y="134.62" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="N$15" class="0">
 <segment>
@@ -21098,12 +21251,12 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <segment>
 <wire x1="300.99" y1="173.99" x2="300.99" y2="166.37" width="0.1524" layer="91"/>
 <label x="300.99" y="163.83" size="1.778" layer="95"/>
-<pinref part="LED15" gate="G$1" pin="C"/>
+<pinref part="IR_RIGHT" gate="G$1" pin="C"/>
 </segment>
 <segment>
 <wire x1="335.28" y1="175.26" x2="335.28" y2="167.64" width="0.1524" layer="91"/>
 <label x="335.28" y="165.1" size="1.778" layer="95"/>
-<pinref part="LED16" gate="G$1" pin="C"/>
+<pinref part="IR_LEFT" gate="G$1" pin="C"/>
 </segment>
 </net>
 <net name="IR_CONTROLL_FRONT" class="0">
@@ -21136,7 +21289,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <wire x1="290.83" y1="187.96" x2="284.48" y2="187.96" width="0.1524" layer="91"/>
 <junction x="290.83" y="187.96"/>
 <label x="280.67" y="187.96" size="1.778" layer="95" rot="R180"/>
-<pinref part="LED13" gate="G$1" pin="C"/>
+<pinref part="IR_S_RIGHT" gate="G$1" pin="C"/>
 <wire x1="290.83" y1="180.34" x2="290.83" y2="187.96" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -21165,14 +21318,81 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <segment>
 <pinref part="R31" gate="G$1" pin="1"/>
 <wire x1="300.99" y1="191.77" x2="300.99" y2="181.61" width="0.1524" layer="91"/>
-<pinref part="LED15" gate="G$1" pin="A"/>
+<pinref part="IR_RIGHT" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="N$13" class="0">
 <segment>
 <pinref part="R33" gate="G$1" pin="1"/>
 <wire x1="335.28" y1="193.04" x2="335.28" y2="182.88" width="0.1524" layer="91"/>
-<pinref part="LED16" gate="G$1" pin="A"/>
+<pinref part="IR_LEFT" gate="G$1" pin="A"/>
+</segment>
+</net>
+<net name="LINE_LED" class="0">
+<segment>
+<pinref part="Q2" gate="G$1" pin="D"/>
+<wire x1="35.56" y1="129.54" x2="35.56" y2="134.62" width="0.1524" layer="91"/>
+<label x="40.64" y="134.62" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="LINE_LED_CONTROLL" class="0">
+<segment>
+<pinref part="Q2" gate="G$1" pin="G"/>
+<pinref part="R3" gate="G$1" pin="2"/>
+<wire x1="30.48" y1="121.92" x2="27.94" y2="121.92" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="121.92" x2="27.94" y2="116.84" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="121.92" x2="17.78" y2="121.92" width="0.1524" layer="91"/>
+<junction x="27.94" y="121.92"/>
+<label x="12.7" y="124.46" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U4" gate="B" pin="PA8"/>
+<wire x1="276.86" y1="106.68" x2="284.48" y2="106.68" width="0.1524" layer="91"/>
+<label x="289.56" y="106.68" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$25" class="0">
+<segment>
+<pinref part="U1" gate="U1" pin="GND"/>
+<wire x1="530.86" y1="77.47" x2="523.24" y2="77.47" width="0.1524" layer="91"/>
+<pinref part="LASER1" gate="1" pin="3"/>
+<pinref part="C17" gate="G$1" pin="2"/>
+<wire x1="523.24" y1="77.47" x2="506.73" y2="77.47" width="0.1524" layer="91"/>
+<junction x="523.24" y="77.47"/>
+</segment>
+</net>
+<net name="N$26" class="0">
+<segment>
+<pinref part="LASER1" gate="1" pin="4"/>
+<wire x1="506.73" y1="74.93" x2="515.62" y2="74.93" width="0.1524" layer="91"/>
+<wire x1="515.62" y1="74.93" x2="515.62" y2="85.09" width="0.1524" layer="91"/>
+<pinref part="U1" gate="U1" pin="VCC"/>
+<wire x1="515.62" y1="85.09" x2="523.24" y2="85.09" width="0.1524" layer="91"/>
+<pinref part="C17" gate="G$1" pin="1"/>
+<wire x1="523.24" y1="85.09" x2="530.86" y2="85.09" width="0.1524" layer="91"/>
+<junction x="523.24" y="85.09"/>
+</segment>
+</net>
+<net name="N$27" class="0">
+<segment>
+<pinref part="U1" gate="U1" pin="SDA"/>
+<wire x1="551.18" y1="82.55" x2="556.26" y2="82.55" width="0.1524" layer="91"/>
+<wire x1="556.26" y1="82.55" x2="556.26" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="556.26" y1="91.44" x2="509.27" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="509.27" y1="91.44" x2="509.27" y2="82.55" width="0.1524" layer="91"/>
+<pinref part="LASER1" gate="1" pin="1"/>
+<wire x1="509.27" y1="82.55" x2="506.73" y2="82.55" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$28" class="0">
+<segment>
+<pinref part="U1" gate="U1" pin="SCL"/>
+<wire x1="551.18" y1="80.01" x2="554.99" y2="80.01" width="0.1524" layer="91"/>
+<wire x1="554.99" y1="80.01" x2="554.99" y2="90.17" width="0.1524" layer="91"/>
+<wire x1="554.99" y1="90.17" x2="510.54" y2="90.17" width="0.1524" layer="91"/>
+<wire x1="510.54" y1="90.17" x2="510.54" y2="80.01" width="0.1524" layer="91"/>
+<pinref part="LASER1" gate="1" pin="2"/>
+<wire x1="510.54" y1="80.01" x2="506.73" y2="80.01" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
