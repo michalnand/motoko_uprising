@@ -1,6 +1,5 @@
 #include <robot.h>
-#include <robot_config.h>
-
+#include <config_robot.h>
 #include <movement.h>
 
 class LineDetected: public MovementTerminateConditionInterface
@@ -37,6 +36,7 @@ Robot::Robot()
 
     brick_detection_pattern[0] = BRICK_AVOID_SIDE_LEFT;
     brick_detection_pattern[1] = BRICK_AVOID_SIDE_RIGHT;
+    brick_detection_pattern[2] = 0;
     brick_detection_pattern[3] = 0;
     brick_detection_pattern[4] = 0;
     brick_detection_pattern[5] = 0;
@@ -198,6 +198,7 @@ void Robot::line_following()
 
     if (mapping_enabled)
     {
+        /*
         unsigned int line_type = line_predictor.get_result();
         int mapping_distance_now = encoder_sensor.get_distance();
 
@@ -221,6 +222,7 @@ void Robot::line_following()
 
             mapping_distance_next+= LINE_MAPPING_STEP;
         }
+        */
     }
 }
 

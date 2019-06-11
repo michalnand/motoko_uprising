@@ -195,8 +195,8 @@ int LineSensor::integrate(int center_idx)
     if (center_idx < 0)
         center_idx = 0;
 
-    if (center_idx > (LINE_SENSOR_COUNT-1))
-        center_idx = (LINE_SENSOR_COUNT-1);
+    if (center_idx > (int)(LINE_SENSOR_COUNT-1))
+        center_idx = (int)(LINE_SENSOR_COUNT-1);
 
     int center  = weights[center_idx]*adc_result[center_idx];
     int sum     = adc_result[center_idx];
@@ -214,7 +214,7 @@ int LineSensor::integrate(int center_idx)
         sum+= adc_result[center_idx];
     }
 
-    if (center_idx < (LINE_SENSOR_COUNT-1))
+    if (center_idx < (int)(LINE_SENSOR_COUNT-1))
     {
         int_result+= weights[center_idx+1]*adc_result[center_idx+1];
         sum+= adc_result[center_idx+1];

@@ -16,9 +16,9 @@ class BrickDetection
     public:
         void init(Array<int, MAX_OBSTACLES_COUNT> &detection_pattern, int ignore_distance);
 
-        int process(sDistanceSensor &distance_sensor_result);
+        int process();
         int get();
-        
+
     private:
         Array<int, MAX_OBSTACLES_COUNT> detection_pattern;
         unsigned int ignore_distance;

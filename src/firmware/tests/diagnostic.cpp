@@ -1,12 +1,10 @@
 #include "diagnostic.h"
 
-#include <drivers.h>
-
-#include <line_following/line_predictor.h>
-#include <line_following/LineNetwork/LineNetwork.h>
-
-#include <embedded_libs.h>
 #include <robot.h>
+
+#include <ai/line_predictor.h>
+#include <ai/LineNetwork/LineNetwork.h>
+
 
 
 void diagnostic()
@@ -102,8 +100,6 @@ void diagnostic()
 
 void brick_avoid_test()
 {
-    int right_angle_distance = WHEEL_CIRCUMFERENCE;
-
     float steering_max = 0.3;
     float speed_limit =  0.25;
 

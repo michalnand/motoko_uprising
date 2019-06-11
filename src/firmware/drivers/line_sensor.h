@@ -4,7 +4,7 @@
 #include <gpio.h>
 #include <thread.h>
 #include <array.h>
-#include <config.h>
+#include <config_drivers.h>
 
 
 #define LINE_SENSOR_COUNT   ((unsigned int)8)

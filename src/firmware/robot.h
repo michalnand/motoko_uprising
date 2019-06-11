@@ -3,10 +3,10 @@
 
 #include <drivers/drivers.h>
 
-#include <line_following/LineNetwork/LineNetwork.h>
-#include <line_following/line_predictor.h>
+#include <ai/LineNetwork/LineNetwork.h>
+#include <ai/line_predictor.h>
 
-#include <line_following/line_search.h>
+#include <line_search.h>
 #include <brick_avoid.h>
 
 #include <speed_ramp.h>

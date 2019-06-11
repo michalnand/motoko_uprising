@@ -1,6 +1,6 @@
 #include <timer.h>
 
-#include <config.h>
+#include <config_drivers.h>
 #include <stm32f30x_func.h>
 
 

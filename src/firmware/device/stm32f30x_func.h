@@ -3,7 +3,7 @@
 
 #include <stm32f30x.h>
 #include <system_stm32f30x.h>
-#include <config.h>
+#include <config_device.h>
 
 void nvic_init(uint32_t IRQChannel, uint32_t ChannelPreemptionPriority, uint32_t ChannelSubPriority);
 

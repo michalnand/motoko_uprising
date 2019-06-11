@@ -4,11 +4,13 @@ C_SRCS = $(shell find  -name '*.c')
 
 
 INC = -I .
+INC+= -I ./config
 INC+= -I ./device
+INC+= -I ./drivers
 INC+= -I ./embedded_libs
 INC+= -I ./embedded_libs/cnn
+INC+= -I ./tests
 INC+= -I ./stm32f30x_std_periph_driver/inc
-INC+= -I ./drivers
 
 
 TARGET = -mcpu=cortex-m4 -mthumb -mfloat-abi=softfp -fsingle-precision-constant

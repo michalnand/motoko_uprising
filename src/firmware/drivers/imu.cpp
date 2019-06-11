@@ -1,7 +1,7 @@
 #include "imu.h"
 
 #include <drivers.h>
-#include <config.h>
+#include <config_drivers.h>
 
 
 //#define LSM6DS0_ADDRESS              ((unsigned char)0xD6)
@@ -193,7 +193,7 @@ void IMU::read(bool calibration)
 
   angle.x+= 2*(angular_rate.x/25);
   angle.y+= 2*(angular_rate.y/25);
-  angle.z+= 2*(angular_rate.z/25); 
+  angle.z+= 2*(angular_rate.z/25);
 
   i2c->start();
   i2c->write(LSM6DS0_ADDRESS);

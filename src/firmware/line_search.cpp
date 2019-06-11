@@ -1,7 +1,7 @@
 #include "line_search.h"
 
 #include <drivers.h>
-#include <robot_config.h>
+#include <config_robot.h>
 
 LineSearch::LineSearch()
 {

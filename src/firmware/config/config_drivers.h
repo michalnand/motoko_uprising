@@ -1,16 +1,7 @@
-#ifndef _CONFIG_H_
-#define _CONFIG_H_
+#ifndef _CONFIG_DRIVERS_H_
+#define _CONFIG_DRIVERS_H_
 
-#define F_CPU               ((unsigned int)72000000)
-#define TIMERS_COUNT        ((unsigned int)16)
-
-
-#define LED_GPIO        TGPIOB
-#define LED_PIN         15
-
-
-
-#include <robot_type.h>
+#include <config_type.h>
 
 
 #ifdef ROBOT_TYPE_MOTOKO_UPRINSING_1
@@ -25,10 +16,8 @@
 
 //distance sensor parameters
 #define DISTANCE_DT             ((unsigned int)5)
-//#define DISTANCE_WARNING        ((float)0.85)
-//#define DISTANCE_OBSTACLE       ((float)0.7)
 #define DISTANCE_WARNING        ((float)0.85)
-#define DISTANCE_OBSTACLE       ((float)0.82)
+#define DISTANCE_OBSTACLE       ((float)0.7)
 
 
 //imu dt in ms
@@ -72,10 +61,8 @@
 
 //distance sensor parameters
 #define DISTANCE_DT             ((unsigned int)5)
-//#define DISTANCE_WARNING        ((float)0.7)
-//#define DISTANCE_OBSTACLE       ((float)0.65)
-#define DISTANCE_WARNING        ((float)0.8)
-#define DISTANCE_OBSTACLE       ((float)0.75)
+#define DISTANCE_WARNING        ((float)0.7)
+#define DISTANCE_OBSTACLE       ((float)0.65)
 
 //imu dt in ms
 #define IMU_DT                  ((unsigned int)10)

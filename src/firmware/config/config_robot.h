@@ -1,7 +1,7 @@
-#ifndef _ROBOT_CONFIG_H_
-#define _ROBOT_CONFIG_H_
+#ifndef _CONFIG_ROBOT_H_
+#define _CONFIG_ROBOT_H_
 
-#include <robot_type.h>
+#include <config_type.h>
 
 #ifdef ROBOT_TYPE_MOTOKO_UPRINSING_1
 

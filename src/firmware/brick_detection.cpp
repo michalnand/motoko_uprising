@@ -1,6 +1,6 @@
 #include "brick_detection.h"
 
-#include <drivers/drivers.h>
+#include <drivers.h>
 
 
 BrickDetection::BrickDetection()
@@ -29,7 +29,7 @@ void BrickDetection::init(Array<int, MAX_OBSTACLES_COUNT> &detection_pattern, in
     this->obstacle_idx              = 0;
 }
 
-int BrickDetection::process(sDistanceSensor &distance_sensor_result)
+int BrickDetection::process()
 {
     result = 0;
 
@@ -38,7 +38,7 @@ int BrickDetection::process(sDistanceSensor &distance_sensor_result)
         auto dist = encoder_sensor.get_distance() - this->last_detection_distance;
         dist = abs(dist);
 
-        if (dist > this->ignore_distance)
+        if (dist > (int)this->ignore_distance)
         {
             this->last_detection_distance = encoder_sensor.get_distance();
 

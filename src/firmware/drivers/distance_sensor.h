@@ -5,7 +5,6 @@
 #include <thread.h>
 #include <timer.h>
 #include <embedded_libs/math/filter.h>
-#include <embedded_libs/comb_filter.h>
 
 #define DISTANCE_SENSOR_COUNT   ((unsigned int)3)
 
@@ -13,7 +12,6 @@
 #define DISTANCE_LEFT           ((unsigned int)1)
 #define DISTANCE_RIGHT          ((unsigned int)2)
 
-//#define DISTANCE_MAX            ((int)256)
 #define DISTANCE_MAX            ((float)1.0)
 
 struct sDistanceSensor

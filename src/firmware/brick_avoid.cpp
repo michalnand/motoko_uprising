@@ -2,7 +2,7 @@
 
 
 #include <drivers.h>
-#include <robot_config.h>
+#include <config_robot.h>
 #include <speed_ramp.h>
 
 
@@ -53,14 +53,14 @@ void BrickAvoid::avoid(int side)
         if (distance_sensor.ready())
         {
             float distance, error;
+
             //compute distance error
             if (side == BRICK_AVOID_SIDE_LEFT)
             {
                 distance = distance_sensor.result.right;
                 error    = BRICK_AVOID_RIGHT_DISTANCE - distance;
             }
-
-            if (side == BRICK_AVOID_SIDE_RIGHT)
+            else
             {
                 distance = distance_sensor.result.left;
                 error    = -(BRICK_AVOID_LEFT_DISTANCE - distance);

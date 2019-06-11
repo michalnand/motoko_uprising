@@ -2,7 +2,7 @@
 #define _MOTOR_H_
 
 #include <gpio.h>
-#include <config.h>
+#include <config_drivers.h>
 
 #define MOTOR_SPEED_MAX         ((int)255)
 

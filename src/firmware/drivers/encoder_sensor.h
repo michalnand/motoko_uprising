@@ -3,7 +3,7 @@
 
 #include <gpio.h>
 
-#include <config.h>
+#include <config_drivers.h>
 
 class EncoderSensor
 {
