@@ -15,6 +15,8 @@
 
 #include <line_mapping.h>
 
+#include <movement.h>
+
 class Robot
 {
     public:
@@ -41,7 +43,7 @@ class Robot
         LineNetwork   cnn;
         LinePredictor line_predictor;
 
-        LineSearch line_search;
+        Movement movement;
         BrickAvoid brick_avoid;
 
         SpeedRamp<float> speed_ramp;

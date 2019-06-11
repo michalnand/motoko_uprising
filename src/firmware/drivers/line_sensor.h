@@ -12,13 +12,18 @@
 #define LINE_TYPE_DOUBLE    ((unsigned int)2)
 #define LINE_TYPE_SPOT      ((unsigned int)3)
 
-struct sLineSensor
-{
-    unsigned char on_line, line_type;
-    int left_line_position, right_line_position, spot_line_position, full_line_position, center_line_position;
+#define LINE_LOST_NONE      ((unsigned char)0)
+#define LINE_LOST_CENTER    ((unsigned char)1)
+#define LINE_LOST_RIGHT     ((unsigned char)2)
+#define LINE_LOST_LEFT      ((unsigned char)3)
 
+struct sLineSensorResult
+{
+    unsigned char line_type, line_lost_type;
     unsigned int on_line_count;
-    unsigned int max_left_idx, max_right_idx;
+
+    float center_line_position, left_line_position, right_line_position;
+    float average;
 };
 
 
@@ -30,10 +35,13 @@ class LineSensor: public Thread
         bool m_ready;
 
     public:
-        Array<int, LINE_SENSOR_COUNT> weights;
-        Array<int, LINE_SENSOR_COUNT> adc_calibration;
-        Array<int, LINE_SENSOR_COUNT> adc_calibration_k;
         Array<int, LINE_SENSOR_COUNT> adc_result;
+
+    private:
+        Array<int, LINE_SENSOR_COUNT> weights;
+        Array<int, LINE_SENSOR_COUNT> adc_calibration_q;
+        Array<int, LINE_SENSOR_COUNT> adc_calibration_k;
+
 
     private:
         //line sensors
@@ -47,34 +55,24 @@ class LineSensor: public Thread
         Gpio<TGPIOA, 7, GPIO_MODE_AN> sensor_in_7;
 
     public:
-        sLineSensor result;
-
-    protected:
-        sLineSensor result_tmp;
+        sLineSensorResult result;
 
     public:
         LineSensor();
-        ~LineSensor();
+        virtual ~LineSensor();
 
         int init();
 
         void on();
         void off();
         bool ready();
-        int get_max();
-        int get_min();
 
         void main();
-
+        void print();
 
     protected:
-        int integrate(unsigned int center);
-        int integrate_full();
-        int integrate_center();
-        int find_left_line_pos();
-        int find_right_line_pos();
-        int find_center_line_pos();
-        int find_spot_pos();
+        void line_filter();
+        int integrate(int center_idx);
 };
 
 #endif

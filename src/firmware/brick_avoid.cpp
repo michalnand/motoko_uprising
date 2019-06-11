@@ -84,7 +84,7 @@ void BrickAvoid::avoid(int side)
             motor_controll.set_left_speed(speed_left);
 
             if (encoder_sensor.get_distance() > ignore_distance)
-            if (line_sensor.result.on_line)
+            if (line_sensor.result.line_lost_type == LINE_LOST_NONE)
                 break;
         }
     }

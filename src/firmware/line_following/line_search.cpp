@@ -31,6 +31,26 @@ void LineSearch::keep_speed_disable()
 
 int LineSearch::main()
 {
+    if (line_sensor.result.line_lost_type == LINE_LOST_CENTER)
+    {
+        float speed = (motor_controll.get_speed_left() + motor_controll.get_speed_right())/2.0;
+        motor_controll.set_left_speed(speed);
+        motor_controll.set_right_speed(speed);
+    }
+    else
+    {
+        motor_controll.set_left_speed(0);
+        motor_controll.set_right_speed(0);
+
+        return LINE_NO_FOUND;
+    }
+
+    return LINE_NO_FOUND;
+}
+
+/*
+int LineSearch::main()
+{
     if (abs(last_line_position) < 0.6)
     {
         position_control.set_position(LINE_SEARCH_TURN_DISTANCE_FORWARD, LINE_SEARCH_TURN_DISTANCE_FORWARD);
@@ -88,6 +108,7 @@ int LineSearch::main()
 
     return LINE_NO_FOUND;
 }
+*/
 
 float LineSearch::get_speed()
 {
@@ -103,7 +124,7 @@ int LineSearch::process_move(unsigned int sensor_inactive_time)
         if (line_sensor.ready())
         {
             if (timer.get_time() > time_active)
-                if (line_sensor.result.on_line)
+                if (line_sensor.result.line_lost_type == LINE_LOST_NONE)
                     return 0;
 
             position_control.process();

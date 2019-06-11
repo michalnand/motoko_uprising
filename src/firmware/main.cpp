@@ -4,7 +4,9 @@
 
 #include <diagnostic.h>
 
-int main() 
+#include <movement.h>
+
+int main()
 {
     drivers.init();
     auto res = key.read();
@@ -18,6 +20,28 @@ int main()
 
     //diagnostic();
     //brick_avoid_test();
+
+    /*
+    Movement movement;
+
+    movement.init(nullptr, 0, 220, 0.8, 0.8, 0.005, 0.005,  0, 0);
+    movement.process();
+
+    movement.init(nullptr, 0, -220, 0.8, 0.8, -0.002, -0.002,  0, 0);
+    movement.process();
+
+
+    movement.init(nullptr, 220, 0, 0.8, 0.8, 0.005, 0.005,  0, 0);
+    movement.process();
+
+    movement.init(nullptr, -220, 0, 0.8, 0.8, -0.002, -0.002,  0, 0);
+    movement.process();
+
+    while (1)
+    {
+        __asm("nop");
+    }
+    */
 
     Robot robot;
 

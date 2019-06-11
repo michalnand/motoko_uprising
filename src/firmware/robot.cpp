@@ -1,6 +1,22 @@
 #include <robot.h>
 #include <robot_config.h>
 
+#include <movement.h>
+
+class LineDetected: public MovementTerminateConditionInterface
+{
+    public:
+        bool main()
+        {
+            if (line_sensor.result.line_lost_type == LINE_LOST_NONE)
+                return true;
+
+            return false;
+        }
+};
+
+LineDetected line_detected;
+
 Robot::Robot()
 {
     mapping_enabled  = false;
@@ -51,6 +67,7 @@ void Robot::main()
 {
     while (1)
     {
+        /*
         if (distance_sensor.ready() && brick_detection.process(distance_sensor.result) != 0)
         {
             allign_to_line(50);
@@ -68,9 +85,11 @@ void Robot::main()
             steering_pid.reset(line_sensor.result.center_line_position);
         }
         else
+        */
+
         if (line_sensor.ready())
         {
-            if (line_sensor.result.on_line)
+            if (line_sensor.result.line_lost_type == LINE_LOST_NONE)
             {
                 if (line_sensor.result.line_type == LINE_TYPE_SPOT)
                 {
@@ -87,16 +106,22 @@ void Robot::main()
             }
             else
             {
-                line_search.keep_speed_enable();
-
-                if (line_search.main() != LINE_FOUND_IMMEDIATELY)
+                if (line_sensor.result.line_lost_type == LINE_LOST_CENTER)
                 {
-                    motor_controll.set_left_speed(0);
-                    motor_controll.set_right_speed(0);
-                    speed_ramp.set_speed(0);
+                    movement.init(&line_detected, 0, 280, 0.8, 0.8, 0.005, 0.005, motor_controll.get_speed_left(),  motor_controll.get_speed_right());
+                    movement.process();
+                }
+                if (line_sensor.result.line_lost_type == LINE_LOST_LEFT)
+                {
+                    movement.init(&line_detected, 0, 250, 0.8, 0.8, 0.005, 0.005, motor_controll.get_speed_left()*0.5,  motor_controll.get_speed_right()*0.5);
+                    movement.process();
+                }
+                if (line_sensor.result.line_lost_type == LINE_LOST_RIGHT)
+                {
+                    movement.init(&line_detected, 250, 0, 0.8, 0.8, 0.005, 0.005, motor_controll.get_speed_left()*0.5,  motor_controll.get_speed_right()*0.5);
+                    movement.process();
                 }
 
-                steering_pid.reset(line_sensor.result.center_line_position);
             }
         }
     }
@@ -169,7 +194,7 @@ void Robot::line_following()
     motor_controll.set_right_speed(speed_right);
 
     //set last line position for lost line search
-    line_search.set_last_line_position(line_position);
+    //line_search.set_last_line_position(line_position);
 
     if (mapping_enabled)
     {
@@ -220,7 +245,7 @@ void Robot::allign_to_line(unsigned int cycles)
             motor_controll.set_right_speed(speed_right);
 
             //set last line position for lost line search
-            line_search.set_last_line_position(line_position);
+            //line_search.set_last_line_position(line_position);
 
             cycles--;
         }

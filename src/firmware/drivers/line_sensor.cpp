@@ -21,20 +21,21 @@ int LineSensor::init()
 {
     int init_res = 0;
 
-    sensor_led = 0;
+    off();
     timer.delay_ms(100);
 
-    for (unsigned int i = 0; i < adc_calibration.size(); i++)
-        adc_calibration[i] = adc.read(i);
+    for (unsigned int i = 0; i < adc_result.size(); i++)
+        adc_calibration_q[i] = adc.read(i);
 
-    sensor_led = 1;
+    on();
     timer.delay_ms(100);
 
     for (unsigned int i = 0; i < adc_calibration_k.size(); i++)
-        adc_calibration_k[i] =  adc.read(i) - adc_calibration[i];
+        adc_calibration_k[i] =  adc.read(i) - adc_calibration_q[i];
 
     for (unsigned int i = 0; i < adc_result.size(); i++)
         adc_result[i] = 0;
+
 
     int step   = LINE_SENSOR_STEP;
 
@@ -49,19 +50,15 @@ int LineSensor::init()
 
     threshold = LINE_SENSOR_THRESHOLD;
 
-    result.on_line    = false;
-    result.line_type  = LINE_TYPE_SINGLE;
-    result.left_line_position     = 0;
-    result.right_line_position    = 0;
-    result.spot_line_position     = 0;
-    result.full_line_position     = 0;
-    result.center_line_position   = 0;
+    result.line_lost_type = LINE_LOST_NONE;
+    result.line_type = LINE_TYPE_SINGLE;
+    result.on_line_count = 0;
 
-    result.on_line_count  = 0;
-    result.max_left_idx   = 0;
-    result.max_right_idx  = 0;
+    result.center_line_position = 0.0;
+    result.left_line_position   = result.center_line_position;
+    result.right_line_position  = result.center_line_position;
 
-    result_tmp = result;
+    result.average = 0.0;
 
     m_ready = false;
 
@@ -81,16 +78,6 @@ bool LineSensor::ready()
     return res;
 }
 
-int LineSensor::get_max()
-{
-    return 4*LINE_SENSOR_STEP;
-}
-
-int LineSensor::get_min()
-{
-    return -get_max();
-}
-
 void LineSensor::on()
 {
     sensor_led = 1;
@@ -103,273 +90,142 @@ void LineSensor::off()
 
 void LineSensor::main()
 {
-    for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
+    for (unsigned int i = 0; i < adc_result.size(); i++)
     {
-        adc_result[i] = 1000 - ((adc.read(i) - adc_calibration[i])*1000)/adc_calibration_k[i];
+        adc_result[i] = 1000 - ((adc.read(i) - adc_calibration_q[i])*1000)/adc_calibration_k[i];
         if (adc_result[i] < 0)
             adc_result[i] = 0;
     }
 
-    result_tmp.on_line_count = 0;
-    for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
-        if (adc_result[i] > threshold)
-            result_tmp.on_line_count++;
+    line_filter();
 
-    result_tmp.max_left_idx = 0;
-    result_tmp.max_right_idx = LINE_SENSOR_COUNT-1;
+    m_ready = true;
+}
 
-    for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
-    {
-        if (adc_result[i] > threshold)
-        {
-            result_tmp.max_left_idx = i;
-            break;
-        }
-    }
+void LineSensor::print()
+{
+    terminal << "line sensor\n";
 
-    for (unsigned int i = LINE_SENSOR_COUNT-1; i > 0; i--)
-    {
-        if (adc_result[i] > threshold)
-        {
-            result_tmp.max_right_idx = i;
-            break;
-        }
-    }
-
-    result_tmp.on_line = false;
-
-    int spot_line   = find_spot_pos();
-    int left_line   = find_left_line_pos();
-    int right_line  = find_right_line_pos();
-    int center_line = find_center_line_pos();
+    terminal << "adc_result : ";
+    for (unsigned int i = 0; i < adc_result.size(); i++)
+        terminal << adc_result[i] << " ";
+    terminal << "\n";
 
 
+    terminal << "\n";
 
-    if (spot_line != -1)
-    {
-        result_tmp.line_type            = LINE_TYPE_SPOT;
-        result_tmp.spot_line_position   = weights[spot_line];
-        result_tmp.on_line              = true;
-    }
-    else
-    if (center_line != -1)
-    {
-        result_tmp.line_type            = LINE_TYPE_SINGLE;
-        result_tmp.left_line_position   = integrate(center_line);
-        result_tmp.right_line_position  = result_tmp.left_line_position;
-        result_tmp.on_line              = true;
-    }
+    terminal << "lost type = " << result.line_lost_type << "\n";
+    terminal << "type    = " << result.line_type << "\n";
+    terminal << "count   = " << result.on_line_count << "\n";
+    terminal << "average = " << result.average << "\n";
+    terminal << "center  = " << result.center_line_position << "\n";
+    terminal << "left    = " << result.left_line_position << "\n";
+    terminal << "right   = " << result.right_line_position << "\n";
 
-
-    result_tmp.full_line_position = integrate_full();
-    result_tmp.center_line_position = integrate_center();
-
-  /*
-  //check if robot on line
-  if ((left_line != -1) && (right_line != -1))
-  {
-    result_tmp.line_type = LINE_TYPE_SINGLE;
-
-
-    int dist = left_line - right_line;
-    if (dist < 0)
-      dist = -dist;
-
-    //only single line
-    if (dist <= 1)
-    {
-      int center = (left_line + right_line)/2;
-      result_tmp.left_line_position   = integrate(center);
-      result_tmp.right_line_position  = result_tmp.left_line_position;
-      result_tmp.line_type = LINE_TYPE_SINGLE;
-    }
-    //splitted line
-    else
-    {
-      result_tmp.left_line_position   = integrate(left_line);
-      result_tmp.right_line_position  = integrate(right_line);
-      result_tmp.line_type = LINE_TYPE_DOUBLE;
-    }
-
-    result_tmp.on_line = true;
-  }
-  */
-
-  result = result_tmp;
-
-  m_ready = true;
+    terminal << "\n";
 }
 
 
-int LineSensor::integrate(unsigned int center)
+void LineSensor::line_filter()
 {
-    int middle  = weights[center]*adc_result[center];
-    int sum     = adc_result[center];
+    result.line_lost_type = LINE_LOST_CENTER;
 
-    int int_result = middle;
+    //compute average of all sensors
+    int average = 0;
+    for (unsigned int i = 0; i < adc_result.size(); i++)
+        average+= adc_result[i];
+    average = average/adc_result.size();
 
-    if (center > 0)
-    {
-        int_result+= weights[center-1]*adc_result[center-1];
-        sum+= adc_result[center-1];
-    }
-    else
-    {
-        int_result+= middle;
-        sum+= adc_result[center];
-    }
-
-    if (center < (LINE_SENSOR_COUNT-1))
-    {
-        int_result+= weights[center+1]*adc_result[center+1];
-        sum+= adc_result[center+1];
-    }
-    else
-    {
-        int_result+= middle;
-        sum+= adc_result[center];
-    }
-
-    int_result = int_result/sum;
-    return int_result;
-}
-
-
-
-
-int LineSensor::integrate_full()
-{
-    int sum = 0;
-    int int_result = 0;
-
-    for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
-    {
-        int_result+= weights[i]*adc_result[i];
-        sum+= adc_result[i];
-    }
-
-    int_result = int_result/(sum + 1);
-    return int_result;
-}
-
-
-int LineSensor::integrate_center()
-{
-    int sum = 0;
-    int int_result = 0;
-
-    int_result+= weights[3]*adc_result[3];
-    sum+= adc_result[3];
-    int_result+= weights[4]*adc_result[4];
-    sum+= adc_result[4];
-
-    int_result = int_result/(sum + 1);
-    return int_result;
-}
-
-
-int LineSensor::find_left_line_pos()
-{
-    for (int i = ((int)LINE_SENSOR_COUNT-1); i >= 0; i--)
-        if (adc_result[i] > threshold)
-            return i;
-
-    return -1;
-}
-
-int LineSensor::find_right_line_pos()
-{
-    for (int i = 0; i < (int)LINE_SENSOR_COUNT; i++)
-        if (adc_result[i] > threshold)
-            return i;
-
-    return -1;
-}
-
-int LineSensor::find_center_line_pos()
-{
-    int adc_max = threshold - 1;
-
-    for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
-        if (adc_result[i] > threshold)
-        if (adc_result[i] > adc_max)
-        {
-            adc_max = adc_result[i];
-            return i;
-        }
-
-    return -1;
-}
-
-int LineSensor::find_spot_pos()
-{
-    bool on_line = false;
-    for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
-    {
-        if (adc_result[i] > threshold)
-            on_line = true;
-    }
-
-    if (on_line != true)
-        return -1;
-
-    unsigned int count = 0;
-    for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
-        if (adc_result[i] > threshold)
-            count++;
-
-
-    unsigned int continuos_count = 0;
-    unsigned int tmp = 0;
-    for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
-    {
-        if (adc_result[i] > threshold)
-            tmp++;
-        else
-            tmp = 0;
-
-        if (tmp > continuos_count)
-            continuos_count = tmp;
-    }
-
-
-    int kernel[3] = {-1, 2, -1};
-    int sum = 0;
-    int conv_result_max = 0;
-    int result = -1;
-
-    for (unsigned int i = 1; i < (LINE_SENSOR_COUNT-1); i++)
-    {
-        int conv_result = 0;
-
-        conv_result+= line_sensor.adc_result[i - 1]*kernel[0];
-        conv_result+= line_sensor.adc_result[i + 0]*kernel[1];
-        conv_result+= line_sensor.adc_result[i + 1]*kernel[2];
-
-        if (conv_result < 0)
-            conv_result = -conv_result;
-
-        if (conv_result > conv_result_max)
-        {
-            conv_result_max = conv_result;
-            result = i;
-        }
-
-        sum+= conv_result;
-    }
-
-
-    if (count > (LINE_SENSOR_COUNT - 2))
-    {
-        return result;
-    }
+    result.average = average;
 
     /*
-    if (continuos_count >= LINE_SENSOR_COUNT/2)
+    //substract average to eliminate ambient iluminance
+    for (unsigned int i = 0; i < adc_result.size(); i++)
     {
-        return result;
+        adc_filtered[i] = adc_result[i] - average;
     }
     */
 
-    return -1;
+    //find maximum sensor value
+    unsigned int center_line_idx = 0;
+    for (unsigned int i = 0; i < adc_result.size(); i++)
+        if (adc_result[i] > adc_result[center_line_idx])
+        {
+            center_line_idx = i;
+        }
+
+    unsigned int on_line_count = 0;
+    for (unsigned int i = 0; i < adc_result.size(); i++)
+        if (adc_result[i] > threshold)
+            on_line_count++;
+
+
+    if (average > 500)
+    {
+        result.line_type = LINE_TYPE_SPOT;
+        result.on_line_count = on_line_count;
+        result.line_lost_type = LINE_LOST_NONE;
+    }
+    else
+    if (adc_result[center_line_idx] > threshold)
+    {
+        float k = 1.0/((LINE_SENSOR_COUNT/2)*LINE_SENSOR_STEP);
+        result.line_type = LINE_TYPE_SINGLE;
+        result.center_line_position = k*integrate(center_line_idx);
+        result.left_line_position   = k*integrate(center_line_idx + 1);
+        result.right_line_position  = k*integrate(center_line_idx - 1);
+        result.on_line_count = on_line_count;
+        result.line_lost_type = LINE_LOST_NONE;
+    }
+    else
+    {
+        if (result.center_line_position < -0.8)
+            result.line_lost_type = LINE_LOST_RIGHT;
+        else
+        if (result.center_line_position > 0.8)
+            result.line_lost_type = LINE_LOST_LEFT;
+        else
+            result.line_lost_type = LINE_LOST_CENTER;
+    }
+}
+
+
+int LineSensor::integrate(int center_idx)
+{
+    if (center_idx < 0)
+        center_idx = 0;
+
+    if (center_idx > (LINE_SENSOR_COUNT-1))
+        center_idx = (LINE_SENSOR_COUNT-1);
+
+    int center  = weights[center_idx]*adc_result[center_idx];
+    int sum     = adc_result[center_idx];
+
+    int int_result = center;
+
+    if (center_idx > 0)
+    {
+        int_result+= weights[center_idx - 1]*adc_result[center_idx - 1];
+        sum+= adc_result[center_idx - 1];
+    }
+    else
+    {
+        int_result+= center;
+        sum+= adc_result[center_idx];
+    }
+
+    if (center_idx < (LINE_SENSOR_COUNT-1))
+    {
+        int_result+= weights[center_idx+1]*adc_result[center_idx+1];
+        sum+= adc_result[center_idx+1];
+    }
+    else
+    {
+        int_result+= center;
+        sum+= adc_result[center_idx];
+    }
+
+    int_result = int_result/sum;
+
+    return int_result;
 }

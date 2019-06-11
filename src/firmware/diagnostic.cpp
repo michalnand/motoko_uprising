@@ -25,7 +25,7 @@ void diagnostic()
 
             terminal << "\"line_sensor\" : {\n";
 
-                terminal << "\"on_line\" : " << line_sensor.result.on_line << ",\n";
+                terminal << "\"line_lost_type\" : " << line_sensor.result.line_lost_type << ",\n";
                 terminal << "\"line_type\" : " << line_sensor.result.line_type << ",\n";
                 terminal << "\"on_line_count\" : " << line_sensor.result.on_line_count << ",\n";
                 terminal << "\"center_line_position\" : " << line_sensor.result.center_line_position << ",\n";

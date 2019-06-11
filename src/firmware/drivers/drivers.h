@@ -11,8 +11,7 @@
 #include <eeprom.h>
 
 #include <adc.h>
-//#include <line_sensor.h>
-#include <line_sensor_new.h>
+#include <line_sensor.h>
 #include <distance_sensor.h>
 
 #include <encoder_sensor.h>
@@ -51,7 +50,7 @@ extern TI2C<TGPIOB, 7, 6, 10>    i2c;
 extern IMU                       imu_sensor;
 extern EEPROM                    eeprom;
 extern ADC                       adc;
-extern LineSensorNew             line_sensor;
+extern LineSensor                line_sensor;
 extern DistanceSensor            distance_sensor;
 extern EncoderSensor             encoder_sensor;
 extern MotorControll             motor_controll;
