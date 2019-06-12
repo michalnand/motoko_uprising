@@ -113,12 +113,12 @@ void Robot::main()
                 }
                 if (line_sensor.result.line_lost_type == LINE_LOST_LEFT)
                 {
-                    movement.init(&line_detected, 0, 250, 0.8, 0.8, 0.005, 0.005, motor_controll.get_speed_left()*0.5,  motor_controll.get_speed_right()*0.5);
+                    movement.init(&line_detected, 0, 250, 0.6, 0.6, 0.005, 0.005, 0,  motor_controll.get_speed_right()*0.5);
                     movement.process();
                 }
                 if (line_sensor.result.line_lost_type == LINE_LOST_RIGHT)
                 {
-                    movement.init(&line_detected, 250, 0, 0.8, 0.8, 0.005, 0.005, motor_controll.get_speed_left()*0.5,  motor_controll.get_speed_right()*0.5);
+                    movement.init(&line_detected, 250, 0, 0.6, 0.6, 0.005, 0.005, motor_controll.get_speed_left()*0.5,  0);
                     movement.process();
                 }
 
