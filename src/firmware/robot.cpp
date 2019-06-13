@@ -142,8 +142,7 @@ void Robot::line_following()
       case   1:
       case   3: speed_limit = (LINE_FOLLOWING_SPEED_MAX + LINE_FOLLOWING_SPEED_MIN)/2.0; break;
       default : speed_limit = LINE_FOLLOWING_SPEED_MIN; break;
-    }
-
+    } 
 
     if (fast_run_enabled)
     {
