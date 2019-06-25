@@ -16,15 +16,15 @@
 
 
 template <unsigned char port_name, unsigned char pin, unsigned char mode = GPIO_MODE_OUT>
-class TGpio
+class Gpio
 {
   public:
-    TGpio()
+    Gpio()
     {
       set_mode(mode);
     }
 
-    ~TGpio()
+    virtual ~Gpio()
     {
 
     }
@@ -131,12 +131,12 @@ class TGpio
         return 0;
     }
 
-    TGpio& operator= (int value)
+    Gpio& operator= (int value)
     {
       write(value); return *this;
     }
 
-    TGpio& operator= (TGpio& rhs)
+    Gpio& operator= (Gpio& rhs)
     {
       return write(rhs.read());
     };

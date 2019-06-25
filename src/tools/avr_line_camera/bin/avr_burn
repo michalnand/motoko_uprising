@@ -1,0 +1,1 @@
+sudo avrdude -c arduino -p atmega328p -P /dev/ttyUSB0 -U flash:w:main.hex

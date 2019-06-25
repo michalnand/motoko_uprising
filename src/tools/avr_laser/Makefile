@@ -1,9 +1,11 @@
 CXX_SRCS = $(shell find  -name '*.cpp')
+AVR_LIBS_PATH = ../avr_libs
 
 INC = -I .
-INC+= -I ../libs
+INC+= -I $(AVR_LIBS_PATH)
 
-CXX_SRCS+= $(shell find ../libs -name '*.cpp')
+
+CXX_SRCS+= $(shell find ../avr_libs -name '*.cpp')
 
 TARGET = -mmcu=atmega328
 

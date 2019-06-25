@@ -22,16 +22,15 @@ class VS1053
     uint16_t read_register(unsigned char address);
 
   private:
-    TGpio<TGPIOB, 5, GPIO_MODE_OUT> sck;
-    TGpio<TGPIOB, 4, GPIO_MODE_IN_FLOATING> miso;
-    TGpio<TGPIOB, 3, GPIO_MODE_OUT> mosi;
+    Gpio<TGPIOB, 5, GPIO_MODE_OUT> sck;
+    Gpio<TGPIOB, 4, GPIO_MODE_IN_FLOATING> miso;
+    Gpio<TGPIOB, 3, GPIO_MODE_OUT> mosi;
 
-    TGpio<TGPIOB, 0, GPIO_MODE_OUT> x_reset;
-    TGpio<TGPIOD, 7, GPIO_MODE_OUT> x_dcs;
-    TGpio<TGPIOD, 6, GPIO_MODE_OUT> x_cs;
+    Gpio<TGPIOB, 0, GPIO_MODE_OUT> x_reset;
+    Gpio<TGPIOD, 7, GPIO_MODE_OUT> x_dcs;
+    Gpio<TGPIOD, 6, GPIO_MODE_OUT> x_cs;
 
-    TGpio<TGPIOD, 2, GPIO_MODE_IN_FLOATING> dreq;
-
+    Gpio<TGPIOD, 2, GPIO_MODE_IN_FLOATING> dreq;
 };
 
 
