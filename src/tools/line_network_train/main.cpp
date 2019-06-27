@@ -15,9 +15,7 @@ int main()
     DatasetLine dataset(8, 8);
     ClassificationExperiment experiment(dataset, network_path, "network_config.json");
     experiment.run();
-    */
 
-    /*
     EmbeddedNetworkExport net_export(network_path + "trained/network_config.json");
     net_export.process(network_path + "export/", "LineNetwork");
     */
