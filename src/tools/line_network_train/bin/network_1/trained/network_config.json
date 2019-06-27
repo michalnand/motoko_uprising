@@ -1,0 +1,202 @@
+{
+	"hyperparameters" : 
+	{
+		"dropout" : 0.019999999552965164,
+		"gradient_clip" : 10,
+		"lambda1" : 0,
+		"lambda2" : 0,
+		"learning_rate" : 0.0020000000949949026,
+		"minibatch_size" : 32
+	},
+	"input_shape" : 
+	[
+		8,
+		8,
+		1
+	],
+	"layers" : 
+	[
+		{
+			"input_shape" : 
+			[
+				8,
+				8,
+				1
+			],
+			"output_shape" : 
+			[
+				8,
+				8,
+				4
+			],
+			"shape" : 
+			[
+				3,
+				3,
+				4
+			],
+			"type" : "convolution",
+			"weights_file_name" : "network_1/trained/layer_0"
+		},
+		{
+			"input_shape" : 
+			[
+				8,
+				8,
+				4
+			],
+			"output_shape" : 
+			[
+				8,
+				8,
+				4
+			],
+			"shape" : 
+			[
+				0,
+				0,
+				0
+			],
+			"type" : "relu",
+			"weights_file_name" : "network_1/trained/layer_1"
+		},
+		{
+			"input_shape" : 
+			[
+				8,
+				8,
+				4
+			],
+			"output_shape" : 
+			[
+				4,
+				4,
+				4
+			],
+			"shape" : 
+			[
+				2,
+				2,
+				0
+			],
+			"type" : "max_pooling",
+			"weights_file_name" : "network_1/trained/layer_2"
+		},
+		{
+			"input_shape" : 
+			[
+				4,
+				4,
+				4
+			],
+			"output_shape" : 
+			[
+				4,
+				4,
+				8
+			],
+			"shape" : 
+			[
+				3,
+				3,
+				8
+			],
+			"type" : "convolution",
+			"weights_file_name" : "network_1/trained/layer_3"
+		},
+		{
+			"input_shape" : 
+			[
+				4,
+				4,
+				8
+			],
+			"output_shape" : 
+			[
+				4,
+				4,
+				8
+			],
+			"shape" : 
+			[
+				0,
+				0,
+				0
+			],
+			"type" : "relu",
+			"weights_file_name" : "network_1/trained/layer_4"
+		},
+		{
+			"input_shape" : 
+			[
+				4,
+				4,
+				8
+			],
+			"output_shape" : 
+			[
+				2,
+				2,
+				8
+			],
+			"shape" : 
+			[
+				2,
+				2,
+				0
+			],
+			"type" : "max_pooling",
+			"weights_file_name" : "network_1/trained/layer_5"
+		},
+		{
+			"input_shape" : 
+			[
+				2,
+				2,
+				8
+			],
+			"output_shape" : 
+			[
+				2,
+				2,
+				8
+			],
+			"shape" : 
+			[
+				0,
+				0,
+				0
+			],
+			"type" : "dropout",
+			"weights_file_name" : "network_1/trained/layer_6"
+		},
+		{
+			"input_shape" : 
+			[
+				2,
+				2,
+				8
+			],
+			"output_shape" : 
+			[
+				1,
+				1,
+				5
+			],
+			"shape" : 
+			[
+				0,
+				0,
+				0
+			],
+			"type" : "output",
+			"weights_file_name" : "network_1/trained/layer_7"
+		}
+	],
+	"output_shape" : 
+	[
+		1,
+		1,
+		5
+	]
+}

@@ -1,0 +1,45 @@
+{
+    "hyperparameters" :
+    {
+        "dropout"           : 0.02,
+        "lambda1"           : 0,
+        "lambda2"           : 0,
+        "learning_rate"     : 0.002,
+        "minibatch_size"    : 32
+    },
+
+    "layers" :
+    [
+        {
+            "type" : "convolution",
+            "shape" : [3, 3, 8]
+        },
+        {
+            "type" : "relu"
+        },
+        {
+            "type" : "max_pooling",
+            "shape" : [2, 2]
+        },
+        {
+            "type" : "convolution",
+            "shape" : [3, 3, 8]
+        },
+        {
+            "type" : "relu"
+        },
+        {
+            "type" : "max_pooling",
+            "shape" : [2, 2]
+        },
+
+
+        {
+            "type" : "dropout"
+        },
+
+        {
+            "type" : "output"
+        }
+    ]
+}

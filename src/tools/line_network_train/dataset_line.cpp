@@ -3,67 +3,71 @@
 #include <math.h>
 #include <image_save.h>
 
-DatasetLine::DatasetLine()
+DatasetLine::DatasetLine(unsigned int sensors_count, unsigned int time_steps)
 {
-  width          = 8;
-  height         = width;
-  channels       = 1;
+    unsigned int width  = sensors_count;
+    unsigned int height = time_steps;
+    classes_count = 5;
 
-  classes_count  = 5;
-  scale = 4;
+    input_shape.set(width, height, 1);
 
-  area_width   = 74*scale;
-  area_length  = 60*scale;
-  line_width   = 15*scale;
+    output_shape.set(1, 1, classes_count);
 
-  luma_noise_level  = 1.0;
-  white_noise_level = 0.2;
+    scale = 4;
 
-  straight_rotation_noise_level = 0.6;
+    area_width   = 74*scale;
+    area_length  = 60*scale;
+    line_width   = 15*scale;
 
+    luma_noise_level  = 1.0;
+    white_noise_level = 0.2;
 
+    straight_rotation_noise_level = 0.6;
 
-  area.resize(area_length);
-  for (unsigned int j = 0; j < area.size(); j++)
-    area[j].resize(area_width);
+    area.resize(area_length);
+    for (unsigned int j = 0; j < area.size(); j++)
+        area[j].resize(area_width);
 
-  for (unsigned int j = 0; j < area_length; j++)
-    for (unsigned int i = 0; i < area_width; i++)
-      area[j][i] = 0.0;
+    for (unsigned int j = 0; j < area_length; j++)
+        for (unsigned int i = 0; i < area_width; i++)
+            area[j][i] = 0.0;
 
-  area_downsampled.resize(height);
-  for (unsigned int j = 0; j < area_downsampled.size(); j++)
-    area_downsampled[j].resize(width);
+    area_downsampled.resize(height);
+    for (unsigned int j = 0; j < area_downsampled.size(); j++)
+        area_downsampled[j].resize(width);
 
-  for (unsigned int j = 0; j < height; j++)
-    for (unsigned int i = 0; i < width; i++)
-      area_downsampled[j][i] = 0.0;
+    for (unsigned int j = 0; j < height; j++)
+        for (unsigned int i = 0; i < width; i++)
+            area_downsampled[j][i] = 0.0;
 
+    unsigned int training_count = classes_count*10000;
+    unsigned int testing_count  = classes_count*1000;
 
+    training_input.resize(training_count);
+    training_output.resize(training_count);
 
-
-  unsigned int training_count = classes_count*8000;
-  unsigned int testing_count  = classes_count*1000;
-
-  training.resize(classes_count);
-
-  for (unsigned int i = 0; i < training_count; i++)
-  {
-    auto item = create_item();
-    add_training(item);
-  }
-
-  for (unsigned int i = 0; i < testing_count; i++)
-  {
-    auto item = create_item();
-    add_testing(item);
-  }
-
-  export_dataset_image(20, "dataset_examples/examples.png");
+    testing_input.resize(testing_count);
+    testing_output.resize(testing_count);
 
 
+    for (unsigned int i = 0; i < training_count; i++)
+    {
+        auto item = create_item();
 
-  print();
+        training_input[i] = item.input;
+        training_output[i] = item.output;
+    }
+
+    for (unsigned int i = 0; i < testing_count; i++)
+    {
+        auto item = create_item();
+
+        testing_input[i] = item.input;
+        testing_output[i] = item.output;
+    }
+
+    export_dataset_image(20, "dataset_examples/examples.png");
+    print();
 }
 
 DatasetLine::~DatasetLine()
@@ -72,39 +76,36 @@ DatasetLine::~DatasetLine()
 }
 
 
-sDatasetItem DatasetLine::create_item()
+sLineDatasetItem DatasetLine::create_item()
 {
-  sDatasetItem result;
+    sLineDatasetItem result;
+    unsigned int line_position = rand()%area_width;
 
-  unsigned int line_position = rand()%area_width;
+    unsigned int line_pos = convert_raw_line_position(line_position);
+    float rotation = rnd(-straight_rotation_noise_level, straight_rotation_noise_level);
 
-  unsigned int line_pos = convert_raw_line_position(line_position);
-  float rotation = rnd(-straight_rotation_noise_level, straight_rotation_noise_level);
+    area_shifted_line(line_position, rotation);
 
-  area_shifted_line(line_position, rotation);
-
-  downsample(area_downsampled, area);
-
-  add_noise(area_downsampled);
-
-  result.input.resize(width*height*channels);
-  result.output.resize(classes_count);
+    downsample(area_downsampled, area);
+    add_noise(area_downsampled);
 
 
-  unsigned int ptr = 0;
-  for (unsigned int j = 0; j < height; j++)
-    for (unsigned int i = 0; i < width; i++)
-    {
-      result.input[ptr] = area_downsampled[j][i];
-      ptr++;
-    }
+    result.input.resize(input_shape.size());
+    result.output.resize(output_shape.size());
 
-  for (unsigned int j = 0; j < classes_count; j++)
-    result.output[j] = 0.0;
-  result.output[line_pos] = 1.0;
+    unsigned int ptr = 0;
+    for (unsigned int j = 0; j < input_shape.h(); j++)
+        for (unsigned int i = 0; i < input_shape.w(); i++)
+        {
+            result.input[ptr] = area_downsampled[j][i];
+            ptr++;
+        }
 
+    for (unsigned int j = 0; j < classes_count; j++)
+        result.output[j] = 0.0;
+    result.output[line_pos] = 1.0;
 
-  return result;
+    return result;
 }
 
 
@@ -198,17 +199,17 @@ void DatasetLine::save_image(std::string file_name)
 
 void DatasetLine::save_image_downsampled(std::string file_name)
 {
-  std::vector<float> v(height*width);
+  std::vector<float> v(input_shape.w()*input_shape.h());
 
   unsigned int ptr = 0;
-  for (unsigned int j = 0; j < height; j++)
-    for (unsigned int i = 0; i < width; i++)
+  for (unsigned int j = 0; j < input_shape.h(); j++)
+    for (unsigned int i = 0; i < input_shape.w(); i++)
     {
       v[ptr] = area_downsampled[j][i];
       ptr++;
     }
 
-  ImageSave image(height, width, true);
+  ImageSave image(input_shape.h(), input_shape.w(), true);
   image.save(file_name, v);
 }
 
@@ -224,8 +225,8 @@ float DatasetLine::rnd(float min, float max)
 void DatasetLine::export_dataset_image(unsigned int size, std::string file_name)
 {
   unsigned int spacing = 2;
-  unsigned int output_image_height = size*(height+spacing);
-  unsigned int output_image_width  = size*(width+spacing);
+  unsigned int output_image_height = size*(input_shape.h()+spacing);
+  unsigned int output_image_width  = size*(input_shape.w()+spacing);
   unsigned int slice_size = output_image_height*output_image_width;
 
   ImageSave image(output_image_height, output_image_width, false);
@@ -250,12 +251,12 @@ void DatasetLine::export_dataset_image(unsigned int size, std::string file_name)
     add_noise(area_downsampled);
 
 
-    for (unsigned int j = 0; j < height; j++)
-      for (unsigned int i = 0; i < width; i++)
+    for (unsigned int j = 0; j < input_shape.h(); j++)
+      for (unsigned int i = 0; i < input_shape.w(); i++)
         {
             unsigned int output_idx;
             //output_idx = (j + y*size)*output_image_width + i + x*size;
-            output_idx = j*output_image_width + i + (y*(height + spacing)*size + x)*(width + spacing) + (spacing/2)*(1 + output_image_width);
+            output_idx = j*output_image_width + i + (y*(input_shape.h() + spacing)*size + x)*(input_shape.w() + spacing) + (spacing/2)*(1 + output_image_width);
 
             float value = area_downsampled[j][i];
 

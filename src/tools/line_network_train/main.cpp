@@ -1,27 +1,15 @@
-#include <timer.h>
 #include <iostream>
-
+#include <dataset_line.h>
 
 #include <classification_experiment.h>
- 
-#include <dataset_line.h>
 
 int main()
 {
-    DatasetLine dataset;
+    DatasetLine dataset(8, 8);
 
-    dataset.save_to_binary("dataset/training.bin", "dataset/testing.bin", "dataset/unlabeled.bin");
-    JsonConfig parameters("experiments.json");
-
-
-    for (unsigned int i = 0; i < parameters.result["experiments"].size(); i++)
-    {
-        std::cout << "processing experiment " << i << "\n";
-        std::string config_dir = parameters.result["experiments"][i].asString();
-        ClassificationExperiment experiment(dataset, config_dir);
-        experiment.run();
-    }
-
+    ClassificationExperiment experiment(dataset, "network_2/", "network_config.json");
+    experiment.run();
     std::cout << "program done\n";
+
     return 0;
 }
