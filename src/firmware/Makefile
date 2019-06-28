@@ -8,7 +8,7 @@ INC+= -I ./config
 INC+= -I ./device
 INC+= -I ./drivers
 INC+= -I ./embedded_libs
-INC+= -I ./embedded_libs/cnn
+INC+= -I ./embedded_libs/libs_embedded_network
 INC+= -I ./tests
 INC+= -I ./stm32f30x_std_periph_driver/inc
 

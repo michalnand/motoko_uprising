@@ -2,14 +2,14 @@
 #define _LAYER_layer_1_H_
 
 
-#include <NetworkConfig.h>
+#include <EmbeddedNetConfig.h>
 
 
-#define layer_1_type "relu"
+#define layer_1_type "max_pooling"
 
-const sLayerGeometry layer_1_input_geometry = {8, 8, 4};
-const sLayerGeometry layer_1_output_geometry = {8, 8, 4};
-const sLayerGeometry layer_1_kernel_geometry = {8, 8, 4};
+const sEmbeddedNetShape layer_1_input_shape = {8, 8, 4};
+const sEmbeddedNetShape layer_1_output_shape = {4, 4, 4};
+const sEmbeddedNetShape layer_1_shape = {2, 2, 0};
 
 
 

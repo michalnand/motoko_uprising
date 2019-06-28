@@ -1,9 +1,9 @@
 #ifndef _NETWORK_LineNetwork_H_
 #define _NETWORK_LineNetwork_H_
 
-#include <NeuralNetwork.h>
+#include <EmbeddedNet.h>
 
-class LineNetwork: public NeuralNetwork
+class LineNetwork: public EmbeddedNet
 {
 	public:
 		LineNetwork();

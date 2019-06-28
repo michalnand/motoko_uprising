@@ -1,9 +1,9 @@
-#ifndef _NetFc_Layer_H_
-#define _NetFc_Layer_H_
+#ifndef _EMBEDDED_NET_FC_LAYER_H_
+#define _EMBEDDED_NET_FC_LAYER_H_
 
-#include "NetworkLayer.h"
+#include <EmbeddedNetLayer.h>
 
-class NetFcLayer: public NetworkLayer
+class EmbeddedNetFcLayer: public EmbeddedNetLayer
 {
     private:
         const nn_weight_t  *m_weights, *m_bias;
@@ -11,10 +11,10 @@ class NetFcLayer: public NetworkLayer
         unsigned int m_neurons_count, m_inputs_count;
 
     public:
-        NetFcLayer(
-                    sLayerGeometry kernel_geometry,
-                    sLayerGeometry input_geometry,
-                    sLayerGeometry output_geometry,
+        EmbeddedNetFcLayer(
+                    sEmbeddedNetShape kernel_shape,
+                    sEmbeddedNetShape input_shape,
+                    sEmbeddedNetShape output_shape,
 
                     const nn_weight_t *weights,
                     const nn_weight_t *bias,
@@ -22,7 +22,7 @@ class NetFcLayer: public NetworkLayer
                     int bias_range
                 );
 
-        virtual ~NetFcLayer();
+        virtual ~EmbeddedNetFcLayer();
 
         void forward(nn_layer_t *output, nn_layer_t *input);
 };

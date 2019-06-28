@@ -1,14 +1,14 @@
-#include "NeuralNetwork.h"
+#include <EmbeddedNet.h>
 
-NeuralNetwork::NeuralNetwork()
+EmbeddedNet::EmbeddedNet()
 {
-    input_geometry.w = 0;
-    input_geometry.h = 0;
-    input_geometry.d = 0;
+    input_shape.w = 0;
+    input_shape.h = 0;
+    input_shape.d = 0;
 
-    output_geometry.w = 0;
-    output_geometry.h = 0;
-    output_geometry.d = 0;
+    output_shape.w = 0;
+    output_shape.h = 0;
+    output_shape.d = 0;
 
     for (unsigned int i = 0; i < NETWORK_LAYERS_MAX_COUNT; i++)
         layers[i] = nullptr;
@@ -19,13 +19,13 @@ NeuralNetwork::NeuralNetwork()
     buffer_b     = nullptr;
 }
 
-NeuralNetwork::~NeuralNetwork()
+EmbeddedNet::~EmbeddedNet()
 {
     delete[] buffer_a;
     delete[] buffer_b;
 }
 
-void NeuralNetwork::forward()
+void EmbeddedNet::forward()
 {
     for (unsigned int i = 0; i < layers_count; i++)
     {
@@ -34,6 +34,7 @@ void NeuralNetwork::forward()
 
         layers[i]->forward(output, input);
 
+
         io_swap();
     }
 
@@ -41,20 +42,20 @@ void NeuralNetwork::forward()
 }
 
 
-void NeuralNetwork::set_input(nn_layer_t *input_)
+void EmbeddedNet::set_input(nn_layer_t *input_)
 {
-    unsigned int input_size = input_geometry.w*input_geometry.h*input_geometry.d;
+    unsigned int input_size = input_shape.w*input_shape.h*input_shape.d;
 
     for (unsigned int i = 0; i < input_size; i++)
         input[i] = input_[i];
 }
 
-unsigned int NeuralNetwork::class_result()
+unsigned int EmbeddedNet::class_result()
 {
     nn_t max = output[0];
     unsigned int result = 0;
 
-    unsigned int output_size = output_geometry.w*output_geometry.h*output_geometry.d;
+    unsigned int output_size = output_shape.w*output_shape.h*output_shape.d;
 
     for (unsigned int i = 0; i < output_size; i++)
         if (output[i] > max)
@@ -67,14 +68,14 @@ unsigned int NeuralNetwork::class_result()
 }
 
 
-unsigned int NeuralNetwork::get_required_buffer_size()
+unsigned int EmbeddedNet::get_required_buffer_size()
 {
   unsigned int required = 0;
 
   for (unsigned int i = 0; i < layers_count; i++)
   {
-    unsigned int layer_input_size  = layers[i]->input_geometry().w*layers[i]->input_geometry().h*layers[i]->input_geometry().d;
-    unsigned int layer_output_size = layers[i]->output_geometry().w*layers[i]->output_geometry().h*layers[i]->output_geometry().d;
+    unsigned int layer_input_size  = layers[i]->input_shape().w*layers[i]->input_shape().h*layers[i]->input_shape().d;
+    unsigned int layer_output_size = layers[i]->output_shape().w*layers[i]->output_shape().h*layers[i]->output_shape().d;
 
     if (layer_input_size > required)
       required = layer_input_size;
@@ -88,7 +89,7 @@ unsigned int NeuralNetwork::get_required_buffer_size()
 
 
 
-void NeuralNetwork::allocate_buffer()
+void EmbeddedNet::allocate_buffer()
 {
   if ((buffer_a == nullptr)&&(buffer_b == nullptr))
   {
@@ -108,7 +109,7 @@ void NeuralNetwork::allocate_buffer()
   }
 }
 
-void NeuralNetwork::io_swap()
+void EmbeddedNet::io_swap()
 {
   nn_layer_t *tmp = input;
   input = output;

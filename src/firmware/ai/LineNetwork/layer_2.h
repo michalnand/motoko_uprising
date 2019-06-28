@@ -2,17 +2,47 @@
 #define _LAYER_layer_2_H_
 
 
-#include <NetworkConfig.h>
+#include <EmbeddedNetConfig.h>
 
 
-#define layer_2_type "max pooling"
+#define layer_2_type "convolution"
 
-const sLayerGeometry layer_2_input_geometry = {8, 8, 4};
-const sLayerGeometry layer_2_output_geometry = {4, 4, 4};
-const sLayerGeometry layer_2_kernel_geometry = {2, 2, 1};
+const sEmbeddedNetShape layer_2_input_shape = {4, 4, 4};
+const sEmbeddedNetShape layer_2_output_shape = {4, 4, 8};
+const sEmbeddedNetShape layer_2_shape = {3, 3, 8};
+
+#define layer_2_weights_size ((unsigned int)288) //array size
+#define layer_2_weights_range ((nn_t)916) //multiply neuron result with range/1024
+
+const nn_weight_t layer_2_weights[]={
+-23, 17, -64, 1, -3, -6, -3, 5, 1, 16, -3, 37, -3, -37, -3, -1, 
+-26, -2, -21, -8, 60, -25, -17, 23, 11, 12, 13, -18, 33, 0, -18, 2, 
+2, 19, 0, 5, 60, 31, 0, -7, -10, -11, -17, 3, 20, 26, -24, -16, 
+24, -23, 1, 9, -18, 9, 45, -28, -34, 11, 0, -30, -6, 19, -12, -123, 
+26, -25, 17, -17, -9, -3, 17, -6, 3, -17, 70, -19, 1, 8, 3, 0, 
+-11, -27, -16, -20, -4, -3, 13, 16, -28, 15, -3, 19, 1, -4, 4, -10, 
+-17, 3, 10, -7, 41, -106, -12, -1, -18, -6, -10, 0, -57, 32, 24, -8, 
+11, 5, -1, -10, 3, 29, 44, -16, 10, -2, 0, -21, -14, -1, -8, 23, 
+-9, -28, 10, 15, -6, -13, 1, 85, -41, -77, -13, 2, 1, -7, -2, 4, 
+-52, -4, -9, -7, 15, -29, 2, -3, -2, 36, -2, 70, -5, -14, 26, -7, 
+19, -15, -4, -16, 49, -10, -1, -11, 3, 11, -29, 13, 21, 36, -26, -14, 
+-10, 0, 8, 7, -6, 11, -17, 6, -22, -9, -3, -6, -23, 7, -8, -25, 
+-26, -12, 5, -13, 7, -19, 15, 10, -9, 21, -1, -9, -2, -11, -22, -26, 
+15, -9, 4, 20, -25, -15, -27, -23, 11, 5, 6, -5, -2, -19, 2, 2, 
+14, 15, -49, -3, 3, 6, 2, 14, 4, -4, -10, -2, -24, 18, -6, -15, 
+15, 21, -3, -70, 49, 26, -13, 12, -27, 2, 5, 3, -2, -3, 91, 5, 
+-5, 8, 25, 1, 3, -37, 5, -28, 19, 3, 16, -10, -45, 24, -61, 14, 
+22, -16, 18, -7, 4, -22, 4, -19, 29, -127, -1, 16, -8, 19, -31, -16, 
+};
 
 
 
+
+#define layer_2_bias_size ((unsigned int)8) //array size
+#define layer_2_bias_range ((nn_t)150) //multiply neuron result with range/1024
+
+const nn_weight_t layer_2_bias[]={
+31, 120, 76, 127, 101, 0, 104, -24, };
 
 
 #endif

@@ -1,7 +1,7 @@
-#ifndef _NETWORK_CONVOLUTION_KERNEL_H_
-#define _NETWORK_CONVOLUTION_KERNEL_H_
+#ifndef _EMBEDDED_NET_CONVOLUTION_KERNEL_H_
+#define _EMBEDDED_NET_CONVOLUTION_KERNEL_H_
 
-#include "NetworkConfig.h"
+#include <EmbeddedNetConfig.h>
 
 void network_convolution_kernel(    nn_layer_t *output,
                                     nn_layer_t *input,
@@ -10,7 +10,7 @@ void network_convolution_kernel(    nn_layer_t *output,
                                     int w_range,
                                     int bias_range,
 
-                                    sLayerGeometry input_geometry,
-                                    sLayerGeometry kernel_geometry);
+                                    sEmbeddedNetShape input_shape,
+                                    sEmbeddedNetShape kernel_shape);
 
 #endif

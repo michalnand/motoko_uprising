@@ -1,22 +1,22 @@
-#include "NetFcLayer.h"
-#include <NetworkDotKernel.h>
+#include <EmbeddedNetFcLayer.h>
+#include <EmbeddedNetDotKernel.h>
 
-NetFcLayer::NetFcLayer(
-                        sLayerGeometry kernel_geometry,
-                        sLayerGeometry input_geometry,
-                        sLayerGeometry output_geometry,
+EmbeddedNetFcLayer::EmbeddedNetFcLayer(
+                        sEmbeddedNetShape kernel_shape,
+                        sEmbeddedNetShape input_shape,
+                        sEmbeddedNetShape output_shape,
 
                         const nn_weight_t *weights,
                         const nn_weight_t *bias,
                         int weights_range,
                         int bias_range
                       )
-            :NetworkLayer()
+            :EmbeddedNetLayer()
 
 {
-    m_kernel_geometry = kernel_geometry;
-    m_input_geometry  = input_geometry;
-    m_output_geometry = output_geometry;
+    m_kernel_shape = kernel_shape;
+    m_input_shape  = input_shape;
+    m_output_shape = output_shape;
 
     m_weights = weights;
     m_bias    = bias;
@@ -24,16 +24,16 @@ NetFcLayer::NetFcLayer(
     m_weights_range = weights_range;
     m_bias_range    = bias_range;
 
-    m_inputs_count  = m_input_geometry.w*m_input_geometry.h*m_input_geometry.d;
-    m_neurons_count = m_output_geometry.w*m_output_geometry.h*m_output_geometry.d;
+    m_inputs_count  = m_input_shape.w*m_input_shape.h*m_input_shape.d;
+    m_neurons_count = m_output_shape.w*m_output_shape.h*m_output_shape.d;
 }
 
-NetFcLayer::~NetFcLayer()
+EmbeddedNetFcLayer::~EmbeddedNetFcLayer()
 {
 
 }
 
-void NetFcLayer::forward(nn_layer_t *output, nn_layer_t *input)
+void EmbeddedNetFcLayer::forward(nn_layer_t *output, nn_layer_t *input)
 {
     for (unsigned int neuron_idx = 0; neuron_idx < m_neurons_count; neuron_idx++)
     {
@@ -52,8 +52,8 @@ void NetFcLayer::forward(nn_layer_t *output, nn_layer_t *input)
         if (result > NETWORK_LAYER_OUTPUT_RANGE)
             result = NETWORK_LAYER_OUTPUT_RANGE;
 
-        if (result < -NETWORK_LAYER_OUTPUT_RANGE)
-            result = -NETWORK_LAYER_OUTPUT_RANGE;
+        if (result < 0)
+            result = 0;
 
         output[neuron_idx] = result;
     }

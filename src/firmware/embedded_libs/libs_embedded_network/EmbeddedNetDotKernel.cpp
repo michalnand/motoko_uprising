@@ -1,4 +1,4 @@
-#include "NetworkDotKernel.h"
+#include <EmbeddedNetDotKernel.h>
 
 
 nn_t network_dot_kernel_naive(nn_weight_t *va, nn_layer_t *vb, unsigned int size)
@@ -16,7 +16,7 @@ nn_t network_dot_kernel(nn_weight_t *va, nn_layer_t *vb, unsigned int size)
     nn_t result = 0;
 
     unsigned int idx = 0;
-    
+
     while (size >= 4)
     {
         result+= ((nn_t)va[idx + 0])*((nn_t)vb[idx + 0]);

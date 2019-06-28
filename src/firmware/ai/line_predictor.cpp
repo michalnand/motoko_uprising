@@ -14,7 +14,7 @@ LinePredictor::LinePredictor()
     this->nn = nullptr;
 }
 
-LinePredictor::LinePredictor(NeuralNetwork &nn)
+LinePredictor::LinePredictor(EmbeddedNet &nn)
 {
     for (unsigned int i = 0; i < NETWORK_INPUT_SIZE; i++)
         network_input[i] = 0;
@@ -31,7 +31,7 @@ LinePredictor::~LinePredictor()
 
 }
 
-void LinePredictor::init(NeuralNetwork &nn)
+void LinePredictor::init(EmbeddedNet &nn)
 {
     for (unsigned int i = 0; i < NETWORK_INPUT_SIZE; i++)
         network_input[i] = 0;
@@ -69,14 +69,14 @@ unsigned int LinePredictor::process(Array<int, LINE_SENSOR_COUNT> &adc_result, l
                 max = adc_result[i];
             if (adc_result[i] < min)
                 min = adc_result[i];
-        }
+        } 
 
         float k = 0.0, q = 0.0;
 
         if (max > min)
         {
-            k = 127.0/(max - min);
-            q = 127.0 - k*max;
+            k = 255.0/(max - min);
+            q = 255.0 - k*max;
         }
 
         //add

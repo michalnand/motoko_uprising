@@ -1,15 +1,15 @@
 #include <drivers/drivers.h>
 #include <network_speed_test.h>
 
-#include <NetworkDotKernel.h>
-#include <NetworkConvolutionKernel.h>
+#include <EmbeddedNetDotKernel.h>
+#include <EmbeddedNetConvolutionKernel.h>
 
 #define FC_TEST_SIZE 62
 
 void network_fc_speed_test()
 {
     nn_weight_t w[FC_TEST_SIZE];
-    nn_weight_t input[FC_TEST_SIZE];
+    nn_layer_t input[FC_TEST_SIZE];
 
     for (unsigned int i = 0; i < FC_TEST_SIZE; i++)
     {
@@ -44,8 +44,8 @@ void network_fc_speed_test()
 
 void network_convolution_speed_test()
 {
-    sLayerGeometry input_geometry;
-    sLayerGeometry kernel_geometry;
+    sEmbeddedNetShape input_geometry;
+    sEmbeddedNetShape kernel_geometry;
 
     input_geometry.w = INPUT_SIZE;
     input_geometry.h = INPUT_SIZE;
