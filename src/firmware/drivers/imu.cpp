@@ -9,6 +9,7 @@
 
 #define LSM6DS0_WHO_AM_I             ((unsigned char)0x0F)
 #define LSM6DS0_WHO_AM_I_VALUE       ((unsigned char)0x68)
+#define LSM6DS0_WHO_AM_I_33_VALUE    ((unsigned char)0x69)
 
 #define LSM6DS0_CTRL_REG1_G         ((unsigned char)0x10)
 #define LSM6DS0_CTRL_REG2_G         ((unsigned char)0x11)
@@ -105,7 +106,8 @@ void IMU::init(I2C_Interface &i2c_)
 
     m_present = false;
 
-    if (i2c->read_reg(LSM6DS0_ADDRESS, LSM6DS0_WHO_AM_I) == LSM6DS0_WHO_AM_I_VALUE)
+    if ((i2c->read_reg(LSM6DS0_ADDRESS, LSM6DS0_WHO_AM_I) == LSM6DS0_WHO_AM_I_VALUE) ||
+        (i2c->read_reg(LSM6DS0_ADDRESS, LSM6DS0_WHO_AM_I) == LSM6DS0_WHO_AM_I_33_VALUE) )
       m_present = true;
 
 
