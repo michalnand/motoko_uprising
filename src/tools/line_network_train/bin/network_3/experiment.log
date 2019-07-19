@@ -435,3 +435,4 @@ training accuracy TOP 5 100.000000[%]
 creating batch 2
 training epoch 5 batch id2 done = 54.000000[%]
 
+testing on testing
