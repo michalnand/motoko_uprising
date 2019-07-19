@@ -7,7 +7,6 @@
 #include "widget_text_frame.h"
 #include "widget_model_frame.h"
 #include "widget_bar_frame.h"
-#include "widget_chart_frame.h"
 #include "widget_cnn_frame.h"
 #include "widget_distance_sensor.h"
 
@@ -65,9 +64,6 @@ void Widget::init(GLVisualisation &visualisation_, Variables &variables_, LoadTe
     else
     if (type == "bar frame")
       widgets.push_back(new WidgetBarFrame(visualisation_, variables_, textures_, params_["widgets"][i]));
-    else
-    if (type == "chart frame")
-      widgets.push_back(new WidgetChartFrame(visualisation_, variables_, textures_, params_["widgets"][i]));
     else
     if (type == "cnn frame")
       widgets.push_back(new WidgetCNNFrame(visualisation_, variables_, textures_, params_["widgets"][i]));

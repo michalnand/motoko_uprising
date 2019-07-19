@@ -10,11 +10,11 @@ INC+= -I$(LIBS_PATH)/libs_experiment
 INC+= -I$(LIBS_PATH)/libs_embedded_export
 INC+= -I$(LIBS_PATH)/libs_embedded_network
 
+LIBS+= $(LIBS_PATH)/libs_experiment/libs_experiment.a
 LIBS+= $(LIBS_PATH)/libs_dataset/libs_dataset.a
 LIBS+= $(LIBS_PATH)/libs_nn/libs_nn.a
 LIBS+= $(LIBS_PATH)/libs_embedded_export/libs_embedded_export.a
 LIBS+= $(LIBS_PATH)/libs_embedded_network/libs_embedded_network.a
-LIBS+= $(LIBS_PATH)/libs_experiment/libs_experiment.a
 LIBS+= $(LIBS_PATH)/libs_common/libs_common.a
 
 

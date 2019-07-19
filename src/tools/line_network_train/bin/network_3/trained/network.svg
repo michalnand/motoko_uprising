@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="810" height="500" >
+<rect x="0" y="1" width="50" height="500" fill="rgb(200,200,0)" stroke-width="2" stroke="rgb(100,100,0)" />
+<text x="25" y="161" style="font-size: 30px; writing-mode: tb; ">input 8 8 1 </text>
+<rect x="90" y="1" width="50" height="500" fill="rgb(80,80,190)" stroke-width="2" stroke="rgb(40,40,95)" />
+<text x="115" y="116" style="font-size: 30px; writing-mode: tb; ">convolution 3 3 4 </text>
+<rect x="180" y="1" width="50" height="500" fill="rgb(190,80,80)" stroke-width="2" stroke="rgb(95,40,40)" />
+<text x="205" y="221" style="font-size: 30px; writing-mode: tb; ">relu</text>
+<rect x="270" y="1" width="50" height="500" fill="rgb(80,190,80)" stroke-width="2" stroke="rgb(40,95,40)" />
+<text x="295" y="131" style="font-size: 30px; writing-mode: tb; ">max_pooling 2 2 </text>
+<rect x="360" y="1" width="50" height="500" fill="rgb(80,80,190)" stroke-width="2" stroke="rgb(40,40,95)" />
+<text x="385" y="116" style="font-size: 30px; writing-mode: tb; ">convolution 3 3 8 </text>
+<rect x="450" y="1" width="50" height="500" fill="rgb(190,80,80)" stroke-width="2" stroke="rgb(95,40,40)" />
+<text x="475" y="221" style="font-size: 30px; writing-mode: tb; ">relu</text>
+<rect x="540" y="1" width="50" height="500" fill="rgb(80,190,80)" stroke-width="2" stroke="rgb(40,95,40)" />
+<text x="565" y="131" style="font-size: 30px; writing-mode: tb; ">max_pooling 2 2 </text>
+<rect x="630" y="1" width="50" height="500" fill="rgb(100,100,100)" stroke-width="2" stroke="rgb(50,50,50)" />
+<text x="655" y="199" style="font-size: 30px; writing-mode: tb; ">dropout</text>
+<rect x="720" y="1" width="50" height="500" fill="rgb(190,190,80)" stroke-width="2" stroke="rgb(95,95,40)" />
+<text x="745" y="154" style="font-size: 30px; writing-mode: tb; ">output 1 1 5 </text>
+</svg>
