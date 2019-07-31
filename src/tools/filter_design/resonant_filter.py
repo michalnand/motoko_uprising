@@ -5,13 +5,14 @@ import random
 import matplotlib.pyplot as plt
 
 fs = 1000.0  #samling frequency
-fc = 100.0   #resonant frequency
-q  = 0.995  #Q factor
+fc = 250.0   #resonant frequency
+q  = 0.95  #Q factor
 
 
 a1_ = 2.0*q*numpy.cos(2*numpy.pi*fc/fs)
 a2_ = -q*q
 b_  = (1.0 - q*q)/2.0
+
 
 b = [b_, 0.0, -b_]
 a = [1.0, -a1_, -a2_]

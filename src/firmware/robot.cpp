@@ -136,6 +136,7 @@ void Robot::line_following()
     //set correct speed limit
     float speed_limit = LINE_FOLLOWING_SPEED_MIN;
 
+
     switch (line_predictor.get_result())
     {
       case   2: speed_limit = LINE_FOLLOWING_SPEED_MAX; break;

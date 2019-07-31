@@ -21,20 +21,20 @@ void RobotDebug::update(GLGUI &gui, Json::Value &json)
     gui.set_variable("line sensors", line_sensors);
 
     Json::Value angles;
-    angles[0] =  json["imu_sensor"]["angle"][0].asFloat()*(+90.0/35000.0);
-    angles[1] =  json["imu_sensor"]["angle"][1].asFloat()*(-90.0/35000.0);
-    angles[2] =  json["imu_sensor"]["angle"][2].asFloat()*(+90.0/35000.0);
+    angles[0] =  json["imu_sensor"]["angle"][0].asFloat()*(+0.1);
+    angles[1] =  json["imu_sensor"]["angle"][1].asFloat()*(-0.1);
+    angles[2] =  json["imu_sensor"]["angle"][2].asFloat()*(+0.1);
 
     gui.set_variable("imu angles", angles);
 
 
-
+ 
     Json::Value distance_sensors;
     distance_sensors[0] =  (rand()%1000)/1000.0;
     distance_sensors[1] =  (rand()%1000)/1000.0;
     distance_sensors[2] =  (rand()%1000)/1000.0;
 
- 
+
     distance_sensors[0] =  json["distance_sensor"]["right"].asFloat();
     distance_sensors[1] =  json["distance_sensor"]["front"].asFloat();
     distance_sensors[2] =  json["distance_sensor"]["left"].asFloat();

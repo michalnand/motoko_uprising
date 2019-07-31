@@ -41,8 +41,14 @@
 #define LSM6DS0_G_ODR_952HZ                             ((unsigned char)0xC0)
 
 #define LSM6DS0_G_FS_245                               ((unsigned char)0x00) /*!< Full scale: 245 dps*/
+#define LSM6DS0_G_FS_245_MDPS                          ((int)875)            /*!< 8.75mdps*/
+
 #define LSM6DS0_G_FS_500                               ((unsigned char)0x08) /*!< Full scale: 500 dps */
+#define LSM6DS0_G_FS_500_MDPS                          ((int)1750)            /*!< 17.5mdps*/
+
 #define LSM6DS0_G_FS_2000                              ((unsigned char)0x18) /*!< Full scale: 2000 dps */
+#define LSM6DS0_G_FS_2000_MDPS                         ((int)7000)            /*!< 70mdps*/
+
 
 #define LSM6DS0_G_XEN_ENABLE                           ((unsigned char)0x08)
 #define LSM6DS0_G_YEN_ENABLE                           ((unsigned char)0x10)
@@ -88,7 +94,7 @@ IMU::IMU()
 void IMU::init(I2C_Interface &i2c_)
 {
     i2c = &i2c_;
-    i2c->write_reg(LSM6DS0_ADDRESS, LSM6DS0_CTRL_REG1_G, LSM6DS0_G_ODR_476HZ | LSM6DS0_G_FS_500 );
+    i2c->write_reg(LSM6DS0_ADDRESS, LSM6DS0_CTRL_REG1_G, LSM6DS0_G_ODR_952HZ | LSM6DS0_G_FS_500 );
 
     angular_rate.x = 0;
     angular_rate.y = 0;
@@ -111,7 +117,7 @@ void IMU::init(I2C_Interface &i2c_)
       m_present = true;
 
 
-    i2c->write_reg(LSM6DS0_ADDRESS, LSM6DS0_CTRL_REG1_G, LSM6DS0_G_ODR_476HZ | LSM6DS0_G_FS_500 );
+    i2c->write_reg(LSM6DS0_ADDRESS, LSM6DS0_CTRL_REG1_G, LSM6DS0_G_ODR_952HZ | LSM6DS0_G_FS_500 );
     i2c->write_reg(LSM6DS0_ADDRESS, LSM6DS0_CTRL_REG4_G, LSM6DS0_G_XEN_ENABLE|LSM6DS0_G_YEN_ENABLE|LSM6DS0_G_ZEN_ENABLE); // anable x, y, z axis
     i2c->write_reg(LSM6DS0_ADDRESS, LSM6DS0_FIFO_CTR, 0); //bypass mode
     i2c->write_reg(LSM6DS0_ADDRESS, LSM6DS0_CTRL_REG3_G, 0); //hp filter disable
@@ -119,23 +125,19 @@ void IMU::init(I2C_Interface &i2c_)
     i2c->write_reg(LSM6DS0_ADDRESS, LSM6DS0_XG_CTRL_REG6_XL, LSM6DS0_XL_ODR_119HZ | LSM6DS0_XL_FS_2G); //output data rate, full scale
     i2c->write_reg(LSM6DS0_ADDRESS, LSM6DS0_XG_CTRL_REG5_XL, LSM6DS0_XL_XEN_ENABLE|LSM6DS0_XL_YEN_ENABLE|LSM6DS0_XL_ZEN_ENABLE);
 
+    sensitivity = LSM6DS0_G_FS_500_MDPS;
+
     delay_loops(10000);
     read();
 
-    m_bridge = false;
-    bridge_filter = 0.0;
 
-    samples = 0;
-    int32_t calibration_iterations = 1000;
+    calibration_iterations = 1000;
     for (int32_t i = 0; i < calibration_iterations; i++)
     {
       read(true);
-      delay_loops(100);
+      delay_loops(200);
     }
 
-    offset.x = offset.x/calibration_iterations;
-    offset.y = offset.y/calibration_iterations;
-    offset.z = offset.z/calibration_iterations;
 
 
     angle.x = 0;
@@ -158,77 +160,95 @@ IMU::~IMU()
 
 void IMU::read(bool calibration)
 {
-  int16_t x = 0, y = 0, z = 0;
+    int16_t x = 0, y = 0, z = 0;
 
-  i2c->start();
-  i2c->write(LSM6DS0_ADDRESS);
-  i2c->write(LSM6DS0_GYRO_XOUT_H);
+    #if IMU_SINGLE_AXIS_MODE == true
+        i2c->start();
+        i2c->write(LSM6DS0_ADDRESS);
+        i2c->write(LSM6DS0_GYRO_ZOUT_H);
 
-  i2c->start();
-  i2c->write(LSM6DS0_ADDRESS|0x01); // slave address, read command
+        i2c->start();
+        i2c->write(LSM6DS0_ADDRESS|0x01);
 
-  x = ((int16_t)i2c->read(1)) << 8;
-  x|= ((int16_t)i2c->read(1)) << 0;
+        z = ((int16_t)i2c->read(1)) << 8;
+        z|= ((int16_t)i2c->read(0)) << 0;
 
-  y = ((int16_t)i2c->read(1)) << 8;
-  y|= ((int16_t)i2c->read(1)) << 0;
+        i2c->stop();
+    #else
+        i2c->start();
+        i2c->write(LSM6DS0_ADDRESS);
+        i2c->write(LSM6DS0_GYRO_XOUT_H);
 
-  z = ((int16_t)i2c->read(1)) << 8;
-  z|= ((int16_t)i2c->read(0)) << 0;
+        i2c->start();
+        i2c->write(LSM6DS0_ADDRESS|0x01);
 
-  x = (x/8)*8;
-  y = (y/8)*8;
-  z = (z/8)*8;
+        x = ((int16_t)i2c->read(1)) << 8;
+        x|= ((int16_t)i2c->read(1)) << 0;
 
-  i2c->stop();
+        y = ((int16_t)i2c->read(1)) << 8;
+        y|= ((int16_t)i2c->read(1)) << 0;
 
-  if (calibration)
-  {
-    offset.x+= x;
-    offset.y+= y;
-    offset.z+= z;
-  }
+        z = ((int16_t)i2c->read(1)) << 8;
+        z|= ((int16_t)i2c->read(0)) << 0;
 
-  angular_rate.x = x - offset.x;
-  angular_rate.y = y - offset.y;
-  angular_rate.z = z - offset.z;
+        i2c->stop();
+    #endif
 
-  angle.x+= 2*(angular_rate.x/25);
-  angle.y+= 2*(angular_rate.y/25);
-  angle.z+= 2*(angular_rate.z/25);
 
-  i2c->start();
-  i2c->write(LSM6DS0_ADDRESS);
-  i2c->write(LSM6DS0_XG_OUT_X_H_XL);
-
-  i2c->start();
-  i2c->write(LSM6DS0_ADDRESS|0x01); // slave address, read command
-
-  x = ((int16_t)i2c->read(1)) << 8;
-  x|= ((int16_t)i2c->read(1)) << 0;
-
-  y = ((int16_t)i2c->read(1)) << 8;
-  y|= ((int16_t)i2c->read(1)) << 0;
-
-  z = ((int16_t)i2c->read(1)) << 8;
-  z|= ((int16_t)i2c->read(0)) << 0;
-
-  i2c->stop();
-
-  acceleration.x = x;
-  acceleration.y = y;
-  acceleration.z = z;
-
-  float k = 0.8;
-  bridge_filter = k*bridge_filter + (1.0 - k)*imu_sensor.acceleration.x;
-
-    if ((bridge_filter > 3000)||(bridge_filter < -3000))
-        m_bridge = true;
+    if (calibration)
+    {
+        offset.x+= x;
+        offset.y+= y;
+        offset.z+= z;
+    }
     else
-        m_bridge = false;
+    {
+        angular_rate.x = (((calibration_iterations*x - offset.x)/calibration_iterations) * sensitivity)/(1000*(1000/(int)IMU_DT));
+        angular_rate.y = (((calibration_iterations*y - offset.y)/calibration_iterations) * sensitivity)/(1000*(1000/(int)IMU_DT));
+        angular_rate.z = (((calibration_iterations*z - offset.z)/calibration_iterations) * sensitivity)/(1000*(1000/(int)IMU_DT));
 
+        angle.x+= angular_rate.x*10;
+        angle.y+= angular_rate.y*10;
+        angle.z+= angular_rate.z*10;
+    }
 
-  m_ready = true;
+    #if IMU_SINGLE_AXIS_MODE == true
+        i2c->start();
+        i2c->write(LSM6DS0_ADDRESS);
+        i2c->write(LSM6DS0_XG_OUT_Z_H_XL);
+
+        i2c->start();
+        i2c->write(LSM6DS0_ADDRESS|0x01);
+
+        z = ((int16_t)i2c->read(1)) << 8;
+        z|= ((int16_t)i2c->read(0)) << 0;
+
+        i2c->stop();
+    #else
+        i2c->start();
+        i2c->write(LSM6DS0_ADDRESS);
+        i2c->write(LSM6DS0_XG_OUT_X_H_XL);
+
+        i2c->start();
+        i2c->write(LSM6DS0_ADDRESS|0x01);
+
+        x = ((int16_t)i2c->read(1)) << 8;
+        x|= ((int16_t)i2c->read(1)) << 0;
+
+        y = ((int16_t)i2c->read(1)) << 8;
+        y|= ((int16_t)i2c->read(1)) << 0;
+
+        z = ((int16_t)i2c->read(1)) << 8;
+        z|= ((int16_t)i2c->read(0)) << 0;
+
+        i2c->stop();
+    #endif
+
+    acceleration.x = x;
+    acceleration.y = y;
+    acceleration.z = z;
+
+    m_ready = true;
 }
 
 void IMU::main()
@@ -258,9 +278,4 @@ void IMU::delay_loops(uint32_t loops)
 {
   while (loops--)
     __asm("nop");
-}
-
-bool IMU::is_bridge()
-{
-    return m_bridge;
 }

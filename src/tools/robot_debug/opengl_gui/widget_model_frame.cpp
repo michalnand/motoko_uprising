@@ -62,7 +62,7 @@ void WidgetModelFrame::render()
 
     visualisation->push();
       visualisation->translate(sx, sy, sz);
-      visualisation->rotate(rx + drx, ry + dry, rz + drz);
+      visualisation->rotate(ry - dry, rx - drx, rz + drz);
 
       model.render();
 

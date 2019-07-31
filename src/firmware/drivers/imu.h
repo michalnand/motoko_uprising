@@ -22,14 +22,12 @@ class IMU: public Thread
   private:
     sIMU_3VECT offset;
 
-    int32_t m_present;
-    int32_t samples;
+    int32_t calibration_iterations;
+    bool m_present;
 
     bool m_ready;
 
-    bool m_bridge;
-    float bridge_filter;
-
+    int sensitivity;
 
   private:
     I2C_Interface *i2c;
@@ -44,8 +42,6 @@ class IMU: public Thread
     void main();
     bool present();
     bool ready();
-
-    bool is_bridge();
 
   private:
     void delay_loops(uint32_t loops);
