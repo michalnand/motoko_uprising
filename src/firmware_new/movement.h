@@ -5,8 +5,9 @@
 
 
 #define MOVEMENT_FORWARD        ((uint8_t)0)
-#define MOVEMENT_TURN           ((uint8_t)1)
-#define MOVEMENT_TURN_CENTER    ((uint8_t)2)
+#define MOVEMENT_BACKWARD       ((uint8_t)1)
+#define MOVEMENT_TURN           ((uint8_t)2)
+#define MOVEMENT_TURN_CENTER    ((uint8_t)3)
 
 
 
@@ -36,11 +37,13 @@ class Movement
         float initial_right_speed;
 
     private:
-        uint8_t type;
+        uint8_t move_type;
         int32_t parameter;
-        bool done;
+        bool    done;
+        uint8_t state;
 
-        PID forward_pid;
+        PID forward_steering_pid, forward_position_pid;
+        Ramp ramp;
 
 
 };

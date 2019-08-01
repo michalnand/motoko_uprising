@@ -5,8 +5,7 @@
 class Ramp
 {
     public:
-        Ramp();
-        Ramp(float ramp_up, float ramp_down);
+        Ramp(float ramp_up = 0.0, float ramp_down = 0.0, float value = 0.0);
 
         Ramp(Ramp &other);
         Ramp(const Ramp &other);
@@ -15,6 +14,8 @@ class Ramp
         Ramp& operator = (const Ramp &other);
 
         virtual ~Ramp();
+
+        void init(float ramp_up, float ramp_down, float value = 0.0);
 
         void set(float value);
         float get();

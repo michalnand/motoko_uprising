@@ -1,19 +1,9 @@
 #include <ramp.h>
 
 
-
-Ramp::Ramp()
+Ramp::Ramp(float ramp_up, float ramp_down, float value)
 {
-    ramp_up         = 0.0;
-    ramp_down       = 0.0;
-    value           = 0.0;
-}
-
-Ramp::Ramp(float ramp_up, float ramp_down)
-{
-    this->ramp_up   = ramp_up;
-    this->ramp_down = ramp_down;
-    value           = 0.0;
+    init(ramp_up, ramp_down, value);
 }
 
 Ramp::Ramp(Ramp &other)
@@ -43,20 +33,12 @@ Ramp::~Ramp()
 
 }
 
-void Ramp::copy(Ramp &other)
+void Ramp::init(float ramp_up, float ramp_down, float value)
 {
-    ramp_up     = other.ramp_up;
-    ramp_down   = other.ramp_down;
-    value       = other.value;
+    this->ramp_up   = ramp_up;
+    this->ramp_down = ramp_down;
+    this->value     = value;
 }
-
-void Ramp::copy(const Ramp &other)
-{
-    ramp_up     = other.ramp_up;
-    ramp_down   = other.ramp_down;
-    value       = other.value;
-}
-
 
 void Ramp::set(float value)
 {
@@ -80,6 +62,19 @@ float Ramp::process(float target_value)
     else if (target_value < value)
         value-= ramp_down;
 
-
     return value;
-};
+}
+
+void Ramp::copy(Ramp &other)
+{
+    ramp_up     = other.ramp_up;
+    ramp_down   = other.ramp_down;
+    value       = other.value;
+}
+
+void Ramp::copy(const Ramp &other)
+{
+    ramp_up     = other.ramp_up;
+    ramp_down   = other.ramp_down;
+    value       = other.value;
+}

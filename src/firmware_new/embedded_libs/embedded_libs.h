@@ -9,6 +9,10 @@
 
 #include <control/pid.h>
 #include <control/resonant_filter.h>
+#include <control/ramp.h>
+#include <control/math_func.h>
+#include <control/random.h>
+#include <control/vec.h>
 
 #include <drivers/gpio.h>
 
