@@ -1,7 +1,14 @@
 # Motoko Uprising
 ## line following robot with neural network predictor
 
-<img src="doc/images/robot.jpg" width="500">
+Advenced line following robot, using custom deep neural network for curve shape prediction.
+Robot can recognize straight line and speed up.
+
+
+Video of woking robot [motoko video](https://www.youtube.com/watch?v=E9FJIDowNmU).
+
+
+<img src="doc/images/robot.jpg" width="800">
 
 
 <img src="doc/diagrams/motoko_uprising_hw.png" width="500">
