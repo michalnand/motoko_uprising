@@ -37,6 +37,8 @@ Some photos from mounting this devilry device :
 
 ###### Software
 
+TODO - this will be long journey
+
 <img src="doc/diagrams/line_classification.png" width="500">
 
 
