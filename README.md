@@ -15,17 +15,23 @@ Video of woking robot [motoko video](https://www.youtube.com/watch?v=E9FJIDowNmU
 ###### Hardware
 
 * CPU is ARM Cortex M4F, stm32f303, 73MHz
- * with simd instructions, good to have for deep learning
+  * with simd instructions, good to have for deep learning
 * gyroscope : lsm303 
- * (or something like THAT - yeah, they are changing it more often then socks)
+  * (or something like THAT - yeah, they are changing it more often then socks)
 * motors : pololu HP 1:30, micro metal gear, with magnetic encoders
 * motor driver : TI DRV8834
 * line sensors : phototransitors for visible light (not IR)
- * Iam using white leds, so the line can be colored - not only black
+  * Iam using white leds, so the line can be colored - not only black
 * accu : LiPol 2S, 150mAh, from dualsky
 
 <img src="doc/diagrams/motoko_uprising_hw.png" width="500">
-<img src="doc/diagrams/robot_mount_01.jpg" width="500">
+
+Some photos from mounting this devilry device :
+* PCB design are in  [pcb](hardware/export), ready to send to your favorite manufactor
+* Chassis, there are little of 3D printed parts [3d print](hardware/chassis)
+  * <img src="hardware/chassis/motoko_front.png" width="200">
+
+<img src="doc/images/robot_mount_01.jpg" width="500">
 
 
 
