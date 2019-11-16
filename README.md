@@ -28,6 +28,11 @@ Video of woking robot [motoko video](https://www.youtube.com/watch?v=E9FJIDowNmU
 
 Some photos from mounting this devilry device :
 * PCB design are in  [pcb](hardware/export), ready to send to your favorite manufactor
+  * <img src="hardware/schem.png" width="256">
+  * <img src="hardware/board.png" width="256">
+  * <img src="hardware/bottom.png" width="256">
+  * <img src="hardware/top.png" width="256">
+  
 * Chassis, there are little of 3D printed parts [3d print](hardware/chassis)
   * <img src="hardware/chassis/motoko_front.png" width="200">
 
