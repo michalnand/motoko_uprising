@@ -22,6 +22,8 @@ Video of woking robot [motoko video](https://www.youtube.com/watch?v=E9FJIDowNmU
 * motor driver : TI DRV8834
 * line sensors : phototransitors for visible light (not IR)
   * Iam using white leds, so the line can be colored - not only black
+* obstacle detection :
+  * common IR leds, and laser (still not working as I wish - too slow, but high range)
 * accu : LiPol 2S, 150mAh, from dualsky
 
 <img src="doc/diagrams/motoko_uprising_hw.png" width="500">
