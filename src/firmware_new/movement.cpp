@@ -23,6 +23,7 @@ Movement::Movement()
 
     forward_steering_pid.init(MOVEMENT_FORWARD_STEERING_PID_KP, MOVEMENT_FORWARD_STEERING_PID_KI, MOVEMENT_FORWARD_STEERING_PID_KD, MOVEMENT_FORWARD_STEERING_PID_RANGE);
 
+    terminate_condition = nullptr;
 }
 
 Movement::~Movement()
@@ -30,11 +31,12 @@ Movement::~Movement()
 
 }
 
-void Movement::set(uint8_t move_type, int32_t parameter)
+void Movement::set(uint8_t move_type, int32_t parameter, MovementTerminateConditionInterface *terminate_condition)
 {
-    this->move_type         = move_type;
-    this->parameter         = parameter;
-    done                    = false;
+    this->move_type             = move_type;
+    this->parameter             = parameter;
+    this->terminate_condition   = terminate_condition;
+    done                        = false;
 
     state                   = 0;
 
@@ -59,14 +61,42 @@ void Movement::set(uint8_t move_type, int32_t parameter)
     if (move_type == MOVEMENT_BACKWARD)
     {
         ramp.init(MOVEMENT_BACKWARD_RAMP_UP, MOVEMENT_BACKWARD_RAMP_DOWN, (initial_left_speed + initial_right_speed)/2.0);
-    } 
+    }
+
+    if ((move_type == MOVEMENT_TURN_LEFT) || (move_type == MOVEMENT_TURN_RIGHT))
+    {
+        if (parameter > 0)
+        {
+            ramp_left.init(MOVEMENT_TURN_RAMP_UP, MOVEMENT_TURN_RAMP_DOWN, initial_left_speed);
+            ramp_right.init(MOVEMENT_TURN_RAMP_UP, MOVEMENT_TURN_RAMP_DOWN, initial_right_speed);
+        }
+        else
+        {
+            ramp_left.init(MOVEMENT_TURN_RAMP_UP, MOVEMENT_TURN_RAMP_UP*0.5, initial_left_speed);
+            ramp_right.init(MOVEMENT_TURN_RAMP_UP, MOVEMENT_TURN_RAMP_UP*0.5, initial_right_speed);
+        }
+    }
 }
 
-void Movement::process()
+int Movement::process()
 {
-    if ((move_type == MOVEMENT_FORWARD)||(move_type == MOVEMENT_BACKWARD))
-        forward_step();
+    while (is_done() == false)
+    {
+        if ( (move_type == MOVEMENT_FORWARD) || (move_type == MOVEMENT_BACKWARD) )
+            forward_step();
 
+        if (move_type == MOVEMENT_TURN_LEFT)
+            turn_left_step();
+
+        if (move_type == MOVEMENT_TURN_RIGHT)
+            turn_right_step();
+
+        if (terminate_condition != nullptr)
+            if (terminate_condition->test() == true)
+                return 1;
+    }
+
+    return 0;
 }
 
 bool Movement::is_done()
@@ -106,4 +136,80 @@ void Movement::forward_step()
             done = true;
         }
     }
+}
+
+void Movement::turn_left_step()
+{
+    float left_speed = 0.0, right_speed = 0.0;
+
+    float position_error   = (initial_right_distance + parameter) - encoder_sensor.get_right();
+
+    if (state == 0)
+    {
+        if (parameter > 0.0)
+            right_speed  = ramp_right.process(MOVEMENT_TURN_SPEED);
+        else
+            right_speed  = ramp_right.process(-MOVEMENT_TURN_SPEED);
+
+        left_speed = ramp_left.process(0.0);
+
+        if (abs(position_error) < 5.0)
+            state = 1;
+    }
+
+    if (state == 1)
+    {
+        right_speed  = ramp_right.process(0.0);
+        left_speed   = ramp_left.process(0.0);
+
+        if ( abs(left_speed) < 0.1 && abs(right_speed) < 0.1 )
+        {
+            done = true;
+            left_speed = 0;
+            right_speed = 0;
+        }
+    }
+
+    motor_controll.set_left_speed(left_speed);
+    motor_controll.set_right_speed(right_speed);
+
+    timer.delay_ms(10);
+}
+
+void Movement::turn_right_step()
+{
+    float left_speed = 0.0, right_speed = 0.0;
+
+    float position_error   = (initial_left_distance + parameter) - encoder_sensor.get_left();
+
+    if (state == 0)
+    {
+        if (parameter > 0.0)
+            left_speed  = ramp_left.process(MOVEMENT_TURN_SPEED);
+        else
+            left_speed  = ramp_left.process(-MOVEMENT_TURN_SPEED);
+
+        right_speed = ramp_right.process(0.0);
+
+        if (abs(position_error) < 5.0)
+            state = 1;
+    }
+
+    if (state == 1)
+    {
+        right_speed  = ramp_right.process(0.0);
+        left_speed   = ramp_left.process(0.0);
+
+        if ( abs(left_speed) < 0.1 && abs(right_speed) < 0.1 )
+        {
+            done = true;
+            left_speed = 0;
+            right_speed = 0;
+        }
+    }
+
+    motor_controll.set_left_speed(left_speed);
+    motor_controll.set_right_speed(right_speed);
+
+    timer.delay_ms(10);
 }

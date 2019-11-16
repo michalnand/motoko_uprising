@@ -6,10 +6,30 @@
 
 #define MOVEMENT_FORWARD        ((uint8_t)0)
 #define MOVEMENT_BACKWARD       ((uint8_t)1)
-#define MOVEMENT_TURN           ((uint8_t)2)
-#define MOVEMENT_TURN_CENTER    ((uint8_t)3)
+#define MOVEMENT_TURN_LEFT      ((uint8_t)2)
+#define MOVEMENT_TURN_RIGHT     ((uint8_t)3)
+#define MOVEMENT_TURN_CENTER    ((uint8_t)4)
 
 
+
+class MovementTerminateConditionInterface
+{
+    public:
+        MovementTerminateConditionInterface()
+        {
+
+        }
+
+        virtual ~MovementTerminateConditionInterface()
+        {
+
+        }
+        
+        virtual bool test()
+        {
+            return false;
+        }
+};
 
 class Movement
 {
@@ -18,12 +38,14 @@ class Movement
         virtual ~Movement();
 
     public:
-        void set(uint8_t type, int32_t parameter);
-        void process();
+        void set(uint8_t type, int32_t parameter, MovementTerminateConditionInterface *terminate_condition = nullptr);
+        int process();
         bool is_done();
 
     private:
         void forward_step();
+        void turn_left_step();
+        void turn_right_step();
 
     private:
         int32_t initial_angle;
@@ -43,7 +65,9 @@ class Movement
         uint8_t state;
 
         PID forward_steering_pid, forward_position_pid;
-        Ramp ramp;
+        Ramp ramp, ramp_left, ramp_right;
+
+        MovementTerminateConditionInterface *terminate_condition;
 
 
 };

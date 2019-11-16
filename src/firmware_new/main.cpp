@@ -1,8 +1,9 @@
 #include <embedded_libs.h>
 
 #include <diagnostic.h>
-#include <movement.h>
+#include <robot.h>
 
+#include <movement.h>
 
 int main()
 {
@@ -10,18 +11,38 @@ int main()
 
     key.read();
 
+    timer.delay_ms(1000);
+
+
     //diagnostic();
 
+
+    Robot robot;
+    robot.main();
+
+    /*
     Movement movement;
 
-    //move forward 150mm
-    movement.set(MOVEMENT_BACKWARD, -50);   
+    movement.set(MOVEMENT_TURN_RIGHT, 100);
+    movement.process();
 
-    //move backward 50mm
-    //movement.set(MOVEMENT_BACKWARD, 50);
+    timer.delay_ms(500);
 
-    while (movement.is_done() != true)
-        movement.process();
+    movement.set(MOVEMENT_TURN_RIGHT, -100);
+    movement.process();
+
+    timer.delay_ms(500);
+
+    movement.set(MOVEMENT_TURN_LEFT, 100);
+    movement.process();
+
+    timer.delay_ms(500);
+
+    movement.set(MOVEMENT_TURN_LEFT, -100);
+    movement.process();
+
+    timer.delay_ms(500);
+    */
 
 
     while (1)

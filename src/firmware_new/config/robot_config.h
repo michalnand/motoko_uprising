@@ -18,10 +18,14 @@
 #define MOVEMENT_FORWARD_RAMP_DOWN      ((float)0.05)
 #define MOVEMENT_FORWARD_SPEED          ((float)0.7)
 
-
-#define MOVEMENT_BACKWARD_RAMP_UP       ((float)0.005)   
+#define MOVEMENT_BACKWARD_RAMP_UP       ((float)0.005)
 #define MOVEMENT_BACKWARD_RAMP_DOWN     ((float)0.005)
 #define MOVEMENT_BACKWARD_SPEED         ((float)0.7)
+
+
+#define MOVEMENT_TURN_RAMP_UP        ((float)0.01)
+#define MOVEMENT_TURN_RAMP_DOWN      ((float)0.2)
+#define MOVEMENT_TURN_SPEED          ((float)0.7)
 
 
 #endif
