@@ -38,7 +38,7 @@ Some photos from mounting this devilry device :
 * Chassis, there are little of 3D printed parts [3d print](hardware/chassis)
   * <img src="hardware/chassis/motoko_front.png" width="256">
 
-<img src="doc/images/robot_mount_01.jpg" width="500">
+<img src="doc/images/robot_mount_01.jpg" width="700">
 
 
 
