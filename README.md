@@ -41,8 +41,11 @@ Some photos from mounting this devilry device :
 <img src="doc/images/robot_mount_01.jpg" width="700">
 
 
-
 ###### Software
+
+**Debug app**
+<img src="doc/images/debug_app.png" width="700">
+
 
 TODO - this will be long journey
 
