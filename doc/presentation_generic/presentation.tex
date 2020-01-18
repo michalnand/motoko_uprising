@@ -569,8 +569,6 @@ void convolution()
 }
 \end{lstlisting}
 
-{\bf 3.6x speed up}
-
 \end{frame}
 
 
@@ -612,54 +610,53 @@ ldrsb.w	fp, [r0, #-22]
 
 \end{frame}
 
+  \begin{frame}{\bf speed up summary}
+
+  \begin{table}[]
+    \tiny
+    \begin{tabular}{|l|l|l|l|l|l|}
+    \hline
+    \textbf{convolutional}                               & \textbf{input size} & \textbf{kernels count} & \textbf{kernel size} & \textbf{computing time {[}ms{]}} & \textbf{speed up ratio} \\ \hline
+    {\color[HTML]{9AFF99} \textbf{naive}}                & 16x16x16            & 16                     & 1x1                  & 109.8                            & 1.00                    \\ \hline
+    {\color[HTML]{9AFF99} \textbf{naive}}                & 16x16x16            & 16                     & 3x3                  & 312                              & 1.00                    \\ \hline
+    {\color[HTML]{9AFF99} \textbf{naive}}                & 16x16x16            & 16                     & 5x5                  & 532                              & 1.00                    \\ \hline
+    {\color[HTML]{96FFFB} \textbf{template}}             & 16x16x16            & 16                     & 1x1                  & 26.6                             & 4.13                    \\ \hline
+    {\color[HTML]{96FFFB} \textbf{template}}             & 16x16x16            & 16                     & 3x3                  & 213.6                            & 1.46                    \\ \hline
+    {\color[HTML]{96FFFB} \textbf{template}}             & 16x16x16            & 16                     & 5x5                  & 373.3                            & 1.43                    \\ \hline
+    {\color[HTML]{FD6864} \textbf{template + unrolling}} & 16x16x16            & 16                     & 1x1                  & 21                               & \textbf{5.23}           \\ \hline
+    {\color[HTML]{FD6864} \textbf{template + unrolling}} & 16x16x16            & 16                     & 3x3                  & 57.1                             & \textbf{5.46}           \\ \hline
+    {\color[HTML]{FD6864} \textbf{template + unrolling}} & 16x16x16            & 16                     & 5x5                  & 106.2                            & \textbf{5.01}           \\ \hline
+    \end{tabular}
+  \end{table}
+
+\end{frame}
 
 
 
-
-
-
-
-\begin{frame}[fragile]
-{\bf network implementation}
+\begin{frame}{\bf network implementation}
 
 architecture :
 IN8x8x1 - C3x3x4 - P2x2 - C3x3x8 - P2x2 - FC5
 
 
-  \lstset{language=C++,
-                  basicstyle=\small,
-                  emph={int,char,double,float,unsigned},
-                  emphstyle={\color{blue}},
-                  numberstyle=\color{green}\tiny,
-                  keywordstyle=\color{red}\bf\ttfamily,
-                  stringstyle=\color{red}\ttfamily,
-                  commentstyle=\color{green},
-                  basicstyle=\tiny
-  }
+confussion matrix :
 
-{\tiny
-  \begin{lstlisting}
+\begin{table}[]
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{1029}   & 12              & 0               & 0               & 0               \\ \hline
+14              & \textbf{911}    & 18              & 0               & 0               \\ \hline
+0               & 21              & \textbf{959}    & 6               & 0               \\ \hline
+0               & 0               & 21              & \textbf{968}    & 18              \\ \hline
+0               & 0               & 0               & 11              & \textbf{1012}   \\ \hline
+                &                 &                 &                 &                 \\ \hline
+\textbf{98.658} & \textbf{96.504} & \textbf{96.092} & \textbf{98.274} & \textbf{98.252} \\ \hline
+\end{tabular}
+\end{table}
 
-  layers[0] = new EmbeddedNetConvolutionLayer(
-            layer_0_shape,layer_0_input_shape,layer_0_output_shape,
-            layer_0_weights,layer_0_bias,layer_0_weights_range,layer_0_bias_range);
-
-  layers[1] = new EmbeddedNetMaxPoolingLayer(
-            layer_1_shape,layer_1_input_shape,layer_1_output_shape);
-
-  layers[2] = new EmbeddedNetConvolutionLayer(
-            layer_2_shape,layer_2_input_shape,layer_2_output_shape,
-            layer_2_weights,layer_2_bias,layer_2_weights_range,layer_2_bias_range);
-
-  layers[3] = new EmbeddedNetMaxPoolingLayer(
-            layer_3_shape,layer_3_input_shape,layer_3_output_shape);
-
-  layers[4] = new EmbeddedNetFcLayer(
-            layer_4_shape,layer_4_input_shape,layer_4_output_shape,
-            layer_4_weights,layer_4_bias,layer_4_weights_range,layer_4_bias_range);
-
-  \end{lstlisting}
-}
+success count     4879 \\
+miss count         121 \\
+accuracy         97.58\% \\
 
 \end{frame}
 

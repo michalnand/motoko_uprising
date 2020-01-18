@@ -1,41 +1,35 @@
-\frametitle{\bf network implementation}
-
-architecture :
-IN8x8x1 - C3x3x4 - P2x2 - C3x3x8 - P2x2 - FC5
+\frametitle{\bf optimize kernel - SIMD instructions}
 
 
-  \lstset{language=C++,
-                  basicstyle=\small,
-                  emph={int,char,double,float,unsigned},
-                  emphstyle={\color{blue}},
-                  numberstyle=\color{green}\tiny,
-                  keywordstyle=\color{red}\bf\ttfamily,
-                  stringstyle=\color{red}\ttfamily,
-                  commentstyle=\color{green},
-                  basicstyle=\tiny
-  }
-
-{\tiny
-  \begin{lstlisting}
-
-  layers[0] = new EmbeddedNetConvolutionLayer(
-            layer_0_shape,layer_0_input_shape,layer_0_output_shape,
-            layer_0_weights,layer_0_bias,layer_0_weights_range,layer_0_bias_range);
-
-  layers[1] = new EmbeddedNetMaxPoolingLayer(
-            layer_1_shape,layer_1_input_shape,layer_1_output_shape);
-
-  layers[2] = new EmbeddedNetConvolutionLayer(
-            layer_2_shape,layer_2_input_shape,layer_2_output_shape,
-            layer_2_weights,layer_2_bias,layer_2_weights_range,layer_2_bias_range);
-
-  layers[3] = new EmbeddedNetMaxPoolingLayer(
-            layer_3_shape,layer_3_input_shape,layer_3_output_shape);
-
-  layers[4] = new EmbeddedNetFcLayer(
-            layer_4_shape,layer_4_input_shape,layer_4_output_shape,
-            layer_4_weights,layer_4_bias,layer_4_weights_range,layer_4_bias_range);
-
-  \end{lstlisting}
+\lstset{language=C++,
+                basicstyle=\small,
+                emph={int,char,double,float,unsigned},
+                emphstyle={\color{blue}},
+                numberstyle=\color{green}\tiny,
+                keywordstyle=\color{red}\bf\ttfamily,
+                stringstyle=\color{red}\ttfamily,
+                commentstyle=\color{green}
 }
+
+\begin{lstlisting}
+
+sum+= kernel[0][0]*input[y + 0][x + 0];
+sum+= kernel[0][1]*input[y + 0][x + 1];
+sum+= kernel[0][2]*input[y + 0][x + 2];
+
+
+smlabb	r2, fp, sl, r2
+ldrsb.w	sl, [r8, #1]
+ldrsb.w	fp, [r0, #-24]
+
+smlabb	r2, fp, sl, r2
+ldrsb.w	sl, [r8, #2]
+ldrsb.w	fp, [r0, #-23]
+
+smlabb	r2, fp, sl, r2
+ldrsb.w	sl, [r8, #3]
+ldrsb.w	fp, [r0, #-22]
+
+\end{lstlisting}
+
 
