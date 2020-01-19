@@ -1,8 +1,7 @@
-\frametitle{\bf optimize kernel - SIMD instructions}
-
+\frametitle{\bf optimize kernel - unrolling}
 
 \lstset{language=C++,
-                basicstyle=\small,
+                basicstyle=\tiny,
                 emph={int,char,double,float,unsigned},
                 emphstyle={\color{blue}},
                 numberstyle=\color{green}\tiny,
@@ -13,23 +12,31 @@
 
 \begin{lstlisting}
 
-sum+= kernel[0][0]*input[y + 0][x + 0];
-sum+= kernel[0][1]*input[y + 0][x + 1];
-sum+= kernel[0][2]*input[y + 0][x + 2];
+templete<unsigned int kernel_size>
+void convolution()
+{
+  for (unsigned y = 0; y < input_height; y++)
+  for (unsigned x = 0; x < input_width; x++)
+  {
+      int sum = 0;
 
+      if (kernel_size == 3)
+      {
+        sum+= kernel[0][0]*input[y + 0][x + 0];
+        sum+= kernel[0][1]*input[y + 0][x + 1];
+        sum+= kernel[0][2]*input[y + 0][x + 2];
 
-smlabb	r2, fp, sl, r2
-ldrsb.w	sl, [r8, #1]
-ldrsb.w	fp, [r0, #-24]
+        sum+= kernel[1][0]*input[y + 1][x + 0];
+        sum+= kernel[1][1]*input[y + 1][x + 1];
+        sum+= kernel[1][2]*input[y + 1][x + 2];
 
-smlabb	r2, fp, sl, r2
-ldrsb.w	sl, [r8, #2]
-ldrsb.w	fp, [r0, #-23]
+        sum+= kernel[2][0]*input[y + 2][x + 0];
+        sum+= kernel[2][1]*input[y + 2][x + 1];
+        sum+= kernel[2][2]*input[y + 2][x + 2];
+      }
 
-smlabb	r2, fp, sl, r2
-ldrsb.w	sl, [r8, #3]
-ldrsb.w	fp, [r0, #-22]
-
+      output[y + kernel_size/2][x + kernel_size/2] = (sum*scale)/127;
+  }
+}
 \end{lstlisting}
-
 

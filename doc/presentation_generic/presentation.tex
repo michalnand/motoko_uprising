@@ -29,6 +29,8 @@
 \usepackage{colortbl}
 \usepackage{lmodern}
 
+\usepackage{movie15}
+
 \newcommand\Wider[2][3em]{%
 \makebox[\linewidth][c]{%
   \begin{minipage}{\dimexpr\textwidth+#1\relax}
@@ -112,9 +114,14 @@
 \begin{frame}{\bf line follower competition}
 
 
-\begin{figure}
-    \includegraphics[scale=0.07]{../images/line_follower.jpg}
-\end{figure}
+    \centering
+    \includemovie[
+      poster,
+      autoplay,
+      externalviewer,
+      inline=false,
+      text={ \includegraphics[scale=0.07]{../images/line_follower.jpg} }
+    ]{9cm}{5cm}{../video/motoko_neural_network_test.mp4}
 
 \begin{itemize}
     \item SR - Istrobot
@@ -210,9 +217,9 @@
 
 \begin{frame}{\bf motoko uprising - hardware}
 
-  \begin{figure}
-    \includegraphics[scale=0.4]{../images/robot_mount_01.jpg}
-  \end{figure}
+\begin{figure}
+  \includegraphics[scale=0.42]{../images/robot_mount_01.jpg}
+\end{figure}
 
 \end{frame}
 
@@ -381,7 +388,6 @@ for (unsigned x = 0; x < input_width; x++)
     }
 
     output[y + kernel_height/2][x + kernel_width/2] = sum;
-  }
 }
 \end{lstlisting}
 \end{frame}
@@ -463,14 +469,14 @@ target                                                       & bits & features  
 
 \begin{frame}{\bf embedded network implementation}
 
-convert float weights to int8\_t
+{\bf Quantization} : convert float weights to int8\_t
 \begin{align*}
   scale &= max{(|\vec{w}|_1)} \\
   \vec{w}' &= \vec{w}\frac{127}{scale}
 \end{align*}
 
 
-use double buffer memory trick
+{\bf Memory saving} : use double buffer memory trick
 
 \begin{itemize}
   \item unsigned buffer\_size = $\max_{i}$(layers[i].input\_size());
@@ -515,9 +521,14 @@ void convolution()
       }
 
       output[y + kernel_size/2][x + kernel_size/2] = (sum*scale)/127;
-    }
   }
 }
+
+...
+
+convolution<1>(); //1x1 kernel
+convolution<3>(); //3x3 kernel
+convolution<5>(); //5x5 kernel
 \end{lstlisting}
 \end{frame}
 
@@ -564,7 +575,6 @@ void convolution()
       }
 
       output[y + kernel_size/2][x + kernel_size/2] = (sum*scale)/127;
-    }
   }
 }
 \end{lstlisting}
@@ -572,45 +582,31 @@ void convolution()
 \end{frame}
 
 
-\begin{frame}[fragile]
-{\bf optimize kernel - SIMD instructions}
+\begin{frame}{\bf optimize kernel - SIMD instructions}
+elementary row MAC operation in 3x3 convolution : 
 
-
-\lstset{language=C++,
-                basicstyle=\small,
-                emph={int,char,double,float,unsigned},
-                emphstyle={\color{blue}},
-                numberstyle=\color{green}\tiny,
-                keywordstyle=\color{red}\bf\ttfamily,
-                stringstyle=\color{red}\ttfamily,
-                commentstyle=\color{green}
+{ \small
+  \begin{itemize}
+    \item {\bf \color{green} sum}+= {\bf \color{red} kernel}[0][0]*{\bf \color{blue} input}[y + 0][x + 0];
+    \item {\bf \color{green} sum}+= {\bf \color{red} kernel}[0][1]*{\bf \color{blue} input}[y + 0][x + 1];
+    \item {\bf \color{green} sum}+= {\bf \color{red} kernel}[0][2]*{\bf \color{blue} input}[y + 0][x + 2];
+  \end{itemize}
 }
 
-\begin{lstlisting}
-
-sum+= kernel[0][0]*input[y + 0][x + 0];
-sum+= kernel[0][1]*input[y + 0][x + 1];
-sum+= kernel[0][2]*input[y + 0][x + 2];
-
-
-smlabb	r2, fp, sl, r2
-ldrsb.w	sl, [r8, #1]
-ldrsb.w	fp, [r0, #-24]
-
-smlabb	r2, fp, sl, r2
-ldrsb.w	sl, [r8, #2]
-ldrsb.w	fp, [r0, #-23]
-
-smlabb	r2, fp, sl, r2
-ldrsb.w	sl, [r8, #3]
-ldrsb.w	fp, [r0, #-22]
-
-\end{lstlisting}
+{\bf instruction : SMLADX}(int32\_t val1, int32\_t val2, int32\_t val3)
+\begin{itemize}
+  \item p1 = {\bf \color{red} val1}[15:0]*{\bf \color{blue} val2}[15:0]
+  \item p2 = {\bf \color{red} val1}[31:16]*{\bf \color{blue} val2}[31:16]
+  \item {\bf \color{green} res}[31:0] = p1 + p2 + {\bf \color{green} val3}[31:0]
+\end{itemize}
 
 
 \end{frame}
 
-  \begin{frame}{\bf speed up summary}
+
+
+
+\begin{frame}{\bf speed up summary}
 
   \begin{table}[]
     \tiny
@@ -660,24 +656,53 @@ accuracy         97.58\% \\
 
 \end{frame}
 
+\begin{frame}{\bf what is next?}
+reinforcement learning to take full controll - \\
+{\bf Advatage Actor Critic - A2C}
 
+
+
+\begin{columns}
+
+  \begin{column}{0.5\textwidth}
+
+      \begin{figure}
+        \includegraphics[scale=0.2]{../images/enduro.png}
+      \end{figure}
+
+  \end{column}
+
+  \begin{column}{0.5\textwidth}  %%<--- here
+
+      \begin{figure}
+        \includegraphics[scale=0.15]{../images/advantage_actor_critic.png}
+      \end{figure}
+
+  \end{column}
+
+\end{columns}
+
+
+\begin{align*}
+\mathcal{L}_{actor}&= -\left( R(n) + \gamma Q(s(n+1); \phi) - Q(s(n); \phi)  \right) log \pi(s, a; \theta) \\
+\mathcal{L}_{critic}&= \left( R(n) + \gamma Q(s(n+1); \phi) - Q(s(n); \phi)  \right)^2 \\
+\mathcal{L}_{entropy}&= \sum_a \pi(s, a; \theta) log \pi(s, a; \theta)
+\end{align*}
+
+
+\end{frame}
 
 
 
 \begin{frame}{\bf Q\&A}
 
 \begin{figure}
-  \includegraphics[scale=0.25]{../images/me.jpg}
+  \includegraphics[scale=0.4]{../images/me_rysy.jpg}
 \end{figure}
 
-\centering {
-michal chovanec (michal.nand@gmail.com)
-\url{www.youtube.com/channel/UCzVvP2ou8v3afNiVrPAHQGg}
-}
 
 \centering {
-github
-\url{https://github.com/michalnand}
+michal.nand@gmail.com, github \url{https://github.com/michalnand}
 }
 
 \end{frame}
