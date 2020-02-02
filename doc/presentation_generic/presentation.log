@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.28)  26 JAN 2020 16:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.28)  2 FEB 2020 17:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1672,32 +1672,32 @@ Overfull \hbox (11.40575pt too wide) in paragraph at lines 280--280
 File: ../images/line_classification.png Graphic file (type png)
 <use ../images/line_classification.png>
 Package pdftex.def Info: ../images/line_classification.png  used on input line 
-306.
+313.
 (pdftex.def)             Requested size: 226.20683pt x 96.36073pt.
  [9
 
  <../images/line_classification.png>]
-<../images/line_follower_dataset.png, id=103, 200.75pt x 200.75pt>
+<../images/line_follower_dataset.png, id=105, 200.75pt x 200.75pt>
 File: ../images/line_follower_dataset.png Graphic file (type png)
 <use ../images/line_follower_dataset.png>
 Package pdftex.def Info: ../images/line_follower_dataset.png  used on input lin
-e 346.
+e 353.
 (pdftex.def)             Requested size: 180.67331pt x 180.67331pt.
 
-Overfull \hbox (27.02838pt too wide) in paragraph at lines 346--346
+Overfull \hbox (27.02838pt too wide) in paragraph at lines 353--353
  [] 
  []
 
 [10
 
  <../images/line_follower_dataset.png>]
-<../images/cnn.jpg, id=111, 1606.0pt x 859.21pt>
+<../images/cnn.jpg, id=113, 1606.0pt x 859.21pt>
 File: ../images/cnn.jpg Graphic file (type jpg)
 <use ../images/cnn.jpg>
-Package pdftex.def Info: ../images/cnn.jpg  used on input line 368.
+Package pdftex.def Info: ../images/cnn.jpg  used on input line 375.
 (pdftex.def)             Requested size: 321.19432pt x 171.83896pt.
 
-Overfull \hbox (13.90445pt too wide) in paragraph at lines 368--368
+Overfull \hbox (13.90445pt too wide) in paragraph at lines 375--375
  [] 
  []
 
@@ -1707,7 +1707,7 @@ Overfull \hbox (13.90445pt too wide) in paragraph at lines 368--368
 \openout4 = `presentation.vrb'.
 
  (./presentation.vrb
-<../images/convolution_2d.png, id=118, 752.8125pt x 354.32375pt>
+<../images/convolution_2d.png, id=120, 752.8125pt x 354.32375pt>
 File: ../images/convolution_2d.png Graphic file (type png)
 <use ../images/convolution_2d.png>
 Package pdftex.def Info: ../images/convolution_2d.png  used on input line 4.
@@ -1744,7 +1744,7 @@ LaTeX Font Warning: Font shape `OMS/lmss/m/n' undefined
 \openout4 = `presentation.vrb'.
 
  (./presentation.vrb
-<../images/activation.png, id=128, 755.82375pt x 567.11874pt>
+<../images/activation.png, id=130, 755.82375pt x 567.11874pt>
 File: ../images/activation.png Graphic file (type png)
 <use ../images/activation.png>
 Package pdftex.def Info: ../images/activation.png  used on input line 5.
@@ -1752,20 +1752,20 @@ Package pdftex.def Info: ../images/activation.png  used on input line 5.
 ) [13
 
  <../images/activation.png>]
-<../images/pooling.png, id=141, 853.1875pt x 599.23875pt>
+<../images/pooling.png, id=143, 853.1875pt x 599.23875pt>
 File: ../images/pooling.png Graphic file (type png)
 <use ../images/pooling.png>
-Package pdftex.def Info: ../images/pooling.png  used on input line 447.
+Package pdftex.def Info: ../images/pooling.png  used on input line 454.
 (pdftex.def)             Requested size: 170.63448pt x 119.84563pt.
  [14
 
  <../images/pooling.png (PNG copy)>] [15
 
 ]
-<../images/nn_memory.png, id=154, 875.27pt x 117.43875pt>
+<../images/nn_memory.png, id=156, 875.27pt x 117.43875pt>
 File: ../images/nn_memory.png Graphic file (type png)
 <use ../images/nn_memory.png>
-Package pdftex.def Info: ../images/nn_memory.png  used on input line 504.
+Package pdftex.def Info: ../images/nn_memory.png  used on input line 511.
 (pdftex.def)             Requested size: 262.58302pt x 35.23189pt.
  [16
 
@@ -1784,11 +1784,11 @@ Package pdftex.def Info: ../images/nn_memory.png  used on input line 504.
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 641.
+(Font)              <5> on input line 648.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <5> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 641.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 648.
 
-Overfull \hbox (12.58739pt too wide) in paragraph at lines 641--641
+Overfull \hbox (12.58739pt too wide) in paragraph at lines 648--648
  [] 
  []
 
@@ -1797,29 +1797,29 @@ Overfull \hbox (12.58739pt too wide) in paragraph at lines 641--641
 ] [21
 
 ]
-<../images/enduro.png, id=196, 413.545pt x 520.94624pt>
+<../images/enduro.png, id=198, 413.545pt x 520.94624pt>
 File: ../images/enduro.png Graphic file (type png)
 <use ../images/enduro.png>
-Package pdftex.def Info: ../images/enduro.png  used on input line 706.
+Package pdftex.def Info: ../images/enduro.png  used on input line 721.
 (pdftex.def)             Requested size: 82.70752pt x 104.1874pt.
-<../diagrams/a2c_line_following.png, id=197, 1579.501pt x 401.5pt>
+<../diagrams/a2c_line_following.png, id=200, 1579.501pt x 401.5pt>
 File: ../diagrams/a2c_line_following.png Graphic file (type png)
 <use ../diagrams/a2c_line_following.png>
 Package pdftex.def Info: ../diagrams/a2c_line_following.png  used on input line
- 706.
+ 721.
 (pdftex.def)             Requested size: 221.12863pt x 56.20961pt.
 
-Overfull \hbox (6.02667pt too wide) in paragraph at lines 706--706
+Overfull \hbox (6.02667pt too wide) in paragraph at lines 721--721
  [] 
  []
 
 [22
 
  <../images/enduro.png> <../diagrams/a2c_line_following.png>]
-<../images/me_rysy.jpg, id=206, 616.704pt x 462.528pt>
+<../images/me_rysy.jpg, id=210, 616.704pt x 462.528pt>
 File: ../images/me_rysy.jpg Graphic file (type jpg)
 <use ../images/me_rysy.jpg>
-Package pdftex.def Info: ../images/me_rysy.jpg  used on input line 721.
+Package pdftex.def Info: ../images/me_rysy.jpg  used on input line 736.
 (pdftex.def)             Requested size: 246.67722pt x 185.0079pt.
  [23
 
@@ -1840,11 +1840,11 @@ Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ superseded by `media9'.           @@
 (movie15)                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 724.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 724.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 739.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 739.
 (./presentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 724.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 724.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 739.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 739.
 Package rerunfilecheck Info: File `presentation.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -1853,10 +1853,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 24526 strings out of 492982
- 438399 string characters out of 6134895
- 706884 words of memory out of 5000000
- 27422 multiletter control sequences out of 15000+600000
+ 24544 strings out of 492982
+ 439072 string characters out of 6134895
+ 706938 words of memory out of 5000000
+ 27438 multiletter control sequences out of 15000+600000
  68552 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  58i,15n,105p,803b,1606s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1872,10 +1872,10 @@ r/share/texmf/fonts/type1/public/lm/lmsso10.pfb></usr/share/texmf/fonts/type1/p
 ublic/lm/lmsso8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/sh
 are/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/
 lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on presentation.pdf (23 pages, 18706407 bytes).
+Output written on presentation.pdf (23 pages, 18706651 bytes).
 PDF statistics:
- 274 PDF objects out of 1000 (max. 8388607)
- 192 compressed objects within 2 object streams
- 48 named destinations out of 1000 (max. 500000)
+ 279 PDF objects out of 1000 (max. 8388607)
+ 197 compressed objects within 2 object streams
+ 50 named destinations out of 1000 (max. 500000)
  167 words of extra memory for PDF output out of 10000 (max. 10000000)
 
