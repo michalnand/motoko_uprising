@@ -42,6 +42,9 @@
 
 
 
+
+
+
 \iftrue
 
 \usetheme{Warsaw}
@@ -69,13 +72,20 @@
 
 
 
+
+
+
+
+
+
 %-------------------------------------------------------------------------------------
-\title{\color{white} \bf DL linefollower}
-\author{\color{white} Michal CHOVANEC, PhD}
 
 
-%\setbeamertemplate{footline}[frame number]{}
+\title{\bf DL linefollower}
+\author{Michal CHOVANEC, PhD}
+
 \setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]{}
 
 
 \date[EURP]{}
@@ -628,22 +638,27 @@ elementary row MAC operation in 3x3 convolution :
 
 \begin{frame}{\bf speed up summary}
 
-  \begin{table}[]
-    \tiny
-    \begin{tabular}{|l|l|l|l|l|l|}
-    \hline
-    \textbf{convolutional}                               & \textbf{input size} & \textbf{kernels count} & \textbf{kernel size} & \textbf{computing time {[}ms{]}} & \textbf{speed up ratio} \\ \hline
-    {\color[HTML]{9AFF99} \textbf{naive}}                & 16x16x16            & 16                     & 1x1                  & 109.8                            & 1.00                    \\ \hline
-    {\color[HTML]{9AFF99} \textbf{naive}}                & 16x16x16            & 16                     & 3x3                  & 312                              & 1.00                    \\ \hline
-    {\color[HTML]{9AFF99} \textbf{naive}}                & 16x16x16            & 16                     & 5x5                  & 532                              & 1.00                    \\ \hline
-    {\color[HTML]{96FFFB} \textbf{template}}             & 16x16x16            & 16                     & 1x1                  & 26.6                             & 4.13                    \\ \hline
-    {\color[HTML]{96FFFB} \textbf{template}}             & 16x16x16            & 16                     & 3x3                  & 213.6                            & 1.46                    \\ \hline
-    {\color[HTML]{96FFFB} \textbf{template}}             & 16x16x16            & 16                     & 5x5                  & 373.3                            & 1.43                    \\ \hline
-    {\color[HTML]{FD6864} \textbf{template + unrolling}} & 16x16x16            & 16                     & 1x1                  & 21                               & \textbf{5.23}           \\ \hline
-    {\color[HTML]{FD6864} \textbf{template + unrolling}} & 16x16x16            & 16                     & 3x3                  & 57.1                             & \textbf{5.46}           \\ \hline
-    {\color[HTML]{FD6864} \textbf{template + unrolling}} & 16x16x16            & 16                     & 5x5                  & 106.2                            & \textbf{5.01}           \\ \hline
-    \end{tabular}
-  \end{table}
+\begin{itemize}
+  \item input tensor dimensions $16 \times 16 \times 16$
+  \item output tensor dimensions $16 \times 16 \times 16$
+\end{itemize}
+
+\begin{table}[]
+  \footnotesize
+  \begin{tabular}{|l|l|l|l|}
+  \hline
+  \textbf{convolutional}                               & \textbf{kernel size} & \textbf{computing time {[}ms{]}} & \textbf{speed up ratio} \\ \hline
+  {\color[HTML]{67FD9A} \textbf{naive}}                & 1x1                  & 109.8                            & 1.00                    \\ \hline
+  {\color[HTML]{67FD9A} \textbf{naive}}                & 3x3                  & 312                              & 1.00                    \\ \hline
+  {\color[HTML]{67FD9A} \textbf{naive}}                & 5x5                  & 532                              & 1.00                    \\ \hline
+  {\color[HTML]{34CDF9} \textbf{template}}             & 1x1                  & 26.6                             & 4.13                    \\ \hline
+  {\color[HTML]{34CDF9} \textbf{template}}             & 3x3                  & 213.6                            & 1.46                    \\ \hline
+  {\color[HTML]{34CDF9} \textbf{template}}             & 5x5                  & 373.3                            & 1.43                    \\ \hline
+  {\color[HTML]{FD6864} \textbf{template + unrolling}} & 1x1                  & 21                               & \textbf{5.23}           \\ \hline
+  {\color[HTML]{FD6864} \textbf{template + unrolling}} & 3x3                  & 57.1                             & \textbf{5.46}           \\ \hline
+  {\color[HTML]{FD6864} \textbf{template + unrolling}} & 5x5                  & 106.2                            & \textbf{5.01}           \\ \hline
+  \end{tabular}
+\end{table}
 
 \end{frame}
 
