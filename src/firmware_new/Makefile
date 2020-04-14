@@ -1,6 +1,6 @@
 
-CXX_SRCS = $(shell find -name '*.cpp')
-C_SRCS = $(shell find  -name '*.c')
+CXX_SRCS = $(shell find . -name '*.cpp')
+C_SRCS = $(shell find  . -name '*.c')
 
 INC = -I .
 INC+= -I ./device

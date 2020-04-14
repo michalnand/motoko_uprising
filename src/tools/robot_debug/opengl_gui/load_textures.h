@@ -1,11 +1,10 @@
 #ifndef _LOAD_TEXTURES_H_
 #define _LOAD_TEXTURES_H_
 
-#include <GL/gl.h>
+#include <OpenGL/gl.h>
 #include <string>
 #include <vector>
 #include <map>
-#include <log.h>
 
 #include <json_config.h>
 
@@ -15,8 +14,6 @@ class LoadTextures
     std::map<unsigned int, unsigned int> map;
     std::vector<GLuint> textures;
     unsigned int textures_count;
-
-    Log result_log;
 
   public:
     LoadTextures();

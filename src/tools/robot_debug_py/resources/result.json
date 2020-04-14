@@ -1,0 +1,34 @@
+{
+"line_sensor" : {
+"on_line" : 1,
+"line_type" : 1,
+"on_line_count" : 0,
+"center_line_position" :  0.089,
+"left_line_position" :  0.343,
+"right_line_position" : -0.003,
+"average" :  230.000,
+"adc_result" : [ 0, 43, 102, 587, 764, 197, 100, 45]
+},
+"distance_sensor": {
+"left" : 0.992,
+"front" : 0.967,
+"right" : 0.996,
+"front_obstacle_warning" :false,
+"front_obstacle" :false
+},
+"imu_sensor" : {
+"angular_rate" : [93, -96, 121],
+"angle" : [-14344, 21026, 10170],
+"acceleration" : [12, 216, 16181]
+},
+"motor_controll" : {
+"left_encoder" :-2,
+"right_encoder" :0,
+"left_speed" : 0.000,
+"right_speed" :-0.000
+},
+"neural_network" : {
+"input" : [ 0, 7, 16, 97, 127, 32, 16, 7, 0, 5, 15, 97, 127, 31, 15, 6, 0, 5, 15, 97, 127, 31, 15, 6, 0, 7, 16, 97, 127, 33, 16, 7, 0, 7, 16, 97, 127, 33, 16, 7, 0, 6, 16, 97, 127, 32, 16, 7, 0, 5, 15, 97, 127, 32, 15, 6, 0, 5, 16, 97, 127, 31, 15, 6],
+"output" :2
+}
+}

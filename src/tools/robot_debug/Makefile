@@ -1,12 +1,7 @@
 ELF = bin/robot_debug.elf
 
-LIBS_PATH=$(HOME)/libs/rysy/rysy2
-
 INC+= -I.
-INC+= -I$(LIBS_PATH)/libs_common
-
-
-LIBS+= $(LIBS_PATH)/libs_common/libs_common.a
+INC+= -I./libs
 
 CC = g++
 CU = nvcc
@@ -20,11 +15,11 @@ SIZE = size
 CFLAGS = $(DEGUBFLAGS) -O2 -Os -s -Wall -Wextra -pedantic -std=c++11 $(INC)
 CUDAFLAGS = -O3 -D_FORCE_INLINES -ccbin=$(CXX) -Xcompiler -fPIC -std=c++11 $(INC)
 
-LDFLAGS = $(DEGUBFLAGS) -lstdc++fs -lm -lpthread -pthread -std=c++11 -lglut -lGL -lGLU -lX11 -ljsoncpp -L/usr/local/cuda/lib64 -lcuda -lcudart
+LDFLAGS = $(DEGUBFLAGS)  -lm -lpthread -pthread -std=c++11 #-lglut -lGL -lGLU -lX11 -ljsoncpp
 
+#-lstdc++fs
 
-SRCS+= $(shell find -name '*.cpp')
-SRCS_CUDA+= $(shell find -name '*.cu')
+SRCS+= $(shell find . -name '*.cpp')
 
 
 OBJS = $(SRCS:.cpp=.o)
@@ -38,9 +33,6 @@ $(ELF): $(LIBS) $(OBJS) $(OBJS_CUDA)
 
 %.o: %.cpp
 	$(CC) -c $(CFLAGS) $< -o $@
-
-%.oc: %.cu
-	$(CU) -c $(CUDAFLAGS) $< -o $@
 
 clean:
 	rm $(OBJS) -f

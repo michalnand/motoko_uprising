@@ -2,7 +2,7 @@
 #define _GL_VISUALISATION_H_
 
 #include <string>
-#include <GL/gl.h>
+#include <OpenGL/gl.h>
 
 class GLVisualisation
 {

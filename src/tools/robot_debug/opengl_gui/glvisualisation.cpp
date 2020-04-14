@@ -2,14 +2,13 @@
 
 
 #include <stdio.h>
-#include <X11/X.h>
-#include <X11/Xlib.h>
-#include <GL/gl.h>
-#include <GL/glx.h>
-#include <GL/glu.h>
-#include <GL/freeglut.h>
-#include <GL/glut.h>
-#include <GL/glext.h>
+//#include <X11/X.h>
+//#include <X11/Xlib.h>
+#include <OpenGL/gl.h>
+//#include <OpenGL/glx.h>
+#include <OpenGL/glu.h>
+#include <GLUT/glut.h>
+#include <OpenGL/glext.h>
 
 #include <math.h>
 

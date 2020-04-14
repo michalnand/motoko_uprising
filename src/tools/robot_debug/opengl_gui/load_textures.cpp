@@ -34,9 +34,9 @@ void LoadTextures::load(Json::Value json)
     std::string texture_file_name = json["textures"][i]["file_name"].asString();
     unsigned int texture_id = json["textures"][i]["id"].asInt();
 
-    result_log << "loading texture ";
-    result_log << texture_id << " ";
-    result_log << texture_file_name << "\n";
+    std::count << "loading texture ";
+    std::count << texture_id << " ";
+    std::count << texture_file_name << "\n";
 
     map[texture_id] = i;
 
