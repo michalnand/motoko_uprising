@@ -95,16 +95,26 @@ class GLVisualisation:
 
         texture_id = glGenTextures(1)
 
-        texture_height= texture_array.shape[1]
-        texture_width = texture_array.shape[2]
-
-
-        texture_array_ = numpy.moveaxis(texture_array, 0, 2).flatten().astype(dtype=numpy.uint8)
-
-
         glBindTexture(GL_TEXTURE_2D, texture_id)
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, texture_array_)
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
+
+        k = 255/(numpy.max(texture_array) - numpy.min(texture_array))
+        q = 255 - k*numpy.max(texture_array)
+        texture_array_normalised = texture_array*k + q
+
+        if len(texture_array.shape) == 3:
+            texture_height= texture_array.shape[1]
+            texture_width = texture_array.shape[2]
+            texture_array_ = numpy.moveaxis(texture_array_normalised, 0, 2).flatten().astype(dtype=numpy.uint8)
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, texture_array_)
+            
+        if len(texture_array.shape) == 2:
+            texture_height= texture_array.shape[0]
+            texture_width = texture_array.shape[1]
+            texture_array_ = texture_array_normalised.flatten().astype(dtype=numpy.uint8)
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, texture_width, texture_height, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, texture_array_)
+         
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
 
 
         glActiveTexture(GL_TEXTURE0)
@@ -116,17 +126,19 @@ class GLVisualisation:
         glBegin(GL_QUADS)
         glNormal3f(0.0, 0.0, 1.0)
 
-        glTexCoord2d(1, 1) 
-        glVertex3f(width/2.0, height/2.0, 0.0)
 
         glTexCoord2d(1, 0) 
+        glVertex3f(width/2.0, height/2.0, 0.0)
+
+        glTexCoord2d(1, 1) 
         glVertex3f(width/2.0, -height/2.0, 0.0)
 
-        glTexCoord2d(0, 0) 
+        glTexCoord2d(0, 1) 
         glVertex3f(-width/2.0, -height/2.0, 0.0)
 
-        glTexCoord2d(0, 1) 
+        glTexCoord2d(0, 0) 
         glVertex3f(-width/2.0, height/2.0, 0.0)
+
 
         glEnd()
 

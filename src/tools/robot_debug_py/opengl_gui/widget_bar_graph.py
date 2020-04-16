@@ -4,12 +4,12 @@ class WidgetBarGraph(WidgetFrame):
     def __init__(self, visualisation, variables, textures, params):
         super().__init__(visualisation, variables, textures, params)
 
-        self.br  = float(params["bar color"][0])
-        self.bg  = float(params["bar color"][1])
-        self.bb  = float(params["bar color"][2])
+        self.br  = float(params["bar_color"][0])
+        self.bg  = float(params["bar_color"][1])
+        self.bb  = float(params["bar_color"][2])
 
-        self.min = float(params["min value"])
-        self.max = float(params["max value"])
+        self.min = float(params["min_value"])
+        self.max = float(params["max_value"])
         
         min_out = 0.0
         max_out = self.height*0.9

@@ -6,7 +6,7 @@ class WidgetModelFrame(WidgetFrame):
         super().__init__(visualisation, variables, textures, params)
 
 
-        model_file_name = str(params["model file name"])
+        model_file_name = str(params["model_file_name"])
         
         self.scale = float(params["scale"])
 
@@ -20,7 +20,6 @@ class WidgetModelFrame(WidgetFrame):
 
         self.model = ObjModel(model_file_name)
 
-        self.step = 0.0
 
 
     def render(self):
@@ -33,8 +32,8 @@ class WidgetModelFrame(WidgetFrame):
             values = self.variables.v[self.variable_name]
 
             drx =  float(values[0]) 
-            dry =  float(values[1]) + 60
-            drz =  float(values[2]) + self.step
+            dry =  float(values[1])
+            drz =  float(values[2])
 
             self.visualisation.push()
             self.visualisation.translate(self.sx, self.sy, self.sz)
@@ -56,5 +55,3 @@ class WidgetModelFrame(WidgetFrame):
                 self.child_widgets[i].render()
    
             self.visualisation.pop()
-
-            self.step+= 1

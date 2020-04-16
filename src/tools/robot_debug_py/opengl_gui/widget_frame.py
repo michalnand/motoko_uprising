@@ -15,7 +15,7 @@ class WidgetFrame(Widget):
         self.label       = str(self.params["label"])
         self.filled      = bool(self.params["filled"])
 
-        self.frame_width = float(self.params["frame width"])
+        self.frame_width = float(self.params["frame_width"])
 
 
 

@@ -34,152 +34,193 @@
     "type"      : "label",
     "position"  : [0.0, 0.0, 0.0],
     "color"     : [1.0, 0.0, 0.0],
-    "font size" : 0.1,
+    "font_size" : 0.1,
 
     "widgets" : [
                   {
-                    "type"           : "bar graph",
+                    "type"           : "bar_graph",
                     "position"       : [-2.0, 1.25, 0.0],
                     "color"          : [0.5, 1.0, 0.0],
-                    "bar color"      : [0.8, 0.8, 0.8],
+                    "bar_color"      : [0.8, 0.8, 0.8],
 
-                    "font size" : 0.05,
+                    "font_size" : 0.05,
 
                     "width"     : 1.5,
                     "height"    : 0.5,
 
                     "filled"    : false,
-                    "frame width" : 0.01,
+                    "enlight_max_value" : true,
+
+                    "frame_width" : 0.01,
                     "label"     : "LINE SENSORS",
 
-                    "min value" : 0.0,
-                    "max value" : 1024.0,
+                    "min_value" : 0.0,
+                    "max_value" : 1024.0,
 
                     "variable"  : {
-                                    "name"  : "line sensors",
+                                    "name"  : "line_sensors",
                                     "value" : [3, 40, 500, 1000, 700, 50, 0, 0]
                                   }
                   },
 
 
                   {
-                    "type"              : "text frame",
+                    "type"              : "text_frame",
                     "position"          : [0.55, 1.25, 0.0],
                     "color"             : [0.5, 1.0, 0.0],
 
-                    "font size" : 0.05,
+                    "font_size" : 0.05,
 
                     "width"     : 1.0,
                     "height"    : 0.5,
 
                     "filled"    : false,
-                    "frame width" : 0.01,
+                    "frame_width" : 0.01,
                     "label"     : "LINE POSITION",
 
                     "variable"  : {
-                                    "name"  : "line position",
+                                    "name"  : "line_position",
                                     "value" : "on_line = 0\nline_type = 0\non_line_count = 0\ncenter_line_position = 0\nleft_line_position = 0\nright_line_position = 0\naverage = 0"
                                   }
                   },
 
                   {
-                    "type"              : "text frame",
+                    "type"              : "text_frame",
                     "position"          : [2.55, 1.25, 0.0],
                     "color"             : [0.5, 1.0, 0.0],
 
-                    "font size" : 0.05,
+                    "font_size" : 0.05,
 
                     "width"     : 0.95,
                     "height"    : 0.5,
 
                     "filled"    : false,
-                    "frame width" : 0.01,
+                    "frame_width" : 0.01,
                     "label"     : "MOTORS",
 
                     "variable"  : {
-                                    "name"  : "motors output",
+                                    "name"  : "motors_output",
                                     "value" : "left distance = 0[mm]\nleft speed = 0\n\nright distance = 0[mm]\nright speed = 0"
                                   }
                   },
 
 
                   {
-                    "type"              : "distance sensors",
+                    "type"              : "distance_sensors",
                     "position"          : [0.55, -0.35, 0.0],
                     "color"             : [0.5, 1.0, 0.0],
-                    "font color"        : [1.0, 1.0, 1.0],
-                    "console color"     : [1.0, 0.0, 0.0],
+                    "font_color"        : [1.0, 1.0, 1.0],
+                    "console_color"     : [1.0, 0.0, 0.0],
 
-                    "font size" : 0.05,
+                    "font_size" : 0.05,
 
                     "width"     : 1.0,
                     "height"    : 0.85,
 
-                    "filled"    : true,
-                    "frame width" : 0.01,
+                    "filled"    : false,
+                    "frame_width" : 0.01,
                     "label"     : "DISTANCE SENSORS",
 
                     "variable"  : {
-                                    "name"  : "distance sensors",
+                                    "name"  : "distance_sensors",
                                     "value" : [0.5, 0.1, 0.98]
                                   }
                   },
 
 
                   {
-                    "type"              : "model frame",
+                    "type"              : "model_frame",
                     "position"          : [2.55, -0.35, 0.0],
                     "color"             : [0.2, 0.2, 0.2],
 
-                    "font size" : 0.05,
+                    "font_size" : 0.05,
 
                     "width"     : 0.95,
                     "height"    : 0.85,
 
-                    "filled"    : true,
-                    "frame width" : 0.01,
+                    "filled"    : false,
+                    "frame_width" : 0.01,
                     "label"     : "IMU SENSORS",
 
-                    "model file name" : "./resources/robot_model/model",
+                    "model_file_name" : "./resources/robot_model/model",
 
                     "scale"  :         0.008,
                     "rotate" :         [0.0, 0.0, -90.0],
                     "shift"  :         [0.0, 0.05, 0.5],
 
                     "variable"  : {
-                                    "name"  : "imu angles",
+                                    "name"  : "imu_angles",
                                     "value" : [0.0, 0.0, 0.0]
+                                  }
+                  },
+
+
+                  {
+                    "type"              : "camera_frame",
+                    "position"          : [-2.75, -0.35, 0.0],
+                    "color"             : [0.2, 0.2, 0.2],
+
+                    "font_size" : 0.05,
+
+                    "width"     : 0.75,
+                    "height"    : 0.85,
+
+                    "filled"    : false,
+                    "frame_width" : 0.01,
+                    "label"     : "LINE SENSORS",
+
+                    "variable"  : {
+                                    "name"  : "camera",
+                                    "value" : [[0.0, 1.0],[1.0, 0.0]]
                                   }
                   },
 
 
 
                   {
-                    "type"              : "cnn frame",
-                    "position"          : [0.9, -1.05, 0.0],
-                    "color"             : [0.2, 0.2, 0.2],
-                    "font color"        : [1.0, 1.0, 1.0],
-                    "console color"     : [1.0, 1.0, 1.0],
+                    "type"           : "bar_graph",
+                    "position"       : [-1.25, -0.35, 0.0],
+                    "color"          : [0.5, 1.0, 0.0],
+                    "bar_color"      : [0.9, 0.9, 0.9],
 
+                    "font_size" : 0.05,
 
-                    "font size" : 0.1,
+                    "width"     : 0.75,
+                    "height"    : 0.85,
 
-                    "width"     : 2.1,
-                    "height"    : 0.3,
+                    "filled"    : false,
+                    "enlight_max_value" : true,
 
-                    "filled"    : true,
-                    "frame width" : 0.01,
-                    "label"     : "NEURAL NETWORK",
+                    "frame_width" : 0.01,
+                    "label"     : "NETWORK OUTPUT",
 
-                    "texture id" : 100,
+                    "min_value" : 0.0,
+                    "max_value" : 1.0,
 
                     "variable"  : {
-                                    "name"  : "network io",
-                                    "value" : {
-                                                "input geometry" : [4, 4, 1],
-                                                "input" : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,14, 15],
-                                                "output" : 0
-                                              }
+                                    "name"  : "classification_result",
+                                    "value" : [0.1, 0.3, 0.8, 0.4, 0.7]
+                                  }
+                  },
+
+
+                  {
+                    "type"              : "text_frame",
+                    "position"          : [0.0, -1.7, 0.0],
+                    "color"             : [0.5, 1.0, 0.0],
+
+                    "font_size" : 0.03,
+
+                    "width"     : 3.5,
+                    "height"    : 0.2,
+
+                    "filled"    : true,
+                    "frame_width" : 0.01,
+                    "label"     : "CONSOLE",
+
+                    "variable"  : {
+                                    "name"  : "console",
+                                    "value" : ">"
                                   }
                   }
                 ]

@@ -62,18 +62,21 @@ class GLGui:
 
         return 0
 
+
     def main(self):
-        while not glfw.window_should_close(self.window):
-            print("main loop")
-
-            self._render()
-            
-            glfw.swap_buffers(self.window)
-
-            # Poll for and process events
-            glfw.poll_events()
+        while self.main_step() != True:
+            pass
 
         glfw.terminate()
+
+
+    def main_step(self):
+        self._render()
+        glfw.swap_buffers(self.window)
+        glfw.poll_events()
+
+        return glfw.window_should_close(self.window)
+
 
 
     def _render(self):
@@ -91,7 +94,7 @@ class GLGui:
         glLoadIdentity()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
-        glClearColor(1, 0, 0, 0)
+        glClearColor(0, 0, 0, 0)
         
         self.visualisation.translate(0.0, 0.0, 0.0)
 

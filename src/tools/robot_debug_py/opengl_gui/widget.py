@@ -20,7 +20,7 @@ class Widget:
         self.g = float(self.params["color"][1])
         self.b = float(self.params["color"][2])
 
-        self.font_size = float(self.params["font size"])
+        self.font_size = float(self.params["font_size"])
 
 
         if "variable" in self.params:
@@ -42,6 +42,7 @@ class Widget:
         from opengl_gui.widget_text_frame import WidgetTextFrame
         from opengl_gui.widget_distance_sensor import WidgetDistanceSensor
         from opengl_gui.widget_model_frame import WidgetModelFrame
+        from opengl_gui.widget_camera_frame import WidgetCameraFrame
 
         if "widgets" in self.params:
             for i in range(len(self.params["widgets"])):
@@ -49,14 +50,16 @@ class Widget:
 
                 if widget_type == "frame":
                     widget = WidgetFrame(visualisation, variables, textures, params["widgets"][i])
-                elif widget_type == "text frame":
+                elif widget_type == "text_frame":
                     widget = WidgetTextFrame(visualisation, variables, textures, params["widgets"][i])    
-                elif widget_type == "bar graph":
+                elif widget_type == "bar_graph":
                     widget = WidgetBarGraph(visualisation, variables, textures, params["widgets"][i])
-                elif widget_type == "distance sensors":
+                elif widget_type == "distance_sensors":
                     widget = WidgetDistanceSensor(visualisation, variables, textures, params["widgets"][i])
-                elif widget_type == "model frame":
+                elif widget_type == "model_frame":
                     widget = WidgetModelFrame(visualisation, variables, textures, params["widgets"][i])
+                elif widget_type == "camera_frame":
+                    widget = WidgetCameraFrame(visualisation, variables, textures, params["widgets"][i])
                 else:
                     widget = Widget(visualisation, variables, textures, params["widgets"][i])
 
