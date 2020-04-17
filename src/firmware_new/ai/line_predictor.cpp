@@ -87,6 +87,18 @@ unsigned int LinePredictor::process(Array<int, LINE_SENSOR_COUNT> &adc_result, l
         nn->forward();
 
         result = nn->class_result();
+
+        for (unsigned int i = 0; i < LINE_SENSOR_COUNT; i++)
+        {
+            int v = nn->get_output()[i];
+
+            if (v > 127)
+                v = 127;
+            if (v < -127)
+                v = -127;
+
+            network_output[i] = v;
+        }
     }
 
     return 0;

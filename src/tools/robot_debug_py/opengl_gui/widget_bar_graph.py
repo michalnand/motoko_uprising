@@ -1,4 +1,5 @@
 from opengl_gui.widget_frame import WidgetFrame
+import numpy
 
 class WidgetBarGraph(WidgetFrame):
     def __init__(self, visualisation, variables, textures, params):
@@ -10,6 +11,8 @@ class WidgetBarGraph(WidgetFrame):
 
         self.min = float(params["min_value"])
         self.max = float(params["max_value"])
+
+        self.enlight_max_value = bool(params["enlight_max_value"])
         
         min_out = 0.0
         max_out = self.height*0.9
@@ -24,11 +27,14 @@ class WidgetBarGraph(WidgetFrame):
 
             self.render_frame()
 
-            values = self.variables.v[self.variable_name]
+            values = numpy.asarray(self.variables.v[self.variable_name])
+            
+            count   = values.shape[0]
+            max_idx = numpy.argmax(values)
 
-            count = len(values)
+
             for i in range(count):
-                v_raw = float(values[i])
+                v_raw = values[i]
                 value = self._convert(v_raw)
 
                 w  = self.width*0.9
@@ -39,7 +45,12 @@ class WidgetBarGraph(WidgetFrame):
                 y_ = -rh/2.0 + self.height/2.0
 
                 self.visualisation.push()
-                self.visualisation.set_color(self.br, self.bg, self.bb)
+
+                if self.enlight_max_value and i == max_idx:
+                    self.visualisation.set_color(self.br*0.5, 1.0, self.bb*0.5)
+                else:
+                    self.visualisation.set_color(self.br, self.bg, self.bb)
+
                 self.visualisation.translate(x_, -y_, 0)
                 self.visualisation.paint_rectangle(rw, rh)
                 self.visualisation.pop()
@@ -48,8 +59,7 @@ class WidgetBarGraph(WidgetFrame):
                 self.visualisation.push()
                 string = self._get_rounded(v_raw, 2)
 
-
-                self.visualisation.set_color(self.br, self.bg, self.bb)
+                
                 self.visualisation.print_string(x_ - rw/4.0, -y_ + rh/2.0 + 0.01, 0, string, self.font_size*0.5)
                 self.visualisation.pop()
 

@@ -81,8 +81,22 @@ void diagnostic()
                         terminal << ", ";
                 }
                 terminal << "],\n";
+                
+
+                terminal << "\"network_output\" : [ ";
+                for (unsigned int i = 0; i < LINE_TYPES_COUNT; i++)
+                {
+                    terminal << predictor.get_network_output()[i];
+                    if (i < (LINE_TYPES_COUNT-1))
+                        terminal << ", ";
+                }
+                terminal << "],\n";
+
 
                 terminal << "\"output\" :" << predictor.get_result() << "\n";
+
+
+                
 
             terminal << "}\n";
 

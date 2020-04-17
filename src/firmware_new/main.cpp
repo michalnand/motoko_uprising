@@ -14,7 +14,7 @@ int main()
     timer.delay_ms(1000);
 
 
-    //diagnostic();
+    diagnostic();
 
 
     Robot robot;
