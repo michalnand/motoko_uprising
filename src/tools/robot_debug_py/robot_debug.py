@@ -25,7 +25,7 @@ class RobotDebug:
         gui.variables.add("imu_angles", angles)
 
 
-        distance_sensors = {}
+        distance_sensors = numpy.zeros(3)
       
         distance_sensors[0] =  float(json_data["distance_sensor"]["right"])
         distance_sensors[1] =  float(json_data["distance_sensor"]["front"])

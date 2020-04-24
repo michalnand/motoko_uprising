@@ -169,6 +169,9 @@
                     "frame_width" : 0.01,
                     "label"     : "LINE SENSORS",
 
+                    "min"       : -127,
+                    "max"       : 127,
+
                     "variable"  : {
                                     "name"  : "camera",
                                     "value" : [[0.0, 1.0],[1.0, 0.0]]

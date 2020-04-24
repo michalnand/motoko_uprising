@@ -1,4 +1,5 @@
 import json
+import time
 import opengl_gui
 import robot_debug
 import json_serial_port_parser
@@ -30,3 +31,5 @@ while gui.main_step() != True:
         print("new data")
         print(json_data)
         debug.update(gui, json_data)
+    else: 
+        time.sleep(0.1)

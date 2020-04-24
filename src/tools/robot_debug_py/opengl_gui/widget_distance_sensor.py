@@ -4,7 +4,8 @@ import numpy
 class WidgetDistanceSensor(WidgetFrame):
     def __init__(self, visualisation, variables, textures, params):
         super().__init__(visualisation, variables, textures, params)
-
+        self.min = 0.5
+        self.max = 1.0
 
     def render(self):
         if self.visible:
@@ -13,18 +14,20 @@ class WidgetDistanceSensor(WidgetFrame):
 
             self.render_frame()
 
-            values = self.variables.v[self.variable_name]
-            values_float = []
-            values_count = len(values)
+            values = numpy.asarray(self.variables.v[self.variable_name], dtype=float)
 
-            for i in range(values_count):
-                values_float.append(float(values[i]))
+            k = (1.0 - 0.0)/(self.max - self.min)
+            q = 1.0 - k*self.max
+            values_normalised = k*values + q
+            values_normalised = numpy.clip(values_normalised, 0.0, 1.0)
+
+            values_count = len(values)
 
             pi = 3.141592654
             radius = self.width/2.5
 
             arc_length = 2.0*pi/values_count
-            offset = -15.0*pi/180.0
+            offset = (-15.0 + 120)*pi/180.0
 
             self.visualisation.push()
 
@@ -34,12 +37,8 @@ class WidgetDistanceSensor(WidgetFrame):
             self.visualisation.paint_circle(radius)
 
             for i in range(values_count):
-                cl = values[i]
-                if cl < 0.1:
-                    cl = 0.1
-                if cl > 1.0:
-                    cl = 1.0
-
+                cl = values_normalised[i]
+               
 
                 self.visualisation.push() 
 

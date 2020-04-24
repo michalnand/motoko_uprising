@@ -17,7 +17,7 @@ class JsonSerialPortParser:
 
 
     def process(self):
-        s = str(self.serial.read(4096).decode("ascii", errors="ignore"))
+        s = str(self.serial.read(32768).decode("ascii", errors="ignore"))
 
         for i in range(len(s)):
             self._add(s[i])
