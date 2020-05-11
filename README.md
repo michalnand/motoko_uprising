@@ -48,8 +48,8 @@ Some photos from mounting this devilry device :
 
 ## Firmware
 
-TODO - this will be long journey
-<img src="doc/diagrams/lf/line_following.png" width="500">
+
+<img src="doc/diagrams/lf/line_following.png" width="700">
 
 <img src="doc/diagrams/line_classification.png" width="500">
 <img src="doc/diagrams/line_following_net.png" width="500">
@@ -57,5 +57,49 @@ TODO - this will be long journey
 
 
 ## Debug application
+
+There is debug application written in Python. Data received from robot are visualised in custom GUI written
+using OpenGL. Data are transfered in JSON format.
+
+
+Robot GUI is also designed in json - to modify gui design, only this file need to be modified: 
+
+```json
+"widgets" :
+  {
+    "type"      : "label",
+    "position"  : [0.0, 0.0, 0.0],
+    "color"     : [1.0, 0.0, 0.0],
+    "font_size" : 0.1,
+
+    "widgets" : [
+                  {
+                    "type"           : "bar_graph",
+                    "position"       : [-2.0, 1.25, 0.0],
+                    "color"          : [0.5, 1.0, 0.0],
+                    "bar_color"      : [0.8, 0.8, 0.8],
+
+                    "font_size" : 0.05,
+
+                    "width"     : 1.5,
+                    "height"    : 0.5,
+
+                    "filled"    : false,
+                    "enlight_max_value" : false,
+
+                    "frame_width" : 0.01,
+                    "label"     : "LINE SENSORS",
+
+                    "min_value" : 0.0,
+                    "max_value" : 1024.0,
+
+                    "variable"  : {
+                                    "name"  : "line_sensors",
+                                    "value" : [3, 40, 500, 1000, 700, 50, 0, 0]
+                                  }
+                  },
+...
+```
+
 <img src="doc/images/debug_app.png" width="700">
 
