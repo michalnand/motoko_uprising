@@ -60,7 +60,7 @@ Some photos from mounting this devilry device :
 PIDs in differential form are used, with antiwindup
 
 the controller equation is :
-<img src="http://www.sciweavers.org/tex2img.php?eq=u%28n%29%20%3D%20u%28n-1%29%20%2B%20k_0e%28n%29%20%2B%20k_1e%28n-1%29%20%2B%20k_2e%28n-2%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0" align="center" border="0" alt="u(n) = u(n-1) + k_0e(n) + k_1e(n-1) + k_2e(n-2)" width="414" height="18" />
+![u(n) = u(n-1) + k_0e(n) + k_1e(n-1) + k_2e(n-2)](https://render.githubusercontent.com/render/math?math=u(n)%20%3D%20u(n-1)%20%2B%20k_0e(n)%20%2B%20k_1e(n-1)%20%2B%20k_2e(n-2))
 
 ```cpp
 float PID::process(float error, float plant_output)
