@@ -14,7 +14,7 @@ Robot can recognize straight line and speed up.
 
 
 
-###### Hardware
+## Hardware
 
 * CPU is ARM Cortex M4F, stm32f303, 73MHz
   * with simd instructions, good to have for deep learning
@@ -46,16 +46,16 @@ Some photos from mounting this devilry device :
 
 
 
-###### Software
-
-**Debug app**
-<img src="doc/images/debug_app.png" width="700">
-
+## Firmware
 
 TODO - this will be long journey
+<img src="doc/diagrams/lf/line_following.png" width="500">
 
 <img src="doc/diagrams/line_classification.png" width="500">
-
-
 <img src="doc/diagrams/line_following_net.png" width="500">
+
+
+
+## Debug application
+<img src="doc/images/debug_app.png" width="700">
 
