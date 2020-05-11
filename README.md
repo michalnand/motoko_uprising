@@ -4,15 +4,18 @@
 Advanced line following robot, using custom deep neural network for curve shape prediction.
 Robot can recognize straight line and speed up.
 
-
-Video of woking robot [motoko video](https://www.youtube.com/watch?v=E9FJIDowNmU).
-
+* Video1 of woking robot [motoko video 1](https://www.youtube.com/watch?v=E9FJIDowNmU)
+* Video2 of woking robot [motoko video 2](https://www.youtube.com/watch?v=xUAJ1LA6Xwc)
 
 <img src="doc/video/robot_video.gif" width="800">
 <img src="doc/video/debug_video.gif" width="800">
 
+### some photos of robot
 
-<img src="doc/images/robot.jpg" width="800">
+<img src="doc/images/IMG_20190701_161143.jpg" width="800">
+<img src="doc/images/robot_mount_01.jpg" width="800">
+<img src="doc/images/robot_model.png" width="800">
+<img src="doc/images/IMG_20190701_133358.jpg" width="800">
 
 
 
