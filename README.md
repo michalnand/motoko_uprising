@@ -59,7 +59,7 @@ Some photos from mounting this devilry device :
 
 PIDs in differential form are used, with antiwindup
 
-
+<img src="http://www.sciweavers.org/tex2img.php?eq=u%28n%29%20%3D%20u%28n-1%29%20%2B%20k_0e%28n%29%20%2B%20k_1e%28n-1%29%20%2B%20k_2e%28n-2%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0">
 
 ```cpp
 float PID::process(float error, float plant_output)
@@ -83,7 +83,8 @@ float PID::process(float error, float plant_output)
 }
 ```
 
-motors controllers step response
+motors controllers step response :
+
 <img src="doc/images/motor_controll.png" width="500">
 
 
