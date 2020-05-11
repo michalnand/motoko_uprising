@@ -62,6 +62,13 @@ PIDs in differential form are used, with antiwindup
 the controller equation is :
 ![u(n) = u(n-1) + k_0e(n) + k_1e(n-1) + k_2e(n-2)](https://render.githubusercontent.com/render/math?math=u(n)%20%3D%20u(n-1)%20%2B%20k_0e(n)%20%2B%20k_1e(n-1)%20%2B%20k_2e(n-2))
 
+where
+* e(n) is error
+* u(n) is controller output
+* k0 = kp + ki + kd
+* k1 = -kp     -2kd
+* k2 = kd
+
 ```cpp
 float PID::process(float error, float plant_output)
 {
