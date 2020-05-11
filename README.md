@@ -51,13 +51,42 @@ Some photos from mounting this devilry device :
 
 <img src="doc/diagrams/lf/line_following.png" width="700">
 
+### Neural network
+
+tiny convolutional neural network is used, with architecture :
+IN1x8x8 - C4x3x3 - P2x2 - C8x3x3 - P2x2 - FC5
+
 <img src="doc/diagrams/line_classification.png" width="500">
-<img src="doc/diagrams/line_following_net.png" width="500">
+
+the custom embedded CNN framework is used
+
+```cpp
+LineNetwork::LineNetwork()
+			:EmbeddedNet()
+{
+		input_shape.w = 8;
+		input_shape.h = 8;
+		input_shape.d = 1;
+
+		output_shape.w = 1;
+		output_shape.h = 1;
+		output_shape.d = 5;
+
+		layers[0] = new EmbeddedNetConvolutionLayer(layer_0_shape,layer_0_input_shape,layer_0_output_shape,layer_0_weights,layer_0_bias,layer_0_weights_range,layer_0_bias_range);
+		layers[1] = new EmbeddedNetMaxPoolingLayer(layer_1_shape,layer_1_input_shape,layer_1_output_shape);
+		layers[2] = new EmbeddedNetConvolutionLayer(layer_2_shape,layer_2_input_shape,layer_2_output_shape,layer_2_weights,layer_2_bias,layer_2_weights_range,layer_2_bias_range);
+		layers[3] = new EmbeddedNetMaxPoolingLayer(layer_3_shape,layer_3_input_shape,layer_3_output_shape);
+		layers[4] = new EmbeddedNetFcLayer(layer_4_shape,layer_4_input_shape,layer_4_output_shape,layer_4_weights,layer_4_bias,layer_4_weights_range,layer_4_bias_range);
+
+		layers_count = 5;
+		allocate_buffer();
+}
+```
 
 
 ### PIDs
 
-PIDs in differential form are used, with antiwindup
+PIDs in differential form are used, with antiwindup and derivation kick avoid trick
 
 the controller equation is :
 ![u(n) = u(n-1) + k_0e(n) + k_1e(n-1) + k_2e(n-2)](https://render.githubusercontent.com/render/math?math=u(n)%20%3D%20u(n-1)%20%2B%20k_0e(n)%20%2B%20k_1e(n-1)%20%2B%20k_2e(n-2))
