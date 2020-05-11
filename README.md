@@ -16,7 +16,7 @@ Robot can recognize straight line and speed up.
 
 ## Hardware
 
-* CPU is ARM Cortex M4F, stm32f303, 73MHz
+* CPU is ARM Cortex M4F, stm32f303, 72MHz
   * with simd instructions, good to have for deep learning
 * gyroscope : lsm303 
   * (or something like THAT - yeah, they are changing it more often then socks)
@@ -55,14 +55,49 @@ Some photos from mounting this devilry device :
 <img src="doc/diagrams/line_following_net.png" width="500">
 
 
+### PIDs
+
+PIDs in differential form are used, with antiwindup
+
+
+
+```cpp
+float PID::process(float error, float plant_output)
+{
+    e1 = e0;
+    e0 = error;
+
+    x2 = x1;
+    x1 = x0;
+    x0 = plant_output;
+
+    u+= k0*e0 + k1*e1 - kd*(x0 - 2*x1 + x2);
+
+    if (u > limit)
+      u = limit;
+
+    if (u < -limit)
+      u = -limit;
+
+    return u;
+}
+```
+
+motors controllers step response
+<img src="doc/images/motor_controll.png" width="500">
+
+
+
+
 
 ## Debug application
+
+<img src="doc/images/debug_app.png" width="700">
 
 There is debug application written in Python. Data received from robot are visualised in custom GUI written
 using OpenGL. Data are transfered in JSON format.
 
-
-Robot GUI is also designed in json - to modify gui design, only this file need to be modified: 
+Robot GUI is also designed in json - to modify gui design, only this file need to be modified. Example of gui.json file format : 
 
 ```json
 "widgets" :
@@ -101,5 +136,4 @@ Robot GUI is also designed in json - to modify gui design, only this file need t
 ...
 ```
 
-<img src="doc/images/debug_app.png" width="700">
 
