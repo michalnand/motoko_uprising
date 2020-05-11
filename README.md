@@ -8,6 +8,10 @@ Robot can recognize straight line and speed up.
 Video of woking robot [motoko video](https://www.youtube.com/watch?v=E9FJIDowNmU).
 
 
+<img src="doc/video/robot_video.gif" width="800">
+<img src="doc/video/debug_video.gif" width="800">
+
+
 <img src="doc/images/robot.jpg" width="800">
 
 
