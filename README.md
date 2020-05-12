@@ -14,7 +14,7 @@ Robot can recognize straight line and speed up.
 
 
 
-## Hardware
+## hardware
 
 * CPU is ARM Cortex M4F, stm32f303, 72MHz
   * with simd instructions, good to have for deep learning
@@ -46,12 +46,18 @@ Some photos from mounting this devilry device :
 
 
 
-## Firmware
+## firmware
 
+### control loops
+
+* ADC reads line sensor, using quadratic interpolation for precission line position estimation
+* for steering PD controller is used
+* for motor controll two PIDs are used (data from encoders are filtered by low pass filters)
+* target speed is estimated by neural network, using line shape classification
 
 <img src="doc/diagrams/lf/line_following.png" width="700">
 
-### Neural network
+### neural network
 
 tiny convolutional neural network is used, with architecture :
 IN1x8x8 - C4x3x3 - P2x2 - C8x3x3 - P2x2 - FC5
@@ -128,7 +134,7 @@ motors controllers step response :
 
 
 
-## Debug application
+## debug application
 
 <img src="doc/images/debug_app.png" width="700">
 
